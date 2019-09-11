@@ -105,13 +105,20 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="title: Tensorflow入门教程date: 2018-05-27 13:47:40categories:  学习tags: TensorFlow 语言 Python 编程   1.tensorflow基本介绍1.TensorFlow 简介​    TensorFlow是一个基于数据流编程的符号数学系统，被广泛应用于各类机器学习算法的编程实现，其前身是谷歌的神经网络算法库 2.Tenso">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/09/11/1.tensorflow基本介绍/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title: Tensorflow入门教程date: 2018-05-27 13:47:40categories:  学习tags: TensorFlow 语言 Python 编程   1.tensorflow基本介绍1.TensorFlow 简介​    TensorFlow是一个基于数据流编程的符号数学系统，被广泛应用于各类机器学习算法的编程实现，其前身是谷歌的神经网络算法库 2.Tenso">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CPictures%5C1529558773906.png">
+<meta property="og:image" content="c:%5CUsers%5Chp%5CPictures%5Cequation.svg">
+<meta property="og:updated_time" content="2019-09-11T10:44:44.831Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="title: Tensorflow入门教程date: 2018-05-27 13:47:40categories:  学习tags: TensorFlow 语言 Python 编程   1.tensorflow基本介绍1.TensorFlow 简介​    TensorFlow是一个基于数据流编程的符号数学系统，被广泛应用于各类机器学习算法的编程实现，其前身是谷歌的神经网络算法库 2.Tenso">
+<meta name="twitter:image" content="c:%5CUsers%5CAdministrator%5CPictures%5C1529558773906.png">
 
 
 
@@ -141,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/11/1.tensorflow基本介绍/">
 
 
 
 
 
-  <title>Hexo</title>
+  <title> | Hexo</title>
   
 
 
@@ -166,8 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -290,9 +296,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -322,9 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/11/1.tensorflow基本介绍/" itemprop="url">未命名</a></h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -374,9 +378,7 @@
       
 
       
-        
-          
-            <hr>
+        <hr>
 <p>title: Tensorflow入门教程<br>date: 2018-05-27 13:47:40<br>categories:</p>
 <ul>
 <li>学习<br>tags:</li>
@@ -635,8 +637,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##### 两层卷积神经网络识别手写数字</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> input_data</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getVarRandom_normal</span><span class="params">(shape)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tf.Variable(tf.random_normal(shape=shape,mean=<span class="number">0.0</span>,stddev=<span class="number">1.0</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#搭建神经网络</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">conV</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#1.定义占位符</span></span><br><span class="line">    xDist=tf.placeholder(tf.float32,[<span class="literal">None</span>,<span class="number">784</span>])</span><br><span class="line">    yTrue=tf.placeholder(tf.float32,[<span class="literal">None</span>,<span class="number">10</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment">#2.搭建第一层卷积网络 filter 有32个 大小为5*5，步长为1，</span></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"con1"</span>):</span><br><span class="line">        xshape=tf.reshape(xDist,[<span class="number">-1</span>,<span class="number">28</span>,<span class="number">28</span>,<span class="number">1</span>])</span><br><span class="line">        filterW=getVarRandom_normal([<span class="number">5</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">32</span>])</span><br><span class="line">        b=getVarRandom_normal([<span class="number">32</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment">#卷积层</span></span><br><span class="line">        con1=tf.nn.conv2d(xshape,filterW,strides=[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],padding=<span class="string">"SAME"</span>)+b</span><br><span class="line"></span><br><span class="line">        <span class="comment">#激活层</span></span><br><span class="line">        relu=tf.nn.relu(con1)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#池化层 大小为2*2 步长为2 [None,28,28,32]----&gt;[None,14,14,32]</span></span><br><span class="line">        pool=tf.nn.max_pool(relu,ksize=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>],strides=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>],padding=<span class="string">"SAME"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#3.搭建第二层卷积网络 filter有64个，大小为5*5，步长为1</span></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"con2"</span>):</span><br><span class="line">        filterW2=getVarRandom_normal([<span class="number">5</span>,<span class="number">5</span>,<span class="number">32</span>,<span class="number">64</span>])</span><br><span class="line">        b1=getVarRandom_normal([<span class="number">64</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment">#卷积层</span></span><br><span class="line">        con2=tf.nn.conv2d(pool,filterW2,strides=[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],padding=<span class="string">"SAME"</span>)+b1</span><br><span class="line"></span><br><span class="line">        <span class="comment">#激活层</span></span><br><span class="line">        relu2=tf.nn.relu(con2)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#池化层</span></span><br><span class="line">        pool2=tf.nn.max_pool(relu2,ksize=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>],strides=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>],padding=<span class="string">"SAME"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#全连接层</span></span><br><span class="line">    w3=getVarRandom_normal([<span class="number">7</span>*<span class="number">7</span>*<span class="number">64</span>,<span class="number">10</span>])</span><br><span class="line">    b3=getVarRandom_normal([<span class="number">10</span>])</span><br><span class="line"></span><br><span class="line">    shape = tf.reshape(pool2, [<span class="number">-1</span>, <span class="number">7</span>*<span class="number">7</span>*<span class="number">64</span>])</span><br><span class="line"></span><br><span class="line">    grop=tf.matmul(shape,w3)+b3</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> xDist,yTrue,grop</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    xDist,yTrue,opInt=conV()</span><br><span class="line">    mnist = input_data.read_data_sets(<span class="string">"./MNIST_data"</span>, one_hot=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#计算平均交叉熵损失</span></span><br><span class="line">    loss=tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=yTrue,logits=opInt))</span><br><span class="line">    <span class="comment">#反向传播</span></span><br><span class="line">    trainOp=tf.train.GradientDescentOptimizer(<span class="number">0.00001</span>).minimize(loss)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#计算准确率</span></span><br><span class="line">    equal_list = tf.equal(tf.argmax(yTrue, <span class="number">1</span>), tf.argmax(opInt, <span class="number">1</span>))</span><br><span class="line">    acuracy = tf.reduce_mean(tf.cast(equal_list, tf.float32))</span><br><span class="line">    initOp = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 6.开启会话开始训练</span></span><br><span class="line">    <span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">        sess.run(initOp)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3000000</span>):</span><br><span class="line">            <span class="comment"># 取出特征值和目标值</span></span><br><span class="line">            minstX, minstY = mnist.train.next_batch(<span class="number">50</span>)</span><br><span class="line">            sess.run(trainOp, feed_dict=&#123;xDist: minstX, yTrue: minstY&#125;)</span><br><span class="line">            print(<span class="string">"%d步准确率%f"</span> % (i, sess.run(acuracy, feed_dict=&#123;xDist: minstX, yTrue: minstY&#125;)))</span><br></pre></td></tr></table></figure>
 
 
-          
-        
       
     </div>
     
@@ -653,221 +653,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/27/Git使用入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/27/Git使用入门/" itemprop="url">git使用入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T13:47:40+08:00">
-                2018-05-27
-              </time>
+              <a href="/2018/05/27/Git使用入门/" rel="next" title="git使用入门">
+                <i class="fa fa-chevron-left"></i> git使用入门
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习/" itemprop="url" rel="index">
-                    <span itemprop="name">学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="Git使用入门"><a href="#Git使用入门" class="headerlink" title="Git使用入门"></a>Git使用入门</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​        之前在网上接私活的时候使用了一下github,当时一下都惊艳到我了，（见识短╮(╯▽╰)╭），当时因为用的c#语言开发，使用的vs2017，他继承的那个git是中文的，特别好用，但是也导致了我啥也没学会，正好今天有空，就填补一下这个大坑吧</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>​        是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。（百度粘贴过来的，╮(╯▽╰)╭）</p>
-<h2 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h2><p>​    git可以将工作区（Working Directory）的代码放到暂存区，最后统一把暂存区的代码合并到我们的git仓库中（这个仓库其实还是本地的仓库）。（╮(╯▽╰)╭我觉得解释的很不清楚）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: git仓库</span><br><span class="line">e=&gt;end: 工作空间</span><br><span class="line">item=&gt;subroutine: 暂存区</span><br><span class="line"></span><br><span class="line">e-&gt;item-&gt;st</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用git工具要先进行初始化"><a href="#使用git工具要先进行初始化" class="headerlink" title="使用git工具要先进行初始化"></a>使用git工具要先进行初始化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"yang295513"</span>//这个name一定要填写github上面的名称</span><br><span class="line">git config --global user.email <span class="string">"15993343299@163.com"</span>//对应的邮箱</span><br><span class="line">//这个不是必须的但是新建git仓库就要进去进行这个命令，然后git工具会生成一个隐藏文件.git</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
-
-<p><img src="assets/1567999850542.png" alt="1567999850542"></p>
-<p>就这样，之后就可以愉快的玩耍了</p>
-<h2 id="指令介绍"><a href="#指令介绍" class="headerlink" title="指令介绍"></a>指令介绍</h2><table>
-<thead>
-<tr>
-<th align="center">指令名</th>
-<th align="center">作用</th>
-<th align="center">注释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">git status</td>
-<td align="center">显示当前文件的状态</td>
-<td align="center">用来确定文件在三个区的位置</td>
-</tr>
-<tr>
-<td align="center">git add 文件名.文件类型</td>
-<td align="center">将文件添加到暂存区</td>
-<td align="center">把工作空间的文件添加到暂存区</td>
-</tr>
-<tr>
-<td align="center">git commit -m “提交描述”</td>
-<td align="center">把暂存区所有的文件提交到仓库</td>
-<td align="center">提交描述用来标识文件的改动，也就是说本次提交的注释</td>
-</tr>
-<tr>
-<td align="center">git push</td>
-<td align="center">将本地代码提交到git远程 仓库中</td>
-<td align="center">将本地代码提交到git远程仓库中</td>
-</tr>
-<tr>
-<td align="center">git clone 仓库地址</td>
-<td align="center">将远程git的代码下载下来</td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<h2 id="案例演示"><a href="#案例演示" class="headerlink" title="案例演示"></a>案例演示</h2><p>首先这里新建了一个演示项目</p>
-<p><img src="assets/1568012570966.png" alt="1568012570966"></p>
-<p>然后我们通过git clone命令把这个项目下载下来，其中项目的链接在这里：</p>
-<p><img src="assets/1568012654191.png" alt="1568012654191"></p>
-<p>然后我们使用git工具克隆下来</p>
-<p><img src="assets/1568012777172.png" alt="1568012777172"></p>
-<p>这是本地生成的文件</p>
-<p><img src="assets/1568012817099.png" alt="1568012817099"></p>
-<p>其中那个.git的隐藏文件就隐藏着配置信息</p>
-<p>githubTest就是咱们的测试信息</p>
-<p><img src="assets/1568012868219.png" alt="1568012868219"></p>
-<p>githubTest文件里面的信息可以看到和我们的远端github仓库中的一模一样</p>
-<p>接下来我们在本地创建一个Test.java的类，来模拟我们的项目</p>
-<p>然后使用git add命令和git commit -m和git push命令依次提交到git远端仓库中</p>
-<p><img src="assets/1568013628870.png" alt="1568013628870"></p>
-<p>然后去github来查看是否已经被提交了</p>
-<p><img src="assets/1568013663654.png" alt="1568013663654"></p>
-<h4 id="完美-收场，学习新东西去"><a href="#完美-收场，学习新东西去" class="headerlink" title="完美,收场，学习新东西去"></a>完美,收场，学习新东西去</h4><p>不不不，还有一些使用细节得介绍一下</p>
-<ul>
-<li>你提交了那些文件那些文件才会被替换，也就是说你同时修改了A和B文件，那三连</li>
-</ul>
-<p>都是针对B文件的，那么你提交到远端git仓库在只会修改你提交的B文件，没有B文件进行创建,有B文件更新</p>
-<ul>
-<li>如果提交到远端失败的话，要注意是否是name和Email书写错误，或者说该仓库是priavte（私有的）如果是私有的去对应配置文件下修改账号密码即可</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -877,10 +684,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -888,6 +696,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -908,8 +720,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -969,6 +790,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-tensorflow基本介绍"><span class="nav-number">1.</span> <span class="nav-text">1.tensorflow基本介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-TensorFlow-简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.TensorFlow 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-TensorFlow基本术语"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.TensorFlow基本术语</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#张量（tensor）："><span class="nav-number">1.0.2.1.</span> <span class="nav-text">张量（tensor）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图（graph）"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">图（graph）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#节点（op）"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">节点（op）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#会话-Session"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">会话(Session)</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#2-张量（tensor）的使用以及注意事项"><span class="nav-number">2.</span> <span class="nav-text">2.张量（tensor）的使用以及注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-张量的基本概念"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">1.张量的基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-张量的数据类型"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">2.张量的数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-张量的代码"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">3.张量的代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#其中Const表示进行的op操作名字"><span class="nav-number">2.0.0.3.1.</span> <span class="nav-text">其中Const表示进行的op操作名字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#shape表示张量的维度-表示标量，（1）表示向量，（2，3）表示2行3列的张量"><span class="nav-number">2.0.0.3.2.</span> <span class="nav-text">shape表示张量的维度,()表示标量，（1）表示向量，（2，3）表示2行3列的张量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dtype表示张量的数据类型"><span class="nav-number">2.0.0.3.3.</span> <span class="nav-text">dtype表示张量的数据类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-生成张量"><span class="nav-number">2.0.1.</span> <span class="nav-text">4.生成张量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建一个常数张量"><span class="nav-number">2.0.1.0.1.</span> <span class="nav-text">创建一个常数张量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#固定值初始化"><span class="nav-number">2.0.1.0.2.</span> <span class="nav-text">固定值初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#tf-zeros-n-m-tf-dtype"><span class="nav-number">2.0.1.0.2.1.</span> <span class="nav-text">tf.zeros([n,m],tf.dtype)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#tf-ones-n-m-tf-dtype"><span class="nav-number">2.0.1.0.2.2.</span> <span class="nav-text">tf.ones([n,m],tf.dtype)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#随机值初始化"><span class="nav-number">2.0.1.0.3.</span> <span class="nav-text">随机值初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#tf-random-normal-n-m-mean-2-0-stddev-4-seed-12"><span class="nav-number">2.0.1.0.3.1.</span> <span class="nav-text">tf.random_normal([n,m],mean=2.0,stddev=4,seed=12)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-占位符"><span class="nav-number">2.0.2.</span> <span class="nav-text">5.占位符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-张量的维度调整"><span class="nav-number">2.0.3.</span> <span class="nav-text">6.张量的维度调整</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#区别"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态调整"><span class="nav-number">2.0.3.2.</span> <span class="nav-text">静态调整</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法-张量名字-set-shape-n-m-调整张量为n行m列"><span class="nav-number">2.0.3.2.1.</span> <span class="nav-text">语法: 张量名字.set_shape([n,m]) 调整张量为n行m列</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态调整"><span class="nav-number">2.0.3.3.</span> <span class="nav-text">动态调整</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法-tf-reshape-tensor-shape-name-None"><span class="nav-number">2.0.3.3.1.</span> <span class="nav-text">语法: tf.reshape(tensor,shape,name=None)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-改变张量的类型"><span class="nav-number">2.0.4.</span> <span class="nav-text">7.改变张量的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-张量的切片和扩展"><span class="nav-number">2.0.5.</span> <span class="nav-text">8.张量的切片和扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-会话（Session）"><span class="nav-number">3.</span> <span class="nav-text">3.会话（Session）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本写法"><span class="nav-number">3.0.1.</span> <span class="nav-text">基本写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-run方法"><span class="nav-number">3.0.2.</span> <span class="nav-text">1.run方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#fetches-运行ops和计算tensor"><span class="nav-number">3.0.2.0.0.1.</span> <span class="nav-text">fetches 运行ops和计算tensor</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#feed-dict-可选项（字典类型），提取使用占位符之后给图提供数据"><span class="nav-number">3.0.2.0.0.2.</span> <span class="nav-text">feed_dict 可选项（字典类型），提取使用占位符之后给图提供数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-变量（Variable）"><span class="nav-number">4.</span> <span class="nav-text">4.变量（Variable）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-变量的定义"><span class="nav-number">4.0.0.0.1.</span> <span class="nav-text">1.变量的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#initial-value-值-可以用正态分布或者固定生成张量的值"><span class="nav-number">4.0.0.0.1.1.</span> <span class="nav-text">initial_value 值 可以用正态分布或者固定生成张量的值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-TensorBoard-的使用和用法"><span class="nav-number">5.</span> <span class="nav-text">4.TensorBoard 的使用和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-TensorBoard的简介"><span class="nav-number">5.0.0.0.1.</span> <span class="nav-text">1.TensorBoard的简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-TensorBoard代码"><span class="nav-number">5.0.0.0.2.</span> <span class="nav-text">2.TensorBoard代码</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#logdir事务文件的绝对路径"><span class="nav-number">5.0.0.0.2.1.</span> <span class="nav-text">logdir事务文件的绝对路径</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#graph写出事务文件的图"><span class="nav-number">5.0.0.0.2.2.</span> <span class="nav-text">graph写出事务文件的图</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#name-表示TensorBoard里面显示的名称"><span class="nav-number">5.0.0.0.2.3.</span> <span class="nav-text">name 表示TensorBoard里面显示的名称</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#tensor表示要收集的张量"><span class="nav-number">5.0.0.0.2.4.</span> <span class="nav-text">tensor表示要收集的张量</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-TensorBoard的演示"><span class="nav-number">5.0.0.0.3.</span> <span class="nav-text">3.TensorBoard的演示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-损失函数"><span class="nav-number">6.</span> <span class="nav-text">5.损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-均方误差"><span class="nav-number">6.0.1.</span> <span class="nav-text">1.均方误差</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-梯度下降算法"><span class="nav-number">7.</span> <span class="nav-text">6.梯度下降算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-基本思想"><span class="nav-number">7.0.1.</span> <span class="nav-text">1.基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-代码"><span class="nav-number">7.0.2.</span> <span class="nav-text">2.代码</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#learning-rate-学习率-通常填写0-0到1-0之间的浮点数"><span class="nav-number">7.0.2.0.0.1.</span> <span class="nav-text">learning_rate 学习率 通常填写0.0到1.0之间的浮点数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-简单的线性回归案例"><span class="nav-number">8.</span> <span class="nav-text">6.简单的线性回归案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-梯度爆炸"><span class="nav-number">9.</span> <span class="nav-text">7.梯度爆炸</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-简述"><span class="nav-number">9.0.1.</span> <span class="nav-text">1.简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-解决方法"><span class="nav-number">9.0.2.</span> <span class="nav-text">2.解决方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-模型的保存和加载"><span class="nav-number">10.</span> <span class="nav-text">8.模型的保存和加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-代码"><span class="nav-number">10.0.1.</span> <span class="nav-text">1.代码</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#var-list-自定要保持和还原的变量。他可以作为一个dict或者一个列表传进去"><span class="nav-number">10.0.1.0.0.1.</span> <span class="nav-text">var_list:自定要保持和还原的变量。他可以作为一个dict或者一个列表传进去</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#max-to-keep-制定要保留的最近检查点文件的最大数量，创建新的文件的时候会删除比较旧的文件，默认值5"><span class="nav-number">10.0.1.0.0.2.</span> <span class="nav-text">max_to_keep:制定要保留的最近检查点文件的最大数量，创建新的文件的时候会删除比较旧的文件，默认值5</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#“”-这个路径包含路径和文件名"><span class="nav-number">10.0.1.0.0.3.</span> <span class="nav-text">“” 这个路径包含路径和文件名</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-保存的文件格式"><span class="nav-number">10.0.2.</span> <span class="nav-text">2.保存的文件格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-队列机制"><span class="nav-number">11.</span> <span class="nav-text">9.队列机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-简述-1"><span class="nav-number">11.0.1.</span> <span class="nav-text">1.简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-代码-1"><span class="nav-number">11.0.2.</span> <span class="nav-text">2.代码</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#capatity-队列的容量"><span class="nav-number">11.0.2.0.0.1.</span> <span class="nav-text">capatity 队列的容量</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#dtype队列存储的数据类型"><span class="nav-number">11.0.2.0.0.2.</span> <span class="nav-text">dtype队列存储的数据类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示"><span class="nav-number">11.0.2.1.</span> <span class="nav-text">演示:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-文件读取"><span class="nav-number">12.</span> <span class="nav-text">10.文件读取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-文件读取的过程"><span class="nav-number">12.0.1.</span> <span class="nav-text">1.文件读取的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-构造文件队列"><span class="nav-number">12.0.1.0.1.</span> <span class="nav-text">1.构造文件队列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-构造阅读器"><span class="nav-number">12.0.1.0.2.</span> <span class="nav-text">2.构造阅读器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-对于每个样本进行解码"><span class="nav-number">12.0.1.0.3.</span> <span class="nav-text">3.对于每个样本进行解码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-批处理文件"><span class="nav-number">12.0.1.0.4.</span> <span class="nav-text">4.批处理文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-文件读取的API介绍"><span class="nav-number">12.0.2.</span> <span class="nav-text">2.文件读取的API介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造文件队列"><span class="nav-number">12.0.2.0.1.</span> <span class="nav-text">构造文件队列</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#string-tensor-含有文件名的一阶张量（包含路径以及文件名的列表）"><span class="nav-number">12.0.2.0.1.1.</span> <span class="nav-text">string_tensor 含有文件名的一阶张量（包含路径以及文件名的列表）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#shuffle-是否乱序-默认乱序"><span class="nav-number">12.0.2.0.1.2.</span> <span class="nav-text">shuffle 是否乱序 默认乱序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#num-epochs-过几遍数据，默认无限过数据"><span class="nav-number">12.0.2.0.1.3.</span> <span class="nav-text">num_epochs 过几遍数据，默认无限过数据</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造文件阅读器"><span class="nav-number">12.0.2.0.2.</span> <span class="nav-text">构造文件阅读器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#文本文件阅读器，默认按行读取，（因为对于csv文件和文本文件来说，一行就是一个样本）"><span class="nav-number">12.0.2.0.2.1.</span> <span class="nav-text">文本文件阅读器，默认按行读取，（因为对于csv文件和文本文件来说，一行就是一个样本）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#return-返回阅读器实例"><span class="nav-number">12.0.2.0.2.2.</span> <span class="nav-text">return 返回阅读器实例</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#read-file-queue"><span class="nav-number">12.0.2.0.3.</span> <span class="nav-text">read(file_queue)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#file-queue-从队列里面读取内容"><span class="nav-number">12.0.2.0.3.1.</span> <span class="nav-text">file_queue 从队列里面读取内容</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二进制文件阅读器"><span class="nav-number">12.0.2.0.4.</span> <span class="nav-text">二进制文件阅读器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#读取每个样本是按固定数量的字节读取的二进制文件"><span class="nav-number">12.0.2.0.4.1.</span> <span class="nav-text">读取每个样本是按固定数量的字节读取的二进制文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#record-bytes-整形，指定每次读取的字节数"><span class="nav-number">12.0.2.0.4.2.</span> <span class="nav-text">record_bytes:整形，指定每次读取的字节数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#return-返回阅读器实例-1"><span class="nav-number">12.0.2.0.4.3.</span> <span class="nav-text">return 返回阅读器实例</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#图片文件阅读器"><span class="nav-number">12.0.2.0.5.</span> <span class="nav-text">图片文件阅读器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#每个样本进行解码"><span class="nav-number">12.0.2.0.6.</span> <span class="nav-text">每个样本进行解码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CSV文件解码"><span class="nav-number">12.0.2.0.7.</span> <span class="nav-text">CSV文件解码</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#value表示待解码的内容"><span class="nav-number">12.0.2.0.7.1.</span> <span class="nav-text">value表示待解码的内容</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#record-defaults-表示每个样本如何解码，并且缺失的时候的默认值-1-表示一个样本按整形解码，缺失的时候为1，-“None”-1-0-表示样本有两个第一个按string类型解码，缺失的时候是None-第二个按float类型解码，丢失按1-0处理"><span class="nav-number">12.0.2.0.7.2.</span> <span class="nav-text">record_defaults 表示每个样本如何解码，并且缺失的时候的默认值 [[1]]表示一个样本按整形解码，缺失的时候为1，[[“None”],[1.0]] 表示样本有两个第一个按string类型解码，缺失的时候是None,第二个按float类型解码，丢失按1.0处理</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#图片文件解码"><span class="nav-number">12.0.2.0.8.</span> <span class="nav-text">图片文件解码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#管道批处理文件"><span class="nav-number">12.0.2.0.9.</span> <span class="nav-text">管道批处理文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-文件读取的简单演示"><span class="nav-number">12.0.3.</span> <span class="nav-text">3.文件读取的简单演示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片文件的读取简单演示"><span class="nav-number">12.0.4.</span> <span class="nav-text">图片文件的读取简单演示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-交叉熵损失计算和softMax计算"><span class="nav-number">13.</span> <span class="nav-text">11.交叉熵损失计算和softMax计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-softMax计算"><span class="nav-number">13.0.1.</span> <span class="nav-text">1.softMax计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-交叉熵损失"><span class="nav-number">13.0.2.</span> <span class="nav-text">2.交叉熵损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-演示"><span class="nav-number">13.0.3.</span> <span class="nav-text">3.演示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-卷积神经网络"><span class="nav-number">14.</span> <span class="nav-text">12.卷积神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-概述"><span class="nav-number">14.0.1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-卷积神经网络分层"><span class="nav-number">14.0.2.</span> <span class="nav-text">2.卷积神经网络分层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#卷积层—-gt-激活层—-gt-池化层—-gt-全连接层"><span class="nav-number">14.0.2.1.</span> <span class="nav-text">卷积层—&gt;激活层—&gt;池化层—&gt;全连接层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#激活层："><span class="nav-number">14.0.2.1.1.</span> <span class="nav-text">激活层：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#池化层："><span class="nav-number">14.0.2.1.2.</span> <span class="nav-text">池化层：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-填充算法"><span class="nav-number">14.0.3.</span> <span class="nav-text">3.填充算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SAME："><span class="nav-number">14.0.3.1.</span> <span class="nav-text">SAME：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VALID："><span class="nav-number">14.0.3.2.</span> <span class="nav-text">VALID：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-API介绍"><span class="nav-number">14.0.4.</span> <span class="nav-text">4.API介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#input-输入的4-D张量，具有-batch-height-width-channel-类型为float32，或者float64-每批数-图片长度，图片宽度，图片通道数"><span class="nav-number">14.0.4.0.0.1.</span> <span class="nav-text">input: 输入的4-D张量，具有[batch,height,width,channel],类型为float32，或者float64([每批数,图片长度，图片宽度，图片通道数])</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#filter-指定过滤器4-D随机初始化的张量：-类型为float32或者float64-过滤器长度，过滤器宽度，输入的通道数，输出的通道数-，"><span class="nav-number">14.0.4.0.0.2.</span> <span class="nav-text">filter:指定过滤器4-D随机初始化的张量：,类型为float32或者float64([过滤器长度，过滤器宽度，输入的通道数，输出的通道数])，</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#——-注意需要传入4-D张量，而不是简单的填入维度"><span class="nav-number">14.0.4.0.0.3.</span> <span class="nav-text">——- 注意需要传入4-D张量，而不是简单的填入维度</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#strides-strides-1-stride-stride-1-步长（-1，长上步长，宽上步长，1-）"><span class="nav-number">14.0.4.0.0.4.</span> <span class="nav-text">strides:strides=[1,stride,stride,1],步长（[1，长上步长，宽上步长，1]）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#padding-”SAME”，“VALID”，使用的填充算法类型"><span class="nav-number">14.0.4.0.0.5.</span> <span class="nav-text">padding=:”SAME”，“VALID”，使用的填充算法类型.</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#features-卷积后加上偏置的结果"><span class="nav-number">14.0.4.0.0.6.</span> <span class="nav-text">features:卷积后加上偏置的结果</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#return-结果"><span class="nav-number">14.0.4.0.0.7.</span> <span class="nav-text">return :结果</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#value-4-D-tensor形状-batch-height-width-channels-，也就是激活函数处理后的结果"><span class="nav-number">14.0.4.0.0.8.</span> <span class="nav-text">value:4-D tensor形状[batch,height,width,channels]，也就是激活函数处理后的结果</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ksize池化窗口大小，-1-ksize-ksize-1"><span class="nav-number">14.0.4.0.0.9.</span> <span class="nav-text">ksize池化窗口大小，[1,ksize,ksize,1]</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#步长大小-1-strides-strides-1"><span class="nav-number">14.0.4.0.0.10.</span> <span class="nav-text">步长大小,[1,strides,strides,1]</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#padding-”SAME”-”VALID”填充算法"><span class="nav-number">14.0.4.0.0.11.</span> <span class="nav-text">padding :”SAME”,”VALID”填充算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-演示"><span class="nav-number">14.0.5.</span> <span class="nav-text">5.演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#两层卷积神经网络识别手写数字"><span class="nav-number">14.0.5.0.1.</span> <span class="nav-text">两层卷积神经网络识别手写数字</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#卷积层"><span class="nav-number">14.0.5.0.1.1.</span> <span class="nav-text">卷积层</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第一层卷积神经网络"><span class="nav-number">14.0.5.0.2.</span> <span class="nav-text">第一层卷积神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#卷积层-1"><span class="nav-number">14.0.5.0.2.1.</span> <span class="nav-text">卷积层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#激活层"><span class="nav-number">14.0.5.0.2.2.</span> <span class="nav-text">激活层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#池化"><span class="nav-number">14.0.5.0.2.3.</span> <span class="nav-text">池化</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#全连接层"><span class="nav-number">14.0.5.0.3.</span> <span class="nav-text">全连接层</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1110,6 +947,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
