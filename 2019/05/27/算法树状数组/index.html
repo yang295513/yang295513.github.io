@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="C++,C,编程,日常学习,算法,">
+  <meta name="keywords" content="编程,日常学习,C++,C,算法,">
 
 
 
@@ -106,7 +106,7 @@
 
 
 <meta name="description" content="算法:树状数组1.适用场景​    可以解决大部分基于区间上的更新以及求和问题 2.介绍1.单点查询 我们先从数组讲起(这个就不需要普及了吧)； A数组是我们传入数据的数组 C数组使我们建立起来的树状数组  然后就能显而易见的发现一个规律 12345678C1 = A1C2 = A1+A2C3 = A3C4 = A1+A2+A3+A4C5 = A5C6 = A5+A6C7 = A7C8 = A1+">
-<meta name="keywords" content="C++,C,编程,日常学习,算法">
+<meta name="keywords" content="编程,日常学习,C++,C,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法">
 <meta property="og:url" content="http://yoursite.com/2019/05/27/算法树状数组/index.html">
@@ -472,18 +472,36 @@
     
 
     
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    John Doe
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/05/27/算法树状数组/" title="算法">http://yoursite.com/2019/05/27/算法树状数组/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/C/" rel="tag"># C++</a>
-          
-            <a href="/tags/C/" rel="tag"># C</a>
-          
             <a href="/tags/编程/" rel="tag"># 编程</a>
           
             <a href="/tags/日常学习/" rel="tag"># 日常学习</a>
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/C/" rel="tag"># C</a>
           
             <a href="/tags/算法/" rel="tag"># 算法</a>
           
@@ -673,18 +691,6 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
 
         
 
@@ -841,7 +847,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "";
+    var search_path = "search.xml";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
