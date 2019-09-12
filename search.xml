@@ -8,9 +8,9 @@
         <category>学习</category>
       </categories>
       <tags>
+        <tag>日常学习</tag>
         <tag>语言</tag>
         <tag>编程</tag>
-        <tag>日常学习</tag>
         <tag>JAVA</tag>
         <tag>数据库</tag>
       </tags>
@@ -24,10 +24,10 @@
         <category>技巧</category>
       </categories>
       <tags>
-        <tag>日常学习</tag>
         <tag>IDEA</tag>
         <tag>IDE</tag>
         <tag>快捷键</tag>
+        <tag>日常学习</tag>
       </tags>
   </entry>
   <entry>
@@ -39,10 +39,10 @@
         <category>算法</category>
       </categories>
       <tags>
+        <tag>日常学习</tag>
+        <tag>编程</tag>
         <tag>C++</tag>
         <tag>C</tag>
-        <tag>编程</tag>
-        <tag>日常学习</tag>
         <tag>算法</tag>
       </tags>
   </entry>
@@ -54,12 +54,12 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>编程</tag>
         <tag>JAVA</tag>
+        <tag>SpringMVC</tag>
         <tag>Spring</tag>
         <tag>框架</tag>
-        <tag>SpringMVC</tag>
       </tags>
   </entry>
   <entry>
@@ -70,8 +70,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>编程</tag>
         <tag>JAVA</tag>
         <tag>设计模式</tag>
       </tags>
@@ -84,8 +84,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>编程</tag>
         <tag>习惯</tag>
       </tags>
   </entry>
@@ -97,8 +97,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>编程</tag>
         <tag>JAVA</tag>
         <tag>Spring</tag>
         <tag>框架</tag>
@@ -112,11 +112,11 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>C++</tag>
-        <tag>语言</tag>
-        <tag>C</tag>
-        <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>语言</tag>
+        <tag>编程</tag>
+        <tag>C++</tag>
+        <tag>C</tag>
         <tag>技巧</tag>
       </tags>
   </entry>
@@ -128,11 +128,11 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>语言</tag>
-        <tag>编程</tag>
         <tag>日常学习</tag>
         <tag>TensorFlow</tag>
+        <tag>语言</tag>
         <tag>Python</tag>
+        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
