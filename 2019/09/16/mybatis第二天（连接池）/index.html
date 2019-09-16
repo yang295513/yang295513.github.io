@@ -95,7 +95,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="语言,编程,日常学习,JAVA,数据库,">
 
 
 
@@ -106,13 +106,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Byy">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+<meta name="description" content="mybatis连接池连接池数据源分类 UNPOOLED 不使用连接池的数据源 POOLED 使用传统的javax.sql.DataSource连接池的数据源 JNDI 使用JNDI实现的数据源  mybatis动态SQL语句作用：为了解决手动拼接SQL的麻烦元素:   标签名 说明     判断语句，用于但条件分支判断   (,) 相当于switch语句，用于多条件分支判断   ,, 辅助元素，用">
+<meta name="keywords" content="语言,编程,日常学习,JAVA,数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatis第二天（连接池）">
+<meta property="og:url" content="http://yoursite.com/2019/09/16/mybatis第二天（连接池）/index.html">
 <meta property="og:site_name" content="Byy">
+<meta property="og:description" content="mybatis连接池连接池数据源分类 UNPOOLED 不使用连接池的数据源 POOLED 使用传统的javax.sql.DataSource连接池的数据源 JNDI 使用JNDI实现的数据源  mybatis动态SQL语句作用：为了解决手动拼接SQL的麻烦元素:   标签名 说明     判断语句，用于但条件分支判断   (,) 相当于switch语句，用于多条件分支判断   ,, 辅助元素，用">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-16T03:34:38.706Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Byy">
+<meta name="twitter:title" content="mybatis第二天（连接池）">
+<meta name="twitter:description" content="mybatis连接池连接池数据源分类 UNPOOLED 不使用连接池的数据源 POOLED 使用传统的javax.sql.DataSource连接池的数据源 JNDI 使用JNDI实现的数据源  mybatis动态SQL语句作用：为了解决手动拼接SQL的麻烦元素:   标签名 说明     判断语句，用于但条件分支判断   (,) 相当于switch语句，用于多条件分支判断   ,, 辅助元素，用">
 
 
 
@@ -142,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/16/mybatis第二天（连接池）/">
 
 
 
 
 
-  <title>归档 | Byy</title>
+  <title>mybatis第二天（连接池） | Byy</title>
   
 
 
@@ -167,7 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -293,142 +298,237 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/16/mybatis第二天（连接池）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang295513">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Byy">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">mybatis第二天（连接池）</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-16T10:44:40+08:00">
+                2019-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 11 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/27/CC++语言位运算基本用法和骚操作/" itemprop="url">
-              
-                <span itemprop="name">C/C++语言位运算基本用法和骚操作</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-08-27T18:47:40+08:00" content="2018-08-27">
-          08-27
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/27/1.tensorflow基本介绍/" itemprop="url">
-              
-                <span itemprop="name">Tensorflow入门教程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-05-27T13:47:40+08:00" content="2018-05-27">
-          05-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <h2 id="mybatis连接池"><a href="#mybatis连接池" class="headerlink" title="mybatis连接池"></a>mybatis连接池</h2><h3 id="连接池数据源分类"><a href="#连接池数据源分类" class="headerlink" title="连接池数据源分类"></a>连接池数据源分类</h3><ul>
+<li>UNPOOLED 不使用连接池的数据源</li>
+<li>POOLED 使用传统的javax.sql.DataSource连接池的数据源</li>
+<li>JNDI 使用JNDI实现的数据源</li>
+</ul>
+<h2 id="mybatis动态SQL语句"><a href="#mybatis动态SQL语句" class="headerlink" title="mybatis动态SQL语句"></a>mybatis动态SQL语句</h2><h5 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h5><h5 id="为了解决手动拼接SQL的麻烦"><a href="#为了解决手动拼接SQL的麻烦" class="headerlink" title="为了解决手动拼接SQL的麻烦"></a>为了解决手动拼接SQL的麻烦</h5><h5 id="元素"><a href="#元素" class="headerlink" title="元素:"></a>元素:</h5><table>
+<thead>
+<tr>
+<th align="center">标签名</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><if></if></td>
+<td align="center">判断语句，用于但条件分支判断</td>
+</tr>
+<tr>
+<td align="center"><choose>(<when>,<otherwise>)</otherwise></when></choose></td>
+<td align="center">相当于switch语句，用于多条件分支判断</td>
+</tr>
+<tr>
+<td align="center"><where>,<trim>,<set></set></trim></where></td>
+<td align="center">辅助元素，用于处理一些SQL拼接，特殊字符问题</td>
+</tr>
+<tr>
+<td align="center"><bind></bind></td>
+<td align="center">从OGNL表达式中创建一个变量，并将其绑定到上下文，常用于模糊查询的Sql语句</td>
+</tr>
+</tbody></table>
+<h3 id="代码演示："><a href="#代码演示：" class="headerlink" title="代码演示："></a>代码演示：</h3><p>​    假设有下面这个类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    ...<span class="comment">//以下的get和set方法以及toString方法省略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        
-        
+<h4 id="标签"><a href="#标签" class="headerlink" title="标签"></a><if>标签</if></h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findPersonByidAndname"</span> <span class="attr">parameterType</span>=<span class="string">"com.qs304.domain.Person"</span> <span class="attr">resultType</span>=<span class="string">"com.qs304.domain.Person"</span>&gt;</span></span><br><span class="line">        select * from persons where 1=1</span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"id != null"</span>&gt;</span></span><br><span class="line">            and id = #&#123;id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">            and name = #&#123;name&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--如果使用了where标签就可以不写where 1=1和and之类的--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findPersonByidAndname"</span> <span class="attr">parameterType</span>=<span class="string">"com.qs304.domain.Person"</span> <span class="attr">resultType</span>=<span class="string">"com.qs304.domain.Person"</span>&gt;</span></span><br><span class="line">        select * from persons</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"id != null"</span>&gt;</span></span><br><span class="line">            id = #&#123;id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">            name = #&#123;name&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-        
+<h4 id="元素-1"><a href="#元素-1" class="headerlink" title=" 元素"></a><foreach> 元素</foreach></h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	判断id是否在这个集合里面</span></span><br><span class="line"><span class="comment">	select * from pesrsons where id in(1,2,3,4);</span></span><br><span class="line"><span class="comment">	类似这样</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findPersonByIds"</span> <span class="attr">parameterType</span>=<span class="string">"List"</span></span></span><br><span class="line"><span class="tag">                         <span class="attr">resultType</span>=<span class="string">"com.qs304.domain.Person"</span>&gt;</span></span><br><span class="line">           select * from pesrsons where id in</span><br><span class="line">            <span class="comment">&lt;!-- 判断为空可以用 list.size&gt;0--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">"id"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">collection</span>=<span class="string">"list"</span> </span></span><br><span class="line"><span class="tag">                            <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></span><br><span class="line">                   #&#123;id&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/27/Git使用入门/" itemprop="url">
-              
-                <span itemprop="name">git使用入门</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-05-27T13:47:40+08:00" content="2018-05-27">
-          05-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+<ul>
+<li>item：配置的是循环中当前的元素。</li>
+<li>index：配置的是当前元素在集合的位置下标。</li>
+<li>collection：配置的list是传递过来的参数类型（首字母小写），它可以是一个array、list（或collection）、Map集合的键、POJO包装类中数组或集合类型的属性名等。</li>
+<li>open和close：配置的是以什么符号将这些集合元素包装起来。</li>
+<li>separator：配置的是各个元素的间隔符。</li>
+</ul>
 
       
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    yang295513
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/09/16/mybatis第二天（连接池）/" title="mybatis第二天（连接池）">http://yoursite.com/2019/09/16/mybatis第二天（连接池）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/语言/" rel="tag"># 语言</a>
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/日常学习/" rel="tag"># 日常学习</a>
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/30/Mybatis/" rel="next" title="Mybatis入门教程">
+                <i class="fa fa-chevron-left"></i> Mybatis入门教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -436,6 +536,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -456,8 +560,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -517,6 +630,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis连接池"><span class="nav-number">1.</span> <span class="nav-text">mybatis连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接池数据源分类"><span class="nav-number">1.1.</span> <span class="nav-text">连接池数据源分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis动态SQL语句"><span class="nav-number">2.</span> <span class="nav-text">mybatis动态SQL语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#作用："><span class="nav-number">2.0.0.1.</span> <span class="nav-text">作用：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为了解决手动拼接SQL的麻烦"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">为了解决手动拼接SQL的麻烦</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元素"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">元素:</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#代码演示："><span class="nav-number">2.1.</span> <span class="nav-text">代码演示：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标签"><span class="nav-number">2.1.1.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#元素-1"><span class="nav-number">2.1.2.</span> <span class="nav-text"> 元素</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -646,6 +775,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
