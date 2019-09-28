@@ -114,13 +114,13 @@
 <meta property="og:site_name" content="Byy">
 <meta property="og:description" content="SpringMVC框架教程前言为开发团队选择一款优秀的MVC框架是件难事儿，在众多可行的方案中决择需要很高的经验和水平。你的一个决定会影响团队未来的几年。要考虑方面太多： 1、简单易用，以提高开发效率。使小部分的精力在框架上，大部分的精力放在业务上。 2、性能优秀，这是一个最能吸引眼球的话题。 3、尽量使用大众的框架（避免使用小众的、私有的框架），新招聘来的开发人员有一些这方面技术积累，减低人员流">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/03/10/SpringMVC框架教程/SpringMVC%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B.assets/1568035714710.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/10/SpringMVC框架教程/SpringMVC%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B.assets/1568035746696.png">
-<meta property="og:updated_time" content="2019-09-12T10:24:21.454Z">
+<meta property="og:image" content="http://yoursite.com/upload/1568035714710.png">
+<meta property="og:image" content="http://yoursite.com/upload/1568035746696.png">
+<meta property="og:updated_time" content="2019-09-28T07:28:49.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC框架教程">
 <meta name="twitter:description" content="SpringMVC框架教程前言为开发团队选择一款优秀的MVC框架是件难事儿，在众多可行的方案中决择需要很高的经验和水平。你的一个决定会影响团队未来的几年。要考虑方面太多： 1、简单易用，以提高开发效率。使小部分的精力在框架上，大部分的精力放在业务上。 2、性能优秀，这是一个最能吸引眼球的话题。 3、尽量使用大众的框架（避免使用小众的、私有的框架），新招聘来的开发人员有一些这方面技术积累，减低人员流">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/10/SpringMVC框架教程/SpringMVC%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B.assets/1568035714710.png">
+<meta name="twitter:image" content="http://yoursite.com/upload/1568035714710.png">
 
 
 
@@ -511,8 +511,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.qs304.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">helloSpringMVC</span><span class="params">()</span></span>&#123;<span class="comment">//返回值表示要跳转的jsp页面的名字</span></span><br><span class="line">        System.out.println(<span class="string">"哈哈哈"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这是目录结构</p>
-<p><img src="SpringMVC%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B.assets/1568035714710.png" alt="1568035714710"></p>
-<h3 id="springmvc框架运行流程"><a href="#springmvc框架运行流程" class="headerlink" title="springmvc框架运行流程"></a>springmvc框架运行流程</h3><p><img src="SpringMVC%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B.assets/1568035746696.png" alt="1568035746696"></p>
+<p><img src="/upload/1568035714710.png" alt="1568035714710"></p>
+<h3 id="springmvc框架运行流程"><a href="#springmvc框架运行流程" class="headerlink" title="springmvc框架运行流程"></a>springmvc框架运行流程</h3><p><img src="/upload/1568035746696.png" alt="1568035746696"></p>
 <h2 id="ModelAndVIew"><a href="#ModelAndVIew" class="headerlink" title="ModelAndVIew"></a>ModelAndVIew</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>​    ModelAndView从这个名字我们不难看出，他的作用就是模型与视图之间进行交互。</p>
 <p>而model,只能向request域进行存对象，所有就出现了，使用ModelAndView类用来存储处理完后的结果数据，以及显示该数据的视图。</p>
 <p>用法</p>
