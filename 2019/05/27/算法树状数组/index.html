@@ -115,8 +115,8 @@
 <meta property="og:description" content="算法:树状数组1.适用场景​    可以解决大部分基于区间上的更新以及求和问题 2.介绍1.单点查询 我们先从数组讲起(这个就不需要普及了吧)； A数组是我们传入数据的数组 C数组使我们建立起来的树状数组  然后就能显而易见的发现一个规律 12345678C1 = A1C2 = A1+A2C3 = A3C4 = A1+A2+A3+A4C5 = A5C6 = A5+A6C7 = A7C8 = A1+">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/upload/1564195-20190316205027088-1794315300-1568108850516.png">
-<meta property="og:image" content="http://yoursite.com/uploae/copycode.gif">
-<meta property="og:updated_time" content="2019-09-28T14:17:15.471Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/27/算法树状数组/%5Cupload%5Ccopycode.gif">
+<meta property="og:updated_time" content="2019-09-28T14:19:45.065Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法树状数组">
 <meta name="twitter:description" content="算法:树状数组1.适用场景​    可以解决大部分基于区间上的更新以及求和问题 2.介绍1.单点查询 我们先从数组讲起(这个就不需要普及了吧)； A数组是我们传入数据的数组 C数组使我们建立起来的树状数组  然后就能显而易见的发现一个规律 12345678C1 = A1C2 = A1+A2C3 = A3C4 = A1+A2+A3+A4C5 = A5C6 = A5+A6C7 = A7C8 = A1+">
@@ -448,7 +448,7 @@
 <p>当我们要对最底层的值进行更新时，那么它相应的父亲节点存储的和也需要进行更新，</p>
 <p>我们建立的树状数组结构是一个完整的结构，因此修改一个点也会需要所有相应的其父亲节点的点来修改，这样我们就实现了树状数组的修改。</p>
 <p>代码如下：</p>
-<p><a href="javascript:void(0);" target="_blank" rel="noopener"><img src="/uploae/copycode.gif" alt="复制代码"></a></p>
+<p><img src="%5Cupload%5Ccopycode.gif" alt="copycode"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> k)</span>  <span class="comment">//将 x 增加 k</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x &lt; <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">while</span>(x &lt;= n)</span><br><span class="line">    &#123;</span><br><span class="line">        c[i] += k;</span><br><span class="line">        x += lowbit(x);  <span class="comment">//去寻找它的父亲 </span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
