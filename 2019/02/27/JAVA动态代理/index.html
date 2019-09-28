@@ -114,12 +114,12 @@
 <meta property="og:site_name" content="Byy">
 <meta property="og:description" content="JAVA动态代理前言：​    最近在学习spring框架，但是在学习（切面编程）aop的时候老师讲到了一个动态代理，这个东西听着很晕乎，听说在学习javaweb的时候讲filter过滤器也是这个原理，╮(╯▽╰)╭无奈当时没有注意底层也就没有学会，现在正好有机会就把这个动态代理好好学习一下吧。 1.什么是代理代理模式的定义：​    代理模式给某一个对象提供一个代理对象，并有代理对象控制原对象的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="d:%5Ccode%5Ctypora%5CJAVA%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86.assets%5C1567864349426.png">
-<meta property="og:updated_time" content="2019-09-12T04:17:44.613Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/27/JAVA动态代理/%5Cupload%5C1567864349426.png">
+<meta property="og:updated_time" content="2019-09-28T14:17:49.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA动态代理">
 <meta name="twitter:description" content="JAVA动态代理前言：​    最近在学习spring框架，但是在学习（切面编程）aop的时候老师讲到了一个动态代理，这个东西听着很晕乎，听说在学习javaweb的时候讲filter过滤器也是这个原理，╮(╯▽╰)╭无奈当时没有注意底层也就没有学会，现在正好有机会就把这个动态代理好好学习一下吧。 1.什么是代理代理模式的定义：​    代理模式给某一个对象提供一个代理对象，并有代理对象控制原对象的">
-<meta name="twitter:image" content="d:%5Ccode%5Ctypora%5CJAVA%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86.assets%5C1567864349426.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/27/JAVA动态代理/%5Cupload%5C1567864349426.png">
 
 
 
@@ -408,7 +408,7 @@
 <h3 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h3><p>​    假如你现在想购买一个笔记本，于是乎当然只关心价格和性能售后啊，而且购买渠道要方便啊，当然厂家生产笔记本后不可能把货物分发到全球各地因为地球太大了，但是消费者想要购买的方便啊，对于消费者来说他要购买方便也就是买电脑的地方离自己比较近，并不关心厂家怎么把电脑弄过来，而且对于厂家来说他只要把电脑做出来做好售后就行了，为什么费这么大劲在各地建立销售网点呢，好钢当然是用在刀刃上面啦。于是乎电脑城这个奸商聚集地就出来了（带着有色眼镜看待的这个问题，不要喷我），奸商正好把厂家和消费者连接起来。而且消费者想维修之类的必须经过代理商也就是电脑城的奸商才能和厂家联系，于是乎这个代理商就起到了代理的作用。</p>
 <h2 id="2-要想知道动态代理首先要知道代理模式的应用场景"><a href="#2-要想知道动态代理首先要知道代理模式的应用场景" class="headerlink" title="2. 要想知道动态代理首先要知道代理模式的应用场景"></a>2. 要想知道动态代理首先要知道代理模式的应用场景</h2><pre><code>### 需求和分析：</code></pre><p>​    假设有个需求，需要你不修改原有代码的基础上对一个类（Person）的功能进行增强，这下怎么办呢？</p>
 <p>​    其实可以这样，首先写一个用来增强那个Person那个类的类并且继承Person类实现的那个接口，就叫他Proxy类吧，然后在Proxy类创建的时候可以吧Person这个类当做参数传进去，然后在Proxy类中调用同名的方法（哒哒哒，这就完成啦），其实这个过程就是<strong>静态代理模式</strong>。也就是说代理对象 = 增强代码 + 目标对象（原对象）</p>
-<p><img src="D:%5Ccode%5Ctypora%5CJAVA%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86.assets%5C1567864349426.png" alt="1567864349426"></p>
+<p><img src="%5Cupload%5C1567864349426.png" alt="1567864349426"></p>
 <p>大概就是这样样子，画图比较丑，而且不会用xmind（╮(╯▽╰)╭）</p>
 <h3 id="静态代理模式的缺点："><a href="#静态代理模式的缺点：" class="headerlink" title="静态代理模式的缺点："></a>静态代理模式的缺点：</h3><p>​    这样有什么缺点呢，假设我们有很多个类需要被增强，那么我们要给每一个类都写一个对应的代理类，那么这样也忒麻烦了，代理类你这么麻烦搞的大家都不想和你玩了。</p>
 <h2 id="3-动态代理"><a href="#3-动态代理" class="headerlink" title="3.动态代理"></a>3.动态代理</h2><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>​    动态代理之前要说其实还有一个class类，这个东西比较复杂，（先埋个坑，以后在填坑），class这个类可以获取任意类的构造方法，属性等等等之类的，也就是说我们可以用来复制一个类，<strong>代理类和目标类理应实现同一组接口。之所以实现相同接口，是为了尽可能保证代理对象的内部结构和目标对象一致，这样我们对代理对象的操作最终都可以转移到目标对象身上，代理对象只需专注于增强代码的编写。</strong>也就是说接口拥有代理类对象和目标对象共同的类信息，但是类信息不能创建对象。于是乎jdk提供了java.lang.reflect.InvocationHandler接口和java.lan.reflect.Proxy类。</p>

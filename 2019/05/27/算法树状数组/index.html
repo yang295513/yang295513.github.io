@@ -95,7 +95,7 @@
 
 
 
-  <meta name="keywords" content="编程,日常学习,C++,C,算法,">
+  <meta name="keywords" content="C++,C,编程,日常学习,算法,">
 
 
 
@@ -107,7 +107,7 @@
 
 
 <meta name="description" content="算法:树状数组1.适用场景​    可以解决大部分基于区间上的更新以及求和问题 2.介绍1.单点查询 我们先从数组讲起(这个就不需要普及了吧)； A数组是我们传入数据的数组 C数组使我们建立起来的树状数组  然后就能显而易见的发现一个规律 12345678C1 = A1C2 = A1+A2C3 = A3C4 = A1+A2+A3+A4C5 = A5C6 = A5+A6C7 = A7C8 = A1+">
-<meta name="keywords" content="编程,日常学习,C++,C,算法">
+<meta name="keywords" content="C++,C,编程,日常学习,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法树状数组">
 <meta property="og:url" content="http://yoursite.com/2019/05/27/算法树状数组/index.html">
@@ -116,7 +116,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/upload/1564195-20190316205027088-1794315300-1568108850516.png">
 <meta property="og:image" content="http://yoursite.com/uploae/copycode.gif">
-<meta property="og:updated_time" content="2019-09-28T14:16:32.316Z">
+<meta property="og:updated_time" content="2019-09-28T14:17:15.471Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法树状数组">
 <meta name="twitter:description" content="算法:树状数组1.适用场景​    可以解决大部分基于区间上的更新以及求和问题 2.介绍1.单点查询 我们先从数组讲起(这个就不需要普及了吧)； A数组是我们传入数据的数组 C数组使我们建立起来的树状数组  然后就能显而易见的发现一个规律 12345678C1 = A1C2 = A1+A2C3 = A3C4 = A1+A2+A3+A4C5 = A5C6 = A5+A6C7 = A7C8 = A1+">
@@ -453,10 +453,6 @@
 
 
 
-
-
-
-
 <p><strong>3.单点查询</strong></p>
 <p>单点查询由于我们向前统计，因此需要向前查找，这个就不需要讲了吧(没弄明白请看上面)</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">　　<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">　　<span class="keyword">for</span>(<span class="keyword">int</span> i=pos;i;i-=lowbit(i))</span><br><span class="line">    sum += c[pos];</span><br><span class="line">    <span class="comment">/*两种写法</span></span><br><span class="line"><span class="comment">    while(pos &gt; 0)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        sum += c[pos];</span></span><br><span class="line"><span class="comment">        pos -= lowbit(pos); </span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span> </span><br><span class="line">　　<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -496,13 +492,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/编程/" rel="tag"># 编程</a>
-          
-            <a href="/tags/日常学习/" rel="tag"># 日常学习</a>
-          
             <a href="/tags/C/" rel="tag"># C++</a>
           
             <a href="/tags/C/" rel="tag"># C</a>
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/日常学习/" rel="tag"># 日常学习</a>
           
             <a href="/tags/算法/" rel="tag"># 算法</a>
           
