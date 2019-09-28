@@ -106,18 +106,18 @@
 
 
 
-<meta name="description" content="mybatis连接池连接池数据源分类 UNPOOLED 不使用连接池的数据源 POOLED 使用传统的javax.sql.DataSource连接池的数据源 JNDI 使用JNDI实现的数据源  mybatis动态SQL语句作用：为了解决手动拼接SQL的麻烦元素:   标签名 说明     判断语句，用于但条件分支判断   (,) 相当于switch语句，用于多条件分支判断   ,, 辅助元素，用">
+<meta name="description" content="mybatis连接池连接池数据源分类 UNPOOLED 不使用连接池的数据源 POOLED 使用传统的javax.sql.DataSource连接池的数据源 JNDI 使用JNDI实现的数据源  mybatis动态SQL语句作用：为了解决手动拼接SQL的麻烦元素:（注意由于markedown语法问题标签有空格）   标签名 说明    &amp;lt; if &amp;gt; 判断语句，用于但条件分支判断   &amp;">
 <meta name="keywords" content="语言,编程,日常学习,JAVA,数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mybatis第二天（连接池）">
+<meta property="og:title" content="mybatis第二天（连接池，动态SQL语句）">
 <meta property="og:url" content="http://yoursite.com/2019/09/16/mybatis第二天（连接池）/index.html">
 <meta property="og:site_name" content="Byy">
-<meta property="og:description" content="mybatis连接池连接池数据源分类 UNPOOLED 不使用连接池的数据源 POOLED 使用传统的javax.sql.DataSource连接池的数据源 JNDI 使用JNDI实现的数据源  mybatis动态SQL语句作用：为了解决手动拼接SQL的麻烦元素:   标签名 说明     判断语句，用于但条件分支判断   (,) 相当于switch语句，用于多条件分支判断   ,, 辅助元素，用">
+<meta property="og:description" content="mybatis连接池连接池数据源分类 UNPOOLED 不使用连接池的数据源 POOLED 使用传统的javax.sql.DataSource连接池的数据源 JNDI 使用JNDI实现的数据源  mybatis动态SQL语句作用：为了解决手动拼接SQL的麻烦元素:（注意由于markedown语法问题标签有空格）   标签名 说明    &amp;lt; if &amp;gt; 判断语句，用于但条件分支判断   &amp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-16T03:34:38.706Z">
+<meta property="og:updated_time" content="2019-09-28T05:32:24.180Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mybatis第二天（连接池）">
-<meta name="twitter:description" content="mybatis连接池连接池数据源分类 UNPOOLED 不使用连接池的数据源 POOLED 使用传统的javax.sql.DataSource连接池的数据源 JNDI 使用JNDI实现的数据源  mybatis动态SQL语句作用：为了解决手动拼接SQL的麻烦元素:   标签名 说明     判断语句，用于但条件分支判断   (,) 相当于switch语句，用于多条件分支判断   ,, 辅助元素，用">
+<meta name="twitter:title" content="mybatis第二天（连接池，动态SQL语句）">
+<meta name="twitter:description" content="mybatis连接池连接池数据源分类 UNPOOLED 不使用连接池的数据源 POOLED 使用传统的javax.sql.DataSource连接池的数据源 JNDI 使用JNDI实现的数据源  mybatis动态SQL语句作用：为了解决手动拼接SQL的麻烦元素:（注意由于markedown语法问题标签有空格）   标签名 说明    &amp;lt; if &amp;gt; 判断语句，用于但条件分支判断   &amp;">
 
 
 
@@ -153,7 +153,7 @@
 
 
 
-  <title>mybatis第二天（连接池） | Byy</title>
+  <title>mybatis第二天（连接池，动态SQL语句） | Byy</title>
   
 
 
@@ -329,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">mybatis第二天（连接池）</h1>
+          <h1 class="post-title" itemprop="name headline">mybatis第二天（连接池，动态SQL语句）</h1>
         
 
         <div class="post-meta">
@@ -406,7 +406,7 @@
 <li>POOLED 使用传统的javax.sql.DataSource连接池的数据源</li>
 <li>JNDI 使用JNDI实现的数据源</li>
 </ul>
-<h2 id="mybatis动态SQL语句"><a href="#mybatis动态SQL语句" class="headerlink" title="mybatis动态SQL语句"></a>mybatis动态SQL语句</h2><h5 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h5><h5 id="为了解决手动拼接SQL的麻烦"><a href="#为了解决手动拼接SQL的麻烦" class="headerlink" title="为了解决手动拼接SQL的麻烦"></a>为了解决手动拼接SQL的麻烦</h5><h5 id="元素"><a href="#元素" class="headerlink" title="元素:"></a>元素:</h5><table>
+<h2 id="mybatis动态SQL语句"><a href="#mybatis动态SQL语句" class="headerlink" title="mybatis动态SQL语句"></a>mybatis动态SQL语句</h2><h5 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h5><h5 id="为了解决手动拼接SQL的麻烦"><a href="#为了解决手动拼接SQL的麻烦" class="headerlink" title="为了解决手动拼接SQL的麻烦"></a>为了解决手动拼接SQL的麻烦</h5><h5 id="元素-（注意由于markedown语法问题标签有空格）"><a href="#元素-（注意由于markedown语法问题标签有空格）" class="headerlink" title="元素:（注意由于markedown语法问题标签有空格）"></a>元素:（注意由于markedown语法问题标签有空格）</h5><table>
 <thead>
 <tr>
 <th align="center">标签名</th>
@@ -414,28 +414,28 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center"><if></if></td>
+<td align="center">&lt; if &gt;</td>
 <td align="center">判断语句，用于但条件分支判断</td>
 </tr>
 <tr>
-<td align="center"><choose>(<when>,<otherwise>)</otherwise></when></choose></td>
+<td align="center">&lt; choose &gt;(&lt; when &gt;,&lt; otherwise &gt;)</td>
 <td align="center">相当于switch语句，用于多条件分支判断</td>
 </tr>
 <tr>
-<td align="center"><where>,<trim>,<set></set></trim></where></td>
+<td align="center">&lt; where &gt;,&lt; trim &gt;,&lt; set &gt;</td>
 <td align="center">辅助元素，用于处理一些SQL拼接，特殊字符问题</td>
 </tr>
 <tr>
-<td align="center"><bind></bind></td>
+<td align="center">&lt; bind &gt;</td>
 <td align="center">从OGNL表达式中创建一个变量，并将其绑定到上下文，常用于模糊查询的Sql语句</td>
 </tr>
 </tbody></table>
 <h3 id="代码演示："><a href="#代码演示：" class="headerlink" title="代码演示："></a>代码演示：</h3><p>​    假设有下面这个类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    ...<span class="comment">//以下的get和set方法以及toString方法省略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="标签"><a href="#标签" class="headerlink" title="标签"></a><if>标签</if></h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findPersonByidAndname"</span> <span class="attr">parameterType</span>=<span class="string">"com.qs304.domain.Person"</span> <span class="attr">resultType</span>=<span class="string">"com.qs304.domain.Person"</span>&gt;</span></span><br><span class="line">        select * from persons where 1=1</span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"id != null"</span>&gt;</span></span><br><span class="line">            and id = #&#123;id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">            and name = #&#123;name&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--如果使用了where标签就可以不写where 1=1和and之类的--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findPersonByidAndname"</span> <span class="attr">parameterType</span>=<span class="string">"com.qs304.domain.Person"</span> <span class="attr">resultType</span>=<span class="string">"com.qs304.domain.Person"</span>&gt;</span></span><br><span class="line">        select * from persons</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"id != null"</span>&gt;</span></span><br><span class="line">            id = #&#123;id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">            name = #&#123;name&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="lt-if-gt-标签"><a href="#lt-if-gt-标签" class="headerlink" title="&lt;if&gt;标签"></a>&lt;if&gt;标签</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findPersonByidAndname"</span> <span class="attr">parameterType</span>=<span class="string">"com.qs304.domain.Person"</span> <span class="attr">resultType</span>=<span class="string">"com.qs304.domain.Person"</span>&gt;</span></span><br><span class="line">        select * from persons where 1=1</span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"id != null"</span>&gt;</span></span><br><span class="line">            and id = #&#123;id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">            and name = #&#123;name&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--如果使用了where标签就可以不写where 1=1和and之类的--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findPersonByidAndname"</span> <span class="attr">parameterType</span>=<span class="string">"com.qs304.domain.Person"</span> <span class="attr">resultType</span>=<span class="string">"com.qs304.domain.Person"</span>&gt;</span></span><br><span class="line">        select * from persons</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"id != null"</span>&gt;</span></span><br><span class="line">            id = #&#123;id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">            name = #&#123;name&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="元素-1"><a href="#元素-1" class="headerlink" title=" 元素"></a><foreach> 元素</foreach></h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	判断id是否在这个集合里面</span></span><br><span class="line"><span class="comment">	select * from pesrsons where id in(1,2,3,4);</span></span><br><span class="line"><span class="comment">	类似这样</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findPersonByIds"</span> <span class="attr">parameterType</span>=<span class="string">"List"</span></span></span><br><span class="line"><span class="tag">                         <span class="attr">resultType</span>=<span class="string">"com.qs304.domain.Person"</span>&gt;</span></span><br><span class="line">           select * from pesrsons where id in</span><br><span class="line">            <span class="comment">&lt;!-- 判断为空可以用 list.size&gt;0--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">"id"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">collection</span>=<span class="string">"list"</span> </span></span><br><span class="line"><span class="tag">                            <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></span><br><span class="line">                   #&#123;id&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="元素"><a href="#元素" class="headerlink" title=" 元素"></a><foreach> 元素</foreach></h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	判断id是否在这个集合里面</span></span><br><span class="line"><span class="comment">	select * from pesrsons where id in(1,2,3,4);</span></span><br><span class="line"><span class="comment">	类似这样</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findPersonByIds"</span> <span class="attr">parameterType</span>=<span class="string">"List"</span></span></span><br><span class="line"><span class="tag">                         <span class="attr">resultType</span>=<span class="string">"com.qs304.domain.Person"</span>&gt;</span></span><br><span class="line">           select * from pesrsons where id in</span><br><span class="line">            <span class="comment">&lt;!-- 判断为空可以用 list.size&gt;0--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">"id"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">collection</span>=<span class="string">"list"</span> </span></span><br><span class="line"><span class="tag">                            <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></span><br><span class="line">                   #&#123;id&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>item：配置的是循环中当前的元素。</li>
@@ -464,7 +464,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/09/16/mybatis第二天（连接池）/" title="mybatis第二天（连接池）">http://yoursite.com/2019/09/16/mybatis第二天（连接池）/</a>
+    <a href="http://yoursite.com/2019/09/16/mybatis第二天（连接池）/" title="mybatis第二天（连接池，动态SQL语句）">http://yoursite.com/2019/09/16/mybatis第二天（连接池）/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -509,6 +509,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/28/Mybatis一对多和多对一以及多对多/" rel="prev" title="Mybatis一对多和多对一以及多对多">
+                Mybatis一对多和多对一以及多对多 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -585,7 +589,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -607,7 +611,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -640,7 +644,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis连接池"><span class="nav-number">1.</span> <span class="nav-text">mybatis连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接池数据源分类"><span class="nav-number">1.1.</span> <span class="nav-text">连接池数据源分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis动态SQL语句"><span class="nav-number">2.</span> <span class="nav-text">mybatis动态SQL语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#作用："><span class="nav-number">2.0.0.1.</span> <span class="nav-text">作用：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为了解决手动拼接SQL的麻烦"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">为了解决手动拼接SQL的麻烦</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元素"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">元素:</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#代码演示："><span class="nav-number">2.1.</span> <span class="nav-text">代码演示：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标签"><span class="nav-number">2.1.1.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#元素-1"><span class="nav-number">2.1.2.</span> <span class="nav-text"> 元素</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis连接池"><span class="nav-number">1.</span> <span class="nav-text">mybatis连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接池数据源分类"><span class="nav-number">1.1.</span> <span class="nav-text">连接池数据源分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis动态SQL语句"><span class="nav-number">2.</span> <span class="nav-text">mybatis动态SQL语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#作用："><span class="nav-number">2.0.0.1.</span> <span class="nav-text">作用：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为了解决手动拼接SQL的麻烦"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">为了解决手动拼接SQL的麻烦</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元素-（注意由于markedown语法问题标签有空格）"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">元素:（注意由于markedown语法问题标签有空格）</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#代码演示："><span class="nav-number">2.1.</span> <span class="nav-text">代码演示：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-if-gt-标签"><span class="nav-number">2.1.1.</span> <span class="nav-text">&lt;if&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#元素"><span class="nav-number">2.1.2.</span> <span class="nav-text"> 元素</span></a></li></ol></li></div>
             
 
           </div>

@@ -95,7 +95,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="语言,编程,日常学习,JAVA,数据库,ORM,">
 
 
 
@@ -106,13 +106,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Byy">
-<meta property="og:url" content="http://yoursite.com/archives/2019/09/index.html">
+<meta name="description" content="ORM和MybatisORM​    ORM  全称为:object/relation mapping（对象\关系数据库映射），简单来说就是一种规范，它的出现就是为了解决面向对象编程语言与关系数据库发展不均衡的产物，允许开发者利用面向对象语言的简单易用性又能利用关系数据库的技术优势，于是把关系数据库包装成面向对象模型，这个工具就是ORM。 基本映射方式数据表映射类​    持久化类被映射到一个数据">
+<meta name="keywords" content="语言,编程,日常学习,JAVA,数据库,ORM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis一对多和多对一以及多对多">
+<meta property="og:url" content="http://yoursite.com/2019/09/28/Mybatis一对多和多对一以及多对多/index.html">
 <meta property="og:site_name" content="Byy">
+<meta property="og:description" content="ORM和MybatisORM​    ORM  全称为:object/relation mapping（对象\关系数据库映射），简单来说就是一种规范，它的出现就是为了解决面向对象编程语言与关系数据库发展不均衡的产物，允许开发者利用面向对象语言的简单易用性又能利用关系数据库的技术优势，于是把关系数据库包装成面向对象模型，这个工具就是ORM。 基本映射方式数据表映射类​    持久化类被映射到一个数据">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-28T05:06:30.336Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Byy">
+<meta name="twitter:title" content="Mybatis一对多和多对一以及多对多">
+<meta name="twitter:description" content="ORM和MybatisORM​    ORM  全称为:object/relation mapping（对象\关系数据库映射），简单来说就是一种规范，它的出现就是为了解决面向对象编程语言与关系数据库发展不均衡的产物，允许开发者利用面向对象语言的简单易用性又能利用关系数据库的技术优势，于是把关系数据库包装成面向对象模型，这个工具就是ORM。 基本映射方式数据表映射类​    持久化类被映射到一个数据">
 
 
 
@@ -142,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2019/09/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/28/Mybatis一对多和多对一以及多对多/">
 
 
 
 
 
-  <title>归档 | Byy</title>
+  <title>Mybatis一对多和多对一以及多对多 | Byy</title>
   
 
 
@@ -167,7 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -293,107 +298,200 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 12 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/28/Mybatis一对多和多对一以及多对多/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang295513">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Byy">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/09/28/Mybatis一对多和多对一以及多对多/" itemprop="url">
-              
-                <span itemprop="name">Mybatis一对多和多对一以及多对多</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Mybatis一对多和多对一以及多对多</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-28T12:43:26+08:00" content="2019-09-28">
-          09-28
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-28T12:43:26+08:00">
+                2019-09-28
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/16/mybatis第二天（连接池）/" itemprop="url">
-              
-                <span itemprop="name">mybatis第二天（连接池，动态SQL语句）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-16T10:44:40+08:00" content="2019-09-16">
-          09-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h1 id="ORM和Mybatis"><a href="#ORM和Mybatis" class="headerlink" title="ORM和Mybatis"></a>ORM和Mybatis</h1><h2 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h2><p>​    ORM  全称为:object/relation mapping（对象\关系数据库映射），简单来说就是一种规范，它的出现就是为了解决面向对象编程语言与关系数据库发展不均衡的产物，允许开发者利用面向对象语言的简单易用性又能利用关系数据库的技术优势，于是把关系数据库包装成面向对象模型，这个工具就是ORM。</p>
+<h3 id="基本映射方式"><a href="#基本映射方式" class="headerlink" title="基本映射方式"></a>基本映射方式</h3><h4 id="数据表映射类"><a href="#数据表映射类" class="headerlink" title="数据表映射类"></a>数据表映射类</h4><p>​    持久化类被映射到一个数据表，即一个表对应一个Model类</p>
+<h4 id="数据表的行映射（即实例）"><a href="#数据表的行映射（即实例）" class="headerlink" title="数据表的行映射（即实例）"></a>数据表的行映射（即实例）</h4><p>​    数据表的每行映射一个对象</p>
+<h4 id="数据库表列（字段）映射对象的属性"><a href="#数据库表列（字段）映射对象的属性" class="headerlink" title="数据库表列（字段）映射对象的属性"></a>数据库表列（字段）映射对象的属性</h4><p>​    数据库表的每列映射一个对象</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    yang295513
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/09/28/Mybatis一对多和多对一以及多对多/" title="Mybatis一对多和多对一以及多对多">http://yoursite.com/2019/09/28/Mybatis一对多和多对一以及多对多/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/语言/" rel="tag"># 语言</a>
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/日常学习/" rel="tag"># 日常学习</a>
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+            <a href="/tags/ORM/" rel="tag"># ORM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/16/mybatis第二天（连接池）/" rel="next" title="mybatis第二天（连接池，动态SQL语句）">
+                <i class="fa fa-chevron-left"></i> mybatis第二天（连接池，动态SQL语句）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -401,6 +499,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -421,8 +523,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -482,6 +593,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ORM和Mybatis"><span class="nav-number">1.</span> <span class="nav-text">ORM和Mybatis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ORM"><span class="nav-number">1.1.</span> <span class="nav-text">ORM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本映射方式"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本映射方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据表映射类"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">数据表映射类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据表的行映射（即实例）"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">数据表的行映射（即实例）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库表列（字段）映射对象的属性"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">数据库表列（字段）映射对象的属性</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -611,6 +738,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
