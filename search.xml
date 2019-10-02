@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SSM整合教程和步骤]]></title>
+    <url>%2F2019%2F10%2F02%2FSSM%E6%95%B4%E5%90%88%E6%95%99%E7%A8%8B%E5%92%8C%E6%AD%A5%E9%AA%A4%2F</url>
+    <content type="text"><![CDATA[SSM整合教程和步骤步骤1.配置spring和springmvc以及mybatis配置文件 2.配置web.xml文件先整合spring与springmvc 3.测试spring与springmvc整合情况 4.整合spring与springmvc与mybatis 教程1.配置spring和springmvc以及mybatis配置文件spring.xml 12345678910111213&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt; &lt;!--开启注解扫描但是不扫描Controller注解包含的类--&gt; &lt;context:component-scan base-package="com.qs304"&gt; &lt;context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/&gt; &lt;/context:component-scan&gt;&lt;/beans&gt; springmvc.xml 123456789101112131415161718192021&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt; &lt;!--开启注解扫描但是只扫描Controller注解包含的类--&gt; &lt;context:component-scan base-package="com.qs304.controller"&gt; &lt;context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/&gt; &lt;/context:component-scan&gt; &lt;!--因为一会要使用注解，所有开启注解扫描,注解只扫描Controller--&gt; &lt;!--配置视图解析器--&gt; &lt;bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt; &lt;property name="prefix" value="/WEB-INF/pages/"&gt;&lt;/property&gt; &lt;property name="suffix" value=".jsp"&gt;&lt;/property&gt; &lt;/bean&gt;&lt;/beans&gt; 2.配置web.xml文件先整合spring与springmvc web.xml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&lt;!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd" &gt;&lt;web-app&gt; &lt;display-name&gt;Archetype Created Web Application&lt;/display-name&gt; &lt;!--配置前端控制器--&gt; &lt;servlet&gt; &lt;servlet-name&gt;dispatcherServlet&lt;/servlet-name&gt; &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt; &lt;init-param&gt; &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt; &lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt; &lt;/init-param&gt; &lt;/servlet&gt; &lt;!--配置监听器加载spring框架--&gt; &lt;listener&gt; &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt; &lt;/listener&gt; &lt;!--配置springxml文档路径--&gt; &lt;context-param&gt; &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt; &lt;param-value&gt;classpath:spring.xml&lt;/param-value&gt; &lt;/context-param&gt;&lt;!-- 解决中文乱码--&gt; &lt;filter&gt; &lt;filter-name&gt;characterEncodingFilter&lt;/filter-name&gt; &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt; &lt;init-param&gt; &lt;param-name&gt;encoding&lt;/param-name&gt; &lt;param-value&gt;UTF-8&lt;/param-value&gt; &lt;/init-param&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;characterEncodingFilter&lt;/filter-name&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; &lt;!-- 前端控制器映射拦截说有路径下 &lt;url-pattern&gt;/&lt;url-pattern/&gt;匹配类似于/xxxx的URL，不会匹配到/xxx.xxx类型的URL&lt;url-pattern&gt;/*&lt;url-pattern/&gt;会匹配所有类型、所有后缀的URL，包括：/xxx、/xxx.xxx --&gt; &lt;servlet-mapping&gt; &lt;servlet-name&gt;dispatcherServlet&lt;/servlet-name&gt; &lt;url-pattern&gt;/&lt;/url-pattern&gt; &lt;/servlet-mapping&gt;&lt;/web-app&gt; 3.测试springmvc与spring整合情况4.整合spring与springmvc与mybatis首先单独写mybatis配置文件，例如名字叫做mybatis.xml mybatis.xml 然后测试mybatis能运行 之后吧mybatis配置文件整合到spring.xml配置文件中 spring.xml 1234567891011121314151617181920212223242526272829303132&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt; &lt;context:component-scan base-package="com.qs304"&gt; &lt;context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/&gt; &lt;/context:component-scan&gt;&lt;!-- Spring整合mybatis框架--&gt;&lt;!-- 配置连接池--&gt; &lt;bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"&gt; &lt;property name="driverClass" value="com.mysql.jdbc.Driver"/&gt; &lt;property name="jdbcUrl" value="jdbc:mysql://localhost:3306/demo"/&gt; &lt;property name="user" value="root"/&gt; &lt;property name="password" value="111"/&gt; &lt;/bean&gt;&lt;!-- 工厂注入来配置sqlsession--&gt; &lt;bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"&gt; &lt;property name="dataSource" ref="dataSource"/&gt; &lt;/bean&gt;&lt;!-- 配置接口所在的包--&gt; &lt;bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer"&gt; &lt;property name="basePackage" value="com.qs304.dao"/&gt; &lt;/bean&gt;&lt;/beans&gt; 之后就运行成功啦，完结散花、]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>日常学习</tag>
+        <tag>JAVA</tag>
+        <tag>Spring</tag>
+        <tag>框架</tag>
+        <tag>SSM</tag>
+        <tag>SpringMVC</tag>
+        <tag>Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Mybatis深入理解XML配置文件]]></title>
     <url>%2F2019%2F09%2F28%2FMybatis%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3XML%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%2F</url>
     <content type="text"><![CDATA[Mybatis体系结构SqlSessionFactory​ SqlSessionFactory是mybatis的关键对象，它是单个数据库映射关系经过编译后的内存镜像，SqlSessionFactor对象通过SqlSessionFactorBuilder对象创建获得。 SqlSessionFactorBuilder​ SqlSessionFactorBuilder可以从XML配置文件或者一个预先定制的Configguration的实例为核心构建，它是线程安全的。 SqlSession​ SqlSession也是mybatis的关键对象，它是执行持久化操作的对象，类似JDBC中的Connection对象，它是应用程序与持久化层之间执行交互操作的一个单线程对象， 每个线程都应该有他自己的SqlSession实例，SqlSession的实例不能共享，也是线程不安全的，所有绝对不能将SqlSession实例的引用放在一个类的静态字段中，也绝对不能放在任何类型的管理范围中，比如Serlvet中的HTTPSession对象中。 Mybatis的配置文件结构 configuration配置 propertes 属性 typeAliases 类型命名（别名） typeHandlers 类型处理器 objectFactory 对象工厂 plugins 插件 environments 环境 environment 环境变量 transationManager 事务管理器 dataSource 数据源 databaseIDProvider 数据库厂商标识 mapping 映射器 propertes 这些属性都是外部配置然后可以动态替换的演示:​ 在类路径下新建一个db.properties的java配置文件 1234driver=com.mysql.jdbc.Driverurl=jdbc:mysql://localhost:3306/mybatisusername=adminpassword=123456 然后在Mybatis主配置文件中添加元素 1&lt;properties resource="db.properties"/&gt; 之后就可以使用EL表达式获取对应的值 123456&lt;dataSoure type="POOLED"&gt; &lt;property name="driver" value="$&#123;dirver&#125;" /&gt; &lt;property name="url" value="$&#123;url&#125;" /&gt; &lt;property name="username" value="$&#123;username&#125;" /&gt; &lt;property name="password" value="$&#123;password&#125;" /&gt;&lt;/dataSoure&gt; settings设置这是Mybatis中非常重要的调整设置，他会改变Mybatis的运行时行为 配置参考 1234567891011121314151617&lt;settings&gt; &lt;setting name="cacheEnabled" value="true"/&gt; &lt;setting name="lazyLoadingEnabled" value="true"/&gt; &lt;setting name="multipleResultSetsEnabled" value="true"/&gt; &lt;setting name="useColumnLabel" value="true"/&gt; &lt;setting name="useGeneratedKeys" value="false"/&gt; &lt;setting name="autoMappingBehavior" value="PARTIAL"/&gt; &lt;setting name="autoMappingUnknownColumnBehavior" value="WARNING"/&gt; &lt;setting name="defaultExecutorType" value="SIMPLE"/&gt; &lt;setting name="defaultStatementTimeout" value="30"/&gt; &lt;setting name="defaultFetchSize" value="200"/&gt; &lt;setting name="safeRowBoundsEnabled" value="false"/&gt; &lt;setting name="mapUnderscoreToCamelCase" value="false"/&gt; &lt;setting name="localCacheScope" value="SESSION"/&gt; &lt;setting name="jdbcTypeForNull" value="OTHER"/&gt; &lt;setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/&gt;&lt;/settings&gt; typeAliases类型命名​ 类型别名时为java类型设置的一个短名字，存在的意义在于减少冗余的全限定类名 方法一1234&lt;!--这样配置后任何使用到com.qs304.beans.User的地方都能使用user代替--&gt;&lt;typeAliases&gt; &lt;typeAlias alias="user" type="com.qs304.beans.User"&gt;&lt;/typeAlias&gt;&lt;/typeAliases&gt; 方法二1234&lt;!--别名默认为类名首字母小写，指定这个包名后，mybatis会在下面的包中搜索--&gt;&lt;typeAliases&gt; &lt;pakage name="com.qs304.bean"/&gt;&lt;/typeAliases&gt; 若使用了注解这别名为注解的值，没有使用就是类名首字母小写 Mybatis已经为许多常见的java类型内建了相应的类型别名他们都是大小写不敏感的 参考：https://blog.csdn.net/lyf_ldh/article/details/77949004 mapper映射器Mybatis需要开发者告诉它去哪寻找映射文件这也就有了mapper 12345678910&lt;mappers&gt; &lt;!--使用类路径查找资源文件--&gt; &lt;mapper resource="com/qs304/dao/IStudent.xml"/&gt; &lt;!--使用绝对路径查找--&gt; &lt;mapper url="file:///C:/IStudent.xml"/&gt; &lt;!--使用接口查找--&gt; &lt;mapper class="com.qs304.dao.IStudent"/&gt; &lt;!--使用包名查找--&gt; &lt;package name="com.qs304.dao"/&gt;&lt;/mappers&gt; 深入理解Mapper XML映射文件SQL映射文件常用的元素 select 映射查询语句 insert 映射插入语句 update 映射删除语句 sql 可被其他语句引用的可重用语句块 cahe 给定命名空间的缓存配置 cache-ref 给其他命名空间缓存配置引用 resultMap 最复杂也是最强大的元素，用来描述如何从数据库结果集中加载对象 &lt;select&gt;12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364&lt;select &lt;!-- 1. id（必须配置） id是命名空间中的唯一标识符，可被用来代表这条语句 一个命名空间（namespace）对应一个dao接口 这个id也应该对应dao里面的某个方法（sql相当于方法的实现），因此id应该与方法名一致 --&gt; id="selectUser" &lt;!-- 2. parapeterType（可选配置，默认由mybatis自动选择处理） 将要传入语句的参数的完全限定名或别名，如果不配置，mybatis会通过ParamterHandler根据参数类型默认选择合适的typeHandler进行处理 paramterType 主要指定参数类型，可以是int, short, long, string等类型，也可以是复杂类型（如对象） --&gt; parapeterType="int" &lt;!-- 3. resultType（resultType 与 resultMap 二选一配置） 用来指定返回类型，指定的类型可以是基本类型，也可以是java容器，也可以是javabean --&gt; resultType="hashmap" &lt;!-- 4. resultMap（resultType 与 resultMap 二选一配置） 用于引用我们通过 resultMap 标签定义的映射类型，这也是mybatis组件高级复杂映射的关键 --&gt; resultMap="USER_RESULT_MAP" &lt;!-- 5. flushCache（可选配置） 将其设置为true，任何时候语句被调用，都会导致本地缓存和二级缓存被清空，默认值：false --&gt; flushCache="false" &lt;!-- 6. useCache（可选配置） 将其设置为true，会导致本条语句的结果被二级缓存，默认值：对select元素为true --&gt; useCache="true" &lt;!-- 7. timeout（可选配置） 这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数，默认值为：unset（依赖驱动） --&gt; timeout="10000" &lt;!-- 8. fetchSize（可选配置） 这是尝试影响驱动程序每次批量返回的结果行数和这个设置值相等。默认值为：unset（依赖驱动） --&gt; fetchSize="256" &lt;!-- 9. statementType（可选配置） STATEMENT, PREPARED或CALLABLE的一种，这会让MyBatis使用选择Statement, PrearedStatement或CallableStatement，默认值：PREPARED --&gt; statementType="PREPARED" &lt;!-- 10. resultSetType（可选配置） FORWARD_ONLY，SCROLL_SENSITIVE 或 SCROLL_INSENSITIVE 中的一个，默认值为：unset（依赖驱动） --&gt; resultSetType="FORWORD_ONLY"&gt;&lt;/select&gt;]]></content>
@@ -8,9 +26,9 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>日常学习</tag>
         <tag>语言</tag>
         <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>JAVA</tag>
         <tag>数据库</tag>
         <tag>XML</tag>
@@ -24,9 +42,9 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>日常学习</tag>
         <tag>语言</tag>
         <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>JAVA</tag>
         <tag>数据库</tag>
         <tag>ORM</tag>
@@ -40,9 +58,9 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>日常学习</tag>
         <tag>语言</tag>
         <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>JAVA</tag>
         <tag>数据库</tag>
       </tags>
@@ -55,9 +73,9 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>日常学习</tag>
         <tag>语言</tag>
         <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>JAVA</tag>
         <tag>数据库</tag>
       </tags>
@@ -86,10 +104,10 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>日常学习</tag>
         <tag>C++</tag>
         <tag>C</tag>
         <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>算法</tag>
       </tags>
   </entry>
@@ -101,12 +119,12 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>日常学习</tag>
         <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>JAVA</tag>
-        <tag>SpringMVC</tag>
         <tag>Spring</tag>
         <tag>框架</tag>
+        <tag>SpringMVC</tag>
       </tags>
   </entry>
   <entry>
@@ -117,8 +135,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>日常学习</tag>
         <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>JAVA</tag>
         <tag>设计模式</tag>
       </tags>
@@ -131,8 +149,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>日常学习</tag>
         <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>习惯</tag>
       </tags>
   </entry>
@@ -144,8 +162,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>日常学习</tag>
         <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>JAVA</tag>
         <tag>Spring</tag>
         <tag>框架</tag>
@@ -159,11 +177,11 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>日常学习</tag>
         <tag>C++</tag>
         <tag>语言</tag>
         <tag>C</tag>
         <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>技巧</tag>
       </tags>
   </entry>
@@ -186,9 +204,9 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>日常学习</tag>
         <tag>语言</tag>
         <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>TensorFlow</tag>
         <tag>Python</tag>
       </tags>
