@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>%2F2019%2F10%2F09%2Fmaven%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[title: maven入门教程date: 2019-10-09 20:29:06tags: maven教程简介​ Maven 翻译为”专家”、”内行”，是 Apache 下的一个纯 Java 开发的开源项目。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。 Maven 是一个项目管理工具，可以对 Java 项目进行构建、依赖管理。 Maven 也可被用于构建和管理各种项目，例如 C#，Ruby，Scala 和其他语言编写的项目。Maven 曾是 Jakarta 项目的子项目，现为由 Apache 软件基金会主持的独立 Apache 项目。（这是我百度复制过来的，╮(╯▽╰)╭，算是毛病吧） 特性跨平台：是指跨OS平台，跨IDE平台 标准化：项目构建标准化，和项目结构标准化 maven目录结构 命令4. 编译源代码： 1mvn compile 5. 编译测试代码： 1mvn test-compile 6. 运行测试: 1mvn test 7. 产生site： 1mvn site 8. 打包： 1mvn package 9. 在本地Repository中安装jar： 12mvn install例：installing D:\xxx\xx.jar to D:\xx\xxxx 10. 清除产生的项目： 1mvn clean 11. 生成eclipse项目： 1mvn eclipse:eclipse 12. 生成idea项目： 1mvn idea:idea 13. 组合使用goal命令，如只打包不测试： 1mvn -Dtest package 14. 编译测试的内容： 1mvn test-compile 15. 只打jar包: 1mvn jar:jar 16. 只测试而不编译，也不测试编译： 12mvn test -skipping compile -skipping test-compile ( -skipping 的灵活运用，当然也可以用于其他组合命令) 17. 清除eclipse的一些系统设置: 1mvn eclipse:clean 18.查看当前项目已被解析的依赖： 1mvn dependency:list 19.上传到私服： 1mvn deploy 20. 强制检查更新，由于快照版本的更新策略(一天更新几次、隔段时间更新一次)存在，如果想强制更新就会用到此命令: 1mvn clean install-U 21. 源码打包： 123mvn source:jar或mvn source:jar-no-fork]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[SSM整合教程和步骤]]></title>
     <url>%2F2019%2F10%2F02%2FSSM%E6%95%B4%E5%90%88%E6%95%99%E7%A8%8B%E5%92%8C%E6%AD%A5%E9%AA%A4%2F</url>
     <content type="text"><![CDATA[SSM整合教程和步骤步骤1.配置spring和springmvc以及mybatis配置文件 2.配置web.xml文件先整合spring与springmvc 3.测试spring与springmvc整合情况 4.整合spring与springmvc与mybatis 教程1.配置spring和springmvc以及mybatis配置文件spring.xml 12345678910111213&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt; &lt;!--开启注解扫描但是不扫描Controller注解包含的类--&gt; &lt;context:component-scan base-package="com.qs304"&gt; &lt;context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/&gt; &lt;/context:component-scan&gt;&lt;/beans&gt; springmvc.xml 123456789101112131415161718192021&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt; &lt;!--开启注解扫描但是只扫描Controller注解包含的类--&gt; &lt;context:component-scan base-package="com.qs304.controller"&gt; &lt;context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/&gt; &lt;/context:component-scan&gt; &lt;!--因为一会要使用注解，所有开启注解扫描,注解只扫描Controller--&gt; &lt;!--配置视图解析器--&gt; &lt;bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt; &lt;property name="prefix" value="/WEB-INF/pages/"&gt;&lt;/property&gt; &lt;property name="suffix" value=".jsp"&gt;&lt;/property&gt; &lt;/bean&gt;&lt;/beans&gt; 2.配置web.xml文件先整合spring与springmvc web.xml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&lt;!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd" &gt;&lt;web-app&gt; &lt;display-name&gt;Archetype Created Web Application&lt;/display-name&gt; &lt;!--配置前端控制器--&gt; &lt;servlet&gt; &lt;servlet-name&gt;dispatcherServlet&lt;/servlet-name&gt; &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt; &lt;init-param&gt; &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt; &lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt; &lt;/init-param&gt; &lt;/servlet&gt; &lt;!--配置监听器加载spring框架--&gt; &lt;listener&gt; &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt; &lt;/listener&gt; &lt;!--配置springxml文档路径--&gt; &lt;context-param&gt; &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt; &lt;param-value&gt;classpath:spring.xml&lt;/param-value&gt; &lt;/context-param&gt;&lt;!-- 解决中文乱码--&gt; &lt;filter&gt; &lt;filter-name&gt;characterEncodingFilter&lt;/filter-name&gt; &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt; &lt;init-param&gt; &lt;param-name&gt;encoding&lt;/param-name&gt; &lt;param-value&gt;UTF-8&lt;/param-value&gt; &lt;/init-param&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;characterEncodingFilter&lt;/filter-name&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; &lt;!-- 前端控制器映射拦截说有路径下 &lt;url-pattern&gt;/&lt;url-pattern/&gt;匹配类似于/xxxx的URL，不会匹配到/xxx.xxx类型的URL&lt;url-pattern&gt;/*&lt;url-pattern/&gt;会匹配所有类型、所有后缀的URL，包括：/xxx、/xxx.xxx --&gt; &lt;servlet-mapping&gt; &lt;servlet-name&gt;dispatcherServlet&lt;/servlet-name&gt; &lt;url-pattern&gt;/&lt;/url-pattern&gt; &lt;/servlet-mapping&gt;&lt;/web-app&gt; 3.测试springmvc与spring整合情况4.整合spring与springmvc与mybatis首先单独写mybatis配置文件，例如名字叫做mybatis.xml mybatis.xml 然后测试mybatis能运行 之后吧mybatis配置文件整合到spring.xml配置文件中 spring.xml 1234567891011121314151617181920212223242526272829303132&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt; &lt;context:component-scan base-package="com.qs304"&gt; &lt;context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/&gt; &lt;/context:component-scan&gt;&lt;!-- Spring整合mybatis框架--&gt;&lt;!-- 配置连接池--&gt; &lt;bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"&gt; &lt;property name="driverClass" value="com.mysql.jdbc.Driver"/&gt; &lt;property name="jdbcUrl" value="jdbc:mysql://localhost:3306/demo"/&gt; &lt;property name="user" value="root"/&gt; &lt;property name="password" value="111"/&gt; &lt;/bean&gt;&lt;!-- 工厂注入来配置sqlsession--&gt; &lt;bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"&gt; &lt;property name="dataSource" ref="dataSource"/&gt; &lt;/bean&gt;&lt;!-- 配置接口所在的包--&gt; &lt;bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer"&gt; &lt;property name="basePackage" value="com.qs304.dao"/&gt; &lt;/bean&gt;&lt;/beans&gt; 之后就运行成功啦，完结散花、]]></content>
@@ -8,8 +13,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>编程</tag>
         <tag>JAVA</tag>
         <tag>Spring</tag>
         <tag>框架</tag>
@@ -26,9 +31,9 @@
         <category>学习</category>
       </categories>
       <tags>
+        <tag>日常学习</tag>
         <tag>语言</tag>
         <tag>编程</tag>
-        <tag>日常学习</tag>
         <tag>JAVA</tag>
         <tag>数据库</tag>
         <tag>XML</tag>
@@ -42,9 +47,9 @@
         <category>学习</category>
       </categories>
       <tags>
+        <tag>日常学习</tag>
         <tag>语言</tag>
         <tag>编程</tag>
-        <tag>日常学习</tag>
         <tag>JAVA</tag>
         <tag>数据库</tag>
         <tag>ORM</tag>
@@ -58,9 +63,9 @@
         <category>学习</category>
       </categories>
       <tags>
+        <tag>日常学习</tag>
         <tag>语言</tag>
         <tag>编程</tag>
-        <tag>日常学习</tag>
         <tag>JAVA</tag>
         <tag>数据库</tag>
       </tags>
@@ -73,9 +78,9 @@
         <category>学习</category>
       </categories>
       <tags>
+        <tag>日常学习</tag>
         <tag>语言</tag>
         <tag>编程</tag>
-        <tag>日常学习</tag>
         <tag>JAVA</tag>
         <tag>数据库</tag>
       </tags>
@@ -104,10 +109,10 @@
         <category>算法</category>
       </categories>
       <tags>
+        <tag>日常学习</tag>
+        <tag>编程</tag>
         <tag>C++</tag>
         <tag>C</tag>
-        <tag>编程</tag>
-        <tag>日常学习</tag>
         <tag>算法</tag>
       </tags>
   </entry>
@@ -119,8 +124,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>编程</tag>
         <tag>JAVA</tag>
         <tag>Spring</tag>
         <tag>框架</tag>
@@ -135,8 +140,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>编程</tag>
         <tag>JAVA</tag>
         <tag>设计模式</tag>
       </tags>
@@ -149,8 +154,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>编程</tag>
         <tag>习惯</tag>
       </tags>
   </entry>
@@ -162,8 +167,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>编程</tag>
         <tag>JAVA</tag>
         <tag>Spring</tag>
         <tag>框架</tag>
@@ -177,11 +182,11 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>C++</tag>
-        <tag>语言</tag>
-        <tag>C</tag>
-        <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>语言</tag>
+        <tag>编程</tag>
+        <tag>C++</tag>
+        <tag>C</tag>
         <tag>技巧</tag>
       </tags>
   </entry>
@@ -204,11 +209,11 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>语言</tag>
-        <tag>编程</tag>
         <tag>日常学习</tag>
         <tag>TensorFlow</tag>
+        <tag>语言</tag>
         <tag>Python</tag>
+        <tag>编程</tag>
       </tags>
   </entry>
 </search>
