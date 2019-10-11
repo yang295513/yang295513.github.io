@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[sb]]></title>
+    <url>%2F2019%2F10%2F11%2Fsb%2F</url>
+    <content type="text"><![CDATA[啊实打实的发送到发送到]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[快速搭建java项目配置文件模板]]></title>
     <url>%2F2019%2F10%2F10%2F%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAjava%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A8%A1%E6%9D%BF%2F</url>
     <content type="text"><![CDATA[web.xml(包含Spring和SpringMVC)123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5"&gt; &lt;!-- 中文乱码处理 --&gt; &lt;filter&gt; &lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt; &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt; &lt;init-param&gt; &lt;param-name&gt;encoding&lt;/param-name&gt; &lt;param-value&gt;UTF-8&lt;/param-value&gt; &lt;/init-param&gt; &lt;init-param&gt; &lt;param-name&gt;forceEncoding&lt;/param-name&gt; &lt;param-value&gt;true&lt;/param-value&gt; &lt;/init-param&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; &lt;filter&gt; &lt;filter-name&gt;HiddenHttpMethodFilter&lt;/filter-name&gt; &lt;filter-class&gt;org.springframework.web.filter.HiddenHttpMethodFilter&lt;/filter-class&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;HiddenHttpMethodFilter&lt;/filter-name&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; &lt;!-- Spring配置文件信息 --&gt; &lt;context-param&gt; &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt; &lt;param-value&gt;classpath:config/spring/applicationContext.xml&lt;/param-value&gt; &lt;/context-param&gt; &lt;!-- ContextLoaderListener监听器 --&gt; &lt;listener&gt; &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt; &lt;/listener&gt; &lt;!-- 日志配置 --&gt; &lt;context-param&gt; &lt;param-name&gt;log4jConfigLocation&lt;/param-name&gt; &lt;param-value&gt;classpath:config/log4j.properties&lt;/param-value&gt; &lt;/context-param&gt; &lt;listener&gt; &lt;listener-class&gt;org.springframework.web.util.Log4jConfigListener&lt;/listener-class&gt; &lt;/listener&gt; &lt;!-- 配置前端控制器 --&gt; &lt;servlet&gt; &lt;servlet-name&gt;DispatcherServlet&lt;/servlet-name&gt; &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt; &lt;init-param&gt; &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt; &lt;param-value&gt;classpath:config/springmvc/springmvc.xml&lt;/param-value&gt; &lt;/init-param&gt; &lt;load-on-startup&gt;1&lt;/load-on-startup&gt; &lt;/servlet&gt; &lt;servlet-mapping&gt; &lt;servlet-name&gt;DispatcherServlet&lt;/servlet-name&gt; &lt;url-pattern&gt;/&lt;/url-pattern&gt; &lt;/servlet-mapping&gt; &lt;error-page&gt; &lt;error-code&gt;404&lt;/error-code&gt; &lt;location&gt;/WEB-INF/errors/404.jsp&lt;/location&gt; &lt;/error-page&gt; &lt;error-page&gt; &lt;error-code&gt;500&lt;/error-code&gt; &lt;location&gt;/WEB-INF/errors/500.jsp&lt;/location&gt; &lt;/error-page&gt; &lt;welcome-file-list&gt; &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt; &lt;/welcome-file-list&gt; &lt;/web-app&gt; applicationContext.xml(含C3P0配置和mybatis配置文件整合)12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd"&gt; &lt;context:component-scan base-package="com.ischoolbar.programmer"&gt; &lt;context:include-filter type="annotation" expression="org.springframework.stereotype.Component" /&gt; &lt;context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" /&gt; &lt;context:include-filter type="annotation" expression="org.springframework.stereotype.Service" /&gt; &lt;/context:component-scan&gt; &lt;!-- 加载配数据源配置文件 db.properties --&gt; &lt;context:property-placeholder location="classpath:config/db.properties" /&gt; &lt;!-- 配置 C3P0 数据源 --&gt; &lt;bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"&gt; &lt;property name="driverClass" value="$&#123;datasource.connection.driver_class&#125;"/&gt; &lt;property name="jdbcUrl" value="$&#123;datasource.connection.url&#125;"/&gt; &lt;property name="user" value="$&#123;datasource.connection.username&#125;"/&gt; &lt;property name="password" value="$&#123;datasource.connection.password&#125;"/&gt; &lt;/bean&gt; &lt;!-- 事务管理器 （JDBC） --&gt; &lt;bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"&gt; &lt;property name="dataSource" ref="dataSource"&gt;&lt;/property&gt; &lt;/bean&gt; &lt;!-- 启动声明式事务驱动 --&gt; &lt;tx:annotation-driven transaction-manager="transactionManager" /&gt; &lt;!-- spring 通过 sqlSessionFactoryBean 获取 sqlSessionFactory 工厂类 --&gt; &lt;bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"&gt; &lt;property name="dataSource" ref="dataSource"&gt;&lt;/property&gt; &lt;!-- 扫描 po 包，使用别名 --&gt; &lt;property name="typeAliasesPackage" value="com.ischoolbar.programmer.entity"&gt;&lt;/property&gt; &lt;!-- 扫描映射文件 --&gt; &lt;property name="mapperLocations" value="classpath:config/mybatis/mapper/*.xml"&gt;&lt;/property&gt; &lt;/bean&gt; &lt;!-- 配置扫描 dao 包，动态实现 dao 接口，注入到 spring 容器中 --&gt; &lt;bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"&gt; &lt;property name="basePackage" value="com.ischoolbar.programmer.dao" /&gt; &lt;!-- 注意使用 sqlSessionFactoryBeanName 避免出现spring 扫描组件失效问题 --&gt; &lt;property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" /&gt; &lt;/bean&gt; &lt;bean id="gson" class="com.google.gson.Gson" scope="prototype"&gt;&lt;/bean&gt;&lt;/beans&gt;]]></content>
@@ -10,9 +15,9 @@
       <tags>
         <tag>编程</tag>
         <tag>日常学习</tag>
-        <tag>SpringMVC</tag>
         <tag>Spring</tag>
         <tag>SSM</tag>
+        <tag>SpringMVC</tag>
         <tag>Mybatis</tag>
         <tag>习惯</tag>
         <tag>java</tag>
@@ -29,10 +34,10 @@
         <tag>编程</tag>
         <tag>日常学习</tag>
         <tag>JAVA</tag>
-        <tag>SpringMVC</tag>
         <tag>Spring</tag>
         <tag>框架</tag>
         <tag>SSM</tag>
+        <tag>SpringMVC</tag>
         <tag>Mybatis</tag>
       </tags>
   </entry>
@@ -140,9 +145,9 @@
         <tag>编程</tag>
         <tag>日常学习</tag>
         <tag>JAVA</tag>
-        <tag>SpringMVC</tag>
         <tag>Spring</tag>
         <tag>框架</tag>
+        <tag>SpringMVC</tag>
       </tags>
   </entry>
   <entry>
@@ -197,9 +202,9 @@
       <tags>
         <tag>编程</tag>
         <tag>日常学习</tag>
-        <tag>SpringMVC</tag>
         <tag>Spring</tag>
         <tag>SSM</tag>
+        <tag>SpringMVC</tag>
         <tag>Mybatis</tag>
         <tag>习惯</tag>
       </tags>
