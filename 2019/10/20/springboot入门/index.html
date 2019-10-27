@@ -113,10 +113,12 @@
 <meta property="og:site_name" content="Byy">
 <meta property="og:description" content="springboot入门概述: 什么是springboot 它使用 “习惯优于配置” （项目中存在大量的配置，此外还内置一个习惯性的配置，让你无须）的理念让你的项目快速运行起来。 它并不是什么新的框架，而是默认配置了很多框架的使用方式，就像 Maven 整合了所有的 jar 包一样，Spring Boot 整合了所有框架  使用springboot有什么好处回顾我们之前的 SSM 项目，搭建过程还">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-20T10:15:38.508Z">
+<meta property="og:image" content="http://yoursite.com/2019/10/20/springboot入门/upload/1572190313886.png">
+<meta property="og:updated_time" content="2019-10-27T15:33:21.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springboot入门">
 <meta name="twitter:description" content="springboot入门概述: 什么是springboot 它使用 “习惯优于配置” （项目中存在大量的配置，此外还内置一个习惯性的配置，让你无须）的理念让你的项目快速运行起来。 它并不是什么新的框架，而是默认配置了很多框架的使用方式，就像 Maven 整合了所有的 jar 包一样，Spring Boot 整合了所有框架  使用springboot有什么好处回顾我们之前的 SSM 项目，搭建过程还">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/20/springboot入门/upload/1572190313886.png">
 
 
 
@@ -425,6 +427,157 @@
 <p>也就是所还有很多其他的场景</p>
 <p>springbot将所有的功能抽取出来，做成了一个个的starters（启动器）,只需要在项目里面引入这些相关场景，就能把需要的功能导入进来。</p>
 </blockquote>
+<blockquote>
+<h4 id="SpringBootApplication-Spring-Boot-应用标注在某个类上说明这个类似SpringBoot的主配置类-springBoot就是运行这个类的main方法来启动SpringBoot应用"><a href="#SpringBootApplication-Spring-Boot-应用标注在某个类上说明这个类似SpringBoot的主配置类-springBoot就是运行这个类的main方法来启动SpringBoot应用" class="headerlink" title="@SpringBootApplication: Spring Boot 应用标注在某个类上说明这个类似SpringBoot的主配置类,springBoot就是运行这个类的main方法来启动SpringBoot应用:"></a>@SpringBootApplication: Spring Boot 应用标注在某个类上说明这个类似SpringBoot的主配置类,springBoot就是运行这个类的main方法来启动SpringBoot应用:</h4><p>@SpringBootApplication里面的注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="meta">@Target</span>(&#123;ElementType.TYPE&#125;)</span><br><span class="line">&gt; <span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line">&gt; <span class="meta">@Documented</span></span><br><span class="line">&gt; <span class="meta">@Inherited</span></span><br><span class="line">&gt; <span class="meta">@SpringBootConfiguration</span></span><br><span class="line">&gt; <span class="meta">@EnableAutoConfiguration</span></span><br><span class="line">&gt; <span class="meta">@ComponentScan</span>(</span><br><span class="line">&gt;     excludeFilters = &#123;<span class="meta">@Filter</span>(</span><br><span class="line">&gt;     type = FilterType.CUSTOM,</span><br><span class="line">&gt;     classes = &#123;TypeExcludeFilter.class&#125;</span><br><span class="line">&gt; ), <span class="meta">@Filter</span>(</span><br><span class="line">&gt;     type = FilterType.CUSTOM,</span><br><span class="line">&gt;     classes = &#123;AutoConfigurationExcludeFilter.class&#125;</span><br><span class="line">&gt; )&#125;</span><br><span class="line">&gt; )</span><br><span class="line">&gt; <span class="meta">@ConfigurationPropertiesScan</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="SpringBootConfiguration-Spring-Boot配置类"><a href="#SpringBootConfiguration-Spring-Boot配置类" class="headerlink" title="@SpringBootConfiguration:Spring Boot配置类"></a>@SpringBootConfiguration:Spring Boot配置类</h4><p>标注在某个类上，表示这是一个SpringBoot的配置类:</p>
+<p>@SpringBootConfiguration:Spring里面的注解有</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Configuration</span>(</span><br><span class="line">    proxyBeanMethods = <span class="keyword">false</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h5 id="Configuration：使用这个注解表示这个类是一个配置类（配置类也是一个组件）"><a href="#Configuration：使用这个注解表示这个类是一个配置类（配置类也是一个组件）" class="headerlink" title="Configuration：使用这个注解表示这个类是一个配置类（配置类也是一个组件）"></a>Configuration：使用这个注解表示这个类是一个配置类（配置类也是一个组件）</h5><h5 id="EnableAutoConfiguration：开启自动配置-以前手写SSM框架整合的时候需要我们手写配置，现在SpringBoot通过这个注解开启自动配置，这样自动配置才能生效"><a href="#EnableAutoConfiguration：开启自动配置-以前手写SSM框架整合的时候需要我们手写配置，现在SpringBoot通过这个注解开启自动配置，这样自动配置才能生效" class="headerlink" title="EnableAutoConfiguration：开启自动配置(以前手写SSM框架整合的时候需要我们手写配置，现在SpringBoot通过这个注解开启自动配置，这样自动配置才能生效)"></a>EnableAutoConfiguration：开启自动配置(以前手写SSM框架整合的时候需要我们手写配置，现在SpringBoot通过这个注解开启自动配置，这样自动配置才能生效)</h5><p>@EnableAutoConfiguration这个注解里面的注解有:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@AutoConfigurationPackage</span></span><br><span class="line"><span class="meta">@Import</span>(&#123;AutoConfigurationImportSelector.class&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="AutoConfigurationPackage：自动配置包"><a href="#AutoConfigurationPackage：自动配置包" class="headerlink" title="@AutoConfigurationPackage：自动配置包"></a>@AutoConfigurationPackage：自动配置包</h5><p>@AutoConfigurationPackage里面的注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@Import</span>(&#123;Registrar.class&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>​        @import：给容器导入组件</p>
+<p><strong>最后，由SpringBootApplication标注的类，的所在包和下面的子包里面所有组件扫描到Spring容器中;</strong></p>
+<h2 id="yml配置文件"><a href="#yml配置文件" class="headerlink" title="yml配置文件"></a>yml配置文件</h2><h3 id="SpringBoot默认会使用两个全局配置文件"><a href="#SpringBoot默认会使用两个全局配置文件" class="headerlink" title="SpringBoot默认会使用两个全局配置文件"></a>SpringBoot默认会使用两个全局配置文件</h3><ul>
+<li>application.properties</li>
+<li>application.yml</li>
+</ul>
+<h4 id="yml简介"><a href="#yml简介" class="headerlink" title="yml简介"></a>yml简介</h4><blockquote>
+<p>YAML (YAML Aint Markup Language)是一种标记语言，通常以.yml为后缀的文件，是一种直观的能够被电脑识别的数据序列化格式，并且容易被人类阅读，容易和脚本语言交互的，可以被支持YAML库的不同的编程语言程序导入，一种专门用来写配置文件的语言。可用于如： Java，C/C++, Ruby, Python, Perl, C#, PHP等。</p>
+</blockquote>
+<h3 id="yml的优点"><a href="#yml的优点" class="headerlink" title="yml的优点"></a>yml的优点</h3><ul>
+<li><p>YAML易于人们阅读。</p>
+</li>
+<li><p>YAML数据在编程语言之间是可移植的。</p>
+</li>
+<li><p>YAML匹配敏捷语言的本机数据结构。</p>
+</li>
+<li><p>YAML具有一致的模型来支持通用工具。</p>
+</li>
+<li><p>YAML支持单程处理。</p>
+</li>
+<li><p>YAML具有表现力和可扩展性。</p>
+</li>
+<li><p>YAML易于实现和使用。</p>
+</li>
+</ul>
+<h3 id="yml的语法"><a href="#yml的语法" class="headerlink" title="yml的语法"></a>yml的语法</h3><h4 id="1-约定"><a href="#1-约定" class="headerlink" title="1.约定"></a>1.约定</h4><ul>
+<li>k: v表示键值对关系，（注意冒号后面必须有一个空格)</li>
+<li>使用空格的缩进表示层级关系，空格数目不重要，只要是左对齐的一列数据，都是一个层级的</li>
+<li>大小写敏感</li>
+<li>使用缩进时不允许使用tab键，只能使用空格</li>
+<li>松散的表示，java中对于驼峰命名法，可以用原名或者使用-代替驼峰（bean的lastName属性，可以使用lastName或者last-name）</li>
+<li>在yml语法中，空值可以使用null表示</li>
+</ul>
+<h4 id="键值对关系"><a href="#键值对关系" class="headerlink" title="键值对关系"></a>键值对关系</h4><ul>
+<li>字符串默认不用加单引号或者双引号</li>
+<li>“”双引号；会转义字符串里面的特殊字符，</li>
+<li>‘’单引号不会转义里面的字符</li>
+<li>list数组类型行内写法使用[]，展开使用-</li>
+<li>map类型行内写法使用{}，展开使用k: v</li>
+<li>日期使用 2019/01/01</li>
+<li>文档块使用—-隔开，可以把不同的配置文件写入一个yml配置文件中</li>
+</ul>
+<p>演示</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ren:</span></span><br><span class="line">  <span class="comment">#普通的int类型</span></span><br><span class="line"><span class="attr">  id:</span> <span class="number">10</span></span><br><span class="line">  <span class="comment">#String类型</span></span><br><span class="line"><span class="attr">  name:</span> <span class="number">100</span></span><br><span class="line">  <span class="comment">#list类型，里面是String类型</span></span><br><span class="line"><span class="attr">  list:</span> <span class="string">["我是双引号我换行码？\n换行",'我是单引号我换行码?\n不换行']</span></span><br><span class="line">  <span class="comment">#string类型,使用null</span></span><br><span class="line"><span class="attr">  string:</span> <span class="literal">null</span></span><br><span class="line">  <span class="comment">#运行结果:</span></span><br><span class="line">  <span class="comment">#Person&#123;id=10, name='100', list=[我是双引号我换行码？</span></span><br><span class="line">  <span class="comment">#换行, 我是单引号我换行码?\n不换行], string=''&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Value和-ConfigurationProperties注解的区别"><a href="#Value和-ConfigurationProperties注解的区别" class="headerlink" title="@Value和@ConfigurationProperties注解的区别"></a>@Value和@ConfigurationProperties注解的区别</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">@ConfigurationProperties</th>
+<th align="center">@Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">功能</td>
+<td align="center">批量注入文件中的属性</td>
+<td align="center">一个一个指定</td>
+</tr>
+<tr>
+<td align="center">松散绑定（松散语法）</td>
+<td align="center">支持</td>
+<td align="center">不支持</td>
+</tr>
+<tr>
+<td align="center">spel</td>
+<td align="center">不支持</td>
+<td align="center">支持</td>
+</tr>
+<tr>
+<td align="center">JSR303数据校验</td>
+<td align="center">支持</td>
+<td align="center">不支持</td>
+</tr>
+<tr>
+<td align="center">复杂类型封装</td>
+<td align="center">支持</td>
+<td align="center">不支持</td>
+</tr>
+</tbody></table>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>@Value只能获取基本数据类型</li>
+<li>@ConfigurationProperties可以获取map,list等封装类型的值</li>
+<li>配置文件yaml和properties都可以获取到值</li>
+<li>如果只是需要在业务逻辑中获取一下配置文件中的某个值，使用@Value</li>
+<li>如果要是把javabean和配置文件进行11映射，使用@ConfigurationProperties</li>
+<li>@ConfigurationProperties默认是从全局配置文件中获取值的</li>
+</ul>
+<h2 id="PropertySource与-ImportResource的区别"><a href="#PropertySource与-ImportResource的区别" class="headerlink" title="@PropertySource与@ImportResource的区别"></a>@PropertySource与@ImportResource的区别</h2><h4 id="PropertySource自定义配置文件，多用于配置文件与实体属性映射"><a href="#PropertySource自定义配置文件，多用于配置文件与实体属性映射" class="headerlink" title="PropertySource自定义配置文件，多用于配置文件与实体属性映射"></a>PropertySource自定义配置文件，多用于配置文件与实体属性映射</h4><blockquote>
+<p>在从配置文件里面获取值，与javaBean做映射时存在一个问题，我们从主配置文件（application.yml）里面读取会导致主配置文件特别臃肿，为了按照不同模块自定义不同的配置文件引入了@PropertySource</p>
+</blockquote>
+<p>演示：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">person.properties</span></span><br><span class="line"><span class="string">person.lastName=李四</span></span><br><span class="line"><span class="string">person.age=25</span></span><br><span class="line"><span class="string">person.birth=2017/12/15</span></span><br><span class="line"><span class="string">person.boss=true</span></span><br><span class="line"><span class="string">person.maps.key1=value1</span></span><br><span class="line"><span class="string">person.maps.key2=value2</span></span><br><span class="line"><span class="string">person.lists=a,b,c</span></span><br><span class="line"><span class="string">person.dog.name=dog</span></span><br><span class="line"><span class="string">person.dog.age=2</span></span><br></pre></td></tr></table></figure>
+
+<p>javabean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PropertySource</span>(value = &#123;<span class="string">"classpath:person.properties"</span>&#125;)<span class="comment">//通过类路径修改默认配置文件</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"person"</span>)<span class="comment">//加载配置文件</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String lastName;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isBoss;</span><br><span class="line">    <span class="keyword">private</span> Date birth;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ImplementResources"><a href="#ImplementResources" class="headerlink" title="@ImplementResources"></a>@ImplementResources</h3><blockquote>
+<p>一般情况下我们自定义的xml配置文件默认情况下这个bean是不会加载到Spring容器中来的，于是乎我们需要@ImportResoure注解将这个配置文件加载进来</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloService"</span> <span class="attr">class</span>=<span class="string">"com.chentongwei.springboot.service.HelloService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>总结：</p>
+<ul>
+<li>@PropertySource 用于引入<em>.Properties或者 *.yml 用于给javabean注入值</em></li>
+<li><em>@ImportResource 用于引入</em>.xml 类型的配置文件 在spring boot中已经被配置类替代</li>
+<li>@PropertySource 一般用在javabean的类名上</li>
+<li>@ImportResource一般用于启动类上</li>
+</ul>
+<h2 id="SpringBoot配置文件占位符"><a href="#SpringBoot配置文件占位符" class="headerlink" title="SpringBoot配置文件占位符"></a>SpringBoot配置文件占位符</h2><h4 id="前言"><a href="#前言" class="headerlink" title="前言:"></a>前言:</h4><blockquote>
+<p>在springboot的配置文件中，我们可以使用springboot提供的一些随机数或者使用我们在配置文件中定义的值</p>
+</blockquote>
+<h5 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h5><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">person.properties</span></span><br><span class="line"><span class="string">person.lastName=$&#123;person.properties&#125;</span></span><br><span class="line"><span class="string">person.age=25</span></span><br><span class="line"><span class="string">person.birth=2017/12/15</span></span><br><span class="line"><span class="string">person.boss=true</span></span><br><span class="line"><span class="string">person.maps.key1=$&#123;random.int[1024,65536]&#125;</span></span><br><span class="line"><span class="string">person.maps.key2=value2</span></span><br><span class="line"><span class="string">person.lists=a,b,c</span></span><br><span class="line"><span class="string">person.dog.name=dog</span></span><br><span class="line"><span class="string">person.dog.age=2</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>${random.value}</code> - 类似<code>uuid</code>的随机数，没有”<code>-</code>“连接</li>
+<li><code>${random.int}</code> - 随机取整型范围内的一个值</li>
+<li><code>${random.long}</code> - 随机取长整型范围内的一个值</li>
+<li><code>${random.long(100,200)}</code> - 随机生成长整型<code>100-200</code>范围内的一个值</li>
+<li><code>${random.uuid}</code> - 生成一个<code>uuid</code>，有短杠连接</li>
+<li><code>${random.int(10)}</code> - 随机生成一个10以内的数</li>
+<li><code>${random.int(100,200)}</code> - 随机生成一个<code>100-200</code> 范围以内的数</li>
+</ul>
+<h5 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h5><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">person.properties</span></span><br><span class="line"><span class="string">person.lastName=$&#123;person.properties&#125;#引用person.properties的值</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="SpringBoot配置Profile多环境支持"><a href="#SpringBoot配置Profile多环境支持" class="headerlink" title="SpringBoot配置Profile多环境支持"></a>SpringBoot配置Profile多环境支持</h2><h4 id="1-多Profile文件"><a href="#1-多Profile文件" class="headerlink" title="1.多Profile文件"></a>1.多Profile文件</h4><p>​     我们在主配置文件编写的时候，文件名可以是  application-{profile}.yml或者application-{profile}.properties ,都行，以下用yml为主。以下主配置文件表示 application.yml</p>
+<p>   编写一个名为 application-dev.yml文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8081</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#编写一个名为application-prod.yml文件：</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8082</span></span><br></pre></td></tr></table></figure>
+
+<p>先启动springboot项目，发现启动的端口为 81(application.yml中指定的端口为 81) ，也就是说默认启动的是application.yml的环境。</p>
+<h4 id="2-yml多文档块支持"><a href="#2-yml多文档块支持" class="headerlink" title="2.yml多文档块支持"></a>2.yml多文档块支持</h4><p>配置文件中也支持使用多文档块的方式创建多环境，是用 — (三个-)表示一个文档块 ，如果不指定启动别的文档块，默认启动第一个文档块，可以通过  spring.profiles.actice=dev 来指定启动别的文档块。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span> </span><br><span class="line"><span class="attr">  port:</span> <span class="number">8081</span></span><br><span class="line"><span class="attr">spring:</span> </span><br><span class="line"><span class="attr">  profiles:</span> </span><br><span class="line">  	<span class="comment">#指定启动的环境</span></span><br><span class="line"><span class="attr">    active:</span> <span class="string">dev</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8083</span></span><br><span class="line"><span class="attr">spring:</span> </span><br><span class="line"><span class="attr">  profiles:</span> <span class="string">dev</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8084</span></span><br><span class="line"><span class="attr">spring:</span> </span><br><span class="line"><span class="attr">  profiles:</span> <span class="string">prod</span></span><br></pre></td></tr></table></figure>
+
+<p>这样启动的时候就会使用dev这个环境</p>
+<h4 id="3-使用命令指定环境"><a href="#3-使用命令指定环境" class="headerlink" title="3.使用命令指定环境"></a>3.使用命令指定环境</h4><p>在idea里面有一个run configurations中指定参数  –spring.profiles.active=dev也可以指定环境</p>
+<p><img src="upload/1572190313886.png" alt="1572190313886"></p>
 
       
     </div>
@@ -607,7 +760,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#springboot入门"><span class="nav-number">1.</span> <span class="nav-text">springboot入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是springboot"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">什么是springboot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用springboot有什么好处"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">使用springboot有什么好处</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速入门"><span class="nav-number">1.2.</span> <span class="nav-text">快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-导入maven坐标"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">1.导入maven坐标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-新建springboot入口（其他包必须与此类在同级目录或者子包下-）"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">2.新建springboot入口（其他包必须与此类在同级目录或者子包下 ）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-编写controller"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">3.编写controller</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot研究"><span class="nav-number">1.3.</span> <span class="nav-text">Springboot研究</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-POM文件"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">1.POM文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-父项目（一般作为依赖管理）"><span class="nav-number">1.3.0.1.1.</span> <span class="nav-text">1.父项目（一般作为依赖管理）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#这个starter父项目还依赖了一个叫spring-boot-dependencies的父项目"><span class="nav-number">1.3.0.1.2.</span> <span class="nav-text">这个starter父项目还依赖了一个叫spring-boot-dependencies的父项目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spring-boot-starter-parent-定义了每一个依赖的版本-管理springboot版本仲裁中心，定义了所有的依赖版本"><span class="nav-number">1.3.0.1.3.</span> <span class="nav-text">spring-boot-starter-parent(定义了每一个依赖的版本,管理springboot版本仲裁中心，定义了所有的依赖版本)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-依赖"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">2.依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#spring-boot-starter-web："><span class="nav-number">1.3.0.2.1.</span> <span class="nav-text">spring-boot-starter-web：</span></a></li></ol></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#springboot入门"><span class="nav-number">1.</span> <span class="nav-text">springboot入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是springboot"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">什么是springboot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用springboot有什么好处"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">使用springboot有什么好处</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速入门"><span class="nav-number">1.2.</span> <span class="nav-text">快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-导入maven坐标"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">1.导入maven坐标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-新建springboot入口（其他包必须与此类在同级目录或者子包下-）"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">2.新建springboot入口（其他包必须与此类在同级目录或者子包下 ）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-编写controller"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">3.编写controller</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot研究"><span class="nav-number">1.3.</span> <span class="nav-text">Springboot研究</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-POM文件"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">1.POM文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-父项目（一般作为依赖管理）"><span class="nav-number">1.3.0.1.1.</span> <span class="nav-text">1.父项目（一般作为依赖管理）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#这个starter父项目还依赖了一个叫spring-boot-dependencies的父项目"><span class="nav-number">1.3.0.1.2.</span> <span class="nav-text">这个starter父项目还依赖了一个叫spring-boot-dependencies的父项目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spring-boot-starter-parent-定义了每一个依赖的版本-管理springboot版本仲裁中心，定义了所有的依赖版本"><span class="nav-number">1.3.0.1.3.</span> <span class="nav-text">spring-boot-starter-parent(定义了每一个依赖的版本,管理springboot版本仲裁中心，定义了所有的依赖版本)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-依赖"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">2.依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#spring-boot-starter-web："><span class="nav-number">1.3.0.2.1.</span> <span class="nav-text">spring-boot-starter-web：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SpringBootApplication-Spring-Boot-应用标注在某个类上说明这个类似SpringBoot的主配置类-springBoot就是运行这个类的main方法来启动SpringBoot应用"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">@SpringBootApplication: Spring Boot 应用标注在某个类上说明这个类似SpringBoot的主配置类,springBoot就是运行这个类的main方法来启动SpringBoot应用:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SpringBootConfiguration-Spring-Boot配置类"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">@SpringBootConfiguration:Spring Boot配置类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Configuration：使用这个注解表示这个类是一个配置类（配置类也是一个组件）"><span class="nav-number">1.3.0.4.1.</span> <span class="nav-text">Configuration：使用这个注解表示这个类是一个配置类（配置类也是一个组件）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#EnableAutoConfiguration：开启自动配置-以前手写SSM框架整合的时候需要我们手写配置，现在SpringBoot通过这个注解开启自动配置，这样自动配置才能生效"><span class="nav-number">1.3.0.4.2.</span> <span class="nav-text">EnableAutoConfiguration：开启自动配置(以前手写SSM框架整合的时候需要我们手写配置，现在SpringBoot通过这个注解开启自动配置，这样自动配置才能生效)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AutoConfigurationPackage：自动配置包"><span class="nav-number">1.3.0.4.3.</span> <span class="nav-text">@AutoConfigurationPackage：自动配置包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yml配置文件"><span class="nav-number">1.4.</span> <span class="nav-text">yml配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot默认会使用两个全局配置文件"><span class="nav-number">1.4.1.</span> <span class="nav-text">SpringBoot默认会使用两个全局配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#yml简介"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">yml简介</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yml的优点"><span class="nav-number">1.4.2.</span> <span class="nav-text">yml的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yml的语法"><span class="nav-number">1.4.3.</span> <span class="nav-text">yml的语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-约定"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">1.约定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#键值对关系"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">键值对关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Value和-ConfigurationProperties注解的区别"><span class="nav-number">1.5.</span> <span class="nav-text">@Value和@ConfigurationProperties注解的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.5.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PropertySource与-ImportResource的区别"><span class="nav-number">1.6.</span> <span class="nav-text">@PropertySource与@ImportResource的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PropertySource自定义配置文件，多用于配置文件与实体属性映射"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">PropertySource自定义配置文件，多用于配置文件与实体属性映射</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ImplementResources"><span class="nav-number">1.6.1.</span> <span class="nav-text">@ImplementResources</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot配置文件占位符"><span class="nav-number">1.7.</span> <span class="nav-text">SpringBoot配置文件占位符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.7.0.1.</span> <span class="nav-text">前言:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#随机数"><span class="nav-number">1.7.0.1.1.</span> <span class="nav-text">随机数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#占位符"><span class="nav-number">1.7.0.1.2.</span> <span class="nav-text">占位符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot配置Profile多环境支持"><span class="nav-number">1.8.</span> <span class="nav-text">SpringBoot配置Profile多环境支持</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-多Profile文件"><span class="nav-number">1.8.0.1.</span> <span class="nav-text">1.多Profile文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-yml多文档块支持"><span class="nav-number">1.8.0.2.</span> <span class="nav-text">2.yml多文档块支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-使用命令指定环境"><span class="nav-number">1.8.0.3.</span> <span class="nav-text">3.使用命令指定环境</span></a></li></ol></li></div>
             
 
           </div>
