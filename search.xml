@@ -178,10 +178,10 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>C++</tag>
-        <tag>C</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>C++</tag>
+        <tag>C</tag>
         <tag>算法</tag>
       </tags>
   </entry>
@@ -231,6 +231,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[代码注意细节]]></title>
+    <url>%2F2019%2F02%2F20%2F%E4%BB%A3%E7%A0%81%E6%B3%A8%E6%84%8F%E7%BB%86%E8%8A%82%2F</url>
+    <content type="text"><![CDATA[代码注意细节1.设计细节springspring配置类中父子关系的配置类更好 mysqlmysql中要严格遵守三大范式才能设计比较好的数据库 mysql中使用外键约束要注意进行级联操作，否则必须先修改依赖表 2.编码细节]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>日常学习</tag>
+        <tag>习惯</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[基于SSM的学生管理系统第一天]]></title>
     <url>%2F2019%2F02%2F20%2F%E5%9F%BA%E4%BA%8ESSM%E7%9A%84%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E5%A4%A9%2F</url>
     <content type="text"><![CDATA[学生管理系统环境 jdk1.8版本 IDEA任意版本 Navicat任意版本 数据库5.7版本 框架 前端框架：easyui框架（目前最流行的前端管理框架） 后台框架: Spring+SpringMVC+Mybatis]]></content>
@@ -244,19 +257,6 @@
         <tag>SSM</tag>
         <tag>SpringMVC</tag>
         <tag>Mybatis</tag>
-        <tag>习惯</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[代码注意细节]]></title>
-    <url>%2F2019%2F02%2F20%2F%E4%BB%A3%E7%A0%81%E6%B3%A8%E6%84%8F%E7%BB%86%E8%8A%82%2F</url>
-    <content type="text"><![CDATA[代码注意细节1.设计细节springspring配置类中父子关系的配置类更好 mysqlmysql中要严格遵守三大范式才能设计比较好的数据库 mysql中使用外键约束要注意进行级联操作，否则必须先修改依赖表 2.编码细节]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>编程</tag>
-        <tag>日常学习</tag>
         <tag>习惯</tag>
       </tags>
   </entry>
@@ -283,11 +283,11 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>C++</tag>
         <tag>语言</tag>
-        <tag>C</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>C++</tag>
+        <tag>C</tag>
         <tag>技巧</tag>
       </tags>
   </entry>
@@ -299,11 +299,11 @@
         <category>学习</category>
       </categories>
       <tags>
+        <tag>TensorFlow</tag>
         <tag>语言</tag>
+        <tag>Python</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
-        <tag>TensorFlow</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
