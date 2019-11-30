@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>%2F2019%2F11%2F30%2F%E5%AE%89%E9%98%B3%E5%B8%88%E9%99%A2%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B%2F</url>
+    <title><![CDATA[安阳师院软件学院报名系统使用流程]]></title>
+    <url>%2F2019%2F11%2F27%2F%E5%AE%89%E9%98%B3%E5%B8%88%E9%99%A2%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[安阳师院软件学院报名系统使用流程团队赛报名流程前言 首先团队赛比赛有多个人参赛，该系统针对这类比赛提供团队比赛账号的注册，也就是说报名这类比赛必须先注册好个人账号，然后由团队账号邀请您加入该团队，之后进行报名。 第一步：注册属于您的个人账号1.进入登陆页面后点击创建账号,随后就能创建个人账号 学号和姓名必须要真实有效，否则影响您的获奖证书 电子邮箱可以用来找回密码 然后点击注册即可 第二步：如果您的队伍有团队账号请跳过这一步1.注册一个团队账号，在注册页面的上面有个团队账号点击即可 电子邮箱可以用来找回密码 第三步：登陆您团队账号1.登陆进去以后在导航栏找到管理我的团队 在邀请一栏中输入您队友的学号点击发送邀请即可，此时，该用户就会收到一个邀请信息，如果对方同意，那么在下面这一栏就会出现他的个人信息。 3.2个人账号同意加入队伍第一步登陆您的个人账号，点击导航栏的信封 第二步同意团队邀请 接下来在我加入的团队里面就能看见您当前加入的团队 第四步：报名比赛 团队比赛只能由团队账号报名 接下来点击导航栏的所有比赛找到您想参加的比赛点击报名即可如果没有邀请码可以直接确认跳过邀请码 如果没有邀请码点击确认即可 恭喜您成功报名个人赛报名流程第一步：您登陆您的个人账号 第二步：找到您要报名的比赛点击报名即可。]]></content>
+      <categories>
+        <category>软件学院</category>
+      </categories>
+      <tags>
+        <tag>日常学习</tag>
+        <tag>报名系统</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Dubbo+zookeeper]]></title>
@@ -183,10 +190,10 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>编程</tag>
-        <tag>日常学习</tag>
         <tag>C++</tag>
         <tag>C</tag>
+        <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>算法</tag>
       </tags>
   </entry>
@@ -236,19 +243,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[代码注意细节]]></title>
-    <url>%2F2019%2F02%2F20%2F%E4%BB%A3%E7%A0%81%E6%B3%A8%E6%84%8F%E7%BB%86%E8%8A%82%2F</url>
-    <content type="text"><![CDATA[代码注意细节1.设计细节springspring配置类中父子关系的配置类更好 mysqlmysql中要严格遵守三大范式才能设计比较好的数据库 mysql中使用外键约束要注意进行级联操作，否则必须先修改依赖表 2.编码细节]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>编程</tag>
-        <tag>日常学习</tag>
-        <tag>习惯</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[基于SSM的学生管理系统第一天]]></title>
     <url>%2F2019%2F02%2F20%2F%E5%9F%BA%E4%BA%8ESSM%E7%9A%84%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E5%A4%A9%2F</url>
     <content type="text"><![CDATA[学生管理系统环境 jdk1.8版本 IDEA任意版本 Navicat任意版本 数据库5.7版本 框架 前端框架：easyui框架（目前最流行的前端管理框架） 后台框架: Spring+SpringMVC+Mybatis]]></content>
@@ -262,6 +256,19 @@
         <tag>SSM</tag>
         <tag>SpringMVC</tag>
         <tag>Mybatis</tag>
+        <tag>习惯</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[代码注意细节]]></title>
+    <url>%2F2019%2F02%2F20%2F%E4%BB%A3%E7%A0%81%E6%B3%A8%E6%84%8F%E7%BB%86%E8%8A%82%2F</url>
+    <content type="text"><![CDATA[代码注意细节1.设计细节springspring配置类中父子关系的配置类更好 mysqlmysql中要严格遵守三大范式才能设计比较好的数据库 mysql中使用外键约束要注意进行级联操作，否则必须先修改依赖表 2.编码细节]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>日常学习</tag>
         <tag>习惯</tag>
       </tags>
   </entry>
@@ -288,11 +295,11 @@
         <category>学习</category>
       </categories>
       <tags>
+        <tag>C++</tag>
         <tag>语言</tag>
+        <tag>C</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
-        <tag>C++</tag>
-        <tag>C</tag>
         <tag>技巧</tag>
       </tags>
   </entry>
@@ -304,11 +311,11 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>TensorFlow</tag>
         <tag>语言</tag>
-        <tag>Python</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>TensorFlow</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
