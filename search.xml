@@ -207,10 +207,10 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>C++</tag>
-        <tag>C</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>C++</tag>
+        <tag>C</tag>
         <tag>算法</tag>
       </tags>
   </entry>
@@ -312,11 +312,11 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>C++</tag>
         <tag>语言</tag>
-        <tag>C</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>C++</tag>
+        <tag>C</tag>
         <tag>技巧</tag>
       </tags>
   </entry>
@@ -328,11 +328,11 @@
         <category>学习</category>
       </categories>
       <tags>
+        <tag>TensorFlow</tag>
         <tag>语言</tag>
+        <tag>Python</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
-        <tag>TensorFlow</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
