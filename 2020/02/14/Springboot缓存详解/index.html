@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="编程,日常学习,JAVA,Spring,框架,SSM,Mybatis,SpringBoot,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="缓存的作用 缓存就是用于数据交换的缓冲区，一半特点就是速度快。  1.热点数据放入缓存以减少对数据库的访问次数2.临时数据放入缓存中减少数据库的压力，例如短信验证码3分钟有效就可以放入缓存中，超过3分钟就从缓存中去掉。不同缓存的作用操作系统磁盘缓存 ——&amp;gt; 减少磁盘机械操作。数据库缓存——&amp;gt;减少文件系统IO。应用程序缓存——&amp;gt;减少对数据库的查询。Web服务器缓存——&amp;gt;减少应">
+<meta name="keywords" content="编程,日常学习,JAVA,Spring,框架,SSM,Mybatis,SpringBoot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Springboot缓存详解">
+<meta property="og:url" content="http://yoursite.com/2020/02/14/Springboot缓存详解/index.html">
+<meta property="og:site_name" content="Byy">
+<meta property="og:description" content="缓存的作用 缓存就是用于数据交换的缓冲区，一半特点就是速度快。  1.热点数据放入缓存以减少对数据库的访问次数2.临时数据放入缓存中减少数据库的压力，例如短信验证码3分钟有效就可以放入缓存中，超过3分钟就从缓存中去掉。不同缓存的作用操作系统磁盘缓存 ——&amp;gt; 减少磁盘机械操作。数据库缓存——&amp;gt;减少文件系统IO。应用程序缓存——&amp;gt;减少对数据库的查询。Web服务器缓存——&amp;gt;减少应">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-16T06:38:48.410Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Springboot缓存详解">
+<meta name="twitter:description" content="缓存的作用 缓存就是用于数据交换的缓冲区，一半特点就是速度快。  1.热点数据放入缓存以减少对数据库的访问次数2.临时数据放入缓存中减少数据库的压力，例如短信验证码3分钟有效就可以放入缓存中，超过3分钟就从缓存中去掉。不同缓存的作用操作系统磁盘缓存 ——&amp;gt; 减少磁盘机械操作。数据库缓存——&amp;gt;减少文件系统IO。应用程序缓存——&amp;gt;减少对数据库的查询。Web服务器缓存——&amp;gt;减少应">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/02/14/Springboot缓存详解/">
+
+
+
+
+
+  <title>Springboot缓存详解 | Byy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Byy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home //首页"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags //标签"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th //分类"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive //归档"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/Springboot缓存详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang295513">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Byy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Springboot缓存详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-14T15:05:37+08:00">
+                2020-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="缓存的作用"><a href="#缓存的作用" class="headerlink" title="缓存的作用"></a>缓存的作用</h2><blockquote>
+<p>缓存就是用于数据交换的缓冲区，一半特点就是速度快。</p>
+</blockquote>
+<h4 id="1-热点数据放入缓存以减少对数据库的访问次数"><a href="#1-热点数据放入缓存以减少对数据库的访问次数" class="headerlink" title="1.热点数据放入缓存以减少对数据库的访问次数"></a>1.热点数据放入缓存以减少对数据库的访问次数</h4><h4 id="2-临时数据放入缓存中减少数据库的压力，例如短信验证码3分钟有效就可以放入缓存中，超过3分钟就从缓存中去掉。"><a href="#2-临时数据放入缓存中减少数据库的压力，例如短信验证码3分钟有效就可以放入缓存中，超过3分钟就从缓存中去掉。" class="headerlink" title="2.临时数据放入缓存中减少数据库的压力，例如短信验证码3分钟有效就可以放入缓存中，超过3分钟就从缓存中去掉。"></a>2.临时数据放入缓存中减少数据库的压力，例如短信验证码3分钟有效就可以放入缓存中，超过3分钟就从缓存中去掉。</h4><h3 id="不同缓存的作用"><a href="#不同缓存的作用" class="headerlink" title="不同缓存的作用"></a>不同缓存的作用</h3><p>操作系统磁盘缓存 ——&gt; 减少磁盘机械操作。<br>数据库缓存——&gt;减少文件系统IO。<br>应用程序缓存——&gt;减少对数据库的查询。<br>Web服务器缓存——&gt;减少应用服务器请求。<br>客户端浏览器缓存——&gt;减少对网站的访问。</p>
+<h3 id="缓存的策略"><a href="#缓存的策略" class="headerlink" title="缓存的策略"></a>缓存的策略</h3><p>1.基于访问时间</p>
+<p>2.基于频率</p>
+<p>3.基于访问模式</p>
+<h3 id="JSR107"><a href="#JSR107" class="headerlink" title="JSR107"></a>JSR107</h3><p>jsr107定义了5个核心接口</p>
+<h5 id="CachingProvider缓存提供者，定义了创建、配置、获取、管理多个CachingManager-并且一个java应用可以在运行期有多个CachingProvider"><a href="#CachingProvider缓存提供者，定义了创建、配置、获取、管理多个CachingManager-并且一个java应用可以在运行期有多个CachingProvider" class="headerlink" title="CachingProvider缓存提供者，定义了创建、配置、获取、管理多个CachingManager,并且一个java应用可以在运行期有多个CachingProvider"></a>CachingProvider缓存提供者，定义了创建、配置、获取、管理多个CachingManager,并且一个java应用可以在运行期有多个CachingProvider</h5><h5 id="CachingManage缓存管理器，定义了创建、配置、获取、管理多个唯一命名的Cache-这些Cache存在CacheManage的上下文中，并且CacheManage只能被一个CachingProvider拥有"><a href="#CachingManage缓存管理器，定义了创建、配置、获取、管理多个唯一命名的Cache-这些Cache存在CacheManage的上下文中，并且CacheManage只能被一个CachingProvider拥有" class="headerlink" title="CachingManage缓存管理器，定义了创建、配置、获取、管理多个唯一命名的Cache,这些Cache存在CacheManage的上下文中，并且CacheManage只能被一个CachingProvider拥有"></a>CachingManage缓存管理器，定义了创建、配置、获取、管理多个唯一命名的Cache,这些Cache存在CacheManage的上下文中，并且CacheManage只能被一个CachingProvider拥有</h5><h5 id="Cache是一个类似Map的数据结构并临时存储以Key为索引的值。一个Cache仅被一个CacheManager所拥有。"><a href="#Cache是一个类似Map的数据结构并临时存储以Key为索引的值。一个Cache仅被一个CacheManager所拥有。" class="headerlink" title="Cache是一个类似Map的数据结构并临时存储以Key为索引的值。一个Cache仅被一个CacheManager所拥有。"></a>Cache是一个类似Map的数据结构并临时存储以Key为索引的值。一个Cache仅被一个CacheManager所拥有。</h5><h5 id="Entry是一个存储在Cache中的key-value对。"><a href="#Entry是一个存储在Cache中的key-value对。" class="headerlink" title="Entry是一个存储在Cache中的key-value对。"></a>Entry是一个存储在Cache中的key-value对。</h5><h5 id="Expiry每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期，条目将不可访问、更新和删除。缓存有效期可以通过ExpiryPolicy设置。"><a href="#Expiry每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期，条目将不可访问、更新和删除。缓存有效期可以通过ExpiryPolicy设置。" class="headerlink" title="Expiry每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期，条目将不可访问、更新和删除。缓存有效期可以通过ExpiryPolicy设置。"></a>Expiry每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期，条目将不可访问、更新和删除。缓存有效期可以通过ExpiryPolicy设置。</h5><h3 id="springboot缓存抽象"><a href="#springboot缓存抽象" class="headerlink" title="springboot缓存抽象"></a>springboot缓存抽象</h3><p>Spring从3.1开始定义了org.springframework.cache.Cache和org.springframework.cache.CacheManager接口来统一不同的缓存技术；并支持使用JCache（JSR-107）注解简化我们开发；</p>
+<ul>
+<li>Cache接口为缓存的组件规范定义，包含缓存的各种操作集合；</li>
+<li>Cache接口下Spring提供了各种xxxCache的实现；如RedisCache，EhCacheCache , ConcurrentMapCache等；</li>
+<li>每次调用需要缓存功能的方法时，Spring会检查检查指定参数的指定的目标方法是否已经被调用过；如果有就直接从缓存中获取方法调用后的结果，如果没有就调用方法并缓存结果后返回给用户。下次调用直接从缓存中获取。</li>
+<li>使用Spring缓存抽象时我们需要关注以下两点；</li>
+</ul>
+<ol>
+<li>确定方法需要被缓存以及他们的缓存策略</li>
+<li>从缓存中读取之前缓存存储的数据</li>
+</ol>
+<p>三、 几个重要概念和缓存注解</p>
+<table>
+<thead>
+<tr>
+<th>Cache</th>
+<th>缓存接口，定义缓存操作。实现有： RedisCache、 EhCacheCache、 ConcurrentMapCache等</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CacheManager</td>
+<td>缓存管理器，管理各种缓存（Cache）组件</td>
+</tr>
+<tr>
+<td>@Cacheable</td>
+<td>主要针对方法配置，能够根据方法的请求参数对其结果进行缓存</td>
+</tr>
+<tr>
+<td>@CacheEvict</td>
+<td>清空缓存</td>
+</tr>
+<tr>
+<td>@CachePut</td>
+<td>保证方法被调用，又希望结果被缓存。</td>
+</tr>
+<tr>
+<td>@EnableCaching</td>
+<td>开启基于注解的缓存</td>
+</tr>
+<tr>
+<td>keyGenerator</td>
+<td>缓存数据时key生成策略</td>
+</tr>
+<tr>
+<td>serialize</td>
+<td>缓存数据时value序列化策略</td>
+</tr>
+</tbody></table>
+<p>简要说明：</p>
+<ul>
+<li>@Cacheable注解加载方法中，那么该方法第一次会查询数据库，然后就会吧数据放在缓存中，使用Cache 进行数据的读取等操作。</li>
+<li>@CacheEvict删除缓存，例如根据id删除用户，那么也要删除缓存中的用户信息</li>
+<li>@CachePut更新缓存，例如更新用户信息后，同时也要更新缓存中的用户信息</li>
+</ul>
+<p>Cache SpEL available metadata</p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>位置</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>methodName</td>
+<td>root object</td>
+<td>当前被调用的方法名</td>
+<td>#root.methodName</td>
+</tr>
+<tr>
+<td>method</td>
+<td>root object</td>
+<td>当前被调用的方法</td>
+<td>#root.method.name</td>
+</tr>
+<tr>
+<td>target</td>
+<td>root object</td>
+<td>当前被调用的目标对象</td>
+<td>#root.target</td>
+</tr>
+<tr>
+<td>targetClass</td>
+<td>root object</td>
+<td>当前被调用的目标对象类</td>
+<td>#root.targetClass</td>
+</tr>
+<tr>
+<td>args</td>
+<td>root object</td>
+<td>当前被调用的方法的参数列表</td>
+<td>#root.args[0]</td>
+</tr>
+<tr>
+<td>caches</td>
+<td>root object</td>
+<td>当前方法调用使用的缓存列表（如@Cacheable(value={“cache1”, “cache2”})）， 则有两个cache</td>
+<td>#root.caches[0].name</td>
+</tr>
+<tr>
+<td>argument name</td>
+<td>evaluation context</td>
+<td>方法参数的名字. 可以直接 #参数名 ，也可以使用 #p0或#a0 的 形式， 0代表参数的索引；</td>
+<td>#iban 、 #a0 、 #p0</td>
+</tr>
+<tr>
+<td>result</td>
+<td>evaluation context</td>
+<td>方法执行后的返回值（仅当方法执行之后的判断有效，如 ‘unless’ ， ’cache put’的表达式 ’cache evict’的表达式 beforeInvocation=false）</td>
+<td>#result</td>
+</tr>
+</tbody></table>
+<p>四、缓存使用</p>
+<p>1、引入spring-boot-starter-cache模块</p>
+<p><em>2、 @EnableCaching开启缓存</em></p>
+<p><em>3、使用缓存注解</em></p>
+<p>4、切换为其他缓存*</p>
+<h3 id="SpEL"><a href="#SpEL" class="headerlink" title="SpEL"></a>SpEL</h3><p>Spring Cache提供了一些供我们使用的SpEL上下文数据，下表直接摘自Spring官方文档：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>位置</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>methodName</td>
+<td>root对象</td>
+<td>当前被调用的方法名</td>
+<td><code>#root.methodname</code></td>
+</tr>
+<tr>
+<td>method</td>
+<td>root对象</td>
+<td>当前被调用的方法</td>
+<td><code>#root.method.name</code></td>
+</tr>
+<tr>
+<td>target</td>
+<td>root对象</td>
+<td>当前被调用的目标对象实例</td>
+<td><code>#root.target</code></td>
+</tr>
+<tr>
+<td>targetClass</td>
+<td>root对象</td>
+<td>当前被调用的目标对象的类</td>
+<td><code>#root.targetClass</code></td>
+</tr>
+<tr>
+<td>args</td>
+<td>root对象</td>
+<td>当前被调用的方法的参数列表</td>
+<td><code>#root.args[0]</code></td>
+</tr>
+<tr>
+<td>caches</td>
+<td>root对象</td>
+<td>当前方法调用使用的缓存列表</td>
+<td><code>#root.caches[0].name</code></td>
+</tr>
+<tr>
+<td>Argument Name</td>
+<td>执行上下文</td>
+<td>当前被调用的方法的参数，如findArtisan(Artisan artisan),可以通过#artsian.id获得参数</td>
+<td><code>#artsian.id</code></td>
+</tr>
+<tr>
+<td>result</td>
+<td>执行上下文</td>
+<td>方法执行后的返回值（仅当方法执行后的判断有效，如 unless cacheEvict的beforeInvocation=false）</td>
+<td><code>#result</code></td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong></p>
+<p>1.当我们要使用root对象的属性作为key时我们也可以将“#root”省略，因为Spring默认使用的就是root对象的属性。 如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cacheable(key = &quot;targetClass + methodName +#p0&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>2.使用方法参数时我们可以直接使用“#参数名”或者“#p参数index”。 如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Cacheable(value=&quot;users&quot;, key=&quot;#id&quot;)</span><br><span class="line">@Cacheable(value=&quot;users&quot;, key=&quot;#p0&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>SpEL提供了多种运算符</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>类型</strong></th>
+<th><strong>运算符</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关系</td>
+<td>&lt;，&gt;，&lt;=，&gt;=，==，!=，lt，gt，le，ge，eq，ne</td>
+</tr>
+<tr>
+<td>算术</td>
+<td>+，- ，* ，/，%，^</td>
+</tr>
+<tr>
+<td>逻辑</td>
+<td>&amp;&amp;，||，!，and，or，not，between，instanceof</td>
+</tr>
+<tr>
+<td>条件</td>
+<td>?: (ternary)，?: (elvis)</td>
+</tr>
+<tr>
+<td>正则表达式</td>
+<td>matches</td>
+</tr>
+<tr>
+<td>其他类型</td>
+<td>?.，?[…]，![…]，^[…]，$[…]</td>
+</tr>
+</tbody></table>
+<h4 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h4><h3 id="1-开始使用前需要导入依赖"><a href="#1-开始使用前需要导入依赖" class="headerlink" title="1.开始使用前需要导入依赖"></a>1.开始使用前需要导入依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-cache<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-然后在启动类注解-EnableCaching开启缓存"><a href="#2-然后在启动类注解-EnableCaching开启缓存" class="headerlink" title="2.然后在启动类注解@EnableCaching开启缓存"></a>2.然后在启动类注解@EnableCaching开启缓存</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableCaching</span>  <span class="comment">//开启缓存</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoApplication</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(DemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-缓存-Cacheable"><a href="#3-缓存-Cacheable" class="headerlink" title="3.缓存@Cacheable``"></a>3.缓存@Cacheable``</h3><p><code>@Cacheable</code>注解会先查询是否已经有缓存，有会使用缓存，没有则会执行方法并缓存。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Cacheable(value = &quot;emp&quot; ,key = &quot;targetClass + methodName +#p0&quot;)</span><br><span class="line">public List&lt;NewJob&gt; queryAll(User uid) &#123;</span><br><span class="line">    return newJobDao.findAllByUid(uid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此处的<code>value</code>是必需的，它指定了你的缓存存放在哪块命名空间。</p>
+<p>此处的<code>key</code>是使用的spEL表达式，参考上章。这里有一个小坑，如果你把<code>methodName</code>换成<code>method</code>运行会报错，观察它们的返回类型，原因在于<code>methodName</code>是<code>String</code>而<code>methoh</code>是<code>Method</code>。</p>
+<p>此处的<code>User</code>实体类一定要实现序列化<code>public class User implements Serializable</code>，否则会报<code>java.io.NotSerializableException</code>异常。</p>
+<p>到这里，你已经可以运行程序检验缓存功能是否实现。</p>
+<p><strong>深入源码，查看它的其它属性</strong></p>
+<p>我们打开<code>@Cacheable</code>注解的源码，可以看到该注解提供的其他属性，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String[] cacheNames() default &#123;&#125;; //和value注解差不多，二选一</span><br><span class="line">String keyGenerator() default &quot;&quot;; //key的生成器。key/keyGenerator二选一使用</span><br><span class="line">String cacheManager() default &quot;&quot;; //指定缓存管理器</span><br><span class="line">String cacheResolver() default &quot;&quot;; //或者指定获取解析器</span><br><span class="line">String condition() default &quot;&quot;; //条件符合则缓存</span><br><span class="line">String unless() default &quot;&quot;; //条件符合则不缓存</span><br><span class="line">boolean sync() default false; //是否使用异步模式</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-配置-CacheConfig"><a href="#4-配置-CacheConfig" class="headerlink" title="4.配置@CacheConfig"></a>4.配置@CacheConfig</h3><p>当我们需要缓存的地方越来越多，你可以使用<code>@CacheConfig(cacheNames = {&quot;myCache&quot;})</code>注解来统一指定<code>value</code>的值，这时可省略<code>value</code>，如果你在你的方法依旧写上了<code>value</code>，那么依然以方法的<code>value</code>值为准。</p>
+<p>使用方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CacheConfig</span>(cacheNames = &#123;<span class="string">"myCache"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BotRelationServiceImpl</span> <span class="keyword">implements</span> <span class="title">BotRelationService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="meta">@Cacheable</span>(key = <span class="string">"targetClass + methodName +#p0"</span>)<span class="comment">//此处没写value</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;BotRelation&gt; <span class="title">findAllLimit</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> botRelationRepository.findAllLimit(num);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看它的其它属性</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">keyGenerator</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;  <span class="comment">//key的生成器。key/keyGenerator二选一使用</span></span><br><span class="line"><span class="function">String <span class="title">cacheManager</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;  <span class="comment">//指定缓存管理器</span></span><br><span class="line"><span class="function">String <span class="title">cacheResolver</span><span class="params">()</span> <span class="keyword">default</span> ""</span>; <span class="comment">//或者指定获取解析器</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-更新-CachePut"><a href="#5-更新-CachePut" class="headerlink" title="5.更新@CachePut"></a>5.更新@CachePut</h3><p><code>@CachePut</code>注解的作用 主要针对方法配置，能够根据方法的请求参数对其结果进行缓存，和 <code>@Cacheable</code> 不同的是，它每次都会触发真实方法的调用 。简单来说就是用户更新缓存数据。但需要注意的是该注解的<code>value</code> 和 <code>key</code> 必须与要更新的缓存相同，也就是与<code>@Cacheable</code> 相同。示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CachePut</span>(value = <span class="string">"emp"</span>, key = <span class="string">"targetClass + #p0"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> NewJob <span class="title">updata</span><span class="params">(NewJob job)</span> </span>&#123;</span><br><span class="line">    NewJob newJob = newJobDao.findAllById(job.getId());</span><br><span class="line">    newJob.updata(job);</span><br><span class="line">    <span class="keyword">return</span> job;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Cacheable</span>(value = <span class="string">"emp"</span>, key = <span class="string">"targetClass +#p0"</span>)<span class="comment">//清空缓存</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> NewJob <span class="title">save</span><span class="params">(NewJob job)</span> </span>&#123;</span><br><span class="line">    newJobDao.save(job);</span><br><span class="line">    <span class="keyword">return</span> job;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看它的其它属性</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String[] cacheNames() <span class="keyword">default</span> &#123;&#125;; <span class="comment">//与value二选一</span></span><br><span class="line"><span class="function">String <span class="title">keyGenerator</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;  <span class="comment">//key的生成器。key/keyGenerator二选一使用</span></span><br><span class="line"><span class="function">String <span class="title">cacheManager</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;  <span class="comment">//指定缓存管理器</span></span><br><span class="line"><span class="function">String <span class="title">cacheResolver</span><span class="params">()</span> <span class="keyword">default</span> ""</span>; <span class="comment">//或者指定获取解析器</span></span><br><span class="line"><span class="function">String <span class="title">condition</span><span class="params">()</span> <span class="keyword">default</span> ""</span>; <span class="comment">//条件符合则缓存</span></span><br><span class="line"><span class="function">String <span class="title">unless</span><span class="params">()</span> <span class="keyword">default</span> ""</span>; <span class="comment">//条件符合则不缓存</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-清除-CacheEvict"><a href="#6-清除-CacheEvict" class="headerlink" title="6.清除@CacheEvict"></a>6.清除@CacheEvict</h3><p><code>@CachEvict</code> 的作用 主要针对方法配置，能够根据一定的条件对缓存进行清空 。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>解释</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>allEntries</td>
+<td>是否清空所有缓存内容，缺省为 false，如果指定为 true，则方法调用后将立即清空所有缓存</td>
+<td>@CachEvict(value=”testcache”,allEntries=true)</td>
+</tr>
+<tr>
+<td>beforeInvocation</td>
+<td>是否在方法执行前就清空，缺省为 false，如果指定为 true，则在方法还没有执行的时候就清空缓存，缺省情况下，如果方法执行抛出异常，则不会清空缓存</td>
+<td>@CachEvict(value=”testcache”，beforeInvocation=true)</td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Cacheable</span>(value = <span class="string">"emp"</span>,key = <span class="string">"#p0.id"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> NewJob <span class="title">save</span><span class="params">(NewJob job)</span> </span>&#123;</span><br><span class="line">    newJobDao.save(job);</span><br><span class="line">    <span class="keyword">return</span> job;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//清除一条缓存，key为要清空的数据</span></span><br><span class="line"><span class="meta">@CacheEvict</span>(value=<span class="string">"emp"</span>,key=<span class="string">"#id"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delect</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    newJobDao.deleteAllById(id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//方法调用后清空所有缓存</span></span><br><span class="line"><span class="meta">@CacheEvict</span>(value=<span class="string">"accountCache"</span>,allEntries=<span class="keyword">true</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delectAll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    newJobDao.deleteAll();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//方法调用前清空所有缓存</span></span><br><span class="line"><span class="meta">@CacheEvict</span>(value=<span class="string">"accountCache"</span>,beforeInvocation=<span class="keyword">true</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delectAll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    newJobDao.deleteAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>其他属性</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String[] cacheNames() default &#123;&#125;; //与value二选一</span><br><span class="line">String keyGenerator() default &quot;&quot;;  //key的生成器。key/keyGenerator二选一使用</span><br><span class="line">String cacheManager() default &quot;&quot;;  //指定缓存管理器</span><br><span class="line">String cacheResolver() default &quot;&quot;; //或者指定获取解析器</span><br><span class="line">String condition() default &quot;&quot;; //条件符合则清空</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-组合-Caching"><a href="#7-组合-Caching" class="headerlink" title="7.组合@Caching"></a>7.组合@Caching</h3><p>有时候我们可能组合多个Cache注解使用，此时就需要@Caching组合多个注解标签了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Caching</span>(cacheable = &#123;</span><br><span class="line">        <span class="meta">@Cacheable</span>(value = <span class="string">"emp"</span>,key = <span class="string">"#p0"</span>),</span><br><span class="line">        ...</span><br><span class="line">&#125;,</span><br><span class="line">put = &#123;</span><br><span class="line">        <span class="meta">@CachePut</span>(value = <span class="string">"emp"</span>,key = <span class="string">"#p0"</span>),</span><br><span class="line">        ...</span><br><span class="line">&#125;,evict = &#123;</span><br><span class="line">        <span class="meta">@CacheEvict</span>(value = <span class="string">"emp"</span>,key = <span class="string">"#p0"</span>),</span><br><span class="line">        ....</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">save</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面讲到的整合第三方缓存组件都是基于上面的已经完成的步骤，所以一个应用要先做好你的缓存逻辑，再来整合其他cache组件。</p>
+<h2 id="五：整合EHCACHE"><a href="#五：整合EHCACHE" class="headerlink" title="五：整合EHCACHE"></a>五：整合EHCACHE</h2><p>Ehcache是一种广泛使用的开源Java分布式缓存。主要面向通用缓存,Java EE和轻量级容器。它具有内存和磁盘存储，缓存加载器,缓存扩展,缓存异常处理程序,一个gzip缓存servlet过滤器,支持REST和SOAP api等特点。</p>
+<h3 id="1-导入依赖"><a href="#1-导入依赖" class="headerlink" title="1.导入依赖"></a>1.导入依赖</h3><p>整合ehcache必须要导入它的依赖。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.ehcache<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ehcache<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-cache<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-yml配置"><a href="#2-yml配置" class="headerlink" title="2.yml配置"></a>2.yml配置</h3><p>需要说明的是<code>config: classpath:/ehcache.xml</code>可以不用写，因为默认就是这个路径。但<code>ehcache.xml</code>必须有。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  cache:</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">ehcache</span></span><br><span class="line"><span class="attr">    ehcache:</span></span><br><span class="line"><span class="attr">      config:</span> <span class="attr">classpath:/ehcache.xml</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-ehcache-xml"><a href="#3-ehcache-xml" class="headerlink" title="3.ehcache.xml"></a>3.ehcache.xml</h3><p>在resources目录下新建ehcache.xml，注释啥的应该可以说相当详细了</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ehcache</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        磁盘存储:将缓存中暂时不使用的对象,转移到硬盘,类似于Windows系统的虚拟内存</span></span><br><span class="line"><span class="comment">        path:指定在硬盘上存储对象的路径</span></span><br><span class="line"><span class="comment">        path可以配置的目录有：</span></span><br><span class="line"><span class="comment">            user.home（用户的家目录）</span></span><br><span class="line"><span class="comment">            user.dir（用户当前的工作目录）</span></span><br><span class="line"><span class="comment">            java.io.tmpdir（默认的临时目录）</span></span><br><span class="line"><span class="comment">            ehcache.disk.store.dir（ehcache的配置目录）</span></span><br><span class="line"><span class="comment">            绝对路径（如：d:\\ehcache）</span></span><br><span class="line"><span class="comment">        查看路径方法：String tmpDir = System.getProperty("java.io.tmpdir");</span></span><br><span class="line"><span class="comment">     --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">diskStore</span> <span class="attr">path</span>=<span class="string">"java.io.tmpdir"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        defaultCache:默认的缓存配置信息,如果不加特殊说明,则所有对象按照此配置项处理</span></span><br><span class="line"><span class="comment">        maxElementsInMemory:设置了缓存的上限,最多存储多少个记录对象</span></span><br><span class="line"><span class="comment">        eternal:代表对象是否永不过期 (指定true则下面两项配置需为0无限期)</span></span><br><span class="line"><span class="comment">        timeToIdleSeconds:最大的发呆时间 /秒</span></span><br><span class="line"><span class="comment">        timeToLiveSeconds:最大的存活时间 /秒</span></span><br><span class="line"><span class="comment">        overflowToDisk:是否允许对象被写入到磁盘</span></span><br><span class="line"><span class="comment">        说明：下列配置自缓存建立起600秒(10分钟)有效 。</span></span><br><span class="line"><span class="comment">        在有效的600秒(10分钟)内，如果连续120秒(2分钟)未访问缓存，则缓存失效。</span></span><br><span class="line"><span class="comment">        就算有访问，也只会存活600秒。</span></span><br><span class="line"><span class="comment">     --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">defaultCache</span> <span class="attr">maxElementsInMemory</span>=<span class="string">"10000"</span> <span class="attr">eternal</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">                  <span class="attr">timeToIdleSeconds</span>=<span class="string">"600"</span> <span class="attr">timeToLiveSeconds</span>=<span class="string">"600"</span> <span class="attr">overflowToDisk</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">cache</span> <span class="attr">name</span>=<span class="string">"myCache"</span> <span class="attr">maxElementsInMemory</span>=<span class="string">"10000"</span> <span class="attr">eternal</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">                  <span class="attr">timeToIdleSeconds</span>=<span class="string">"120"</span> <span class="attr">timeToLiveSeconds</span>=<span class="string">"600"</span> <span class="attr">overflowToDisk</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">ehcache</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-使用缓存"><a href="#4-使用缓存" class="headerlink" title="4.使用缓存"></a>4.使用缓存</h3><p><code>@CacheConfig(cacheNames = {“myCache”})</code>设置ehcache的名称，这个名称必须在ehcache.xml已配置 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CacheConfig</span>(cacheNames = &#123;<span class="string">"myCache"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BotRelationServiceImpl</span> <span class="keyword">implements</span> <span class="title">BotRelationService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Cacheable</span>(key = <span class="string">"targetClass + methodName +#p0"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;BotRelation&gt; <span class="title">findAllLimit</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> botRelationRepository.findAllLimit(num);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>整合完毕！</p>
+<p>别忘了在启动类开启缓存！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    yang295513
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2020/02/14/Springboot缓存详解/" title="Springboot缓存详解">http://yoursite.com/2020/02/14/Springboot缓存详解/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/日常学习/" rel="tag"># 日常学习</a>
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/框架/" rel="tag"># 框架</a>
+          
+            <a href="/tags/SSM/" rel="tag"># SSM</a>
+          
+            <a href="/tags/Mybatis/" rel="tag"># Mybatis</a>
+          
+            <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/30/Docker入门/" rel="next" title="Docker入门">
+                <i class="fa fa-chevron-left"></i> Docker入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/16/电路基础/" rel="prev" title="电路基础">
+                电路基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">yang295513</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存的作用"><span class="nav-number">1.</span> <span class="nav-text">缓存的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-热点数据放入缓存以减少对数据库的访问次数"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.热点数据放入缓存以减少对数据库的访问次数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-临时数据放入缓存中减少数据库的压力，例如短信验证码3分钟有效就可以放入缓存中，超过3分钟就从缓存中去掉。"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.临时数据放入缓存中减少数据库的压力，例如短信验证码3分钟有效就可以放入缓存中，超过3分钟就从缓存中去掉。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同缓存的作用"><span class="nav-number">1.1.</span> <span class="nav-text">不同缓存的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存的策略"><span class="nav-number">1.2.</span> <span class="nav-text">缓存的策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSR107"><span class="nav-number">1.3.</span> <span class="nav-text">JSR107</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CachingProvider缓存提供者，定义了创建、配置、获取、管理多个CachingManager-并且一个java应用可以在运行期有多个CachingProvider"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">CachingProvider缓存提供者，定义了创建、配置、获取、管理多个CachingManager,并且一个java应用可以在运行期有多个CachingProvider</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CachingManage缓存管理器，定义了创建、配置、获取、管理多个唯一命名的Cache-这些Cache存在CacheManage的上下文中，并且CacheManage只能被一个CachingProvider拥有"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">CachingManage缓存管理器，定义了创建、配置、获取、管理多个唯一命名的Cache,这些Cache存在CacheManage的上下文中，并且CacheManage只能被一个CachingProvider拥有</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cache是一个类似Map的数据结构并临时存储以Key为索引的值。一个Cache仅被一个CacheManager所拥有。"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">Cache是一个类似Map的数据结构并临时存储以Key为索引的值。一个Cache仅被一个CacheManager所拥有。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Entry是一个存储在Cache中的key-value对。"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">Entry是一个存储在Cache中的key-value对。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Expiry每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期，条目将不可访问、更新和删除。缓存有效期可以通过ExpiryPolicy设置。"><span class="nav-number">1.3.0.5.</span> <span class="nav-text">Expiry每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期，条目将不可访问、更新和删除。缓存有效期可以通过ExpiryPolicy设置。</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#springboot缓存抽象"><span class="nav-number">1.4.</span> <span class="nav-text">springboot缓存抽象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpEL"><span class="nav-number">1.5.</span> <span class="nav-text">SpEL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#演示"><span class="nav-number">1.5.1.</span> <span class="nav-text">演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-开始使用前需要导入依赖"><span class="nav-number">1.6.</span> <span class="nav-text">1.开始使用前需要导入依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-然后在启动类注解-EnableCaching开启缓存"><span class="nav-number">1.7.</span> <span class="nav-text">2.然后在启动类注解@EnableCaching开启缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-缓存-Cacheable"><span class="nav-number">1.8.</span> <span class="nav-text">3.缓存@Cacheable``</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-配置-CacheConfig"><span class="nav-number">1.9.</span> <span class="nav-text">4.配置@CacheConfig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-更新-CachePut"><span class="nav-number">1.10.</span> <span class="nav-text">5.更新@CachePut</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-清除-CacheEvict"><span class="nav-number">1.11.</span> <span class="nav-text">6.清除@CacheEvict</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-组合-Caching"><span class="nav-number">1.12.</span> <span class="nav-text">7.组合@Caching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五：整合EHCACHE"><span class="nav-number">2.</span> <span class="nav-text">五：整合EHCACHE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-导入依赖"><span class="nav-number">2.1.</span> <span class="nav-text">1.导入依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-yml配置"><span class="nav-number">2.2.</span> <span class="nav-text">2.yml配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-ehcache-xml"><span class="nav-number">2.3.</span> <span class="nav-text">3.ehcache.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-使用缓存"><span class="nav-number">2.4.</span> <span class="nav-text">4.使用缓存</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yang295513</span>
+
+  
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
