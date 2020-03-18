@@ -114,12 +114,12 @@
 <meta property="og:site_name" content="Byy">
 <meta property="og:description" content="字节码简介Java字节码指令由一个字节长度的，代表某种特定操作含义的数字（操作码）以及其后的零至多个代表此操作所需参数（操作数）。此外字节码指令是面向操作数栈的，这里操作数栈在功能上对应实体机的寄存器但是结构上有所区别。 字节码与数据类型在字节码指令集中，大多数指令都对应的其操作所对应的数据类型信息，比如iload表示从局部变量表中加载int型的数据到操作栈中，fload从局部变量表中加载floa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2020/03/18/jvm学习第二天-虚拟机执行子系统/upload/1584518921018.png">
-<meta property="og:updated_time" content="2020-03-18T12:31:30.087Z">
+<meta property="og:image" content="http://yoursite.com/upload/1584518921018.png">
+<meta property="og:updated_time" content="2020-03-18T12:51:28.196Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm学习第二天-虚拟机执行子系统">
 <meta name="twitter:description" content="字节码简介Java字节码指令由一个字节长度的，代表某种特定操作含义的数字（操作码）以及其后的零至多个代表此操作所需参数（操作数）。此外字节码指令是面向操作数栈的，这里操作数栈在功能上对应实体机的寄存器但是结构上有所区别。 字节码与数据类型在字节码指令集中，大多数指令都对应的其操作所对应的数据类型信息，比如iload表示从局部变量表中加载int型的数据到操作栈中，fload从局部变量表中加载floa">
-<meta name="twitter:image" content="http://yoursite.com/2020/03/18/jvm学习第二天-虚拟机执行子系统/upload/1584518921018.png">
+<meta name="twitter:image" content="http://yoursite.com/upload/1584518921018.png">
 
 
 
@@ -401,7 +401,7 @@
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> 0 iconst_2//将常量int类型2推送到栈顶</span><br><span class="line"> 1 istore_0//将栈顶int型数值存入第一个本地变量</span><br><span class="line"> 2 iconst_m1//将int型(-1)推送至栈顶</span><br><span class="line"> 3 istore_1//将栈顶int型数值存入第二个本地变量</span><br><span class="line"> 4 iconst_1//将常量int类型1推送到栈顶</span><br><span class="line"> 5 ireturn//返回栈顶的值</span><br><span class="line"> 6 astore_0//将栈顶引用型数值存入第一个本地变量0x4中</span><br><span class="line"> 7 iconst_0//将栈顶int型数值存入第一个本地变量</span><br><span class="line"> 8 istore_1//将栈顶int型数值存入第二个本地变量</span><br><span class="line"> 9 iconst_1//将常量int类型1推送到栈顶</span><br><span class="line">10 ireturn//返回栈顶的值</span><br><span class="line">11 astore_2</span><br><span class="line">12 iconst_1</span><br><span class="line">13 ireturn//返回栈顶的值</span><br></pre></td></tr></table></figure>
 
-<h2 id="虚拟类的加载机制"><a href="#虚拟类的加载机制" class="headerlink" title="虚拟类的加载机制"></a>虚拟类的加载机制</h2><p><img src="upload/1584518921018.png" alt="1584518921018"></p>
+<h2 id="虚拟类的加载机制"><a href="#虚拟类的加载机制" class="headerlink" title="虚拟类的加载机制"></a>虚拟类的加载机制</h2><p><img src="/upload/1584518921018.png" alt="1584518921018"></p>
 <h3 id="类加载时机"><a href="#类加载时机" class="headerlink" title="类加载时机"></a>类加载时机</h3><p>java语言中类型的加载连接以及初始化过程都是在程序运行期间完成的，这种策略虽然会使类加载时稍微增加一些性能开销，但是会为java应用程序提供高度的灵活性。java里天生就可以动态扩展语言特性就是依赖运行期间动态加载和动态连接这个特点实现的。比如，如果编写一个面向接口的程序，可以等到运行时再指定其具体实现类。（解析阶段则不一定:在某些情况下可以在初始化阶段之后开始，这是为了支持java语言的运行时绑定特性(也称为动态绑定或晚期绑定).</p>
 <p><strong>加载” 是 “类加载” 过程的一个阶段，切不可将二者混淆。</strong></p>
 <h4 id="加载阶段由三个基本动作组成："><a href="#加载阶段由三个基本动作组成：" class="headerlink" title="加载阶段由三个基本动作组成："></a>加载阶段由三个基本动作组成：</h4><p>1) 通过类型的完全限定名，产生一个代表该类型的二进制数据流（根本没有指明从哪里获取、怎样获取，可以说一个非常开放的平台了）</p>
