@@ -114,18 +114,18 @@
 <meta property="og:site_name" content="Byy">
 <meta property="og:description" content="运行时数据区域  方法区 堆 虚拟机栈 本地方法栈 程序计数器  其中前两个是线程共享的，后三个是线程独有的 程序计数器 程序计数器是一个记录着当前线程所执行的字节码的行号指示器。  如果线程执行的是一个java方法，那么这个计数器就表示正在执行的虚拟机字节码 如歌这个线程执行的是本地（Native）方法，那么这个计数器的值为空 虚拟机栈栈与堆的区别栈是一种运行时结构，堆是一种存储结构 虚拟机栈特">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2020/03/14/jvm学习第一天-自动内存管理/upload/1584511913647.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/14/jvm学习第一天-自动内存管理/upload/1584512387954.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/14/jvm学习第一天-自动内存管理/upload/1584524922159.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/14/jvm学习第一天-自动内存管理/upload/1584515975770.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/14/jvm学习第一天-自动内存管理/upload/1584516098000.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/14/jvm学习第一天-自动内存管理/upload/1584516209565.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/14/jvm学习第一天-自动内存管理/upload/1584516260367.png">
-<meta property="og:updated_time" content="2020-03-18T12:31:17.936Z">
+<meta property="og:image" content="http://yoursite.com/upload/1584511913647.png">
+<meta property="og:image" content="http://yoursite.com/upload/1584512387954.png">
+<meta property="og:image" content="http://yoursite.com/upload/1584524922159.png">
+<meta property="og:image" content="http://yoursite.com/upload/1584515975770.png">
+<meta property="og:image" content="http://yoursite.com/upload/1584516098000.png">
+<meta property="og:image" content="http://yoursite.com/upload/1584516209565.png">
+<meta property="og:image" content="http://yoursite.com/upload/1584516260367.png">
+<meta property="og:updated_time" content="2020-03-18T12:47:47.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm学习第一天-自动内存管理">
 <meta name="twitter:description" content="运行时数据区域  方法区 堆 虚拟机栈 本地方法栈 程序计数器  其中前两个是线程共享的，后三个是线程独有的 程序计数器 程序计数器是一个记录着当前线程所执行的字节码的行号指示器。  如果线程执行的是一个java方法，那么这个计数器就表示正在执行的虚拟机字节码 如歌这个线程执行的是本地（Native）方法，那么这个计数器的值为空 虚拟机栈栈与堆的区别栈是一种运行时结构，堆是一种存储结构 虚拟机栈特">
-<meta name="twitter:image" content="http://yoursite.com/2020/03/14/jvm学习第一天-自动内存管理/upload/1584511913647.png">
+<meta name="twitter:image" content="http://yoursite.com/upload/1584511913647.png">
 
 
 
@@ -387,7 +387,7 @@
       
 
       
-        <h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p><img src="upload/1584511913647.png" alt="1584511913647"></p>
+        <h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p><img src="/upload/1584511913647.png" alt="1584511913647"></p>
 <ul>
 <li>方法区</li>
 <li>堆</li>
@@ -410,7 +410,7 @@
 <h4 id="虚拟机栈运行过程"><a href="#虚拟机栈运行过程" class="headerlink" title="虚拟机栈运行过程"></a>虚拟机栈运行过程</h4><p><strong>每个方法被执行的时候，java虚拟机都会在虚拟机栈创建一个栈帧</strong>，当然，每个方法结束后都会移除该栈帧，也就是说在栈顶的栈帧一定是当前执行的方法的栈帧.</p>
 <p><strong>在编译程序代码的时候，栈帧中需要多大的局部变量表内存，多深的操作数栈都已经完全确定了。</strong></p>
 <p><strong>因此一个栈帧需要分配多少内存，不会受到程序运行期变量数据的影响，而仅仅取决于具体的虚拟机实现。</strong></p>
-<p><img src="upload/1584512387954.png" alt="1584512387954"></p>
+<p><img src="/upload/1584512387954.png" alt="1584512387954"></p>
 <h4 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h4><blockquote>
 <p>栈帧包含局部变量表，操作数栈，动态连接，方法出口等信息</p>
 </blockquote>
@@ -424,7 +424,7 @@
 <h5 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">int</span> b=a;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">int</span> c=<span class="number">2</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 <p>加入上述代码不存在复用的情况下应该是4个局部变量，但是由于b的作用域范围超出了，所以b的变量槽就被c所复用。也就是数上述代码分配的局部变量长度为3</p>
-<p><img src="upload/1584524922159.png" alt="1584524922159"></p>
+<p><img src="/upload/1584524922159.png" alt="1584524922159"></p>
 <h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><p>如果线程请求的栈深度大于虚拟机所允许的深度，则会抛出<strong>StackOverFlowError</strong>异常，如果虚拟机栈容量<strong>可以动态</strong>扩展，当栈扩展无法申请到新的内存的时候会抛出<strong>OutOfMemoryError</strong>异常</p>
 <h2 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h2><blockquote>
 <p>本地方法栈和虚拟机栈功能是非常类似的，异常也是非常类似，本地方法栈就是执行一些（Native）的本地方法</p>
@@ -494,7 +494,7 @@
 <p><strong>虚引用与软引用和弱引用的一个区别在于：</strong> 虚引用必须和引用队列（ReferenceQueue）联合使用。当垃 圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是 否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。程序如果发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。</p>
 <p>特别注意，在程序设计中一般很少使用弱引用与虚引用，使用软引用的情况较多，这是因为<strong>软引用可以加速JVM对垃圾内存的回收速度，可以维护系统的运行安全，防止内存溢出（OutOfMemory）等问题的产生</strong>。</p>
 <h2 id="经典垃圾收集器"><a href="#经典垃圾收集器" class="headerlink" title="经典垃圾收集器"></a>经典垃圾收集器</h2><h3 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a>Serial收集器</h3><p>Serial收集器是最基础、历史最悠久的收集器，曾经（在JDK1.3.1之前）是HotSpot虚拟机新生代收集器的唯一选择，时至今日，垃圾收集器的不断改进，不断出新，Serial依然在我们的垃圾收集器的选项里面。</p>
-<p><img src="upload/1584515975770.png" alt="1584515975770"></p>
+<p><img src="/upload/1584515975770.png" alt="1584515975770"></p>
 <h4 id="特点-5"><a href="#特点-5" class="headerlink" title="特点"></a>特点</h4><ul>
 <li>优点：简单高效，拥有很高的单线程收集效率</li>
 <li>缺点：收集过程需要暂停所有线程</li>
@@ -506,7 +506,7 @@
 
 <h4 id="使用该垃圾收集器-XX-UseSerialGC"><a href="#使用该垃圾收集器-XX-UseSerialGC" class="headerlink" title="使用该垃圾收集器 -XX:+UseSerialGC"></a>使用该垃圾收集器 -XX:+UseSerialGC</h4><p>使用之前我们可以去查看一下，当前虚拟机是否使用的Serial，如果是我们不需要去更改，如果不是则添加参数：<code>-XX:+UseSerialGC</code>。</p>
 <h3 id="ParNew收集器"><a href="#ParNew收集器" class="headerlink" title="ParNew收集器"></a>ParNew收集器</h3><p>ParNew收集器实质上是Serial收集器的多线程并行版本</p>
-<p><img src="upload/1584516098000.png" alt="1584516098000"></p>
+<p><img src="/upload/1584516098000.png" alt="1584516098000"></p>
 <h4 id="ParNew收集器的特点："><a href="#ParNew收集器的特点：" class="headerlink" title="ParNew收集器的特点："></a>ParNew收集器的特点：</h4><h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h5><p>在多CPU时，比Serial效率高。</p>
 <h5 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h5><p>收集过程暂停所有应用程序线程，单CPU时比Serial效率差。<br>使用算法：</p>
 <h5 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h5><p>适用范围：</p>
@@ -520,9 +520,9 @@
 <h4 id="吞吐量我们可以自行控制？"><a href="#吞吐量我们可以自行控制？" class="headerlink" title="吞吐量我们可以自行控制？"></a>吞吐量我们可以自行控制？</h4><p>吞吐量我们从上面的描述可以看到，他是一个比值。那么我们自然能够通过调整比值的参数来影响吞吐量。主要涉及的命令有一下两个</p>
 <p><strong>-XX:MaxGCPauseMillis 控制最大的垃圾收集时间</strong><br><strong>-XX:GCTimeRatio 直接设置吞吐量的大小</strong><br>根据吞吐量对应的计算公式我们可以看到，当我们的垃圾收集停顿时间变短的时候（垃圾收集停顿是一个大于0的毫秒数），我们的吞吐量在增大。不过大家不要异想天开地认为如果把这个参数的值设置得更小一点就能使得系统的垃圾收集速度变得更快，当我们把这个参数设置的更小的时候，它对应的能够有效收集的时间或者空间会变小。假若停顿时间为100ms能够收集500M的堆空间，那么50ms能够收集的空间可能会低于250M的堆空间。垃圾收集器的有效工作时间变短，收集垃圾的效率并不一定提高，同时对应的也只能相对的调整我们的吞吐量。</p>
 <h4 id="使用Parallel-Scavenge收集器-XX-UseParallelGC"><a href="#使用Parallel-Scavenge收集器-XX-UseParallelGC" class="headerlink" title="使用Parallel Scavenge收集器 -XX:+UseParallelGC"></a>使用Parallel Scavenge收集器 -XX:+UseParallelGC</h4><h3 id="Serial-Old收集器"><a href="#Serial-Old收集器" class="headerlink" title="Serial Old收集器"></a>Serial Old收集器</h3><p>Serial Old是Serial收集器的老年代版本，它同样是一个单线程收集器，使用标记-整理算法。这个收集器的主要意义也是供客户端模式下的HotSpot虚拟机使用。</p>
-<p><img src="upload/1584516209565.png" alt="1584516209565"></p>
+<p><img src="/upload/1584516209565.png" alt="1584516209565"></p>
 <h3 id="Parallel-Old收集器"><a href="#Parallel-Old收集器" class="headerlink" title="Parallel Old收集器"></a>Parallel Old收集器</h3><p>Parallel Old收集器是Parallel Scavenge收集器的老年代版本，使用多线程和”标记-整理算法”进行垃圾回收。</p>
-<h3 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h3><p><img src="upload/1584516260367.png" alt="1584516260367"></p>
+<h3 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h3><p><img src="/upload/1584516260367.png" alt="1584516260367"></p>
 <p>CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器。它的运作过程相对于前面几种收集器来说要更复杂一些，整个过程分为四个步骤，包括：</p>
 <p>1）初始标记（CMS initial mark）<br>2）并发标记（CMS concurrent mark）<br>3）重新标记（CMS remark）<br>4）并发清除（CMS concurrent sweep）<br>由于整个过程中，并发标记和并发清除，收集器线程可以与用户线程一起工作，所以总体上来<br>说，CMS收集器的内存回收过程是与用户线程一起并发地执行的。</p>
 <h4 id="CMS收集器特点："><a href="#CMS收集器特点：" class="headerlink" title="CMS收集器特点："></a>CMS收集器特点：</h4><p>优点：并发收集、低停顿<br>缺点：产生大量空间碎片、并发阶段会降低吞吐量</p>
