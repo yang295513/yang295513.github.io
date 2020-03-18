@@ -95,7 +95,7 @@
 
 
 
-  <meta name="keywords" content="编程,日常学习,分布式,Spring,SSM,Mybatis,习惯,">
+  <meta name="keywords" content="jvm,java,虚拟机,">
 
 
 
@@ -106,18 +106,20 @@
 
 
 
-<meta name="description" content="分布式session入门前言 我院大佬要安排一个项目，有一块要有人负责session这一块，于是乎没人想学，我就接下这个活了，希望自己能理解的不错吧。  session介绍session简介session是一次浏览器和服务器的交互会话，那会话又是什么呢，牛津词典的解释是进行某个活动连续的一段时间。 session作用session复制原理：任何一个服务器上的session发生改变（增删改），该节点">
-<meta name="keywords" content="编程,日常学习,分布式,Spring,SSM,Mybatis,习惯">
+<meta name="description" content="字节码简介Java字节码指令由一个字节长度的，代表某种特定操作含义的数字（操作码）以及其后的零至多个代表此操作所需参数（操作数）。此外字节码指令是面向操作数栈的，这里操作数栈在功能上对应实体机的寄存器但是结构上有所区别。 字节码与数据类型在字节码指令集中，大多数指令都对应的其操作所对应的数据类型信息，比如iload表示从局部变量表中加载int型的数据到操作栈中，fload从局部变量表中加载floa">
+<meta name="keywords" content="jvm,java,虚拟机">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分布式session">
-<meta property="og:url" content="http://yoursite.com/2019/12/14/分布式session/index.html">
+<meta property="og:title" content="jvm学习第二天-虚拟机执行子系统">
+<meta property="og:url" content="http://yoursite.com/2020/03/18/jvm学习第二天-虚拟机执行子系统/index.html">
 <meta property="og:site_name" content="Byy">
-<meta property="og:description" content="分布式session入门前言 我院大佬要安排一个项目，有一块要有人负责session这一块，于是乎没人想学，我就接下这个活了，希望自己能理解的不错吧。  session介绍session简介session是一次浏览器和服务器的交互会话，那会话又是什么呢，牛津词典的解释是进行某个活动连续的一段时间。 session作用session复制原理：任何一个服务器上的session发生改变（增删改），该节点">
+<meta property="og:description" content="字节码简介Java字节码指令由一个字节长度的，代表某种特定操作含义的数字（操作码）以及其后的零至多个代表此操作所需参数（操作数）。此外字节码指令是面向操作数栈的，这里操作数栈在功能上对应实体机的寄存器但是结构上有所区别。 字节码与数据类型在字节码指令集中，大多数指令都对应的其操作所对应的数据类型信息，比如iload表示从局部变量表中加载int型的数据到操作栈中，fload从局部变量表中加载floa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-26T10:55:17.350Z">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/jvm学习第二天-虚拟机执行子系统/upload/1584518921018.png">
+<meta property="og:updated_time" content="2020-03-18T12:31:30.087Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分布式session">
-<meta name="twitter:description" content="分布式session入门前言 我院大佬要安排一个项目，有一块要有人负责session这一块，于是乎没人想学，我就接下这个活了，希望自己能理解的不错吧。  session介绍session简介session是一次浏览器和服务器的交互会话，那会话又是什么呢，牛津词典的解释是进行某个活动连续的一段时间。 session作用session复制原理：任何一个服务器上的session发生改变（增删改），该节点">
+<meta name="twitter:title" content="jvm学习第二天-虚拟机执行子系统">
+<meta name="twitter:description" content="字节码简介Java字节码指令由一个字节长度的，代表某种特定操作含义的数字（操作码）以及其后的零至多个代表此操作所需参数（操作数）。此外字节码指令是面向操作数栈的，这里操作数栈在功能上对应实体机的寄存器但是结构上有所区别。 字节码与数据类型在字节码指令集中，大多数指令都对应的其操作所对应的数据类型信息，比如iload表示从局部变量表中加载int型的数据到操作栈中，fload从局部变量表中加载floa">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/18/jvm学习第二天-虚拟机执行子系统/upload/1584518921018.png">
 
 
 
@@ -147,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/12/14/分布式session/">
+  <link rel="canonical" href="http://yoursite.com/2020/03/18/jvm学习第二天-虚拟机执行子系统/">
 
 
 
 
 
-  <title>分布式session | Byy</title>
+  <title>jvm学习第二天-虚拟机执行子系统 | Byy</title>
   
 
 
@@ -312,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/14/分布式session/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/jvm学习第二天-虚拟机执行子系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yang295513">
@@ -329,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">分布式session</h1>
+          <h1 class="post-title" itemprop="name headline">jvm学习第二天-虚拟机执行子系统</h1>
         
 
         <div class="post-meta">
@@ -341,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-14T15:21:08+08:00">
-                2019-12-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T15:33:15+08:00">
+                2020-03-18
               </time>
             
 
@@ -351,28 +353,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习/" itemprop="url" rel="index">
-                    <span itemprop="name">学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -401,20 +381,41 @@
       
 
       
-        <h2 id="分布式session入门"><a href="#分布式session入门" class="headerlink" title="分布式session入门"></a>分布式session入门</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>我院大佬要安排一个项目，有一块要有人负责session这一块，于是乎没人想学，我就接下这个活了，希望自己能理解的不错吧。</p>
-</blockquote>
-<h3 id="session介绍"><a href="#session介绍" class="headerlink" title="session介绍"></a>session介绍</h3><h4 id="session简介"><a href="#session简介" class="headerlink" title="session简介"></a>session简介</h4><p>session是一次浏览器和服务器的交互会话，那会话又是什么呢，牛津词典的解释是进行某个活动连续的一段时间。</p>
-<h4 id="session作用"><a href="#session作用" class="headerlink" title="session作用"></a>session作用</h4><h3 id="session复制"><a href="#session复制" class="headerlink" title="session复制"></a>session复制</h3><h4 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h4><p>任何一个服务器上的session发生改变（增删改），该节点会把这个 session的所有内容序列化，然后广播给所有其它节点，不管其他服务器需不需要session，以此来保证Session同步。</p>
-<p>优点：如果其中一个服务器挂掉不会影响这个服务器集群。</p>
-<p>缺点：如果用户访问量非常庞大，那么个个服务器之间进行session同步的次数会非常的多，以至于占用大量内网带宽</p>
-<h4 id="演示"><a href="#演示" class="headerlink" title="演示:"></a>演示:</h4><p>1.复制多分tomcat</p>
-<p>2.设置每个tomcat的server.xml来开启tomcat集群功能</p>
-<p>3.在web.xml中添加信息：通知应用当前在集群环境中。</p>
-<h3 id="粘性session"><a href="#粘性session" class="headerlink" title="粘性session"></a>粘性session</h3><p>原理：粘性Session是指将用户锁定到某一个服务器上，比如上面说的例子，用户第一次请求时，负载均衡器将用户的请求转发到了A服务器上，如果负载均衡器设置了粘性Session的话，那么用户以后的每次请求都会转发到A服务器上，相当于把用户和A服务器粘到了一块，这就是粘性Session机制。</p>
-<p>优点：简单，不需要对session做任何处理。</p>
-<p>缺点：缺乏容错性，如果当前访问的服务器发生故障，用户被转移到第二个服务器上时，他的session信息都将失效。</p>
-<p>适用场景：发生故障对客户产生的影响较小；服务器发生故障是低概率事件。</p>
+        <h2 id="字节码简介"><a href="#字节码简介" class="headerlink" title="字节码简介"></a>字节码简介</h2><p>Java字节码指令由一个字节长度的，代表某种特定操作含义的数字（操作码）以及其后的零至多个代表此操作所需参数（操作数）。此外字节码指令是面向操作数栈的，这里操作数栈在功能上对应实体机的寄存器但是结构上有所区别。</p>
+<h3 id="字节码与数据类型"><a href="#字节码与数据类型" class="headerlink" title="字节码与数据类型"></a>字节码与数据类型</h3><p>在字节码指令集中，大多数指令都对应的其操作所对应的数据类型信息，比如iload表示从局部变量表中加载int型的数据到操作栈中，fload从局部变量表中加载float型的数据到操作栈中…但是由于Java字节码的操作码只有一个字节（即0~255），这意味着指令集的操作码总数不可能超过256条。所以如果要求Java运行时所有的数据类型都有对应的与数据类型相关的指令去支持的话，操作码的总数将超过256条。所以JAVA字节码指令集被设计为Not Orthogonal（非完全独立）,即并非每种数据类型和每种操作都有对应的指令，有一些指令可以在必要的时候将一些不被支持的数据类型转换为被支持的数据类型。我们可以以数据类型为列，操作指令为行制作一张表，其中为空的项即说明虚拟机不支持对这种数据类型进行这项操作。</p>
+<h3 id="加载和存储指令"><a href="#加载和存储指令" class="headerlink" title="加载和存储指令"></a>加载和存储指令</h3><p>加载和存储指令用于将数据在帧栈中的局部变量表和操作数栈之间传输。</p>
+<p>将一个局部变量表加载到操作数栈：<br>iload、iload_<n>、lload、lload_<n>、fload、fload_<n>、dload、dload_<n>、aload、aload_<n>。<br>将一个数值从操作数栈储存到局部变量表：<br>istore,istore_<n>,lstore,lstore_<n>,fstore,fstore_<n>,dstore,dstore_<n>,astore,astore_<n></n></n></n></n></n></n></n></n></n></n></p>
+<p>运算指令</p>
+<p>运算指令用于对操作数栈上的值进行某种特定的运算。</p>
+<p>加法运算：iadd,ladd,fadd,dadd。<br>减法运算：isub,lsub,fsub,dsub。<br>乘法运算：imul,lmul,fmul,dmul。<br>除法运算：idiv,ldiv,fdiv,ddiv。<br>求余指令：irem,lrem,frem,drem。<br>取反指令：imeg,lmeg,fmeg,dmeg。<br>位移指令：ishl,ishr,iushr,lshl,lshr,lushr。<br>按位或指令：ior,lor。<br>按位与指令：iand,land。<br>按位异或指令：ixor,lxor。<br>局部变量自增指令：iinc。<br>比较指令：dcmpg,dcmpl,fcmpg,fcmpl,lcmp。<br>注：只有在除法指令（idiv,ldiv)和求余指令（irem,lrem)当出现除数为零时会导致虚拟机抛出AirtmeticException异常，其余整形和浮点型运算场景都不会抛出异常</p>
+<h3 id="类型转换指令"><a href="#类型转换指令" class="headerlink" title="类型转换指令"></a>类型转换指令</h3><p>类型转换指令可以将两种不同数值类型进行相互转换。<br>Java虚拟机天然支持基本数据类型的宽化类型转换，例如int到long、flost、double等。<br>对于窄化数据类型转化则必须用显示的转换指令：</p>
+<p>i2b(int -&gt; boolean)<br>i2c(int -&gt; char)<br>i2s(int -&gt; short)<br>l2i(long -&gt; int)<br>f2i(float -&gt; int)<br>f2l(float -&gt; long)<br>d2i(double -&gt; int)<br>d2l(double -&gt; long)<br>d2f(double -&gt; float)</p>
+<h3 id="对象创建与访问指令"><a href="#对象创建与访问指令" class="headerlink" title="对象创建与访问指令"></a>对象创建与访问指令</h3><p>创建类实例的指令：new<br>创建数组的指令：newarray,anewarray,multianewarray<br>访问类字段（static字段）和实例字段（非static字段）的指令：getfield,putfield,getstatic,putstatic<br>将一个数组元素加载到操作数栈的指令:<br>baload,caload,saload,iaload,faload,daload,aaload<br>将一个操作数栈的值存储到数组元素中的指令：<br>bastore,castore,iastore,sastore,fastore,fastore,dastore,aastore<br>取数组长度的指令：arraylength<br>检查类实例类型的指令：instanceof,checkcast</p>
+<h3 id="操作数栈管理指令"><a href="#操作数栈管理指令" class="headerlink" title="操作数栈管理指令"></a>操作数栈管理指令</h3><p>将一个操作数栈的栈顶一个或两个元素出栈：pop、pop2。<br>复制栈顶一个或两个数值并将复制值或双份的复制值重新压入栈顶：dup、dup2、dup_x1,dup2_x1,dup_x2,dup2_x2。<br>将栈顶端的两个数值交换：swap。<br>控制转移指令</p>
+<p>控制转移指令可以让Java虚拟机有条件或者无条件的从指定的位置而不是控制转移指令的下一条指令继续执行程序。</p>
+<h3 id="条件分支："><a href="#条件分支：" class="headerlink" title="条件分支："></a>条件分支：</h3><p>ifeq,ifit,ifle,ifgt,ifnull,ifnonnull,if_icmpeq,if_icmpne,if_icmplt,if_icmpgt,if_icmple,if_icmpge,if_acmpeq,if_acmpne。<br>复合条件分支：tableswitch,lookupswitch。<br>无条件分支：gosto,goto_w,jsr,jsr_w,ret。</p>
+<h3 id="方法调用和返回指令"><a href="#方法调用和返回指令" class="headerlink" title="方法调用和返回指令"></a>方法调用和返回指令</h3><p>invokevirtual:用于调用对象的实例方法，根据对象的实际类型进行分派（虚方法分派）。<br>invokeinterface:用于调用接口方法，它在运行时搜索一个实现了这个接口方法的对象，找出适合的方法进行调用。<br>invokespecial:用于调用一些需要特殊处理的实例方法，包括实例的初始化方法，私有方法和父类方法。<br>invokestatic:用于调用类方法（static方法）<br>invokedynamic:用于运行时动态解析出调用点限定符所应用的方法，并执行该方法。（前面的分派逻辑都固化在虚拟机内部，而该指令的分派逻辑是由用户自定义）。<br>方法返回指令：ireture(返回类型是int,short,byte,char,boolean时),lreturn,freturn,dreturn,areturn,另外还有一条return供void方法、实例/类/接口的初始化方法使用。</p>
+<h3 id="异常处理指令"><a href="#异常处理指令" class="headerlink" title="异常处理指令"></a>异常处理指令</h3><p>显式抛出异常指令：athrow</p>
+<h3 id="同步指令"><a href="#同步指令" class="headerlink" title="同步指令"></a>同步指令</h3><p>monitorenter,monitorexit</p>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassFileDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(run());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">run</span><span class="params">()</span></span>&#123;<span class="comment">//结果为1</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> a=<span class="number">2</span>/<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> 0 iconst_2//将常量int类型2推送到栈顶</span><br><span class="line"> 1 istore_0//将栈顶int型数值存入第一个本地变量</span><br><span class="line"> 2 iconst_m1//将int型(-1)推送至栈顶</span><br><span class="line"> 3 istore_1//将栈顶int型数值存入第二个本地变量</span><br><span class="line"> 4 iconst_1//将常量int类型1推送到栈顶</span><br><span class="line"> 5 ireturn//返回栈顶的值</span><br><span class="line"> 6 astore_0//将栈顶引用型数值存入第一个本地变量0x4中</span><br><span class="line"> 7 iconst_0//将栈顶int型数值存入第一个本地变量</span><br><span class="line"> 8 istore_1//将栈顶int型数值存入第二个本地变量</span><br><span class="line"> 9 iconst_1//将常量int类型1推送到栈顶</span><br><span class="line">10 ireturn//返回栈顶的值</span><br><span class="line">11 astore_2</span><br><span class="line">12 iconst_1</span><br><span class="line">13 ireturn//返回栈顶的值</span><br></pre></td></tr></table></figure>
+
+<h2 id="虚拟类的加载机制"><a href="#虚拟类的加载机制" class="headerlink" title="虚拟类的加载机制"></a>虚拟类的加载机制</h2><p><img src="upload/1584518921018.png" alt="1584518921018"></p>
+<h3 id="类加载时机"><a href="#类加载时机" class="headerlink" title="类加载时机"></a>类加载时机</h3><p>java语言中类型的加载连接以及初始化过程都是在程序运行期间完成的，这种策略虽然会使类加载时稍微增加一些性能开销，但是会为java应用程序提供高度的灵活性。java里天生就可以动态扩展语言特性就是依赖运行期间动态加载和动态连接这个特点实现的。比如，如果编写一个面向接口的程序，可以等到运行时再指定其具体实现类。（解析阶段则不一定:在某些情况下可以在初始化阶段之后开始，这是为了支持java语言的运行时绑定特性(也称为动态绑定或晚期绑定).</p>
+<p><strong>加载” 是 “类加载” 过程的一个阶段，切不可将二者混淆。</strong></p>
+<h4 id="加载阶段由三个基本动作组成："><a href="#加载阶段由三个基本动作组成：" class="headerlink" title="加载阶段由三个基本动作组成："></a>加载阶段由三个基本动作组成：</h4><p>1) 通过类型的完全限定名，产生一个代表该类型的二进制数据流（根本没有指明从哪里获取、怎样获取，可以说一个非常开放的平台了）</p>
+<p>2) 解析这个二进制数据流为方法区内的运行时数据结构</p>
+<p>3) 创建一个表示该类型的java.lang.Class类的实例，作为方法区这个类的各种数据的访问入口。</p>
+<h3 id="主动加载和被动加载"><a href="#主动加载和被动加载" class="headerlink" title="主动加载和被动加载"></a>主动加载和被动加载</h3><p>主动加载和被动加载的区别在于，主动加载会触发类的初始化。</p>
+<h3 id="类必须初始化的6种情况"><a href="#类必须初始化的6种情况" class="headerlink" title="类必须初始化的6种情况"></a>类必须初始化的6种情况</h3><ul>
+<li>使用new关键字实例化对象的时候、读取或设置一个类的静态字段的时候，已经调用一个类的静态方法的时候。</li>
+<li>使用java.lang.reflect包的方法对类进行反射调用的时候，如果类没有初始化，则需要先触发其初始化。</li>
+<li>当初始化一个类的时候，如果发现其父类没有被初始化就会先初始化它的父类。</li>
+<li>当虚拟机启动的时候，用户需要指定一个要执行的主类（就是包含main()方法的那个类），虚拟机会先初始化这个类；</li>
+<li>使用Jdk1.7动态语言支持的时候的一些情况。</li>
+<li>当一个接口中定义了JDK8新加入的默认方法(被default关键字修饰的接口方法时，如果这个接口的实现类发生了初始化，那么该接口要在其之前被初始化)</li>
+</ul>
 
       
     </div>
@@ -435,7 +436,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/12/14/分布式session/" title="分布式session">http://yoursite.com/2019/12/14/分布式session/</a>
+    <a href="http://yoursite.com/2020/03/18/jvm学习第二天-虚拟机执行子系统/" title="jvm学习第二天-虚拟机执行子系统">http://yoursite.com/2020/03/18/jvm学习第二天-虚拟机执行子系统/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -450,19 +451,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/编程/" rel="tag"># 编程</a>
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
           
-            <a href="/tags/日常学习/" rel="tag"># 日常学习</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
-            <a href="/tags/分布式/" rel="tag"># 分布式</a>
-          
-            <a href="/tags/Spring/" rel="tag"># Spring</a>
-          
-            <a href="/tags/SSM/" rel="tag"># SSM</a>
-          
-            <a href="/tags/Mybatis/" rel="tag"># Mybatis</a>
-          
-            <a href="/tags/习惯/" rel="tag"># 习惯</a>
+            <a href="/tags/虚拟机/" rel="tag"># 虚拟机</a>
           
         </div>
       
@@ -475,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/27/安阳师院软件学院报名系统使用流程/" rel="next" title="安阳师院软件学院报名系统使用流程">
-                <i class="fa fa-chevron-left"></i> 安阳师院软件学院报名系统使用流程
+              <a href="/2020/03/15/JAVA反射详解/" rel="next" title="JAVA反射详解">
+                <i class="fa fa-chevron-left"></i> JAVA反射详解
               </a>
             
           </div>
@@ -484,10 +477,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/19/卡特兰数详解/" rel="prev" title="卡特兰数详解">
-                卡特兰数详解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -619,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式session入门"><span class="nav-number">1.</span> <span class="nav-text">分布式session入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session介绍"><span class="nav-number">1.2.</span> <span class="nav-text">session介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#session简介"><span class="nav-number">1.2.1.</span> <span class="nav-text">session简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#session作用"><span class="nav-number">1.2.2.</span> <span class="nav-text">session作用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session复制"><span class="nav-number">1.3.</span> <span class="nav-text">session复制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原理："><span class="nav-number">1.3.1.</span> <span class="nav-text">原理：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示"><span class="nav-number">1.3.2.</span> <span class="nav-text">演示:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#粘性session"><span class="nav-number">1.4.</span> <span class="nav-text">粘性session</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字节码简介"><span class="nav-number">1.</span> <span class="nav-text">字节码简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节码与数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">字节码与数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载和存储指令"><span class="nav-number">1.2.</span> <span class="nav-text">加载和存储指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换指令"><span class="nav-number">1.3.</span> <span class="nav-text">类型转换指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象创建与访问指令"><span class="nav-number">1.4.</span> <span class="nav-text">对象创建与访问指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作数栈管理指令"><span class="nav-number">1.5.</span> <span class="nav-text">操作数栈管理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件分支："><span class="nav-number">1.6.</span> <span class="nav-text">条件分支：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法调用和返回指令"><span class="nav-number">1.7.</span> <span class="nav-text">方法调用和返回指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理指令"><span class="nav-number">1.8.</span> <span class="nav-text">异常处理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步指令"><span class="nav-number">1.9.</span> <span class="nav-text">同步指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码分析"><span class="nav-number">1.10.</span> <span class="nav-text">代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟类的加载机制"><span class="nav-number">2.</span> <span class="nav-text">虚拟类的加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类加载时机"><span class="nav-number">2.1.</span> <span class="nav-text">类加载时机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载阶段由三个基本动作组成："><span class="nav-number">2.1.1.</span> <span class="nav-text">加载阶段由三个基本动作组成：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主动加载和被动加载"><span class="nav-number">2.2.</span> <span class="nav-text">主动加载和被动加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类必须初始化的6种情况"><span class="nav-number">2.3.</span> <span class="nav-text">类必须初始化的6种情况</span></a></li></ol></li></ol></div>
             
 
           </div>
