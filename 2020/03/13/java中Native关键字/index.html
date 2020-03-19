@@ -106,18 +106,18 @@
 
 
 
-<meta name="description" content="Native 今天在看java.lang.Object类的时候发现有个静态代码块由Native修饰，并且很疑惑。  native关键字说明被修饰的方法是一个原生态方法，并且方法的实现并不是由java来实现的，而是通过其他语言实现的，例如C++，也可以理解为这是一个java平台和本地c代码交互的API全称Java Native Interface，简称JNI。 来着百科对JNI的解释SUN公司发布的">
+<meta name="description" content="Native 今天在看java.lang.Object类的时候发现有个静态代码块由Native修饰，并且很疑惑。  native关键字说明被修饰的方法是一个原生态方法，并且方法的实现并不是由java来实现的，而是通过其他语言实现的，例如C++，也可以理解为这是一个java平台和本地c代码交互的API全称Java Native Interface，简称JNI。 为什么需要有这个关键字呢 与java环">
 <meta name="keywords" content="java,JNI,Java Native Interface">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java中Native关键字">
 <meta property="og:url" content="http://yoursite.com/2020/03/13/java中Native关键字/index.html">
 <meta property="og:site_name" content="Byy">
-<meta property="og:description" content="Native 今天在看java.lang.Object类的时候发现有个静态代码块由Native修饰，并且很疑惑。  native关键字说明被修饰的方法是一个原生态方法，并且方法的实现并不是由java来实现的，而是通过其他语言实现的，例如C++，也可以理解为这是一个java平台和本地c代码交互的API全称Java Native Interface，简称JNI。 来着百科对JNI的解释SUN公司发布的">
+<meta property="og:description" content="Native 今天在看java.lang.Object类的时候发现有个静态代码块由Native修饰，并且很疑惑。  native关键字说明被修饰的方法是一个原生态方法，并且方法的实现并不是由java来实现的，而是通过其他语言实现的，例如C++，也可以理解为这是一个java平台和本地c代码交互的API全称Java Native Interface，简称JNI。 为什么需要有这个关键字呢 与java环">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-13T09:56:23.944Z">
+<meta property="og:updated_time" content="2020-03-19T08:55:29.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java中Native关键字">
-<meta name="twitter:description" content="Native 今天在看java.lang.Object类的时候发现有个静态代码块由Native修饰，并且很疑惑。  native关键字说明被修饰的方法是一个原生态方法，并且方法的实现并不是由java来实现的，而是通过其他语言实现的，例如C++，也可以理解为这是一个java平台和本地c代码交互的API全称Java Native Interface，简称JNI。 来着百科对JNI的解释SUN公司发布的">
+<meta name="twitter:description" content="Native 今天在看java.lang.Object类的时候发现有个静态代码块由Native修饰，并且很疑惑。  native关键字说明被修饰的方法是一个原生态方法，并且方法的实现并不是由java来实现的，而是通过其他语言实现的，例如C++，也可以理解为这是一个java平台和本地c代码交互的API全称Java Native Interface，简称JNI。 为什么需要有这个关键字呢 与java环">
 
 
 
@@ -405,6 +405,10 @@
 <p>今天在看java.lang.Object类的时候发现有个静态代码块由Native修饰，并且很疑惑。</p>
 </blockquote>
 <p>native关键字说明被修饰的方法是一个原生态方法，并且方法的实现并不是由java来实现的，而是通过其他语言实现的，例如C++，也可以理解为这是一个java平台和本地c代码交互的API全称<strong>Java Native Interface</strong>，简称<strong>JNI</strong>。</p>
+<h3 id="为什么需要有这个关键字呢"><a href="#为什么需要有这个关键字呢" class="headerlink" title="为什么需要有这个关键字呢"></a>为什么需要有这个关键字呢</h3><ul>
+<li>与java环境外交互，这是本地方法存在的主要原因</li>
+<li>有些需求的实现对于java来说非常困难，而且有性能问题的时候需要借助本地方法实现</li>
+</ul>
 <h2 id="来着百科对JNI的解释"><a href="#来着百科对JNI的解释" class="headerlink" title="来着百科对JNI的解释"></a>来着百科对JNI的解释</h2><p><a href="https://baike.baidu.com/item/SUN公司/970256" target="_blank" rel="noopener">SUN公司</a>发布的Java 本地接口(JNI)提供了将<a href="https://baike.baidu.com/item/Java/85979" target="_blank" rel="noopener">Java</a>与C/C++、汇编等本地代码集成的方案，该规范使得在 Java 虚拟机内运行的 Java 代码能够与其它编程语言互相操作，包括创建本地方法、更新Java对象、调用Java方法，引用 Java类，捕捉和抛出异常等，也允许 Java代码调用 C/C++或汇编语言编写的程序和库。作为一个标准程序接口，它没有对底层 Java虚拟机的实现施加任何限制，并具有以下特点：</p>
 <p>二进制兼容。本地方法库与同一平台上所有Java 虚拟机之间实现二进制兼容，即对于给定平台开发人员只需要维护一种版本的本地方法库。</p>
 <p>效率高。为了实现实时系统，JNI 在效率与虚拟机无关性之间进行了优化，以保障高效运行。</p>
@@ -553,7 +557,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -575,7 +579,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -608,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Native"><span class="nav-number">1.</span> <span class="nav-text">Native</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#来着百科对JNI的解释"><span class="nav-number">2.</span> <span class="nav-text">来着百科对JNI的解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例代码"><span class="nav-number">2.1.</span> <span class="nav-text">示例代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Native"><span class="nav-number">1.</span> <span class="nav-text">Native</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要有这个关键字呢"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要有这个关键字呢</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#来着百科对JNI的解释"><span class="nav-number">2.</span> <span class="nav-text">来着百科对JNI的解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例代码"><span class="nav-number">2.1.</span> <span class="nav-text">示例代码</span></a></li></ol></li></ol></div>
             
 
           </div>

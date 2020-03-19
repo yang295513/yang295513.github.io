@@ -114,12 +114,13 @@
 <meta property="og:site_name" content="Byy">
 <meta property="og:description" content="字节码简介Java字节码指令由一个字节长度的，代表某种特定操作含义的数字（操作码）以及其后的零至多个代表此操作所需参数（操作数）。此外字节码指令是面向操作数栈的，这里操作数栈在功能上对应实体机的寄存器但是结构上有所区别。 字节码与数据类型在字节码指令集中，大多数指令都对应的其操作所对应的数据类型信息，比如iload表示从局部变量表中加载int型的数据到操作栈中，fload从局部变量表中加载floa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/upload/1584518921018.png">
-<meta property="og:updated_time" content="2020-03-18T12:51:28.196Z">
+<meta property="og:image" content="http://yoursite.com/upload/1584595655988.png">
+<meta property="og:image" content="http://yoursite.com/upload/1584597510376.png">
+<meta property="og:updated_time" content="2020-03-19T06:16:15.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm学习第二天-虚拟机执行子系统">
 <meta name="twitter:description" content="字节码简介Java字节码指令由一个字节长度的，代表某种特定操作含义的数字（操作码）以及其后的零至多个代表此操作所需参数（操作数）。此外字节码指令是面向操作数栈的，这里操作数栈在功能上对应实体机的寄存器但是结构上有所区别。 字节码与数据类型在字节码指令集中，大多数指令都对应的其操作所对应的数据类型信息，比如iload表示从局部变量表中加载int型的数据到操作栈中，fload从局部变量表中加载floa">
-<meta name="twitter:image" content="http://yoursite.com/upload/1584518921018.png">
+<meta name="twitter:image" content="http://yoursite.com/upload/1584595655988.png">
 
 
 
@@ -397,11 +398,12 @@
 <h3 id="方法调用和返回指令"><a href="#方法调用和返回指令" class="headerlink" title="方法调用和返回指令"></a>方法调用和返回指令</h3><p>invokevirtual:用于调用对象的实例方法，根据对象的实际类型进行分派（虚方法分派）。<br>invokeinterface:用于调用接口方法，它在运行时搜索一个实现了这个接口方法的对象，找出适合的方法进行调用。<br>invokespecial:用于调用一些需要特殊处理的实例方法，包括实例的初始化方法，私有方法和父类方法。<br>invokestatic:用于调用类方法（static方法）<br>invokedynamic:用于运行时动态解析出调用点限定符所应用的方法，并执行该方法。（前面的分派逻辑都固化在虚拟机内部，而该指令的分派逻辑是由用户自定义）。<br>方法返回指令：ireture(返回类型是int,short,byte,char,boolean时),lreturn,freturn,dreturn,areturn,另外还有一条return供void方法、实例/类/接口的初始化方法使用。</p>
 <h3 id="异常处理指令"><a href="#异常处理指令" class="headerlink" title="异常处理指令"></a>异常处理指令</h3><p>显式抛出异常指令：athrow</p>
 <h3 id="同步指令"><a href="#同步指令" class="headerlink" title="同步指令"></a>同步指令</h3><p>monitorenter,monitorexit</p>
-<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassFileDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(run());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">run</span><span class="params">()</span></span>&#123;<span class="comment">//结果为1</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> a=<span class="number">2</span>/<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> b=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> c=a+b;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> 0 iconst_2//将常量int类型2推送到栈顶</span><br><span class="line"> 1 istore_0//将栈顶int型数值存入第一个本地变量</span><br><span class="line"> 2 iconst_m1//将int型(-1)推送至栈顶</span><br><span class="line"> 3 istore_1//将栈顶int型数值存入第二个本地变量</span><br><span class="line"> 4 iconst_1//将常量int类型1推送到栈顶</span><br><span class="line"> 5 ireturn//返回栈顶的值</span><br><span class="line"> 6 astore_0//将栈顶引用型数值存入第一个本地变量0x4中</span><br><span class="line"> 7 iconst_0//将栈顶int型数值存入第一个本地变量</span><br><span class="line"> 8 istore_1//将栈顶int型数值存入第二个本地变量</span><br><span class="line"> 9 iconst_1//将常量int类型1推送到栈顶</span><br><span class="line">10 ireturn//返回栈顶的值</span><br><span class="line">11 astore_2</span><br><span class="line">12 iconst_1</span><br><span class="line">13 ireturn//返回栈顶的值</span><br></pre></td></tr></table></figure>
+<p><img src="/upload/1584595655988.png" alt="1584595655988"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 0 bipush 10//存入10到操作数栈</span><br><span class="line"> 2 istore_1//弹出栈顶元素存入位置1的局部变量中,而且位置1对应的是a</span><br><span class="line"> 3 bipush 10//存入10到操作数栈</span><br><span class="line"> 5 istore_2//弹出栈顶元素存入位置2的局部变量中,而且位置2对应的是b</span><br><span class="line"> 6 iload_1//取出局部变量表1位置的int型变量存放在栈顶</span><br><span class="line"> 7 iload_2//取出局部变量表2位置的int型变量存放在栈顶</span><br><span class="line"> 8 iadd//弹出操作数栈的两个元素求和并把结果存入操作数栈中</span><br><span class="line"> 9 istore_3//弹出操作数栈顶元素存放在局部变量表3的位置，对应变量为c</span><br><span class="line">10 return</span><br></pre></td></tr></table></figure>
 
-<h2 id="虚拟类的加载机制"><a href="#虚拟类的加载机制" class="headerlink" title="虚拟类的加载机制"></a>虚拟类的加载机制</h2><p><img src="/upload/1584518921018.png" alt="1584518921018"></p>
+<h2 id="虚拟类的加载机制"><a href="#虚拟类的加载机制" class="headerlink" title="虚拟类的加载机制"></a>虚拟类的加载机制</h2><p><img src="/upload/1584597510376.png" alt="1584597510376"></p>
 <h3 id="类加载时机"><a href="#类加载时机" class="headerlink" title="类加载时机"></a>类加载时机</h3><p>java语言中类型的加载连接以及初始化过程都是在程序运行期间完成的，这种策略虽然会使类加载时稍微增加一些性能开销，但是会为java应用程序提供高度的灵活性。java里天生就可以动态扩展语言特性就是依赖运行期间动态加载和动态连接这个特点实现的。比如，如果编写一个面向接口的程序，可以等到运行时再指定其具体实现类。（解析阶段则不一定:在某些情况下可以在初始化阶段之后开始，这是为了支持java语言的运行时绑定特性(也称为动态绑定或晚期绑定).</p>
 <p><strong>加载” 是 “类加载” 过程的一个阶段，切不可将二者混淆。</strong></p>
 <h4 id="加载阶段由三个基本动作组成："><a href="#加载阶段由三个基本动作组成：" class="headerlink" title="加载阶段由三个基本动作组成："></a>加载阶段由三个基本动作组成：</h4><p>1) 通过类型的完全限定名，产生一个代表该类型的二进制数据流（根本没有指明从哪里获取、怎样获取，可以说一个非常开放的平台了）</p>
@@ -416,6 +418,110 @@
 <li>使用Jdk1.7动态语言支持的时候的一些情况。</li>
 <li>当一个接口中定义了JDK8新加入的默认方法(被default关键字修饰的接口方法时，如果这个接口的实现类发生了初始化，那么该接口要在其之前被初始化)</li>
 </ul>
+<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>加载”是“类加载”（Class Loading）过程的一个阶段。在加载阶段，虚拟机需要完成以下3件事情：</p>
+<ul>
+<li><p>通过一个类的全限定名来获取定义此类的二进制字节流。</p>
+</li>
+<li><p>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</p>
+</li>
+<li><p>在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口。</p>
+</li>
+</ul>
+<p>相对于类加载过程的其他阶段，一个非数组类的加载阶段（准确地说，是加载阶段中获取类的二进制字节流的动作）是开发人员可控性最强的，因为加载阶段既可以使用系统提供的引导类加载器来完成，也可以由用户自定义的类加载器去完成，开发人员可以通过定义自己的类加载器去控制字节流的获取方式（即重写一个类加载器的loadClass（）方法）。</p>
+<p>也就是说我们在加载的时候可以从很多地方加载，例如从压缩包加载，从网络加载，运行时计算生成等。</p>
+<p>加载阶段完成后，虚拟机外部的二进制字节流就按照虚拟机所需的格式存储在<strong>方法区</strong>之中，方法区中的数据存储格式由虚拟机实现自行定义，虚拟机规范未规定此区域的具体数据结构。然后在内存中实例化一个java.lang.Class类的对象（并没有明确规定是在Java堆中，对于HotSpot虚拟机而言，Class对象比较特殊，它虽然是对象，但是存放在方法区里面），这个对象将作为程序访问方法区中的这些类型数据的外部接口。</p>
+<h4 id="加载数组"><a href="#加载数组" class="headerlink" title="加载数组"></a>加载数组</h4><p>数组类本身不通过类加载器创建，它时有java虚拟机直接在内存中动态构造出来的，但数组类与类加载器仍然有很密切的关系，因为数组的元素类型（数组去掉所有维度的类型）最终还是要考类加载器来完成。</p>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>验证是链接阶段的第一步，这一步主要的目的是确保class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身安全。</p>
+<blockquote>
+<p> 因为仅仅依靠java代码层面一些无法做到的事情java代码也可以表示出来，例如数组越界，所以jvm的编译期在字节码上看见这种事情会直接拒绝编译</p>
+</blockquote>
+<p>验证阶段主要包括四个检验过程：文件格式验证、元数据验证、字节码验证和符号引用验证。</p>
+<h5 id="文件格式验证"><a href="#文件格式验证" class="headerlink" title="文件格式验证"></a>文件格式验证</h5><p>验证class文件格式规范，例如： class文件是否已魔术<strong>0xCAFEBABE</strong>开头 ， 主、次版本号是否在当前虚拟机处理范围之内等</p>
+<h5 id="元数据验证"><a href="#元数据验证" class="headerlink" title="元数据验证"></a>元数据验证</h5><p>这个阶段是对字节码描述的信息进行语义分析，以保证起描述的信息符合java语言规范要求。验证点可能包括：这个类是否有父类(除了java.lang.Object之外，所有的类都应当有父类)、这个类是否继承了不允许被继承的类(被final修饰的)、如果这个类的父类是抽象类，是否实现了起父类或接口中要求实现的所有方法。</p>
+<h5 id="字节码验证"><a href="#字节码验证" class="headerlink" title="字节码验证"></a>字节码验证</h5><p>进行数据流和控制流分析，这个阶段对类的方法体进行校验分析，这个阶段的任务是保证被校验类的方法在运行时不会做出危害虚拟机安全的行为。如：保证访法体中的类型转换有效，例如可以把一个子类对象赋值给父类数据类型，这是安全的，但不能把一个父类对象赋值给子类数据类型、保证跳转命令不会跳转到方法体以外的字节码命令上。</p>
+<h5 id="符号引用验证"><a href="#符号引用验证" class="headerlink" title="符号引用验证"></a>符号引用验证</h5><h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>准备阶段是正式为类变量分配内存并设置类变量初始值的阶段，这些内存都将在<strong>方法区(方法区是一个逻辑上的区域，在JDK7之前，HoSpot使用永久代来实现方法区，这是符合这种逻辑概念的，但是在JDK8及其以后类变量会随着Class对象一起放在java堆中)</strong>中进行分配<strong>。这个阶段中有两个容易产生混淆的知识点，</strong>首先是这时候进行内存分配的仅包括类变量(static 修饰的变量),而不包括实例变量<strong>，</strong>实例变量将会在对象实例化时随着对象一起分配在java堆中<strong>。其次是这里所说的初始值“通常情况”下是数据类型的零值，假设一个类变量定义为:<br>**public static int value = 12;</strong></p>
+<p>那么变量value在准备阶段过后的<strong>初始值为0</strong>而不是12，因为这时候尚未开始执行任何java方法，而把value赋值为123的putstatic指令是程序被编译后，存放于类构造器()方法之中，所以把value赋值为12的动作将在初始化阶段才会被执行。</p>
+<p>上面所说的“通常情况”下初始值是零值，那相对于一些特殊的情况，如果类字段的字段属性表中存在ConstantValue属性，那在准备阶段变量value就会被初始化为ConstantValue属性所指定的值，建设上面类变量value定义为：<br><strong>public static final int value = 123;</strong></p>
+<p>编译时javac将会为value生成ConstantValue属性，在准备阶段虚拟机就会根据ConstantValue的设置将value设置为123</p>
+<table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">零值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">0L</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">(short)0</td>
+</tr>
+<tr>
+<td align="center">char</td>
+<td align="center">‘\u0000’</td>
+</tr>
+<tr>
+<td align="center">byte</td>
+<td align="center">(byte)0</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">false</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">0.0f</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">0.0d</td>
+</tr>
+<tr>
+<td align="center">reference</td>
+<td align="center">null</td>
+</tr>
+</tbody></table>
+<h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><blockquote>
+<p> 解析阶段是虚拟机常量池内的符号引用替换为直接引用的过程。</p>
+</blockquote>
+<h5 id="符号引用："><a href="#符号引用：" class="headerlink" title="符号引用："></a>符号引用：</h5><p>符号引用是一组符号来描述所引用的目标对象，符号可以是任何形式的字面量，只要使用时能无歧义地定位到目标即可。符号引用与虚拟机实现的内存布局无关，引用的目标对象并不一定已经加载到内存中。</p>
+<h5 id="直接引用："><a href="#直接引用：" class="headerlink" title="直接引用："></a>直接引用：</h5><p>直接引用可以是直接指向目标对象的指针、相对偏移量或是一个能间接定位到目标的句柄。直接引用是与虚拟机内存布局实现相关的，同一个符号引用在不同虚拟机实例上翻译出来的直接引用一般不会相同，如果有了直接引用，那引用的目标必定已经在内存中存在。</p>
+<p>虚拟机规范并没有规定解析阶段发生的具体时间，只要求了在执行anewarry、checkcast、getfield、instanceof、invokeinterface、invokespecial、invokestatic、invokevirtual、multianewarray、new、putfield和putstatic这13个用于操作符号引用的字节码指令之前，先对它们使用的符号引用进行解析，所以虚拟机实现会根据需要来判断，到底是在类被加载器加载时就对常量池中的符号引用进行解析，还是等到一个符号引用将要被使用前才去解析它。</p>
+<p>解析的动作主要针对类或接口、字段、类方法、接口方法四类符号引用进行。分别对应编译后常量池内的CONSTANT_Class_Info、CONSTANT_Fieldref_Info、CONSTANT_Methodef_Info、CONSTANT_InterfaceMethoder_Info四种常量类型。</p>
+<ul>
+<li><p>类、接口的解析</p>
+</li>
+<li><p>字段解析</p>
+</li>
+<li><p>类方法解析</p>
+</li>
+<li><p>接口方法解析</p>
+</li>
+</ul>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>类的初始化阶段是类加载过程的最后一步，在准备阶段，类变量已赋过一次系统要求的初始值，而在初始化阶段，则是根据程序员通过程序制定的主观计划去初始化类变量和其他资源，或者可以从另外一个角度来表达：初始化阶段是执行类构造器&lt; clinit &gt;()方法的过程。在以下四种情况下初始化过程会被触发执行：</p>
+<ul>
+<li><p>遇到new、getstatic、putstatic或invokestatic这4条字节码指令时，如果类没有进行过初始化，则需先触发其初始化。生成这4条指令的最常见的java代码场景是：使用new关键字实例化对象、读取或设置一个类的静态字段(被final修饰、已在编译器把结果放入常量池的静态字段除外)的时候，以及调用类的静态方法的时候。</p>
+</li>
+<li><p>使用java.lang.reflect包的方法对类进行反射调用的时候</p>
+</li>
+<li><p>当初始化一个类的时候，如果发现其父类还没有进行过初始化、则需要先出发其父类的初始化</p>
+</li>
+<li><p>jvm启动时，用户指定一个执行的主类(包含main方法的那个类)，虚拟机会先初始化这个类</p>
+</li>
+</ul>
+<p>在上面准备阶段 public static int value = 12; 在准备阶段完成后 value的值为0，而在初始化阶调用了类构造器&lt; clinit &gt;()方法，这个阶段完成后value的值为12。</p>
+<p>类构造器&lt; clinit &gt;()方法是由编译器自动收集类中的所有类变量的赋值动作和静态语句块(static块)中的语句合并产生的，<strong>编译器收集的顺序是由语句在源文件中出现的顺序所决定的</strong>，静态语句块中只能访问到定义在静态语句块之前的变量，定义在它之后的变量，在前面的静态语句快可以赋值，但是不能访问。</p>
+<p>类构造器&lt; clinit &gt;()方法与类的构造函数(实例构造函数&lt; init &gt;()方法)不同，<strong>它不需要显式调用父类构造，虚拟机会保证在子类&lt; clinit &gt;()方法执行之前，父类的&lt; clinit &gt;()方法已经执行完毕。因此在虚拟机中的第一个执行的&lt; clinit &gt;()方法的类肯定是java.lang.Object。</strong></p>
+<p>由于父类的&lt; clinit &gt;()方法先执行，也就意味着<strong>父类中定义的静态语句快要优先于子类的变量赋值操作</strong>。</p>
+<p>&lt; clinit &gt;()<strong>方法对于类或接口来说并不是必须的</strong>，如果一个类中没有静态语句，也没有变量赋值的操作，那么编译器可以不为这个类生成&lt; clinit &gt;()方法。</p>
+<p>接口中不能使用静态语句块，但接口与类不太能够的是，执行接口的&lt; clinit &gt;()方法不需要先执行父接口的&lt; clinit &gt;()方法。只有当父接口中定义的变量被使用时，父接口才会被初始化。另外，接口的实现类在初始化时也一样不会执行接口的&lt; clinit &gt;()方法。</p>
+<p>虚拟机会保证一个类的&lt; clinit &gt;()方法在多线程环境中被正确加锁和同步，<strong>如果多个线程同时去初始化一个类，那么只会有一个线程执行这个类的&lt; clinit &gt;()方法，其他线程都需要阻塞等待</strong>，直到活动线程执行&lt; clinit &gt;()方法完毕。如果一个类的&lt; clinit &gt;()方法中有耗时很长的操作，那就可能造成多个进程阻塞。</p>
 
       
     </div>
@@ -557,7 +663,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -579,7 +685,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -612,7 +718,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字节码简介"><span class="nav-number">1.</span> <span class="nav-text">字节码简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节码与数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">字节码与数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载和存储指令"><span class="nav-number">1.2.</span> <span class="nav-text">加载和存储指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换指令"><span class="nav-number">1.3.</span> <span class="nav-text">类型转换指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象创建与访问指令"><span class="nav-number">1.4.</span> <span class="nav-text">对象创建与访问指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作数栈管理指令"><span class="nav-number">1.5.</span> <span class="nav-text">操作数栈管理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件分支："><span class="nav-number">1.6.</span> <span class="nav-text">条件分支：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法调用和返回指令"><span class="nav-number">1.7.</span> <span class="nav-text">方法调用和返回指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理指令"><span class="nav-number">1.8.</span> <span class="nav-text">异常处理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步指令"><span class="nav-number">1.9.</span> <span class="nav-text">同步指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码分析"><span class="nav-number">1.10.</span> <span class="nav-text">代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟类的加载机制"><span class="nav-number">2.</span> <span class="nav-text">虚拟类的加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类加载时机"><span class="nav-number">2.1.</span> <span class="nav-text">类加载时机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载阶段由三个基本动作组成："><span class="nav-number">2.1.1.</span> <span class="nav-text">加载阶段由三个基本动作组成：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主动加载和被动加载"><span class="nav-number">2.2.</span> <span class="nav-text">主动加载和被动加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类必须初始化的6种情况"><span class="nav-number">2.3.</span> <span class="nav-text">类必须初始化的6种情况</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字节码简介"><span class="nav-number">1.</span> <span class="nav-text">字节码简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节码与数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">字节码与数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载和存储指令"><span class="nav-number">1.2.</span> <span class="nav-text">加载和存储指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换指令"><span class="nav-number">1.3.</span> <span class="nav-text">类型转换指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象创建与访问指令"><span class="nav-number">1.4.</span> <span class="nav-text">对象创建与访问指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作数栈管理指令"><span class="nav-number">1.5.</span> <span class="nav-text">操作数栈管理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件分支："><span class="nav-number">1.6.</span> <span class="nav-text">条件分支：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法调用和返回指令"><span class="nav-number">1.7.</span> <span class="nav-text">方法调用和返回指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理指令"><span class="nav-number">1.8.</span> <span class="nav-text">异常处理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步指令"><span class="nav-number">1.9.</span> <span class="nav-text">同步指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码分析"><span class="nav-number">1.10.</span> <span class="nav-text">代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟类的加载机制"><span class="nav-number">2.</span> <span class="nav-text">虚拟类的加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类加载时机"><span class="nav-number">2.1.</span> <span class="nav-text">类加载时机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载阶段由三个基本动作组成："><span class="nav-number">2.1.1.</span> <span class="nav-text">加载阶段由三个基本动作组成：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主动加载和被动加载"><span class="nav-number">2.2.</span> <span class="nav-text">主动加载和被动加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类必须初始化的6种情况"><span class="nav-number">2.3.</span> <span class="nav-text">类必须初始化的6种情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载"><span class="nav-number">2.4.</span> <span class="nav-text">加载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载数组"><span class="nav-number">2.4.1.</span> <span class="nav-text">加载数组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接"><span class="nav-number">2.5.</span> <span class="nav-text">连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证"><span class="nav-number">2.5.1.</span> <span class="nav-text">验证</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文件格式验证"><span class="nav-number">2.5.1.1.</span> <span class="nav-text">文件格式验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元数据验证"><span class="nav-number">2.5.1.2.</span> <span class="nav-text">元数据验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字节码验证"><span class="nav-number">2.5.1.3.</span> <span class="nav-text">字节码验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#符号引用验证"><span class="nav-number">2.5.1.4.</span> <span class="nav-text">符号引用验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#准备"><span class="nav-number">2.5.2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析"><span class="nav-number">2.5.3.</span> <span class="nav-text">解析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#符号引用："><span class="nav-number">2.5.3.1.</span> <span class="nav-text">符号引用：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#直接引用："><span class="nav-number">2.5.3.2.</span> <span class="nav-text">直接引用：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">2.6.</span> <span class="nav-text">初始化</span></a></li></ol></li></ol></div>
             
 
           </div>
