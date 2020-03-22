@@ -114,13 +114,13 @@
 <meta property="og:site_name" content="Byy">
 <meta property="og:description" content="boolean大小问题问题引入今天在看java编程思想的时候发现8个基本类型变量基本上都有明确的大小，但是boolean并没有大小。 解决来源是《Java虚拟机规范》一书中的描述：“虽然定义了boolean这种数据类型，但是只对它提供了非常有限的支持。在Java虚拟机中没有任何供boolean值专用的字节码指令，Java语言表达式所操作的boolean值，在编译之后都使用Java虚拟机中的int数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2020/03/19/java零碎小细节/upload/1584613675202.png">
+<meta property="og:image" content="http://yoursite.com/upload/1584613675202.png">
 <meta property="og:image" content="http://yoursite.com/upload/1584682306026.png">
-<meta property="og:updated_time" content="2020-03-20T07:26:28.549Z">
+<meta property="og:updated_time" content="2020-03-22T06:08:57.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java零碎小细节">
 <meta name="twitter:description" content="boolean大小问题问题引入今天在看java编程思想的时候发现8个基本类型变量基本上都有明确的大小，但是boolean并没有大小。 解决来源是《Java虚拟机规范》一书中的描述：“虽然定义了boolean这种数据类型，但是只对它提供了非常有限的支持。在Java虚拟机中没有任何供boolean值专用的字节码指令，Java语言表达式所操作的boolean值，在编译之后都使用Java虚拟机中的int数">
-<meta name="twitter:image" content="http://yoursite.com/2020/03/19/java零碎小细节/upload/1584613675202.png">
+<meta name="twitter:image" content="http://yoursite.com/upload/1584613675202.png">
 
 
 
@@ -394,7 +394,7 @@
 </li>
 </ul>
 <h3 id="JAVA何时加载静态语句块"><a href="#JAVA何时加载静态语句块" class="headerlink" title="JAVA何时加载静态语句块"></a>JAVA何时加载静态语句块</h3><p>父类静态代码块 &gt; 子类静态代码块 Java虚拟机加载类时，就会执行该块代码。<br>父类构造函数 &gt; 子类构造函数 （先有父亲，后有孩子）<br>如果是多级继承关系的话，高层的父类首先执行，然后依次递减。<br>总结：静态优先执行，父类优先于子类执行。 静态代码块是在JVM加载类的时候执行的，而且静态代码块执行且<strong>仅执行一次</strong></p>
-<h3 id="静态代码块什么时候开始执行"><a href="#静态代码块什么时候开始执行" class="headerlink" title="静态代码块什么时候开始执行"></a>静态代码块什么时候开始执行</h3><p><img src="upload/1584613675202.png" alt="1584613675202"></p>
+<h3 id="静态代码块什么时候开始执行"><a href="#静态代码块什么时候开始执行" class="headerlink" title="静态代码块什么时候开始执行"></a>静态代码块什么时候开始执行</h3><p><img src="/upload/1584613675202.png" alt="1584613675202"></p>
 <p>静态代码块在初始化阶段才会被执行，也就说单纯的类加载是不会执行静态代码块的。</p>
 <p>也就说有些情况是不会触发这个静态代码块的执行的。</p>
 <p><strong>主动加载和被动加载的区别在于，主动加载会触发类的初始化。</strong></p>
@@ -418,6 +418,16 @@
 <h3 id="Java中创建子类实例时会创建父类实例？"><a href="#Java中创建子类实例时会创建父类实例？" class="headerlink" title="Java中创建子类实例时会创建父类实例？"></a>Java中创建子类实例时会创建父类实例？</h3><p>首先每个类的这些元数据，无论是在构建这个类的实例还是调用这个类某个对象的方法，都会访问方法区的这些元数据。构建一个对象时，JVM会在堆中给对象分配空间，这些空间用来存储当前对象实例属性以及其父类的实例属性（而这些属性信息都是从方法区获得）</p>
 <p>注意，这里并不是仅仅为当前对象的实例属性分配空间，还需要给父类的实例属性分配。</p>
 <p>总之，会为父类分配堆内存，但是这块内存属于子类的堆内存。</p>
+<h3 id="i-和-i的区别"><a href="#i-和-i的区别" class="headerlink" title="i++和++i的区别"></a>i++和++i的区别</h3><p>i++和++i都会变成两个字节码指令</p>
+<ul>
+<li>iload 把局部变量表中的值加载到操作数栈中</li>
+<li>iinc * by * 第一个占位符表示局部变量表的位置，第二个表示该位置自增的数，比如inc 1 by 1就表示 1位置自增1</li>
+</ul>
+<p>注意只有这两条指令</p>
+<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><p>i++是先iload后 inc，++i是先inc后iload</p>
+<h4 id="陷阱"><a href="#陷阱" class="headerlink" title="陷阱"></a>陷阱</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnuTest</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">            a=a++;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如这行代码结果就是0，就是利用了这个坑，道理也很简单，每次a自增前都把当前值0加载到了操作数栈中，然后因为有个等于号对应指令就是把操作数栈中栈顶的值存入局部变量表中，也就是说a自增后又被重新覆盖为0了</p>
 
       
     </div>
@@ -476,8 +486,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/20/Integer陷阱/" rel="prev" title="Integer陷阱">
-                Integer陷阱 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/20/2-4操作系统进程同步/" rel="prev" title="2.4操作系统进程同步和2.5经典进程的同步问题">
+                2.4操作系统进程同步和2.5经典进程的同步问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -555,7 +565,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -577,7 +587,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -610,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#boolean大小问题"><span class="nav-number">1.</span> <span class="nav-text">boolean大小问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题引入"><span class="nav-number">1.1.</span> <span class="nav-text">问题引入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决"><span class="nav-number">1.2.</span> <span class="nav-text">解决</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用局部变量定义数组的时候数组会被初始化"><span class="nav-number">2.</span> <span class="nav-text">使用局部变量定义数组的时候数组会被初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题分析"><span class="nav-number">2.1.</span> <span class="nav-text">问题分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA何时加载静态语句块"><span class="nav-number">3.</span> <span class="nav-text">JAVA何时加载静态语句块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态代码块什么时候开始执行"><span class="nav-number">4.</span> <span class="nav-text">静态代码块什么时候开始执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主动加载的情况"><span class="nav-number">4.1.</span> <span class="nav-text">主动加载的情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类不被加载情况举例"><span class="nav-number">4.2.</span> <span class="nav-text">类不被加载情况举例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非静态方法都隐藏一参数this"><span class="nav-number">5.</span> <span class="nav-text">非静态方法都隐藏一参数this</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#演示"><span class="nav-number">5.1.</span> <span class="nav-text">演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java中创建子类实例时会创建父类实例？"><span class="nav-number">6.</span> <span class="nav-text">Java中创建子类实例时会创建父类实例？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#boolean大小问题"><span class="nav-number">1.</span> <span class="nav-text">boolean大小问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题引入"><span class="nav-number">1.1.</span> <span class="nav-text">问题引入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决"><span class="nav-number">1.2.</span> <span class="nav-text">解决</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用局部变量定义数组的时候数组会被初始化"><span class="nav-number">2.</span> <span class="nav-text">使用局部变量定义数组的时候数组会被初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题分析"><span class="nav-number">2.1.</span> <span class="nav-text">问题分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA何时加载静态语句块"><span class="nav-number">3.</span> <span class="nav-text">JAVA何时加载静态语句块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态代码块什么时候开始执行"><span class="nav-number">4.</span> <span class="nav-text">静态代码块什么时候开始执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主动加载的情况"><span class="nav-number">4.1.</span> <span class="nav-text">主动加载的情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类不被加载情况举例"><span class="nav-number">4.2.</span> <span class="nav-text">类不被加载情况举例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非静态方法都隐藏一参数this"><span class="nav-number">5.</span> <span class="nav-text">非静态方法都隐藏一参数this</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#演示"><span class="nav-number">5.1.</span> <span class="nav-text">演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java中创建子类实例时会创建父类实例？"><span class="nav-number">6.</span> <span class="nav-text">Java中创建子类实例时会创建父类实例？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#i-和-i的区别"><span class="nav-number">7.</span> <span class="nav-text">i++和++i的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#区别"><span class="nav-number">7.1.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#陷阱"><span class="nav-number">7.2.</span> <span class="nav-text">陷阱</span></a></li></ol></li></ol></div>
             
 
           </div>
