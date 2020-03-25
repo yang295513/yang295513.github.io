@@ -115,7 +115,7 @@
 <meta property="og:description" content="JVM简介 JVM是JavaVirtualMachine（Java虚拟机）的缩写，JVM是一种用于计算设备的规范，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。而引入Java语言虚拟机后，Java语言在">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/upload/1584003211829.png">
-<meta property="og:updated_time" content="2020-03-18T12:48:07.326Z">
+<meta property="og:updated_time" content="2020-03-25T10:54:18.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM虚拟机入门">
 <meta name="twitter:description" content="JVM简介 JVM是JavaVirtualMachine（Java虚拟机）的缩写，JVM是一种用于计算设备的规范，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。而引入Java语言虚拟机后，Java语言在">
@@ -407,7 +407,15 @@
 <p>JVM是JavaVirtualMachine（Java虚拟机）的缩写，JVM是一种用于计算设备的规范，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。Java语言的一个非常重要的特点就是与平台的无关性。而使用Java虚拟机是实现这一特点的关键。一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。而引入Java语言虚拟机后，Java语言在不同平台上运行时不需要重新编译。Java语言使用Java虚拟机屏蔽了与具体平台相关的信息，使得Java语言编译程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。Java虚拟机在执行字节码时，把字节码解释成具体平台上的机器指令执行。这就是Java的能够“一次编译，到处运行”的原因。</p>
 </blockquote>
 <p><img src="/upload/1584003211829.png" alt="1584003211829"></p>
-<p>6217002490002131915</p>
+<h2 id="JRE-JDK-JVM是什么关系？"><a href="#JRE-JDK-JVM是什么关系？" class="headerlink" title="JRE/JDK/JVM是什么关系？"></a>JRE/JDK/JVM是什么关系？</h2><p>　　JRE(JavaRuntimeEnvironment，Java运行环境)，也就是Java平台。所有的Java 程序都要在JRE下才能运行。普通用户只需要运行已开发好的java程序，安装JRE即可。<br>JDK(Java Development Kit)是程序开发者用来来编译、调试java程序用的开发工具包。JDK的工具也是Java程序，也需要JRE才能运行。为了保持JDK的独立性和完整性，在JDK的安装过程中，JRE也是 安装的一部分。所以，在JDK的安装目录下有一个名为jre的目录，用于存放JRE文件。<br>　　JVM(JavaVirtualMachine，Java虚拟机)是JRE的一部分。它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。JVM有自己完善的硬件架构，如处理器、堆栈、寄存器等，还具有相应的指令系统。Java语言最重要的特点就是跨平台运行。使用JVM就是为了支持与操作系统无关，实现跨平台。</p>
+<h3 id="其他虚拟机"><a href="#其他虚拟机" class="headerlink" title="其他虚拟机"></a>其他虚拟机</h3><h4 id="通用平台的虚拟机"><a href="#通用平台的虚拟机" class="headerlink" title="通用平台的虚拟机"></a>通用平台的虚拟机</h4><h5 id="Classic-VM"><a href="#Classic-VM" class="headerlink" title="Classic VM"></a>Classic VM</h5><p>JDK1 与 JDK2 的官方默认虚拟机，世界第一种 java 虚拟机<br>通过纯解释器执行 Java 代码，即时编译器只能通过外挂的形式存在，并且不能与解释器一起运行。（那个时候的 Java 很慢）</p>
+<h5 id="Exact-VM"><a href="#Exact-VM" class="headerlink" title="Exact VM"></a>Exact VM</h5><p>Sun 公司为了解决 Classic VM 的效率问题而计划研发的，但只在 Solaris 系统上发布过，后来就被 HotSpot 取代了<br>因其使用准确式内存管理而闻名。（知道内存中某一块区域存放的是哪一种数据结构，有利于垃圾收集）</p>
+<h5 id="HotSpot"><a href="#HotSpot" class="headerlink" title="HotSpot"></a>HotSpot</h5><p>JDK3 之后的官方默认虚拟机<br>同样有准确式内存管理<br>因其热点探测技术而闻名。（知道哪一段代码经常执行，将其编译成机器代码，提高运行效率）</p>
+<h5 id="JRockit"><a href="#JRockit" class="headerlink" title="JRockit"></a>JRockit</h5><p>BEA 公司研发的，对服务端高度优化的虚拟机<br>其垃圾收集机制和 MissionControl 服务套件，一直处于 Java 虚拟机的领先水平<br>Oracle 在 2008 年收购 BEA 公司，在 2009 年收购 Sun 公司。Oracle 计划从 JDK8 开始将两种虚拟机融合成一种。（JDK8 的 HotSpot 已经放弃用永久代来实现方法区，转而使用元空间）</p>
+<h5 id="J9"><a href="#J9" class="headerlink" title="J9"></a>J9</h5><p>IBM 公司研发，主要为了在自家研发的产品上跑 Java 程序</p>
+<h4 id="其他虚拟机-1"><a href="#其他虚拟机-1" class="headerlink" title="其他虚拟机"></a>其他虚拟机</h4><h5 id="Dalvik-VM"><a href="#Dalvik-VM" class="headerlink" title="Dalvik VM"></a>Dalvik VM</h5><p>Google 为 Android 开发而研发的虚拟机，不是 java 虚拟机，但关系很密切<br>Dalvik VM 基于寄存器运行，而 JVM 基于栈<br>Dalvik 通过将 class 文件转化为 dex 文件来运行</p>
+<h5 id="Microsoft-JVM"><a href="#Microsoft-JVM" class="headerlink" title="Microsoft JVM"></a>Microsoft JVM</h5><p>微软曾经在其操作系统上开发了一款 win 专用的 JVM （Win 平台下最快的虚拟机），后和 Sun 打官司输掉，该项目停止。</p>
+<h5 id="Apache-Harmony"><a href="#Apache-Harmony" class="headerlink" title="Apache Harmony"></a>Apache Harmony</h5><p>Apache 开发的 JDK，但一直没有得到 Sun 公司的授权，Apache 因此退出了 JCP<br>后 Sun 公司开源了 OpenJDK，Apache Harmony 项目就变得不太热门<br>64 位虚拟机<br>因为指针膨胀和数据对齐补白等缘故，64 位虚拟机比 32 位虚拟机所需要消耗的内存更大 （约多 10% - 30% 的开销，性能相差 15%）<br>现在大多数商用系统都是通过虚拟集群的方式来支持大于 4G 的内存。<br>64 位的虚拟机还有一段路要走</p>
 
       
     </div>
@@ -549,7 +557,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -571,7 +579,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -604,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM简介"><span class="nav-number">1.</span> <span class="nav-text">JVM简介</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM简介"><span class="nav-number">1.</span> <span class="nav-text">JVM简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JRE-JDK-JVM是什么关系？"><span class="nav-number">2.</span> <span class="nav-text">JRE/JDK/JVM是什么关系？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#其他虚拟机"><span class="nav-number">2.1.</span> <span class="nav-text">其他虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通用平台的虚拟机"><span class="nav-number">2.1.1.</span> <span class="nav-text">通用平台的虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Classic-VM"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">Classic VM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Exact-VM"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">Exact VM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HotSpot"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">HotSpot</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JRockit"><span class="nav-number">2.1.1.4.</span> <span class="nav-text">JRockit</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#J9"><span class="nav-number">2.1.1.5.</span> <span class="nav-text">J9</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他虚拟机-1"><span class="nav-number">2.1.2.</span> <span class="nav-text">其他虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Dalvik-VM"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">Dalvik VM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Microsoft-JVM"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">Microsoft JVM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Apache-Harmony"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">Apache Harmony</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>

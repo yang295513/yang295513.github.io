@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="集合,原理,list,array,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="数据结构ArrayList实现的是动态数组，我们都知道，数组是不能自由扩展的，但是ArrayList是可以动态扩展的，当需要添加新的元素时且空间不足就会重新分配一个原来1.5倍长度的新数组，然后把旧数组中的元素复制到新的数组。 特点ArrayList 特点是查询速度快，增加删除慢,线程不安全。 LinkedList 特点查询慢，增加删除快。 Vector 特点是查询速度快，增加删除慢,线程安全，而">
+<meta name="keywords" content="集合,原理,list,array">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java集合之ArrayList原理详解">
+<meta property="og:url" content="http://yoursite.com/2020/03/23/java集合之ArrayList原理详解/index.html">
+<meta property="og:site_name" content="Byy">
+<meta property="og:description" content="数据结构ArrayList实现的是动态数组，我们都知道，数组是不能自由扩展的，但是ArrayList是可以动态扩展的，当需要添加新的元素时且空间不足就会重新分配一个原来1.5倍长度的新数组，然后把旧数组中的元素复制到新的数组。 特点ArrayList 特点是查询速度快，增加删除慢,线程不安全。 LinkedList 特点查询慢，增加删除快。 Vector 特点是查询速度快，增加删除慢,线程安全，而">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/upload/1585014846699.png">
+<meta property="og:updated_time" content="2020-03-24T17:10:02.312Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java集合之ArrayList原理详解">
+<meta name="twitter:description" content="数据结构ArrayList实现的是动态数组，我们都知道，数组是不能自由扩展的，但是ArrayList是可以动态扩展的，当需要添加新的元素时且空间不足就会重新分配一个原来1.5倍长度的新数组，然后把旧数组中的元素复制到新的数组。 特点ArrayList 特点是查询速度快，增加删除慢,线程不安全。 LinkedList 特点查询慢，增加删除快。 Vector 特点是查询速度快，增加删除慢,线程安全，而">
+<meta name="twitter:image" content="http://yoursite.com/upload/1585014846699.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/23/java集合之ArrayList原理详解/">
+
+
+
+
+
+  <title>java集合之ArrayList原理详解 | Byy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Byy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home //首页"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags //标签"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th //分类"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive //归档"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/23/java集合之ArrayList原理详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang295513">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Byy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java集合之ArrayList原理详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-23T16:03:52+08:00">
+                2020-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>ArrayList实现的是动态数组，我们都知道，数组是不能自由扩展的，但是ArrayList是可以动态扩展的，当需要添加新的元素时且空间不足就会重新分配一个原来1.5倍长度的新数组，然后把旧数组中的元素复制到新的数组。</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>ArrayList 特点是查询速度快，增加删除慢,线程不安全。</p>
+<p>LinkedList 特点查询慢，增加删除快。</p>
+<p>Vector 特点是查询速度快，增加删除慢,线程安全，而且Vector就是ArrayList的换皮，就是方法上多了些<strong>synchronized</strong></p>
+<h2 id="继承体系"><a href="#继承体系" class="headerlink" title="继承体系"></a>继承体系</h2><p><img src="/upload/1585014846699.png" alt="1585014846699"></p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><ul>
+<li><p>Iterable&lt; T &gt;  实现这个接口允许使用增强for循环</p>
+</li>
+<li><p>Collection 所有的集合类都要实现这个根接口，他定义了集合的基本常用方法(比如CRUD方法，清空方法，获取集合元素个数方法等).</p>
+</li>
+<li><p>List&lt; E &gt; 有序集合，这个接口可以精确控制列表中每个元素的插入位置，用户可以通过整数索引访问元素，并且这个列表允许重复元素</p>
+</li>
+</ul>
+<p>RandomAccess 标志接口（即该接口起到一个标志作用，没有任何抽象方法），实现这个接口支持快速随机访问</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>, n=list.size(); i &lt; n; i++)</span><br><span class="line">         list.get(i); <span class="comment">//比这个循环运行得更快： </span></span><br><span class="line"><span class="keyword">for</span> (Iterator i=list.iterator(); i.hasNext(); )</span><br><span class="line">         i.next();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Cloneable 标志接口 表示对于该类的实例进行复制是合法的，在不实现Cloneable的接口调用对象的克隆方法会导致CloneNotSupportedException异常</li>
+</ul>
+<p>Serializable 标志接口 表明该类的实例是可以被序列化和反序列化的</p>
+<h2 id="类和抽象类"><a href="#类和抽象类" class="headerlink" title="类和抽象类"></a>类和抽象类</h2><ul>
+<li><p>AbstractCollection&lt; E &gt; 提供了Collection的骨架实现，用于减少实现Collection接口所需要的工作量</p>
+</li>
+<li><p>AbstractList&lt; E &gt; 提提供了List的骨架实现，用于减少实现List接口所需要的工作量</p>
+</li>
+</ul>
+<h2 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">8683452581122892189L</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>;<span class="comment">//默认容量大小</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] EMPTY_ELEMENTDATA = &#123;&#125;;<span class="comment">//空容量数组</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = &#123;&#125;;<span class="comment">//默认空容量数组，下面有transient关键字的详细解释</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">transient</span> Object[] elementData; <span class="comment">// 实际存储对象的数组</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> size;<span class="comment">//当前数组长度</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="transient关键字解释"><a href="#transient关键字解释" class="headerlink" title="transient关键字解释"></a>transient关键字解释</h3><p>该关键字表示，如果该类被序列化，那么忽略transien标记的元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> Object[] elementData;</span><br></pre></td></tr></table></figure>
+
+<p>假如elementData的长度为10，而其中只有5个元素，那么在序列化的时候只需要存储5个元素，而数组中后面5个元素是不需要存储的。于是将elementData定义为transient，避免了Java自带的序列化机制，并定义了两个方法，实现了自己可控制的序列化操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">writeObject</span><span class="params">(java.io.ObjectOutputStream s)</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readObject</span><span class="params">(java.io.ObjectInputStream s)</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;<span class="comment">//空长度数组</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.elementData = EMPTY_ELEMENTDATA;<span class="comment">//空长度数组</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span>+</span><br><span class="line">                                           initialCapacity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;<span class="comment">//使用了上限泛型</span></span><br><span class="line">    elementData = c.toArray();<span class="comment">//调用父类AbstractCollection的方法转换成数组</span></span><br><span class="line">    <span class="keyword">if</span> ((size = elementData.length) != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// c.toArray might (incorrectly) not return Object[] (see 6260652)</span></span><br><span class="line">        <span class="keyword">if</span> (elementData.getClass() != Object[].class)<span class="comment">//如果长度合法,就复制数组</span></span><br><span class="line">            elementData = Arrays.copyOf(elementData, size, Object[].class);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;<span class="comment">//否则就为空数组</span></span><br><span class="line">        <span class="comment">// replace with empty array.</span></span><br><span class="line">        <span class="keyword">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>当我们创建ArrayList这个类的对象时候如果不传入参数，那么就会让elementData指向一个容量为0的数组</p>
+</li>
+<li><p>当我们创建ArrayList这个类的对象的时候可以传入一个默认长度，如果默认长度为0还是一个空数组，如果不为0但是非法，就抛出异常，否则就创建一个initialCapacity大小的数组</p>
+</li>
+<li><p>如果我们传入一个集合对象，那么他必须是E的子类，然后把传入集合转换为数组，之后复制到elementData元素中</p>
+</li>
+</ul>
+<h2 id="核心扩容算法方法"><a href="#核心扩容算法方法" class="headerlink" title="核心扩容算法方法"></a>核心扩容算法方法</h2><p>在介绍其他方法前，我们先介绍一下核心的扩容算法方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;<span class="comment">//传入的大小容量为最小容量</span></span><br><span class="line">    <span class="keyword">int</span> oldCapacity = elementData.length;<span class="comment">//当前数组的长度称为旧容量</span></span><br><span class="line">    <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);<span class="comment">//新的容量=旧容量*1.5</span></span><br><span class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)<span class="comment">//如果发现1.5倍新容量不能满足预期的最小容量</span></span><br><span class="line">        newCapacity = minCapacity;<span class="comment">//就把最小容量作为扩容的容量</span></span><br><span class="line">    <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)<span class="comment">//如果新的容量特别大(Integer.MAX_VALUE - 8)</span></span><br><span class="line">        newCapacity = hugeCapacity(minCapacity);<span class="comment">//就会选择使用int最大值或者最大值-8的容量</span></span><br><span class="line">    <span class="comment">// minCapacity is usually close to size, so this is a win:</span></span><br><span class="line">    elementData = Arrays.copyOf(elementData, newCapacity);<span class="comment">//最后新建一个新的数组，长度是计算后的容量大小，然后将老数组复制进去</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>每次扩容大小是之前的1.5倍</li>
+<li>如果扩容1.5倍还不足以装下当前所有元素，那么就把扩容到传入的容量大小</li>
+<li>如果最终扩容的大小大于Integer.Max-8，那么就会根据需要扩容到Integer的最大值或者最大值-8</li>
+</ul>
+<h2 id="添加方法-add"><a href="#添加方法-add" class="headerlink" title="添加方法(add)"></a>添加方法(add)</h2><h3 id="add-E"><a href="#add-E" class="headerlink" title="add(E)"></a>add(E)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    ensureCapacityInternal(size + <span class="number">1</span>);<span class="comment">//是否需要扩容，以及进行扩容，扩容的方法是否合法</span></span><br><span class="line">    elementData[size++] = e;<span class="comment">//将e元素追加到数组末尾，并且增加size的值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureCapacityInternal</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;<span class="comment">//检查当前数组是否是空数组</span></span><br><span class="line">        minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);<span class="comment">//检查使用默认10容量还是最小容量</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ensureExplicitCapacity(minCapacity);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureExplicitCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    modCount++;<span class="comment">//记录操作次数（下面有详细解释）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// overflow-conscious code</span></span><br><span class="line">    <span class="keyword">if</span> (minCapacity - elementData.length &gt; <span class="number">0</span>)<span class="comment">//检查是否需要扩容</span></span><br><span class="line">        grow(minCapacity);<span class="comment">//进行扩容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="modCount"><a href="#modCount" class="headerlink" title="modCount"></a>modCount</h4><p>该字段表示list结构上被修改的次数。结构上的修改指的是那些改变了list的长度大小或者使得遍历过程中产生不正确的结果的其它方式。</p>
+<p>该字段被Iterator以及ListIterator的实现类所使用，如果该值被意外更改，Iterator或者ListIterator 将抛出ConcurrentModificationException异常，</p>
+<p>这是jdk在面对迭代遍历的时候为了避免不确定性而采取的快速失败原则。</p>
+<h3 id="add-int-index-E-element"><a href="#add-int-index-E-element" class="headerlink" title="add(int index ,E element)"></a>add(int index ,E element)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;<span class="comment">//把元素插入指定位置</span></span><br><span class="line">     rangeCheckForAdd(index);<span class="comment">//检查插入的下标是否合法（index &gt; size || index &lt; 0）</span></span><br><span class="line"></span><br><span class="line">     ensureCapacityInternal(size + <span class="number">1</span>);  <span class="comment">//是否需要扩容，以及进行扩容，扩容的方法是否合法</span></span><br><span class="line">     System.arraycopy(elementData, index, elementData, index + <span class="number">1</span>,</span><br><span class="line">                      size - index);<span class="comment">//把指定下标及其以后的元素全部复制向后移动一位进行复制</span></span><br><span class="line">     elementData[index] = element;<span class="comment">//覆盖指定下标的元素</span></span><br><span class="line">     size++;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureCapacityInternal</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;<span class="comment">//检查当前数组是否是空数组</span></span><br><span class="line">         minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);<span class="comment">//检查使用默认10容量还是最小容量</span></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     ensureExplicitCapacity(minCapacity);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureExplicitCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">     modCount++;<span class="comment">//记录操作次数（下面有详细解释）</span></span><br><span class="line"></span><br><span class="line">     <span class="comment">// overflow-conscious code</span></span><br><span class="line">     <span class="keyword">if</span> (minCapacity - elementData.length &gt; <span class="number">0</span>)<span class="comment">//检查是否需要扩容</span></span><br><span class="line">         grow(minCapacity);<span class="comment">//进行扩容</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="addAll-Collection-lt-extends-E-gt-c"><a href="#addAll-Collection-lt-extends-E-gt-c" class="headerlink" title="addAll(Collection&lt;? extends E&gt; c)"></a>addAll(Collection&lt;? extends E&gt; c)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">    Object[] a = c.toArray();<span class="comment">//转换成数组</span></span><br><span class="line">    <span class="keyword">int</span> numNew = a.length;<span class="comment">//带添加数组元素的个数</span></span><br><span class="line">    ensureCapacityInternal(size + numNew);  <span class="comment">//不说了，这个方法解释很多次了，就是检查扩容和扩容的</span></span><br><span class="line">    System.arraycopy(a, <span class="number">0</span>, elementData, size, numNew);<span class="comment">//复制到末尾</span></span><br><span class="line">    size += numNew;<span class="comment">//更新长度</span></span><br><span class="line">    <span class="keyword">return</span> numNew != <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="addAll-int-index-Collection-lt-extends-E-gt-c"><a href="#addAll-int-index-Collection-lt-extends-E-gt-c" class="headerlink" title="addAll(int index, Collection&lt;? extends E&gt; c)"></a>addAll(int index, Collection&lt;? extends E&gt; c)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(<span class="keyword">int</span> index, Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">    rangeCheckForAdd(index);<span class="comment">//检查下标是否合法</span></span><br><span class="line"></span><br><span class="line">    Object[] a = c.toArray();</span><br><span class="line">    <span class="keyword">int</span> numNew = a.length;</span><br><span class="line">    ensureCapacityInternal(size + numNew);  <span class="comment">//扩容</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> numMoved = size - index;<span class="comment">//计算偏移量</span></span><br><span class="line">    <span class="keyword">if</span> (numMoved &gt; <span class="number">0</span>)</span><br><span class="line">        System.arraycopy(elementData, index, elementData, index + numNew,</span><br><span class="line">                         numMoved);</span><br><span class="line"></span><br><span class="line">    System.arraycopy(a, <span class="number">0</span>, elementData, index, numNew);<span class="comment">//两次复制</span></span><br><span class="line">    size += numNew;<span class="comment">//更新长度</span></span><br><span class="line">    <span class="keyword">return</span> numNew != <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>添加元素都要检查是否需要扩容，也就是说如果我们需要频繁插入元素，那么推荐构造方法指定容量大小，可以大大减轻扩容的次数，带来性能上的提升。</li>
+</ul>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);<span class="comment">//校验下标是否合法</span></span><br><span class="line"></span><br><span class="line">    E oldValue = elementData(index);<span class="comment">//取出旧元素</span></span><br><span class="line">    elementData[index] = element;<span class="comment">//更新index下标的元素</span></span><br><span class="line">    <span class="keyword">return</span> oldValue;<span class="comment">//返回更新前的元素</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>真是超级简单了，真的没有其他的可以解释</p>
+<p>剩下的就都不说了。真是太简单了。</p>
+<h3 id="ConcurrentModificationException异常"><a href="#ConcurrentModificationException异常" class="headerlink" title="ConcurrentModificationException异常"></a>ConcurrentModificationException异常</h3><p><strong>当方法检测到对象的并发修改，但不允许这种修改时，抛出此异常。</strong></p>
+<p>modCount就是修改次数，在具体的实现类中的Iterator中才会使用。在List集合中，ArrayList是List接口的实现类，</p>
+<p>modCount：表示list集合结构上被修改的次数。（在ArrayList所有涉及结构变化的方法中，都增加了modCount的值）</p>
+<p>list结构上别修改是指：改变了list的长度的大小或者是遍历结果中产生了不正确的结果的方式。add()和remove()方法会是modCount进行+1操作。modCount被修改后会产生ConcurrentModificationException异常，  这是jdk的快速失败原则。</p>
+<p>单线程下产生这个异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">    ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    list.add(<span class="number">2</span>);</span><br><span class="line">    Iterator&lt;Integer&gt; iterator = list.iterator();</span><br><span class="line">    <span class="keyword">while</span>(iterator.hasNext())&#123;</span><br><span class="line">        Integer integer = iterator.next();</span><br><span class="line">        <span class="keyword">if</span>(integer==<span class="number">2</span>)</span><br><span class="line">            list.remove(integer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从异常信息可以发现，异常出现在checkForComodification()方法中。</p>
+<p>　　我们不忙看checkForComodification()方法的具体实现，我们先根据程序的代码一步一步看ArrayList源码的实现：</p>
+<p>　　首先看ArrayList的iterator()方法的具体实现，查看源码发现在ArrayList的源码中并没有iterator()这个方法，那么很显然这个方法应该是其父类或者实现的接口中的方法，我们在其父类AbstractList中找到了iterator()方法的具体实现，下面是其实现代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">public</span>` `<span class="function">Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;``    ``<span class="keyword">return</span>` `<span class="keyword">new</span>` `Itr();``&#125;`</span><br></pre></td></tr></table></figure>
+
+<p> 　　从这段代码可以看出返回的是一个指向Itr类型对象的引用，我们接着看Itr的具体实现，在AbstractList类中找到了Itr类的具体实现，它是AbstractList的一个成员内部类，下面这段代码是Itr类的所有实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">private</span>` `<span class="class"><span class="keyword">class</span>` `<span class="title">Itr</span> ``<span class="keyword">implements</span>` `<span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;``    ``<span class="keyword">int</span>` `cursor = ``<span class="number">0</span>``;``    ``<span class="keyword">int</span>` `lastRet = -``<span class="number">1</span>``;``    ``<span class="keyword">int</span>` `expectedModCount = modCount;``    ``<span class="keyword">public</span>` `<span class="keyword">boolean</span>` `hasNext() &#123;``           ``<span class="keyword">return</span>` `cursor != size();``    ``&#125;``    ``<span class="keyword">public</span>` `<span class="function">E <span class="title">next</span><span class="params">()</span> </span>&#123;``           ``checkForComodification();``        ``<span class="keyword">try</span>` `&#123;``        ``E next = get(cursor);``        ``lastRet = cursor++;``        ``<span class="keyword">return</span>` `next;``        ``&#125; ``<span class="keyword">catch</span>` `(IndexOutOfBoundsException e) &#123;``        ``checkForComodification();``        ``<span class="keyword">throw</span>` `<span class="keyword">new</span>` `NoSuchElementException();``        ``&#125;``    ``&#125;``    ``<span class="keyword">public</span>` `<span class="keyword">void</span>` `remove() &#123;``        ``<span class="keyword">if</span>` `(lastRet == -``<span class="number">1</span>``)``        ``<span class="keyword">throw</span>` `<span class="keyword">new</span>` `IllegalStateException();``           ``checkForComodification();` `        ``<span class="keyword">try</span>` `&#123;``        ``AbstractList.``<span class="keyword">this</span>``.remove(lastRet);``        ``<span class="keyword">if</span>` `(lastRet &lt; cursor)``            ``cursor--;``        ``lastRet = -``<span class="number">1</span>``;``        ``expectedModCount = modCount;``        ``&#125; ``<span class="keyword">catch</span>` `(IndexOutOfBoundsException e) &#123;``        ``<span class="keyword">throw</span>` `<span class="keyword">new</span>` `ConcurrentModificationException();``        ``&#125;``    ``&#125;` `    ``<span class="keyword">final</span>` `<span class="keyword">void</span>` `checkForComodification() &#123;``        ``<span class="keyword">if</span>` `(modCount != expectedModCount)``        ``<span class="keyword">throw</span>` `<span class="keyword">new</span>` `ConcurrentModificationException();``    ``&#125;``&#125;`</span><br></pre></td></tr></table></figure>
+
+<p> 　　首先我们看一下它的几个成员变量：</p>
+<p>　　cursor：表示下一个要访问的元素的索引，从next()方法的具体实现就可看出</p>
+<p>　　lastRet：表示上一个访问的元素的索引</p>
+<p>　　expectedModCount：表示对ArrayList修改次数的期望值，它的初始值为modCount。</p>
+<p>　　modCount是AbstractList类中的一个成员变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">protected</span>` `<span class="keyword">transient</span>` `<span class="keyword">int</span>` `modCount = ``<span class="number">0</span>``;`</span><br></pre></td></tr></table></figure>
+
+<p> 　　该值表示对List的修改次数，查看ArrayList的add()和remove()方法就可以发现，每次调用add()方法或者remove()方法就会对modCount进行加1操作。</p>
+<p>　　好了，到这里我们再看看上面的程序：</p>
+<p>　　当调用list.iterator()返回一个Iterator之后，通过Iterator的hashNext()方法判断是否还有元素未被访问，我们看一下hasNext()方法，hashNext()方法的实现很简单：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">public</span>` `<span class="keyword">boolean</span>` `hasNext() &#123;``    ``<span class="keyword">return</span>` `cursor != size();``&#125;`</span><br></pre></td></tr></table></figure>
+
+<p> 　　如果下一个访问的元素下标不等于ArrayList的大小，就表示有元素需要访问，这个很容易理解，如果下一个访问元素的下标等于ArrayList的大小，则肯定到达末尾了。</p>
+<p>　　然后通过Iterator的next()方法获取到下标为0的元素，我们看一下next()方法的具体实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">public</span>` `<span class="function">E <span class="title">next</span><span class="params">()</span> </span>&#123;``    ``checkForComodification();`` ``<span class="keyword">try</span>` `&#123;``    ``E next = get(cursor);``    ``lastRet = cursor++;``    ``<span class="keyword">return</span>` `next;`` ``&#125; ``<span class="keyword">catch</span>` `(IndexOutOfBoundsException e) &#123;``    ``checkForComodification();``    ``<span class="keyword">throw</span>` `<span class="keyword">new</span>` `NoSuchElementException();`` ``&#125;``&#125;`</span><br></pre></td></tr></table></figure>
+
+<p> 　　这里是非常关键的地方：首先在next()方法中会调用checkForComodification()方法，然后根据cursor的值获取到元素，接着将cursor的值赋给lastRet，并对cursor的值进行加1操作。初始时，cursor为0，lastRet为-1，那么调用一次之后，cursor的值为1，lastRet的值为0。注意此时，modCount为0，expectedModCount也为0。</p>
+<p>　　接着往下看，程序中判断当前元素的值是否为2，若为2，则调用list.remove()方法来删除该元素。</p>
+<p>　　我们看一下在ArrayList中的remove()方法做了什么：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">public</span>` `<span class="keyword">boolean</span>` `remove(Object o) &#123;``    ``<span class="keyword">if</span>` `(o == ``<span class="keyword">null</span>``) &#123;``        ``<span class="keyword">for</span>` `(``<span class="keyword">int</span>` `index = ``<span class="number">0</span>``; index &lt; size; index++)``            ``<span class="keyword">if</span>` `(elementData[index] == ``<span class="keyword">null</span>``) &#123;``                ``fastRemove(index);``                ``<span class="keyword">return</span>` `<span class="keyword">true</span>``;``            ``&#125;``    ``&#125; ``<span class="keyword">else</span>` `&#123;``        ``<span class="keyword">for</span>` `(``<span class="keyword">int</span>` `index = ``<span class="number">0</span>``; index &lt; size; index++)``            ``<span class="keyword">if</span>` `(o.equals(elementData[index])) &#123;``                ``fastRemove(index);``                ``<span class="keyword">return</span>` `<span class="keyword">true</span>``;``            ``&#125;``    ``&#125;``    ``<span class="keyword">return</span>` `<span class="keyword">false</span>``;``&#125;`  `<span class="keyword">private</span>` `<span class="keyword">void</span>` `fastRemove(``<span class="keyword">int</span>` `index) &#123;``    ``modCount++;``    ``<span class="keyword">int</span>` `numMoved = size - index - ``<span class="number">1</span>``;``    ``<span class="keyword">if</span>` `(numMoved &gt; ``<span class="number">0</span>``)``        ``System.arraycopy(elementData, index+``<span class="number">1</span>``, elementData, index,``                ``numMoved);``    ``elementData[--size] = ``<span class="keyword">null</span>``; ``<span class="comment">// Let gc do its work``&#125;`</span></span><br></pre></td></tr></table></figure>
+
+<p> 　　通过remove方法删除元素最终是调用的fastRemove()方法，在fastRemove()方法中，首先对modCount进行加1操作（因为对集合修改了一次），然后接下来就是删除元素的操作，最后将size进行减1操作，并将引用置为null以方便垃圾收集器进行回收工作。</p>
+<p>　　那么注意此时各个变量的值：对于iterator，其expectedModCount为0，cursor的值为1，lastRet的值为0。</p>
+<p>　　对于list，其modCount为1，size为0。</p>
+<p>　　接着看程序代码，执行完删除操作后，继续while循环，调用hasNext方法()判断，由于此时cursor为1，而size为0，那么返回true，所以继续执行while循环，然后继续调用iterator的next()方法：</p>
+<p>　　注意，此时要注意next()方法中的第一句：checkForComodification()。</p>
+<p>　　在checkForComodification方法中进行的操作是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">final</span>` `<span class="keyword">void</span>` `checkForComodification() &#123;``    ``<span class="keyword">if</span>` `(modCount != expectedModCount)``    ``<span class="keyword">throw</span>` `<span class="keyword">new</span>` `ConcurrentModificationException();``&#125;`</span><br></pre></td></tr></table></figure>
+
+<p> 　　如果modCount不等于expectedModCount，则抛出ConcurrentModificationException异常。</p>
+<p>　　很显然，此时modCount为1，而expectedModCount为0，因此程序就抛出了ConcurrentModificationException异常。</p>
+<p>　　到这里，想必大家应该明白为何上述代码会抛出ConcurrentModificationException异常了。</p>
+<p>　　关键点就在于：调用list.remove()方法导致modCount和expectedModCount的值不一致。</p>
+<p>　　<strong>注意，像使用for-each进行迭代实际上也会出现这种问题。</strong></p>
+<p><strong>关键点就在于：调用list.remove()方法导致modCount和expectedModCount的值不一致。</strong></p>
+<p>　　<strong>注意，像使用for-each进行迭代实际上也会出现这种问题。</strong></p>
+<h2 id="如何实现线程同步"><a href="#如何实现线程同步" class="headerlink" title="如何实现线程同步"></a>如何实现线程同步</h2><h3 id="方法一使用Vector"><a href="#方法一使用Vector" class="headerlink" title="方法一使用Vector"></a>方法一使用Vector</h3><p>Vector中的方法都是同步方法， 所以是线程安全的</p>
+<h3 id="方法二使用Collections-synchronizedList-方法"><a href="#方法二使用Collections-synchronizedList-方法" class="headerlink" title="方法二使用Collections.synchronizedList();方法"></a>方法二使用Collections.synchronizedList();方法</h3><p>这个类就是使用了装饰则模式，进行了同步处理</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    yang295513
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2020/03/23/java集合之ArrayList原理详解/" title="java集合之ArrayList原理详解">http://yoursite.com/2020/03/23/java集合之ArrayList原理详解/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/集合/" rel="tag"># 集合</a>
+          
+            <a href="/tags/原理/" rel="tag"># 原理</a>
+          
+            <a href="/tags/list/" rel="tag"># list</a>
+          
+            <a href="/tags/array/" rel="tag"># array</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/22/JAVA泛型详解/" rel="next" title="JAVA泛型详解">
+                <i class="fa fa-chevron-left"></i> JAVA泛型详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/25/NIO详解/" rel="prev" title="NIO详解">
+                NIO详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">yang295513</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承体系"><span class="nav-number">3.</span> <span class="nav-text">继承体系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口"><span class="nav-number">3.1.</span> <span class="nav-text">接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类和抽象类"><span class="nav-number">4.</span> <span class="nav-text">类和抽象类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成员变量"><span class="nav-number">5.</span> <span class="nav-text">成员变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#transient关键字解释"><span class="nav-number">5.1.</span> <span class="nav-text">transient关键字解释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造方法"><span class="nav-number">6.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心扩容算法方法"><span class="nav-number">7.</span> <span class="nav-text">核心扩容算法方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">7.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加方法-add"><span class="nav-number">8.</span> <span class="nav-text">添加方法(add)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#add-E"><span class="nav-number">8.1.</span> <span class="nav-text">add(E)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#modCount"><span class="nav-number">8.1.1.</span> <span class="nav-text">modCount</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#add-int-index-E-element"><span class="nav-number">8.2.</span> <span class="nav-text">add(int index ,E element)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#addAll-Collection-lt-extends-E-gt-c"><span class="nav-number">8.3.</span> <span class="nav-text">addAll(Collection&lt;? extends E&gt; c)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#addAll-int-index-Collection-lt-extends-E-gt-c"><span class="nav-number">8.4.</span> <span class="nav-text">addAll(int index, Collection&lt;? extends E&gt; c)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">8.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改"><span class="nav-number">9.</span> <span class="nav-text">修改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentModificationException异常"><span class="nav-number">9.1.</span> <span class="nav-text">ConcurrentModificationException异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何实现线程同步"><span class="nav-number">10.</span> <span class="nav-text">如何实现线程同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一使用Vector"><span class="nav-number">10.1.</span> <span class="nav-text">方法一使用Vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二使用Collections-synchronizedList-方法"><span class="nav-number">10.2.</span> <span class="nav-text">方法二使用Collections.synchronizedList();方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yang295513</span>
+
+  
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
