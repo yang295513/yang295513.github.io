@@ -95,7 +95,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="不准确,">
 
 
 
@@ -106,14 +106,20 @@
 
 
 
+<meta name="description" content="可见性对于一个共享变量，一个线程的修改，对于另一个线程来说他不能立刻知道这个值已经被修改. 演示1234567891011121314151617181920/** * @author yang * @date 2020/3/26 下午 3:30 */public class LookThread &amp;#123;    public static boolean flag=true;    publ">
+<meta name="keywords" content="不准确">
 <meta property="og:type" content="article">
 <meta property="og:title" content="并发编程中的三个问题">
 <meta property="og:url" content="http://yoursite.com/2020/03/26/并发编程中的三个问题/index.html">
 <meta property="og:site_name" content="Byy">
+<meta property="og:description" content="可见性对于一个共享变量，一个线程的修改，对于另一个线程来说他不能立刻知道这个值已经被修改. 演示1234567891011121314151617181920/** * @author yang * @date 2020/3/26 下午 3:30 */public class LookThread &amp;#123;    public static boolean flag=true;    publ">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-26T07:20:51.112Z">
+<meta property="og:image" content="http://yoursite.com/upload/1585215690238.png">
+<meta property="og:updated_time" content="2020-03-28T05:18:14.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="并发编程中的三个问题">
+<meta name="twitter:description" content="可见性对于一个共享变量，一个线程的修改，对于另一个线程来说他不能立刻知道这个值已经被修改. 演示1234567891011121314151617181920/** * @author yang * @date 2020/3/26 下午 3:30 */public class LookThread &amp;#123;    public static boolean flag=true;    publ">
+<meta name="twitter:image" content="http://yoursite.com/upload/1585215690238.png">
 
 
 
@@ -375,7 +381,54 @@
       
 
       
-        
+        <h2 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h2><p>对于一个共享变量，一个线程的修改，对于另一个线程来说他不能立刻知道这个值已经被修改.</p>
+<h3 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> yang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/3/26 下午 3:30</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LookThread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> flag=<span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">while</span> (flag)&#123;</span><br><span class="line">                <span class="comment">//注意这里不要打印输出</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line"></span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);<span class="comment">//为了效果更明显</span></span><br><span class="line"></span><br><span class="line">        flag=<span class="keyword">false</span>;</span><br><span class="line">        System.out.println(<span class="string">"main函数修改了flag,但是对于另一个线程来说,他并看不见flag的改变"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行上面的程序你会发现程序不会停止运行，原因就是可见性问题。</p>
+<p><img src="/upload/1585215690238.png" alt="1585215690238"></p>
+<h4 id="运行过程带来的问题"><a href="#运行过程带来的问题" class="headerlink" title="运行过程带来的问题"></a>运行过程带来的问题</h4><p>假如我们我们有一个共享变量x，假设有两个线程，线程一执行的时候会复制一个变量副本到自己的工作内存，此时线程二也在使用共享变量x,假如说线程一修改了这个变量的值，并且向共享内存中写入了结果，但是由于线程二使用的是自己工作内存中的变量，那么无论如何线程二都看不到这个共享变量x的变化。</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><h5 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h5><p>使用volatile可以保证有序性和共享性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> yang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/3/26 下午 3:30</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LookThread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> flag=<span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">while</span> (flag)&#123;</span><br><span class="line">                <span class="comment">//注意这里不要打印输出</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line"></span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);<span class="comment">//为了效果更明显</span></span><br><span class="line"></span><br><span class="line">        flag=<span class="keyword">false</span>;</span><br><span class="line">        System.out.println(<span class="string">"main函数修改了flag,但是对于另一个线程来说,他并看不见flag的改变"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h5><p>使用synchronized</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> yang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/3/26 下午 3:30</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LookThread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> flag=<span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> Object obj=<span class="keyword">new</span> Object();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">while</span> (flag)&#123;</span><br><span class="line">                <span class="keyword">synchronized</span> (obj)&#123;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line"></span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);<span class="comment">//为了效果更明显</span></span><br><span class="line"></span><br><span class="line">        flag=<span class="keyword">false</span>;</span><br><span class="line">        System.out.println(<span class="string">"main函数修改了flag,但是对于另一个线程来说,他并看不见flag的改变"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决分析"><a href="#解决分析" class="headerlink" title="解决分析"></a>解决分析</h4><p>volatile和synchronized都能起到刷新了共享内存的作用</p>
+<h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>原子性（Atomiclty）：在一次或者多次操作中，要么所有的操作都执行，并且都执行不会受到其他因素的干扰而中断，要么所有的操作都不执行</p>
+<h3 id="触发原子性问题的条件"><a href="#触发原子性问题的条件" class="headerlink" title="触发原子性问题的条件"></a>触发原子性问题的条件</h3><ul>
+<li>数据数据</li>
+<li>多个线程争抢相同资源</li>
+</ul>
+<h3 id="违反原子性问题演示"><a href="#违反原子性问题演示" class="headerlink" title="违反原子性问题演示"></a>违反原子性问题演示</h3><p>我们新建10个线程，每个线程都对同一个共享变量进行自增操作，其中每个线程执行10000，那么理想结果应该是10000</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> thread.synchronized1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> yang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/3/26 下午 3:45</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Atom01</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        Runnable runnable=()-&gt;&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">                num++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        ArrayList&lt;Thread&gt; threads = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            threads.add(<span class="keyword">new</span> Thread(runnable));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Thread thread : threads) &#123;</span><br><span class="line">            thread.start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//等待所有线程结束</span></span><br><span class="line">        <span class="keyword">for</span> (Thread thread : threads) &#123;</span><br><span class="line">            thread.join();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面打印的结果不一定是10000</p>
+<h4 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h4><p>这是lambad表达式的字节码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> 0 iconst_0</span><br><span class="line"> 1 istore_0</span><br><span class="line"> 2 iload_0</span><br><span class="line"> 3 sipush 1000</span><br><span class="line"> 6 if_icmpge 23 (+17)</span><br><span class="line"> 9 getstatic #14 &lt;thread/synchronized1/Atom01.num&gt;</span><br><span class="line">12 iconst_1</span><br><span class="line">13 iadd</span><br><span class="line">14 putstatic #14 &lt;thread/synchronized1/Atom01.num&gt;</span><br><span class="line">17 iinc 0 by 1</span><br><span class="line">20 goto 2 (-18)</span><br><span class="line">23 return</span><br></pre></td></tr></table></figure>
+
+<p>其中最涉及num++的指令为（不准确，先做个标记，底下的字节码分析貌似不正确，到后期我在改，但大体分析是正确的）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 9 getstatic #14 &lt;thread/synchronized1/Atom01.num&gt; //获取静态字段</span><br><span class="line">12 iconst_1//把局1位置上的操作数栈，1位置的对应的值就是num的值</span><br><span class="line">13 iadd//指正</span><br><span class="line">14 putstatic #14 &lt;thread/synchronized1/Atom01.num&gt;//把操作数栈的结果保存到原来的位置。</span><br></pre></td></tr></table></figure>
+
+<p>也就是说执行自增这个代码需要4条字节码指令，而且这4条代码并不符合原子性操作，即线程一可以先执行，但是线程一执行的太慢，结果这期间其他线程已经执行了自增好多次，然后线程一又把它计算的结果又覆盖了，所以导致了这个问题的发生</p>
+<h3 id="使用synchronize解决原子性问题"><a href="#使用synchronize解决原子性问题" class="headerlink" title="使用synchronize解决原子性问题"></a>使用synchronize解决原子性问题</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> thread.synchronized1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> yang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/3/26 下午 3:45</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Atom01</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Object obj=<span class="keyword">new</span> Object();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        Runnable runnable=()-&gt;&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">                <span class="keyword">synchronized</span> (obj.getClass())&#123;</span><br><span class="line">                    num++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        ArrayList&lt;Thread&gt; threads = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            threads.add(<span class="keyword">new</span> Thread(runnable));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Thread thread : threads) &#123;</span><br><span class="line">            thread.start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//等待所有线程结束</span></span><br><span class="line">        <span class="keyword">for</span> (Thread thread : threads) &#123;</span><br><span class="line">            thread.join();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h2><h3 id="指令重排"><a href="#指令重排" class="headerlink" title="指令重排"></a>指令重排</h3><p>在说有序性之前，我们必须先来聊下指令重排，因为如果没有指令重拍的话，也就不存在有序性问题了。</p>
+<p><strong>指令重排</strong>是指编译器和处理器在不影响代码单线程执行结果的前提下，对源代码的指令进行重新排序执行。这种重排序执行是一种优化手段，目的是为了处理器内部的运算单元能尽量被充分利用，提升程序的整体运行效率。</p>
+<h3 id="为什么要重排序"><a href="#为什么要重排序" class="headerlink" title="为什么要重排序"></a>为什么要重排序</h3><p>为了提高程序的执行效率，编译器和CPU会对程序中代码进行重排序。</p>
+<h3 id="as-if-serial语义"><a href="#as-if-serial语义" class="headerlink" title="as-if-serial语义"></a>as-if-serial语义</h3><p>as-if-serial语义的意思是：不管编译器和CPU如何重排序，必须保证在单线程情况下程序的结果是正确<br>的。<br>如果有数据有依赖关系，不能重排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可以这样：</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">int</span> c = a + b;</span><br><span class="line"><span class="comment">//也可以重排序这样：</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> c = a + b;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.openjdk.jcstress.annotations.*;</span><br><span class="line"><span class="keyword">import</span> org.openjdk.jcstress.infra.results.I_Result;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> yang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/3/26 下午 4:12</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@JCStressTest</span></span><br><span class="line"><span class="meta">@Outcome</span>(id=&#123;<span class="string">"1"</span>,<span class="string">"4"</span>&#125;,expect = Expect.ACCEPTABLE,desc = <span class="string">"ok"</span>)</span><br><span class="line"><span class="meta">@Outcome</span>(id=<span class="string">"0"</span>,expect = Expect.ACCEPTABLE_INTERESTING,desc = <span class="string">"ERROR"</span>)</span><br><span class="line"><span class="meta">@State</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">boolean</span> ready=<span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Actor</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actor1</span><span class="params">(I_Result r)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(ready)&#123;</span><br><span class="line">            r.r1=num+num;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            r.r1=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Actor</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">acotr2</span><span class="params">(I_Result r)</span></span>&#123;</span><br><span class="line">        num=<span class="number">2</span>;</span><br><span class="line">        ready=<span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean install<span class="comment">//cake结果</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>情况1：先执行actor1,这时ready=false，所以结果为1.</li>
+<li>情况2：执行到actor2，执行了num=2;和ready=true,线程1执行，这回进入if分支，结果为4。</li>
+<li>情况3：线程2先执行actor2，只执行num=2;但没来得及执行ready=true，线程1执行，还是进入else分支</li>
+<li><strong>情况4：由于jvm指令重拍导致ready=true先执行，然后线程一进入if，结果为0</strong></li>
+</ul>
+
       
     </div>
     
@@ -408,6 +461,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/不准确/" rel="tag"># 不准确</a>
+          
+        </div>
+      
 
       
       
@@ -426,6 +485,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/26/JMM内存模型/" rel="prev" title="JMM内存模型">
+                JMM内存模型 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -477,8 +540,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -493,7 +565,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -515,7 +587,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -538,6 +610,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#可见性"><span class="nav-number">1.</span> <span class="nav-text">可见性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#演示"><span class="nav-number">1.1.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行过程带来的问题"><span class="nav-number">1.1.1.</span> <span class="nav-text">运行过程带来的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">1.1.2.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方案一"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方案二"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">方案二</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决分析"><span class="nav-number">1.1.3.</span> <span class="nav-text">解决分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原子性"><span class="nav-number">2.</span> <span class="nav-text">原子性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#触发原子性问题的条件"><span class="nav-number">2.1.</span> <span class="nav-text">触发原子性问题的条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#违反原子性问题演示"><span class="nav-number">2.2.</span> <span class="nav-text">违反原子性问题演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原因分析"><span class="nav-number">2.2.1.</span> <span class="nav-text">原因分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用synchronize解决原子性问题"><span class="nav-number">2.3.</span> <span class="nav-text">使用synchronize解决原子性问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有序性"><span class="nav-number">3.</span> <span class="nav-text">有序性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指令重排"><span class="nav-number">3.1.</span> <span class="nav-text">指令重排</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要重排序"><span class="nav-number">3.2.</span> <span class="nav-text">为什么要重排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#as-if-serial语义"><span class="nav-number">3.3.</span> <span class="nav-text">as-if-serial语义</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

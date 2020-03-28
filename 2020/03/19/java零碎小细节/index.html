@@ -116,7 +116,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/upload/1584613675202.png">
 <meta property="og:image" content="http://yoursite.com/upload/1584682306026.png">
-<meta property="og:updated_time" content="2020-03-22T06:08:57.511Z">
+<meta property="og:updated_time" content="2020-03-26T11:51:47.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java零碎小细节">
 <meta name="twitter:description" content="boolean大小问题问题引入今天在看java编程思想的时候发现8个基本类型变量基本上都有明确的大小，但是boolean并没有大小。 解决来源是《Java虚拟机规范》一书中的描述：“虽然定义了boolean这种数据类型，但是只对它提供了非常有限的支持。在Java虚拟机中没有任何供boolean值专用的字节码指令，Java语言表达式所操作的boolean值，在编译之后都使用Java虚拟机中的int数">
@@ -418,7 +418,7 @@
 <h3 id="Java中创建子类实例时会创建父类实例？"><a href="#Java中创建子类实例时会创建父类实例？" class="headerlink" title="Java中创建子类实例时会创建父类实例？"></a>Java中创建子类实例时会创建父类实例？</h3><p>首先每个类的这些元数据，无论是在构建这个类的实例还是调用这个类某个对象的方法，都会访问方法区的这些元数据。构建一个对象时，JVM会在堆中给对象分配空间，这些空间用来存储当前对象实例属性以及其父类的实例属性（而这些属性信息都是从方法区获得）</p>
 <p>注意，这里并不是仅仅为当前对象的实例属性分配空间，还需要给父类的实例属性分配。</p>
 <p>总之，会为父类分配堆内存，但是这块内存属于子类的堆内存。</p>
-<h3 id="i-和-i的区别"><a href="#i-和-i的区别" class="headerlink" title="i++和++i的区别"></a>i++和++i的区别</h3><p>i++和++i都会变成两个字节码指令</p>
+<h3 id="i-和-i的区别"><a href="#i-和-i的区别" class="headerlink" title="i++和++i的区别"></a>i++和++i的区别</h3><p>i++和++i都会变成四个字节码指令，其中不同的地方在2,3条指令，这两个指令是</p>
 <ul>
 <li>iload 把局部变量表中的值加载到操作数栈中</li>
 <li>iinc * by * 第一个占位符表示局部变量表的位置，第二个表示该位置自增的数，比如inc 1 by 1就表示 1位置自增1</li>
@@ -565,7 +565,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -587,7 +587,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
