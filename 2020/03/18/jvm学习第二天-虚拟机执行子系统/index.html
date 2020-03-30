@@ -116,7 +116,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/upload/1584595655988.png">
 <meta property="og:image" content="http://yoursite.com/upload/1584597510376.png">
-<meta property="og:updated_time" content="2020-03-19T10:46:33.373Z">
+<meta property="og:updated_time" content="2020-03-29T06:57:20.964Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm学习第二天-虚拟机执行子系统">
 <meta name="twitter:description" content="字节码简介Java字节码指令由一个字节长度的，代表某种特定操作含义的数字（操作码）以及其后的零至多个代表此操作所需参数（操作数）。此外字节码指令是面向操作数栈的，这里操作数栈在功能上对应实体机的寄存器但是结构上有所区别。 字节码与数据类型在字节码指令集中，大多数指令都对应的其操作所对应的数据类型信息，比如iload表示从局部变量表中加载int型的数据到操作栈中，fload从局部变量表中加载floa">
@@ -406,9 +406,11 @@
 <h2 id="虚拟类的加载机制"><a href="#虚拟类的加载机制" class="headerlink" title="虚拟类的加载机制"></a>虚拟类的加载机制</h2><p><img src="/upload/1584597510376.png" alt="1584597510376"></p>
 <h3 id="类加载时机"><a href="#类加载时机" class="headerlink" title="类加载时机"></a>类加载时机</h3><p>java语言中类型的加载连接以及初始化过程都是在程序运行期间完成的，这种策略虽然会使类加载时稍微增加一些性能开销，但是会为java应用程序提供高度的灵活性。java里天生就可以动态扩展语言特性就是依赖运行期间动态加载和动态连接这个特点实现的。比如，如果编写一个面向接口的程序，可以等到运行时再指定其具体实现类。（解析阶段则不一定:在某些情况下可以在初始化阶段之后开始，这是为了支持java语言的运行时绑定特性(也称为动态绑定或晚期绑定).</p>
 <p><strong>加载” 是 “类加载” 过程的一个阶段，切不可将二者混淆。</strong></p>
-<h4 id="加载阶段由三个基本动作组成："><a href="#加载阶段由三个基本动作组成：" class="headerlink" title="加载阶段由三个基本动作组成："></a>加载阶段由三个基本动作组成：</h4><p>1) 通过类型的完全限定名，产生一个代表该类型的二进制数据流（根本没有指明从哪里获取、怎样获取，可以说一个非常开放的平台了）</p>
-<p>2) 解析这个二进制数据流为方法区内的运行时数据结构</p>
-<p>3) 创建一个表示该类型的java.lang.Class类的实例，作为方法区这个类的各种数据的访问入口。</p>
+<h4 id="加载阶段由三个基本动作组成："><a href="#加载阶段由三个基本动作组成：" class="headerlink" title="加载阶段由三个基本动作组成："></a>加载阶段由三个基本动作组成：</h4><ul>
+<li>通过一个类的全限定名来获取定义此类的二进制字节流。</li>
+<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</li>
+<li>在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口。</li>
+</ul>
 <h3 id="主动加载和被动加载"><a href="#主动加载和被动加载" class="headerlink" title="主动加载和被动加载"></a>主动加载和被动加载</h3><p>主动加载和被动加载的区别在于，主动加载会触发类的初始化。</p>
 <h3 id="类必须初始化的6种情况"><a href="#类必须初始化的6种情况" class="headerlink" title="类必须初始化的6种情况"></a>类必须初始化的6种情况</h3><ul>
 <li>使用new关键字实例化对象的时候、读取或设置一个类的静态字段的时候，已经调用一个类的静态方法的时候。</li>
@@ -418,19 +420,10 @@
 <li>使用Jdk1.7动态语言支持的时候的一些情况。</li>
 <li>当一个接口中定义了JDK8新加入的默认方法(被default关键字修饰的接口方法时，如果这个接口的实现类发生了初始化，那么该接口要在其之前被初始化)</li>
 </ul>
-<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>加载”是“类加载”（Class Loading）过程的一个阶段。在加载阶段，虚拟机需要完成以下3件事情：</p>
-<ul>
-<li><p>通过一个类的全限定名来获取定义此类的二进制字节流。</p>
-</li>
-<li><p>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</p>
-</li>
-<li><p>在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口。</p>
-</li>
-</ul>
 <p>相对于类加载过程的其他阶段，一个非数组类的加载阶段（准确地说，是加载阶段中获取类的二进制字节流的动作）是开发人员可控性最强的，因为加载阶段既可以使用系统提供的引导类加载器来完成，也可以由用户自定义的类加载器去完成，开发人员可以通过定义自己的类加载器去控制字节流的获取方式（即重写一个类加载器的loadClass（）方法）。</p>
 <p>也就是说我们在加载的时候可以从很多地方加载，例如从压缩包加载，从网络加载，运行时计算生成等。</p>
-<p>加载阶段完成后，虚拟机外部的二进制字节流就按照虚拟机所需的格式存储在<strong>方法区</strong>之中，方法区中的数据存储格式由虚拟机实现自行定义，虚拟机规范未规定此区域的具体数据结构。然后在内存中实例化一个java.lang.Class类的对象（并没有明确规定是在Java堆中，对于HotSpot虚拟机而言，Class对象比较特殊，它虽然是对象，但是存放在方法区里面），这个对象将作为程序访问方法区中的这些类型数据的外部接口。</p>
-<h4 id="加载数组"><a href="#加载数组" class="headerlink" title="加载数组"></a>加载数组</h4><p>数组类本身不通过类加载器创建，它时有java虚拟机直接在内存中动态构造出来的，但数组类与类加载器仍然有很密切的关系，因为数组的元素类型（数组去掉所有维度的类型）最终还是要考类加载器来完成。</p>
+<p>加载阶段完成后，虚拟机外部的二进制字节流就按照虚拟机所需的格式存储在<strong>方法区</strong>之中，方法区中的数据存储格式由虚拟机实现自行定义，虚拟机规范未规定此区域的具体数据结构。然后在内存中实例化一个java.lang.Class类的对象（并没有明确规定是在Java堆中，<strong>对于HotSpot虚拟机而言，Class对象比较特殊，它虽然是对象，但是存放在方法区里面</strong>），这个对象将作为程序访问方法区中的这些类型数据的外部接口。</p>
+<h4 id="加载数组"><a href="#加载数组" class="headerlink" title="加载数组"></a>加载数组</h4><p>数组类本身不通过类加载器创建，它时有java虚拟机直接在内存中动态构造出来的，但数组类与类加载器仍然有很密切的关系，因为数组的元素类型（数组去掉所有维度的类型）最终还是要靠类加载器来完成。</p>
 <h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>验证是链接阶段的第一步，这一步主要的目的是确保class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身安全。</p>
 <blockquote>
 <p> 因为仅仅依靠java代码层面一些无法做到的事情java代码也可以表示出来，例如数组越界，所以jvm的编译期在字节码上看见这种事情会直接拒绝编译</p>
@@ -663,7 +656,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -685,7 +678,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -718,7 +711,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字节码简介"><span class="nav-number">1.</span> <span class="nav-text">字节码简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节码与数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">字节码与数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载和存储指令"><span class="nav-number">1.2.</span> <span class="nav-text">加载和存储指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换指令"><span class="nav-number">1.3.</span> <span class="nav-text">类型转换指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象创建与访问指令"><span class="nav-number">1.4.</span> <span class="nav-text">对象创建与访问指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作数栈管理指令"><span class="nav-number">1.5.</span> <span class="nav-text">操作数栈管理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件分支："><span class="nav-number">1.6.</span> <span class="nav-text">条件分支：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法调用和返回指令"><span class="nav-number">1.7.</span> <span class="nav-text">方法调用和返回指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理指令"><span class="nav-number">1.8.</span> <span class="nav-text">异常处理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步指令"><span class="nav-number">1.9.</span> <span class="nav-text">同步指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码分析"><span class="nav-number">1.10.</span> <span class="nav-text">代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟类的加载机制"><span class="nav-number">2.</span> <span class="nav-text">虚拟类的加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类加载时机"><span class="nav-number">2.1.</span> <span class="nav-text">类加载时机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载阶段由三个基本动作组成："><span class="nav-number">2.1.1.</span> <span class="nav-text">加载阶段由三个基本动作组成：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主动加载和被动加载"><span class="nav-number">2.2.</span> <span class="nav-text">主动加载和被动加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类必须初始化的6种情况"><span class="nav-number">2.3.</span> <span class="nav-text">类必须初始化的6种情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载"><span class="nav-number">2.4.</span> <span class="nav-text">加载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载数组"><span class="nav-number">2.4.1.</span> <span class="nav-text">加载数组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接"><span class="nav-number">2.5.</span> <span class="nav-text">连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证"><span class="nav-number">2.5.1.</span> <span class="nav-text">验证</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文件格式验证"><span class="nav-number">2.5.1.1.</span> <span class="nav-text">文件格式验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元数据验证"><span class="nav-number">2.5.1.2.</span> <span class="nav-text">元数据验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字节码验证"><span class="nav-number">2.5.1.3.</span> <span class="nav-text">字节码验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#符号引用验证"><span class="nav-number">2.5.1.4.</span> <span class="nav-text">符号引用验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#准备"><span class="nav-number">2.5.2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析"><span class="nav-number">2.5.3.</span> <span class="nav-text">解析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#符号引用："><span class="nav-number">2.5.3.1.</span> <span class="nav-text">符号引用：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#直接引用："><span class="nav-number">2.5.3.2.</span> <span class="nav-text">直接引用：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">2.6.</span> <span class="nav-text">初始化</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字节码简介"><span class="nav-number">1.</span> <span class="nav-text">字节码简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节码与数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">字节码与数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载和存储指令"><span class="nav-number">1.2.</span> <span class="nav-text">加载和存储指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换指令"><span class="nav-number">1.3.</span> <span class="nav-text">类型转换指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象创建与访问指令"><span class="nav-number">1.4.</span> <span class="nav-text">对象创建与访问指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作数栈管理指令"><span class="nav-number">1.5.</span> <span class="nav-text">操作数栈管理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件分支："><span class="nav-number">1.6.</span> <span class="nav-text">条件分支：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法调用和返回指令"><span class="nav-number">1.7.</span> <span class="nav-text">方法调用和返回指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理指令"><span class="nav-number">1.8.</span> <span class="nav-text">异常处理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步指令"><span class="nav-number">1.9.</span> <span class="nav-text">同步指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码分析"><span class="nav-number">1.10.</span> <span class="nav-text">代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟类的加载机制"><span class="nav-number">2.</span> <span class="nav-text">虚拟类的加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类加载时机"><span class="nav-number">2.1.</span> <span class="nav-text">类加载时机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载阶段由三个基本动作组成："><span class="nav-number">2.1.1.</span> <span class="nav-text">加载阶段由三个基本动作组成：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主动加载和被动加载"><span class="nav-number">2.2.</span> <span class="nav-text">主动加载和被动加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类必须初始化的6种情况"><span class="nav-number">2.3.</span> <span class="nav-text">类必须初始化的6种情况</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载数组"><span class="nav-number">2.3.1.</span> <span class="nav-text">加载数组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接"><span class="nav-number">2.4.</span> <span class="nav-text">连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证"><span class="nav-number">2.4.1.</span> <span class="nav-text">验证</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文件格式验证"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">文件格式验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元数据验证"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">元数据验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字节码验证"><span class="nav-number">2.4.1.3.</span> <span class="nav-text">字节码验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#符号引用验证"><span class="nav-number">2.4.1.4.</span> <span class="nav-text">符号引用验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#准备"><span class="nav-number">2.4.2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析"><span class="nav-number">2.4.3.</span> <span class="nav-text">解析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#符号引用："><span class="nav-number">2.4.3.1.</span> <span class="nav-text">符号引用：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#直接引用："><span class="nav-number">2.4.3.2.</span> <span class="nav-text">直接引用：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">2.5.</span> <span class="nav-text">初始化</span></a></li></ol></li></ol></div>
             
 
           </div>
