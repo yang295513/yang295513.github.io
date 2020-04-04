@@ -122,7 +122,7 @@
 <meta property="og:image" content="http://yoursite.com/upload/1585559480979.png">
 <meta property="og:image" content="http://yoursite.com/upload/1585559803477.png">
 <meta property="og:image" content="http://yoursite.com/upload/1585560057665.png">
-<meta property="og:updated_time" content="2020-03-30T09:28:09.555Z">
+<meta property="og:updated_time" content="2020-04-01T07:32:22.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql数据结构B+树详解">
 <meta name="twitter:description" content="为什么要使用B+树数据结构的种类 数组 栈 队列 链表 树 散列表 堆 图  我们都知道这些数据结构，但是对于mysql来说，需要选用一个更合适的数据结构 首先这个数据结构要满足查找增删快特点 显然满足这个条件的只有数和散列表了，那么接下来我们先讨论树，在后来会在讨论mysql和散列表的 二叉树学过数据结构的都知道二叉树的特点  若左子树不空，则左子树上所有节点的值均小于它的根节点的值 若右子树不">
@@ -421,7 +421,7 @@
 <p><img src="/upload/1585558750236.png" alt="1585558750236"></p>
 <p>我们改成每个节点存储5个元素的B树</p>
 <p><img src="/upload/1585558823419.png" alt="1585558823419"></p>
-<p>我们可以看到层数缩减到了2层也就是说如果我们能合理的设置每个节点存储元素的个数,那么我们就可以在不牺牲性能的情况下极大的减少磁盘IO的次数。</p>
+<p>我们可以看到层数缩减到了2层也就是说如果我们能合理的设置每个节点存储元素的个数,那么我们就可以在不牺牲性能的情况下极大的减少磁盘IO的次数,(因为数据库的索引特别大，所以一般索引也是存储到本地磁盘上的)。</p>
 <p><img src="/upload/1585559206466.png" alt="1585559206466"></p>
 <p>到目前一切显得似乎都那么完美，但是如果mysql如果使用B树的话也有一个很大的缺点，就是mysql除了每次只查询一条数据，但是mysql还要支持条件查询啊，假如我们需要找到所有大于3的节点</p>
 <p><img src="/upload/1585559480979.png" alt="1585559480979"></p>
@@ -502,6 +502,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/04/01/MySQL索引详解/" rel="prev" title="MySQL索引详解">
+                MySQL索引详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -577,7 +581,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -599,7 +603,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-count">106</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
