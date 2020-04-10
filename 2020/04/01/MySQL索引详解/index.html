@@ -95,7 +95,7 @@
 
 
 
-  <meta name="keywords" content="mysql,数据库,">
+  <meta name="keywords" content="数据库,mysql,">
 
 
 
@@ -107,17 +107,21 @@
 
 
 <meta name="description" content="索引 索引就是一种排好序的快速查找数据结构  索引的分类单值索引即一个索引只包含单个列，一个表可以有多个单列索引（建议一张表索引不要超过5个优先考虑复合索引） 唯一索引索引列的值必须唯一，但允许有空值 复合索引即一个索引包含多个列 索引的基本语法创建CREATE [UNIQUE] INDEX  indexName ON mytable(columnname(length)); 删除ALTER my">
-<meta name="keywords" content="mysql,数据库">
+<meta name="keywords" content="数据库,mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL索引详解">
 <meta property="og:url" content="http://yoursite.com/2020/04/01/MySQL索引详解/index.html">
 <meta property="og:site_name" content="Byy">
 <meta property="og:description" content="索引 索引就是一种排好序的快速查找数据结构  索引的分类单值索引即一个索引只包含单个列，一个表可以有多个单列索引（建议一张表索引不要超过5个优先考虑复合索引） 唯一索引索引列的值必须唯一，但允许有空值 复合索引即一个索引包含多个列 索引的基本语法创建CREATE [UNIQUE] INDEX  indexName ON mytable(columnname(length)); 删除ALTER my">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-02T09:16:04.732Z">
+<meta property="og:image" content="http://yoursite.com/upload/1586147707382.png">
+<meta property="og:image" content="http://yoursite.com/upload/1586148320778.png">
+<meta property="og:image" content="http://yoursite.com/upload/1586156397696.png">
+<meta property="og:updated_time" content="2020-04-06T07:12:29.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL索引详解">
 <meta name="twitter:description" content="索引 索引就是一种排好序的快速查找数据结构  索引的分类单值索引即一个索引只包含单个列，一个表可以有多个单列索引（建议一张表索引不要超过5个优先考虑复合索引） 唯一索引索引列的值必须唯一，但允许有空值 复合索引即一个索引包含多个列 索引的基本语法创建CREATE [UNIQUE] INDEX  indexName ON mytable(columnname(length)); 删除ALTER my">
+<meta name="twitter:image" content="http://yoursite.com/upload/1586147707382.png">
 
 
 
@@ -416,6 +420,65 @@
 <li>经常增删改的表(因为每次更新不单单是更新了记录还会更新索引，加重IO负担)</li>
 <li>数据重复且分布平均的表字段，因此应该只为经常查询和经常排序的数据列建立索引。<br>  注意，如果某个数据列包含许多重复的内容，为它建立索引就没有太大的实际效果。(应该尽可能的让非重复字段的数量/总数量的结果接近1)</li>
 </ul>
+<h2 id="什么是聚簇索引和回表"><a href="#什么是聚簇索引和回表" class="headerlink" title="什么是聚簇索引和回表"></a>什么是聚簇索引和回表</h2><p>聚簇索引：将数据存储与索引放到了一块，找到索引也就找到了数据</p>
+<p>非聚簇索引：将数据存储于索引分开结构，索引结构的叶子节点指向了数据的对应行，myisam通过key_buffer把索引先缓存到内存中，当需要访问数据时（通过索引访问数据），在内存中直接搜索索引，然后通过索引找到磁盘相应数据，这也就是为什么索引不在key buffer命中时，速度慢的原因</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>聚簇索引叶节点存储着行数据</li>
+<li>非聚簇索引即普通索引只是存储着聚簇索引的key.</li>
+</ul>
+<h3 id="聚簇索引具有唯一性"><a href="#聚簇索引具有唯一性" class="headerlink" title="聚簇索引具有唯一性"></a>聚簇索引具有唯一性</h3><p>由于聚簇索引是将数据跟索引结构放到一块，因此一个表仅有一个聚簇索引</p>
+<p><strong>聚簇索引默认是主键</strong>，如果表中没有定义主键，InnoDB 会选择一个<strong>唯一的非空索引</strong>代替。如果没有这样的索引，InnoDB 会<strong>隐式定义一个主键</strong>来作为聚簇索引。</p>
+<h3 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h3><p>假如有一张表有三个字段，分别是学号（唯一主键），姓名，和性别</p>
+<p>然后我们创建姓名为非聚簇索引</p>
+<h4 id="当我们使用select-from-where-id-”1”-时"><a href="#当我们使用select-from-where-id-”1”-时" class="headerlink" title="当我们使用select * from where id=”1”;时"></a>当我们使用select * from where id=”1”;时</h4><p><img src="/upload/1586147707382.png" alt="1586147707382"></p>
+<p>上面就是一个聚簇索引，当我们查询id=1的时候就通过聚簇索引查询到对应的行数据</p>
+<h4 id="当我们使用select-from-where-name-”a”-时"><a href="#当我们使用select-from-where-name-”a”-时" class="headerlink" title="当我们使用select * from where name=”a”;时"></a>当我们使用select * from where name=”a”;时</h4><p><img src="/upload/1586148320778.png" alt="1586148320778"></p>
+<p>查询的是我们创建的索引，我们创建的这颗非聚簇索引并不存储行数据，而是存储聚簇索引的主键值</p>
+<ul>
+<li>因为我们查询的是 * .</li>
+<li>所以我们在查询普通索引的时候发现a对应的主键是1，于是乎我们需要到聚簇索引找到我们想要的信息，需要重新查找，这个操作就称为<strong>回表</strong>。</li>
+<li>然后我们拿到主键是1，查询到对应的行。</li>
+</ul>
+<h2 id="索引覆盖"><a href="#索引覆盖" class="headerlink" title="索引覆盖"></a>索引覆盖</h2><p>当我们使用select namerom where name=”a”;时</p>
+<p>因为普通索引就存储着我们想要的信息，所以就无需回表，这就提高了查询效率</p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>我们利用这个回表的特性，创建一些联合索引，就可以避免回表的操作，这样就可以实现查询的优化</p>
+<p><img src="/upload/1586156397696.png" alt="1586156397696"></p>
+<p>分析：</p>
+<p>虽然排序的字段列与索引顺序一样，且order by默认升序，这里c2 desc变成了降序，导致与索引的排序方式不同，从而产生Using filesort。</p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>①MySQL支持两种方式的排序filesort和index，Using index是指MySQL扫描索引本身完成排序。index效率高，filesort效率低。</p>
+<p>②order by满足两种情况会使用Using index。</p>
+<p><strong>1.order by语句使用索引最左前列。</strong></p>
+<p><strong>2.使用where子句与order by子句条件列组合满足索引最左前列。</strong></p>
+<p>③尽量在索引列上完成排序，遵循索引建立（索引创建的顺序）时的最佳左前缀法则。</p>
+<p>④如果order by的条件不在索引列上，就会产生Using filesort。</p>
+<p>1.filesort有两种排序算法：双路排序和单路排序。</p>
+<p>双路排序：在MySQL4.1之前使用双路排序，就是两次磁盘扫描，得到最终数据。读取行指针和order by列，对他们进行排序，然后扫描已经排好序的列表，按照列表中的值重新从列表中读取对应的数据输出。即从磁盘读取排序字段，在buffer进行排序，再从磁盘取其他字段。</p>
+<p>如果使用双路排序，取一批数据要对磁盘进行两次扫描，众所周知，I/O操作是很耗时的，因此在MySQL4.1以后，出现了改进的算法：单路排序。</p>
+<p>单路排序：从磁盘中查询所需的列，按照order by列在buffer中对它们进行排序，然后扫描排序后的列表进行输出。它的效率更高一些，避免了第二次读取数据，并且把随机I/O变成了顺序I/O，但是会使用更多的空间，因为它把每一行都保存在内存中了。</p>
+<p>2.单路排序出现的问题。</p>
+<p>当读取数据超过sort_buffer的容量时，就会导致多次读取数据，并创建临时表，最后多路合并，产生多次I/O，反而增加其I/O运算。</p>
+<p>解决方式：</p>
+<p>a.增加sort_buffer_size参数的设置。</p>
+<p>b.增大max_length_for_sort_data参数的设置。</p>
+<p>⑤提升order by速度的方式：</p>
+<p>1.在使用order by时，不要用select *，只查询所需的字段。</p>
+<p>因为当查询字段过多时，会导致sort_buffer不够，从而使用多路排序或进行多次I/O操作。</p>
+<p>2.尝试提高sort_buffer_size。</p>
+<p>3.尝试提高max_length_for_sort_data。</p>
+<h2 id="GROUP-BY优化"><a href="#GROUP-BY优化" class="headerlink" title="GROUP BY优化"></a>GROUP BY优化</h2><ul>
+<li><p>如果GROUP BY 的列没有索引,产生临时表. </p>
+</li>
+<li><p>如果GROUP BY时,SELECT的列不止GROUP BY列一个,并且GROUP BY的列不是主键 ,产生临时表. </p>
+</li>
+<li><p>如果GROUP BY的列有索引,ORDER BY的列没索引.产生临时表. </p>
+</li>
+<li><p>如果GROUP BY的列和ORDER BY的列不一样,即使都有索引也会产生临时表. </p>
+</li>
+<li><p>如果GROUP BY或ORDER BY的列不是来自JOIN语句第一个表.会产生临时表. </p>
+</li>
+<li><p>如果DISTINCT 和 ORDER BY的列没有索引,产生临时表.</p>
+</li>
+</ul>
 
       
     </div>
@@ -451,9 +514,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
-          
             <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
           
         </div>
       
@@ -555,7 +618,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -577,7 +640,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-count">109</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -610,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">1.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的分类"><span class="nav-number">2.</span> <span class="nav-text">索引的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单值索引"><span class="nav-number">2.0.1.</span> <span class="nav-text">单值索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#唯一索引"><span class="nav-number">2.0.2.</span> <span class="nav-text">唯一索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复合索引"><span class="nav-number">2.0.3.</span> <span class="nav-text">复合索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引的基本语法"><span class="nav-number">2.1.</span> <span class="nav-text">索引的基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建"><span class="nav-number">2.1.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">2.1.2.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看"><span class="nav-number">2.1.3.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看一个表的索引信息"><span class="nav-number">2.1.4.</span> <span class="nav-text">查看一个表的索引信息</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的优缺点"><span class="nav-number">3.</span> <span class="nav-text">索引的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">3.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的使用场景"><span class="nav-number">4.</span> <span class="nav-text">索引的使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候需要使用索引"><span class="nav-number">4.1.</span> <span class="nav-text">什么时候需要使用索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候不需要使用索引"><span class="nav-number">4.2.</span> <span class="nav-text">什么时候不需要使用索引</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">1.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的分类"><span class="nav-number">2.</span> <span class="nav-text">索引的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单值索引"><span class="nav-number">2.0.1.</span> <span class="nav-text">单值索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#唯一索引"><span class="nav-number">2.0.2.</span> <span class="nav-text">唯一索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复合索引"><span class="nav-number">2.0.3.</span> <span class="nav-text">复合索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引的基本语法"><span class="nav-number">2.1.</span> <span class="nav-text">索引的基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建"><span class="nav-number">2.1.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">2.1.2.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看"><span class="nav-number">2.1.3.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看一个表的索引信息"><span class="nav-number">2.1.4.</span> <span class="nav-text">查看一个表的索引信息</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的优缺点"><span class="nav-number">3.</span> <span class="nav-text">索引的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">3.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的使用场景"><span class="nav-number">4.</span> <span class="nav-text">索引的使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候需要使用索引"><span class="nav-number">4.1.</span> <span class="nav-text">什么时候需要使用索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候不需要使用索引"><span class="nav-number">4.2.</span> <span class="nav-text">什么时候不需要使用索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是聚簇索引和回表"><span class="nav-number">5.</span> <span class="nav-text">什么是聚簇索引和回表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">5.0.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚簇索引具有唯一性"><span class="nav-number">5.1.</span> <span class="nav-text">聚簇索引具有唯一性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演示"><span class="nav-number">5.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当我们使用select-from-where-id-”1”-时"><span class="nav-number">5.2.1.</span> <span class="nav-text">当我们使用select * from where id=”1”;时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当我们使用select-from-where-name-”a”-时"><span class="nav-number">5.2.2.</span> <span class="nav-text">当我们使用select * from where name=”a”;时</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引覆盖"><span class="nav-number">6.</span> <span class="nav-text">索引覆盖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化"><span class="nav-number">6.1.</span> <span class="nav-text">优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结-1"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GROUP-BY优化"><span class="nav-number">8.</span> <span class="nav-text">GROUP BY优化</span></a></li></div>
             
 
           </div>
