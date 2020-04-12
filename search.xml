@@ -553,8 +553,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>容器</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -583,8 +583,8 @@
         <tag>日常学习</tag>
         <tag>前端</tag>
         <tag>习惯</tag>
-        <tag>app</tag>
         <tag>vue</tag>
+        <tag>app</tag>
       </tags>
   </entry>
   <entry>
