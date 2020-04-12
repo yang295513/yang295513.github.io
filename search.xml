@@ -553,8 +553,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>容器</tag>
         <tag>docker</tag>
+        <tag>容器</tag>
       </tags>
   </entry>
   <entry>
@@ -703,8 +703,8 @@
         <tag>日常学习</tag>
         <tag>java</tag>
         <tag>Spring</tag>
-        <tag>SpringMVC</tag>
         <tag>SSM</tag>
+        <tag>SpringMVC</tag>
         <tag>Mybatis</tag>
         <tag>习惯</tag>
       </tags>
@@ -722,8 +722,8 @@
         <tag>JAVA</tag>
         <tag>Spring</tag>
         <tag>框架</tag>
-        <tag>SpringMVC</tag>
         <tag>SSM</tag>
+        <tag>SpringMVC</tag>
         <tag>Mybatis</tag>
       </tags>
   </entry>
@@ -813,10 +813,10 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>C++</tag>
-        <tag>C</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>C++</tag>
+        <tag>C</tag>
         <tag>算法</tag>
       </tags>
   </entry>
@@ -927,11 +927,11 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>C++</tag>
         <tag>语言</tag>
-        <tag>C</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>C++</tag>
+        <tag>C</tag>
         <tag>技巧</tag>
       </tags>
   </entry>
@@ -943,11 +943,11 @@
         <category>学习</category>
       </categories>
       <tags>
+        <tag>TensorFlow</tag>
         <tag>语言</tag>
+        <tag>Python</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
-        <tag>TensorFlow</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
