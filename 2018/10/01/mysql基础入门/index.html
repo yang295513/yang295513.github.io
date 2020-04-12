@@ -1,0 +1,1137 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="mysql基础, Byy">
+    <meta name="description" content>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>mysql基础 | Byy</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Byy</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Byy</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">mysql基础</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    .toc-fixed .toc-link::before{
+        position: fixed!important;/*当toc的位置改为fixed时，.toc-link::before也要改为fixed*/
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/mysql/">
+                                <span class="chip bg-color">mysql</span>
+                            </a>
+                        
+                            <a href="/tags/数据库/">
+                                <span class="chip bg-color">数据库</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2018-10-01
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-04-04
+                </div>
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="一、语法"><a href="#一、语法" class="headerlink" title="一、语法"></a>一、语法</h2><p>select 查询列表<br>from 表名;</p>
+<h2 id="二、特点"><a href="#二、特点" class="headerlink" title="二、特点"></a>二、特点</h2><p>1、查询列表可以是字段、常量、表达式、函数，也可以是多个<br>2、查询结果是一个虚拟表</p>
+<h2 id="三、示例"><a href="#三、示例" class="headerlink" title="三、示例"></a>三、示例</h2><h3 id="1、查询单个字段"><a href="#1、查询单个字段" class="headerlink" title="1、查询单个字段"></a>1、查询单个字段</h3><p>select 字段名 from 表名;</p>
+<h3 id="2、查询多个字段"><a href="#2、查询多个字段" class="headerlink" title="2、查询多个字段"></a>2、查询多个字段</h3><p>select 字段名，字段名 from 表名;</p>
+<h3 id="3、查询所有字段"><a href="#3、查询所有字段" class="headerlink" title="3、查询所有字段"></a>3、查询所有字段</h3><p>select * from 表名</p>
+<h3 id="4、查询常量"><a href="#4、查询常量" class="headerlink" title="4、查询常量"></a>4、查询常量</h3><p>select 常量值;<br>注意：字符型和日期型的常量值必须用单引号引起来，数值型不需要</p>
+<h3 id="5、查询函数"><a href="#5、查询函数" class="headerlink" title="5、查询函数"></a>5、查询函数</h3><h3 id="select-函数名-实参列表"><a href="#select-函数名-实参列表" class="headerlink" title="select 函数名(实参列表);"></a>select 函数名(实参列表);</h3><p>6、查询表达式<br>select 100/1234;</p>
+<h3 id="7、起别名"><a href="#7、起别名" class="headerlink" title="7、起别名"></a>7、起别名</h3><p>①as<br>②空格</p>
+<h3 id="8、去重"><a href="#8、去重" class="headerlink" title="8、去重"></a>8、去重</h3><p>select distinct 字段名 from 表名;</p>
+<h3 id="9、"><a href="#9、" class="headerlink" title="9、+"></a>9、+</h3><p>作用：做加法运算<br>select 数值+数值; 直接运算<br>select 字符+数值;先试图将字符转换成数值，如果转换成功，则继续运算；否则转换成0，再做运算<br>select null+值;结果都为null</p>
+<h3 id="10、【补充】concat函数"><a href="#10、【补充】concat函数" class="headerlink" title="10、【补充】concat函数"></a>10、【补充】concat函数</h3><p>功能：拼接字符<br>select concat(字符1，字符2，字符3,…);</p>
+<h3 id="11、【补充】ifnull函数"><a href="#11、【补充】ifnull函数" class="headerlink" title="11、【补充】ifnull函数"></a>11、【补充】ifnull函数</h3><p>功能：判断某字段或表达式是否为null，如果为null 返回指定的值，否则返回原本的值<br>select ifnull(commission_pct,0) from employees;</p>
+<h3 id="12、【补充】isnull函数"><a href="#12、【补充】isnull函数" class="headerlink" title="12、【补充】isnull函数"></a>12、【补充】isnull函数</h3><p>功能：判断某字段或表达式是否为null，如果是，则返回1，否则返回0</p>
+<h2 id="一、语法-1"><a href="#一、语法-1" class="headerlink" title="一、语法"></a>一、语法</h2><p>select 查询列表<br>from 表名<br>where 筛选条件</p>
+<h2 id="二、筛选条件的分类"><a href="#二、筛选条件的分类" class="headerlink" title="二、筛选条件的分类"></a>二、筛选条件的分类</h2><h3 id="1、简单条件运算符"><a href="#1、简单条件运算符" class="headerlink" title="1、简单条件运算符"></a>1、简单条件运算符</h3><blockquote>
+<p>&lt; = &lt;&gt; != &gt;= &lt;=  &lt;=&gt;安全等于<br>2、逻辑运算符<br>&amp;&amp; and<br>|| or<br>!  not<br>3、模糊查询<br>like:一般搭配通配符使用，可以判断字符型或数值型<br>通配符：%任意多个字符，_任意单个字符</p>
+</blockquote>
+<p>between and<br>in<br>is null /is not null：用于判断null值</p>
+<p>is null PK &lt;=&gt;<br>            普通类型的数值    null值        可读性<br>is null        ×            √        √<br>&lt;=&gt;        √            √        ×</p>
+<h3 id="一、语法-2"><a href="#一、语法-2" class="headerlink" title="一、语法"></a>一、语法</h3><p>select 查询列表<br>from 表<br>where 筛选条件<br>order by 排序列表 【asc}desc】</p>
+<h3 id="二、特点-1"><a href="#二、特点-1" class="headerlink" title="二、特点"></a>二、特点</h3><p>1、asc ：升序，如果不写默认升序<br>   desc：降序</p>
+<p>2、排序列表 支持 单个字段、多个字段、函数、表达式、别名</p>
+<p>3、order by的位置一般放在查询语句的最后（除limit语句之外）</p>
+<h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><p>功能：类似于java中的方法<br>好处：提高重用性和隐藏实现细节<br>调用：select 函数名(实参列表);</p>
+<h3 id="二、单行函数"><a href="#二、单行函数" class="headerlink" title="二、单行函数"></a>二、单行函数</h3><h4 id="1、字符函数"><a href="#1、字符函数" class="headerlink" title="1、字符函数"></a>1、字符函数</h4><p>concat:连接<br>substr:截取子串<br>upper:变大写<br>lower：变小写<br>replace：替换<br>length：获取字节长度<br>trim:去前后空格<br>lpad：左填充<br>rpad：右填充<br>instr:获取子串第一次出现的索引</p>
+<h4 id="2、数学函数"><a href="#2、数学函数" class="headerlink" title="2、数学函数"></a>2、数学函数</h4><p>ceil:向上取整<br>round：四舍五入<br>mod:取模<br>floor：向下取整<br>truncate:截断<br>rand:获取随机数，返回0-1之间的小数</p>
+<h4 id="3、日期函数"><a href="#3、日期函数" class="headerlink" title="3、日期函数"></a>3、日期函数</h4><p>now：返回当前日期+时间<br>year:返回年<br>month：返回月<br>day:返回日<br>date_format:将日期转换成字符<br>curdate:返回当前日期<br>str_to_date:将字符转换成日期<br>curtime：返回当前时间<br>hour:小时<br>minute:分钟<br>second：秒<br>datediff:返回两个日期相差的天数<br>monthname:以英文形式返回月</p>
+<h4 id="4、其他函数"><a href="#4、其他函数" class="headerlink" title="4、其他函数"></a>4、其他函数</h4><p>version 当前数据库服务器的版本<br>database 当前打开的数据库<br>user当前用户<br>password(‘字符’)：返回该字符的密码形式<br>md5(‘字符’):返回该字符的md5加密形式</p>
+<h4 id="5、流程控制函数"><a href="#5、流程控制函数" class="headerlink" title="5、流程控制函数"></a>5、流程控制函数</h4><p>①if(条件表达式，表达式1，表达式2)：如果条件表达式成立，返回表达式1，否则返回表达式2<br>②case情况1<br>case 变量或表达式或字段<br>when 常量1 then 值1<br>when 常量2 then 值2<br>…<br>else 值n<br>end</p>
+<p>③case情况2<br>case<br>when 条件1 then 值1<br>when 条件2 then 值2<br>…<br>else 值n<br>end</p>
+<h2 id="三、分组函数"><a href="#三、分组函数" class="headerlink" title="三、分组函数"></a>三、分组函数</h2><h3 id="1、分类"><a href="#1、分类" class="headerlink" title="1、分类"></a>1、分类</h3><p>max 最大值<br>min 最小值<br>sum 和<br>avg 平均值<br>count 计算个数</p>
+<h3 id="2、特点"><a href="#2、特点" class="headerlink" title="2、特点"></a>2、特点</h3><p>①语法<br>select max(字段) from 表名;</p>
+<p>②支持的类型<br>sum和avg一般用于处理数值型<br>max、min、count可以处理任何数据类型</p>
+<p>③以上分组函数都忽略null<br>④都可以搭配distinct使用，实现去重的统计<br>select sum(distinct 字段) from 表;<br>⑤count函数<br>count(字段)：统计该字段非空值的个数<br>count(*):统计结果集的行数<br>案例：查询每个部门的员工个数<br>1 xx    10<br>2 dd    20<br>3 mm    20<br>4 aa    40<br>5 hh    40</p>
+<p>count(1):统计结果集的行数</p>
+<p>效率上：<br>MyISAM存储引擎，count(<em>)最高<br>InnoDB存储引擎，count(</em>)和count(1)效率&gt;count(字段)</p>
+<p>⑥ 和分组函数一同查询的字段，要求是group by后出现的字段</p>
+<h3 id="一、语法-3"><a href="#一、语法-3" class="headerlink" title="一、语法"></a>一、语法</h3><p>select 分组函数，分组后的字段<br>from 表<br>【where 筛选条件】<br>group by 分组的字段<br>【having 分组后的筛选】<br>【order by 排序列表】</p>
+<h3 id="二、特点-2"><a href="#二、特点-2" class="headerlink" title="二、特点"></a>二、特点</h3><pre><code>使用关键字        筛选的表    位置</code></pre><p>分组前筛选    where            原始表        group by的前面<br>分组后筛选    having        分组后的结果    group by 的后面</p>
+<h3 id="一、含义"><a href="#一、含义" class="headerlink" title="一、含义"></a>一、含义</h3><p>当查询中涉及到了多个表的字段，需要使用多表连接<br>select 字段1，字段2<br>from 表1，表2,…;</p>
+<p>笛卡尔乘积：当查询多个表时，没有添加有效的连接条件，导致多个表所有行实现完全连接<br>如何解决：添加有效的连接条件</p>
+<h3 id="二、分类"><a href="#二、分类" class="headerlink" title="二、分类"></a>二、分类</h3><p>按年代分类：<br>    sql92：<br>        等值<br>        非等值<br>        自连接</p>
+<pre><code>    也支持一部分外连接（用于oracle、sqlserver，mysql不支持）
+sql99【推荐使用】
+    内连接
+        等值
+        非等值
+        自连接
+    外连接
+        左外
+        右外
+        全外（mysql不支持）
+    交叉连接</code></pre><h3 id="三、SQL92语法"><a href="#三、SQL92语法" class="headerlink" title="三、SQL92语法"></a>三、SQL92语法</h3><h4 id="1、等值连接"><a href="#1、等值连接" class="headerlink" title="1、等值连接"></a>1、等值连接</h4><p>语法：<br>    select 查询列表<br>    from 表1 别名,表2 别名<br>    where 表1.key=表2.key<br>    【and 筛选条件】<br>    【group by 分组字段】<br>    【having 分组后的筛选】<br>    【order by 排序字段】</p>
+<p>特点：<br>    ① 一般为表起别名<br>    ②多表的顺序可以调换<br>    ③n表连接至少需要n-1个连接条件<br>    ④等值连接的结果是多表的交集部分</p>
+<h4 id="2、非等值连接"><a href="#2、非等值连接" class="headerlink" title="2、非等值连接"></a>2、非等值连接</h4><h5 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h5><p>​    select 查询列表<br>​    from 表1 别名,表2 别名<br>​    where 非等值的连接条件<br>​    【and 筛选条件】<br>​    【group by 分组字段】<br>​    【having 分组后的筛选】<br>​    【order by 排序字段】</p>
+<h4 id="3、自连接"><a href="#3、自连接" class="headerlink" title="3、自连接"></a>3、自连接</h4><h5 id="语法：-1"><a href="#语法：-1" class="headerlink" title="语法："></a>语法：</h5><p>​    select 查询列表<br>​    from 表 别名1,表 别名2<br>​    where 等值的连接条件<br>​    【and 筛选条件】<br>​    【group by 分组字段】<br>​    【having 分组后的筛选】<br>​    【order by 排序字段】</p>
+<h4 id="四、SQL99语法"><a href="#四、SQL99语法" class="headerlink" title="四、SQL99语法"></a>四、SQL99语法</h4><h4 id="1、内连接"><a href="#1、内连接" class="headerlink" title="1、内连接"></a>1、内连接</h4><h5 id="语法：-2"><a href="#语法：-2" class="headerlink" title="语法："></a>语法：</h5><p>select 查询列表<br>from 表1 别名<br>【inner】 join 表2 别名 on 连接条件<br>where 筛选条件<br>group by 分组列表<br>having 分组后的筛选<br>order by 排序列表<br>limit 子句;</p>
+<h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h5><p>①表的顺序可以调换<br>②内连接的结果=多表的交集<br>③n表连接至少需要n-1个连接条件</p>
+<h5 id="分类："><a href="#分类：" class="headerlink" title="分类："></a>分类：</h5><p>等值连接<br>非等值连接<br>自连接</p>
+<h4 id="2、外连接"><a href="#2、外连接" class="headerlink" title="2、外连接"></a>2、外连接</h4><p>语法：<br>select 查询列表<br>from 表1 别名<br>left|right|full【outer】 join 表2 别名 on 连接条件<br>where 筛选条件<br>group by 分组列表<br>having 分组后的筛选<br>order by 排序列表<br>limit 子句;</p>
+<h5 id="特点：-1"><a href="#特点：-1" class="headerlink" title="特点："></a>特点：</h5><p>①查询的结果=主表中所有的行，如果从表和它匹配的将显示匹配行，如果从表没有匹配的则显示null<br>②left join 左边的就是主表，right join 右边的就是主表<br>  full join 两边都是主表<br>③一般用于查询除了交集部分的剩余的不匹配的行</p>
+<h4 id="3、交叉连接"><a href="#3、交叉连接" class="headerlink" title="3、交叉连接"></a>3、交叉连接</h4><p>语法：<br>select 查询列表<br>from 表1 别名<br>cross join 表2 别名;</p>
+<p>特点：<br>类似于笛卡尔乘积</p>
+<h5 id="一、含义-1"><a href="#一、含义-1" class="headerlink" title="一、含义"></a>一、含义</h5><p>嵌套在其他语句内部的select语句称为子查询或内查询，<br>外面的语句可以是insert、update、delete、select等，一般select作为外面语句较多<br>外面如果为select语句，则此语句称为外查询或主查询</p>
+<h5 id="二、分类-1"><a href="#二、分类-1" class="headerlink" title="二、分类"></a>二、分类</h5><h6 id="1、按出现位置"><a href="#1、按出现位置" class="headerlink" title="1、按出现位置"></a>1、按出现位置</h6><p>select后面：<br>        仅仅支持标量子查询<br>from后面：<br>        表子查询<br>where或having后面：<br>        标量子查询<br>        列子查询<br>        行子查询<br>exists后面：<br>        标量子查询<br>        列子查询<br>        行子查询<br>        表子查询</p>
+<h6 id="2、按结果集的行列"><a href="#2、按结果集的行列" class="headerlink" title="2、按结果集的行列"></a>2、按结果集的行列</h6><p>标量子查询（单行子查询）：结果集为一行一列<br>列子查询（多行子查询）：结果集为多行一列<br>行子查询：结果集为多行多列<br>表子查询：结果集为多行多列</p>
+<h4 id="三、示例-1"><a href="#三、示例-1" class="headerlink" title="三、示例"></a>三、示例</h4><p>where或having后面<br>1、标量子查询<br>案例：查询最低工资的员工姓名和工资<br>①最低工资<br>select min(salary) from employees</p>
+<p>②查询员工的姓名和工资，要求工资=①<br>select last_name,salary<br>from employees<br>where salary=(<br>    select min(salary) from employees<br>);</p>
+<h4 id="2、列子查询"><a href="#2、列子查询" class="headerlink" title="2、列子查询"></a>2、列子查询</h4><p>案例：查询所有是领导的员工姓名<br>①查询所有员工的 manager_id<br>select manager_id<br>from employees</p>
+<p>②查询姓名，employee_id属于①列表的一个<br>select last_name<br>from employees<br>where employee_id in(<br>    select manager_id<br>    from employees<br>);</p>
+<h4 id="一、应用场景"><a href="#一、应用场景" class="headerlink" title="一、应用场景"></a>一、应用场景</h4><p>当要查询的条目数太多，一页显示不全</p>
+<h4 id="二、语法"><a href="#二、语法" class="headerlink" title="二、语法"></a>二、语法</h4><p>select 查询列表<br>from 表<br>limit 【offset，】size;</p>
+<h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h5><p>offset代表的是起始的条目索引，默认从0卡死<br>size代表的是显示的条目数</p>
+<h5 id="公式："><a href="#公式：" class="headerlink" title="公式："></a>公式：</h5><p>假如要显示的页数为page，每一页条目数为size<br>select 查询列表<br>from 表<br>limit (page-1)*size,size;</p>
+<h4 id="一、含义-2"><a href="#一、含义-2" class="headerlink" title="一、含义"></a>一、含义</h4><p>union：合并、联合，将多次查询结果合并成一个结果</p>
+<h4 id="二、语法-1"><a href="#二、语法-1" class="headerlink" title="二、语法"></a>二、语法</h4><p>查询语句1<br>union 【all】<br>查询语句2<br>union 【all】<br>…</p>
+<h4 id="三、意义"><a href="#三、意义" class="headerlink" title="三、意义"></a>三、意义</h4><p>1、将一条比较复杂的查询语句拆分成多条语句<br>2、适用于查询多个表的时候，查询的列基本是一致</p>
+<h4 id="四、特点"><a href="#四、特点" class="headerlink" title="四、特点"></a>四、特点</h4><p>1、要求多条查询语句的查询列数必须一致<br>2、要求多条查询语句的查询的各列类型、顺序最好一致<br>3、union 去重，union all包含重复项</p>
+<h5 id="语法：-3"><a href="#语法：-3" class="headerlink" title="语法："></a>语法：</h5><p>select 查询列表    ⑦<br>from 表1 别名       ①<br>连接类型 join 表2   ②<br>on 连接条件         ③<br>where 筛选          ④<br>group by 分组列表   ⑤<br>having 筛选         ⑥<br>order by排序列表    ⑧<br>limit 起始条目索引，条目数;  ⑨</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yoursite.com" rel="external nofollow noreferrer">yang295513</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yoursite.com/2018/10/01/mysql基础入门/">http://yoursite.com/2018/10/01/mysql基础入门/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="http://yoursite.com" target="_blank">yang295513</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/mysql/">
+                                    <span class="chip bg-color">mysql</span>
+                                </a>
+                            
+                                <a href="/tags/数据库/">
+                                    <span class="chip bg-color">数据库</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/01/15/Spring框架/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Spring框架">
+                        
+                        <span class="card-title">Spring框架</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Spring框架1.Spring简介:
+为从大小与开销两方面而言Spring都是轻量的
+
+通过控制反转（IoC）的技术达到松耦合的目的
+
+提供了面向切面编程的丰富支持，允许通过分离应用的业务逻辑与系统级服务进行内聚性的开发
+
+包含并管理应用
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-01-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/学习/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/编程/">
+                        <span class="chip bg-color">编程</span>
+                    </a>
+                    
+                    <a href="/tags/日常学习/">
+                        <span class="chip bg-color">日常学习</span>
+                    </a>
+                    
+                    <a href="/tags/JAVA/">
+                        <span class="chip bg-color">JAVA</span>
+                    </a>
+                    
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
+                    </a>
+                    
+                    <a href="/tags/框架/">
+                        <span class="chip bg-color">框架</span>
+                    </a>
+                    
+                    <a href="/tags/代理模式/">
+                        <span class="chip bg-color">代理模式</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/08/27/CC++语言位运算基本用法和骚操作/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="C/C++语言位运算基本用法和骚操作">
+                        
+                        <span class="card-title">C/C++语言位运算基本用法和骚操作</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            C/C++语言位运算基本用法和骚操作前言:​        前几天打了徐州ACM的网络模拟赛，其中有个题觉得很容易做出来，但是死活都是卡时间和卡内存，于是乎就百度了一下题解（╮(╯▽╰)╭手动狗头），结果学到了一个新的算法，叫做区间数组，然
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-08-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/学习/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/tags/语言/">
+                        <span class="chip bg-color">语言</span>
+                    </a>
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C</span>
+                    </a>
+                    
+                    <a href="/tags/编程/">
+                        <span class="chip bg-color">编程</span>
+                    </a>
+                    
+                    <a href="/tags/日常学习/">
+                        <span class="chip bg-color">日常学习</span>
+                    </a>
+                    
+                    <a href="/tags/技巧/">
+                        <span class="chip bg-color">技巧</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="http://yoursite.com" target="_blank">yang295513</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "6";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis"><!-- 
+    <a href="https://github.com/yang295513" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:15993343299@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1354669134" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1354669134" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+ -->
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
