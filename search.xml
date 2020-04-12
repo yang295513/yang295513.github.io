@@ -53,8 +53,8 @@
     <url>%2F2020%2F04%2F05%2FmysqlExplain%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92%2F</url>
     <content type="text"><![CDATA[是什么在日常工作中，我们会有时会开慢查询去记录一些执行时间比较久的SQL语句，找出这些SQL语句并不意味着完事了，些时我们常常用到explain这个命令来查看一个这些SQL语句的执行计划，查看该SQL语句有没有使用上了索引，有没有做全表扫描，这都可以通过explain命令来查看。所以我们深入了解MySQL的基于开销的优化器，还可以获得很多可能被优化器考虑到的访问策略的细节，以及当运行SQL语句时哪种策略预计会被优化器采用。 有什么用 表的读取顺序 数据读取操作的操作类型 哪些索引可以使用 哪些索引被实际使用 表之间的引用 每张表有多少行被优化器查询 怎么用explain + sql语句 字段分析 ID(重要)select查询的序列号，是一组数字，表示的是查询中执行select子句或者是操作表的顺序。 id相同，执行顺序由上至下 id不同，如果是子查询，id的序号会递增，id值越大优先级越高，越先被执行 id相同不同，同时存在 id相同的可以认为是一组，同一组中从上往下执行，所有组中id大的优先执行 总结总而言之，相同顺序执行，不同大号先执行。 select_type表示示查询中每个select子句的类型 SIMPLE(简单SELECT，不使用UNION或子查询等) PRIMARY(子查询中最外层查询，查询中若包含任何复杂的子部分，最外层的select被标记为PRIMARY) DERIVED(派生表的SELECT, FROM子句的子查询) SUBQUERY(子查询中的第一个SELECT，结果不依赖于外部查询) DEPENDENT SUBQUERY(子查询中的第一个SELECT，依赖于外部查询) UNCACHEABLE SUBQUERY(一个子查询的结果不能被缓存，必须重新评估外链接的第一行) UNION(UNION中的第二个或后面的SELECT语句) DEPENDENT UNION(UNION中的第二个或后面的SELECT语句，取决于外面的查询) UNION RESULT(UNION的结果，union语句中第二个select开始后面所有select) table(重要)显示这一步所访问数据库中表名称（显示这一行的数据是关于哪张表的），有时不是真实的表名字，可能是简称，例如上面的e，d，也可能是第几步执行的结果的简称 partitions 代表分区表中的命中情况，非分区表，该项为null type(重要)对表访问方式，表示MySQL在表中找到所需行的方式，又称“访问类型”。 常用的类型有： ALL、index、range、 ref、eq_ref、const、system、NULL（从左到右，性能从差到好） ALL：Full Table Scan， MySQL将遍历全表以找到匹配的行 index: Full Index Scan，index与ALL区别为index类型只遍历索引树 range:只检索给定范围的行，使用一个索引来选择行 ref: 表示上述表的连接匹配条件，即哪些列或常量被用于查找索引列上的值 eq_ref: 类似ref，区别就在 使用的索引是唯一索引，对于每个索引键值，表中只有一条记录匹配，简单来说，就是多表连接中使用primary key或者 unique key作为关联条件 const、system: 当MySQL对查询某部分进行优化，并转换为一个常量时，使用这些类型访问。如将主键置于where列表中，MySQL就能将该查询转换为一个常量，system是const类型的特例，当查询的表只有一行的情况下，使用system NULL: MySQL在优化过程中分解语句 ，执行时甚至不用访问表或索引，例如从一个索引列里选取最小值可以通过单独索引查找完成。 possible_keys指出MySQL能使用哪个索引在表中找到记录，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用（该查询可以利用的索引，如果没有任何索引显示 null） Key（重要）key列显示MySQL实际决定使用的键（索引），必然包含在possible_keys中 key_len单位是字节 表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度（key_len显示的值为索引字段的最大可能长度，并非实际使用长度，即key_len是根据表定义计算而得，不是通过表内检索出的） 不损失精确性的情况下，长度越短越好 ，如果查询使用的是复合索引，那么越长越好。 ref列与索引的比较，表示上述表的连接匹配条件，即哪些列或常量被用于查找索引列上的值 rows（重要）表示MySQL估计未来找到所需要的行而要读取的行数 Extra(重要)这一列包含的是不适合在其他列显示的额为信息 Using index 表示此值Mysql将使用覆盖索引，以避免访问表。 Using where:不用读取表中所有信息，仅通过索引就可以获取所需数据，这发生在对表的全部的请求列都是同一个索引的部分的时候，表示mysql服务器将在存储引擎检索行后再进行过滤 Using temporary：表示MySQL需要使用临时表来存储结果集，常见于排序和分组查询，常见 group by ; order by Using join buffer：改值强调了在获取连接条件时没有使用索引，并且需要连接缓冲区来存储中间结果。如果出现了这个值，那应该注意，根据查询的具体情况可能需要添加索引来改进能。 Impossible where：这个值强调了where语句会导致没有符合条件的行（通过收集统计信息不可能存在结果）。 Select tables optimized away：这个值意味着仅通过使用索引，优化器可能仅从聚合函数结果中返回一行]]></content>
       <tags>
-        <tag>数据库</tag>
         <tag>mysql</tag>
+        <tag>数据库</tag>
         <tag>优化</tag>
       </tags>
   </entry>
@@ -72,8 +72,8 @@
     <url>%2F2020%2F04%2F01%2FMySQL%E7%B4%A2%E5%BC%95%E8%AF%A6%E8%A7%A3%2F</url>
     <content type="text"><![CDATA[索引 索引就是一种排好序的快速查找数据结构 索引的分类单值索引即一个索引只包含单个列，一个表可以有多个单列索引（建议一张表索引不要超过5个优先考虑复合索引） 唯一索引索引列的值必须唯一，但允许有空值 复合索引即一个索引包含多个列 索引的基本语法创建CREATE [UNIQUE] INDEX indexName ON mytable(columnname(length)); 删除ALTER mytable ADD [UNIQUE] INDEX [indexName] ON(columnname(length)); 查看DROP INDEX [indexName] ON mytable; 查看一个表的索引信息show index from [tableName]; 索引的优缺点优点 提高数据检索效率，降低数据库IO成本 通过索引列对数据排序，降低数据排序成本，降低CPU的消耗 缺点 实际上索引也是一张表，该表保存了主键和索引字段，并指向实体表的记录,所以索引列也是要占用空间的 虽然索引大大提高了查询速度，同时却会降低更新表的速度,如果对表INSERT,UPDATE和DELETE。 因为更新表时，MySQL不仅要不存数据，还要保存一下索引文件每次更新添加了索引列的字段， 都会调整因为更新所带来的键值变化后的索引信息 索引只是提高效率的一个因素，如果你的MySQL有大数据量的表，就需要花时间研究建立优秀的索引，或优化查询语句 索引的使用场景什么时候需要使用索引 主键自动建立唯一索引 频繁作为查询的条件的字段应该创建索引 查询中与其他表关联的字段，外键关系建立索引 频繁更新的字段不适合创建索引(因为每次更新不单单是更新了记录还会更新索引，加重IO负担) Where条件里用不到的字段不创建索引 单间/组合索引的选择问题，who？（在高并发下倾向创建组合索引） 查询中排序的字段，排序字段若通过索引去访问将大大提高排序的速度 查询中统计或者分组字段 什么时候不需要使用索引 表记录太少(因为数据量太少，索引并不能起到很好效果) 经常增删改的表(因为每次更新不单单是更新了记录还会更新索引，加重IO负担) 数据重复且分布平均的表字段，因此应该只为经常查询和经常排序的数据列建立索引。 注意，如果某个数据列包含许多重复的内容，为它建立索引就没有太大的实际效果。(应该尽可能的让非重复字段的数量/总数量的结果接近1) 什么是聚簇索引和回表聚簇索引：将数据存储与索引放到了一块，找到索引也就找到了数据 非聚簇索引：将数据存储于索引分开结构，索引结构的叶子节点指向了数据的对应行，myisam通过key_buffer把索引先缓存到内存中，当需要访问数据时（通过索引访问数据），在内存中直接搜索索引，然后通过索引找到磁盘相应数据，这也就是为什么索引不在key buffer命中时，速度慢的原因 总结 聚簇索引叶节点存储着行数据 非聚簇索引即普通索引只是存储着聚簇索引的key. 聚簇索引具有唯一性由于聚簇索引是将数据跟索引结构放到一块，因此一个表仅有一个聚簇索引 聚簇索引默认是主键，如果表中没有定义主键，InnoDB 会选择一个唯一的非空索引代替。如果没有这样的索引，InnoDB 会隐式定义一个主键来作为聚簇索引。 演示假如有一张表有三个字段，分别是学号（唯一主键），姓名，和性别 然后我们创建姓名为非聚簇索引 当我们使用select * from where id=”1”;时 上面就是一个聚簇索引，当我们查询id=1的时候就通过聚簇索引查询到对应的行数据 当我们使用select * from where name=”a”;时 查询的是我们创建的索引，我们创建的这颗非聚簇索引并不存储行数据，而是存储聚簇索引的主键值 因为我们查询的是 * . 所以我们在查询普通索引的时候发现a对应的主键是1，于是乎我们需要到聚簇索引找到我们想要的信息，需要重新查找，这个操作就称为回表。 然后我们拿到主键是1，查询到对应的行。 索引覆盖当我们使用select namerom where name=”a”;时 因为普通索引就存储着我们想要的信息，所以就无需回表，这就提高了查询效率 优化我们利用这个回表的特性，创建一些联合索引，就可以避免回表的操作，这样就可以实现查询的优化 分析： 虽然排序的字段列与索引顺序一样，且order by默认升序，这里c2 desc变成了降序，导致与索引的排序方式不同，从而产生Using filesort。 总结①MySQL支持两种方式的排序filesort和index，Using index是指MySQL扫描索引本身完成排序。index效率高，filesort效率低。 ②order by满足两种情况会使用Using index。 1.order by语句使用索引最左前列。 2.使用where子句与order by子句条件列组合满足索引最左前列。 ③尽量在索引列上完成排序，遵循索引建立（索引创建的顺序）时的最佳左前缀法则。 ④如果order by的条件不在索引列上，就会产生Using filesort。 1.filesort有两种排序算法：双路排序和单路排序。 双路排序：在MySQL4.1之前使用双路排序，就是两次磁盘扫描，得到最终数据。读取行指针和order by列，对他们进行排序，然后扫描已经排好序的列表，按照列表中的值重新从列表中读取对应的数据输出。即从磁盘读取排序字段，在buffer进行排序，再从磁盘取其他字段。 如果使用双路排序，取一批数据要对磁盘进行两次扫描，众所周知，I/O操作是很耗时的，因此在MySQL4.1以后，出现了改进的算法：单路排序。 单路排序：从磁盘中查询所需的列，按照order by列在buffer中对它们进行排序，然后扫描排序后的列表进行输出。它的效率更高一些，避免了第二次读取数据，并且把随机I/O变成了顺序I/O，但是会使用更多的空间，因为它把每一行都保存在内存中了。 2.单路排序出现的问题。 当读取数据超过sort_buffer的容量时，就会导致多次读取数据，并创建临时表，最后多路合并，产生多次I/O，反而增加其I/O运算。 解决方式： a.增加sort_buffer_size参数的设置。 b.增大max_length_for_sort_data参数的设置。 ⑤提升order by速度的方式： 1.在使用order by时，不要用select *，只查询所需的字段。 因为当查询字段过多时，会导致sort_buffer不够，从而使用多路排序或进行多次I/O操作。 2.尝试提高sort_buffer_size。 3.尝试提高max_length_for_sort_data。 GROUP BY优化 如果GROUP BY 的列没有索引,产生临时表. 如果GROUP BY时,SELECT的列不止GROUP BY列一个,并且GROUP BY的列不是主键 ,产生临时表. 如果GROUP BY的列有索引,ORDER BY的列没索引.产生临时表. 如果GROUP BY的列和ORDER BY的列不一样,即使都有索引也会产生临时表. 如果GROUP BY或ORDER BY的列不是来自JOIN语句第一个表.会产生临时表. 如果DISTINCT 和 ORDER BY的列没有索引,产生临时表.]]></content>
       <tags>
-        <tag>数据库</tag>
         <tag>mysql</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -553,8 +553,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>容器</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -813,10 +813,10 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>C++</tag>
-        <tag>C</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>C++</tag>
+        <tag>C</tag>
         <tag>算法</tag>
       </tags>
   </entry>
@@ -915,8 +915,8 @@
     <url>%2F2018%2F10%2F01%2Fmysql%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%2F</url>
     <content type="text"><![CDATA[一、语法select 查询列表from 表名; 二、特点1、查询列表可以是字段、常量、表达式、函数，也可以是多个2、查询结果是一个虚拟表 三、示例1、查询单个字段select 字段名 from 表名; 2、查询多个字段select 字段名，字段名 from 表名; 3、查询所有字段select * from 表名 4、查询常量select 常量值;注意：字符型和日期型的常量值必须用单引号引起来，数值型不需要 5、查询函数select 函数名(实参列表);6、查询表达式select 100/1234; 7、起别名①as②空格 8、去重select distinct 字段名 from 表名; 9、+作用：做加法运算select 数值+数值; 直接运算select 字符+数值;先试图将字符转换成数值，如果转换成功，则继续运算；否则转换成0，再做运算select null+值;结果都为null 10、【补充】concat函数功能：拼接字符select concat(字符1，字符2，字符3,…); 11、【补充】ifnull函数功能：判断某字段或表达式是否为null，如果为null 返回指定的值，否则返回原本的值select ifnull(commission_pct,0) from employees; 12、【补充】isnull函数功能：判断某字段或表达式是否为null，如果是，则返回1，否则返回0 一、语法select 查询列表from 表名where 筛选条件 二、筛选条件的分类1、简单条件运算符 &lt; = &lt;&gt; != &gt;= &lt;= &lt;=&gt;安全等于2、逻辑运算符&amp;&amp; and|| or! not3、模糊查询like:一般搭配通配符使用，可以判断字符型或数值型通配符：%任意多个字符，_任意单个字符 between andinis null /is not null：用于判断null值 is null PK &lt;=&gt; 普通类型的数值 null值 可读性is null × √ √&lt;=&gt; √ √ × 一、语法select 查询列表from 表where 筛选条件order by 排序列表 【asc}desc】 二、特点1、asc ：升序，如果不写默认升序 desc：降序 2、排序列表 支持 单个字段、多个字段、函数、表达式、别名 3、order by的位置一般放在查询语句的最后（除limit语句之外） 一、概述功能：类似于java中的方法好处：提高重用性和隐藏实现细节调用：select 函数名(实参列表); 二、单行函数1、字符函数concat:连接substr:截取子串upper:变大写lower：变小写replace：替换length：获取字节长度trim:去前后空格lpad：左填充rpad：右填充instr:获取子串第一次出现的索引 2、数学函数ceil:向上取整round：四舍五入mod:取模floor：向下取整truncate:截断rand:获取随机数，返回0-1之间的小数 3、日期函数now：返回当前日期+时间year:返回年month：返回月day:返回日date_format:将日期转换成字符curdate:返回当前日期str_to_date:将字符转换成日期curtime：返回当前时间hour:小时minute:分钟second：秒datediff:返回两个日期相差的天数monthname:以英文形式返回月 4、其他函数version 当前数据库服务器的版本database 当前打开的数据库user当前用户password(‘字符’)：返回该字符的密码形式md5(‘字符’):返回该字符的md5加密形式 5、流程控制函数①if(条件表达式，表达式1，表达式2)：如果条件表达式成立，返回表达式1，否则返回表达式2②case情况1case 变量或表达式或字段when 常量1 then 值1when 常量2 then 值2…else 值nend ③case情况2casewhen 条件1 then 值1when 条件2 then 值2…else 值nend 三、分组函数1、分类max 最大值min 最小值sum 和avg 平均值count 计算个数 2、特点①语法select max(字段) from 表名; ②支持的类型sum和avg一般用于处理数值型max、min、count可以处理任何数据类型 ③以上分组函数都忽略null④都可以搭配distinct使用，实现去重的统计select sum(distinct 字段) from 表;⑤count函数count(字段)：统计该字段非空值的个数count(*):统计结果集的行数案例：查询每个部门的员工个数1 xx 102 dd 203 mm 204 aa 405 hh 40 count(1):统计结果集的行数 效率上：MyISAM存储引擎，count()最高InnoDB存储引擎，count()和count(1)效率&gt;count(字段) ⑥ 和分组函数一同查询的字段，要求是group by后出现的字段 一、语法select 分组函数，分组后的字段from 表【where 筛选条件】group by 分组的字段【having 分组后的筛选】【order by 排序列表】 二、特点使用关键字 筛选的表 位置分组前筛选 where 原始表 group by的前面分组后筛选 having 分组后的结果 group by 的后面 一、含义当查询中涉及到了多个表的字段，需要使用多表连接select 字段1，字段2from 表1，表2,…; 笛卡尔乘积：当查询多个表时，没有添加有效的连接条件，导致多个表所有行实现完全连接如何解决：添加有效的连接条件 二、分类按年代分类： sql92： 等值 非等值 自连接 也支持一部分外连接（用于oracle、sqlserver，mysql不支持） sql99【推荐使用】 内连接 等值 非等值 自连接 外连接 左外 右外 全外（mysql不支持） 交叉连接三、SQL92语法1、等值连接语法： select 查询列表 from 表1 别名,表2 别名 where 表1.key=表2.key 【and 筛选条件】 【group by 分组字段】 【having 分组后的筛选】 【order by 排序字段】 特点： ① 一般为表起别名 ②多表的顺序可以调换 ③n表连接至少需要n-1个连接条件 ④等值连接的结果是多表的交集部分 2、非等值连接语法：​ select 查询列表​ from 表1 别名,表2 别名​ where 非等值的连接条件​ 【and 筛选条件】​ 【group by 分组字段】​ 【having 分组后的筛选】​ 【order by 排序字段】 3、自连接语法：​ select 查询列表​ from 表 别名1,表 别名2​ where 等值的连接条件​ 【and 筛选条件】​ 【group by 分组字段】​ 【having 分组后的筛选】​ 【order by 排序字段】 四、SQL99语法1、内连接语法：select 查询列表from 表1 别名【inner】 join 表2 别名 on 连接条件where 筛选条件group by 分组列表having 分组后的筛选order by 排序列表limit 子句; 特点：①表的顺序可以调换②内连接的结果=多表的交集③n表连接至少需要n-1个连接条件 分类：等值连接非等值连接自连接 2、外连接语法：select 查询列表from 表1 别名left|right|full【outer】 join 表2 别名 on 连接条件where 筛选条件group by 分组列表having 分组后的筛选order by 排序列表limit 子句; 特点：①查询的结果=主表中所有的行，如果从表和它匹配的将显示匹配行，如果从表没有匹配的则显示null②left join 左边的就是主表，right join 右边的就是主表 full join 两边都是主表③一般用于查询除了交集部分的剩余的不匹配的行 3、交叉连接语法：select 查询列表from 表1 别名cross join 表2 别名; 特点：类似于笛卡尔乘积 一、含义嵌套在其他语句内部的select语句称为子查询或内查询，外面的语句可以是insert、update、delete、select等，一般select作为外面语句较多外面如果为select语句，则此语句称为外查询或主查询 二、分类1、按出现位置select后面： 仅仅支持标量子查询from后面： 表子查询where或having后面： 标量子查询 列子查询 行子查询exists后面： 标量子查询 列子查询 行子查询 表子查询 2、按结果集的行列标量子查询（单行子查询）：结果集为一行一列列子查询（多行子查询）：结果集为多行一列行子查询：结果集为多行多列表子查询：结果集为多行多列 三、示例where或having后面1、标量子查询案例：查询最低工资的员工姓名和工资①最低工资select min(salary) from employees ②查询员工的姓名和工资，要求工资=①select last_name,salaryfrom employeeswhere salary=( select min(salary) from employees); 2、列子查询案例：查询所有是领导的员工姓名①查询所有员工的 manager_idselect manager_idfrom employees ②查询姓名，employee_id属于①列表的一个select last_namefrom employeeswhere employee_id in( select manager_id from employees); 一、应用场景当要查询的条目数太多，一页显示不全 二、语法select 查询列表from 表limit 【offset，】size; 注意：offset代表的是起始的条目索引，默认从0卡死size代表的是显示的条目数 公式：假如要显示的页数为page，每一页条目数为sizeselect 查询列表from 表limit (page-1)*size,size; 一、含义union：合并、联合，将多次查询结果合并成一个结果 二、语法查询语句1union 【all】查询语句2union 【all】… 三、意义1、将一条比较复杂的查询语句拆分成多条语句2、适用于查询多个表的时候，查询的列基本是一致 四、特点1、要求多条查询语句的查询列数必须一致2、要求多条查询语句的查询的各列类型、顺序最好一致3、union 去重，union all包含重复项 语法：select 查询列表 ⑦from 表1 别名 ①连接类型 join 表2 ②on 连接条件 ③where 筛选 ④group by 分组列表 ⑤having 筛选 ⑥order by排序列表 ⑧limit 起始条目索引，条目数; ⑨]]></content>
       <tags>
-        <tag>数据库</tag>
         <tag>mysql</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -927,11 +927,11 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>C++</tag>
         <tag>语言</tag>
-        <tag>C</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>C++</tag>
+        <tag>C</tag>
         <tag>技巧</tag>
       </tags>
   </entry>
@@ -943,11 +943,11 @@
         <category>学习</category>
       </categories>
       <tags>
+        <tag>TensorFlow</tag>
         <tag>语言</tag>
+        <tag>Python</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
-        <tag>TensorFlow</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
