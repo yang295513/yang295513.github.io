@@ -1,411 +1,505 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
 
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
 
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="编程,日常学习,JAVA,Spring,框架,代理模式,">
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="Spring框架1.Spring简介: 为从大小与开销两方面而言Spring都是轻量的  通过控制反转（IoC）的技术达到松耦合的目的  提供了面向切面编程的丰富支持，允许通过分离应用的业务逻辑与系统级服务进行内聚性的开发  包含并管理应用对象的配置和生命周期，所以spring是一种容器  将简单的组件配置、组合成为复杂的应用，这个意义上是框架   2.spring的核心 控制反转（IoC）和面向">
-<meta name="keywords" content="编程,日常学习,JAVA,Spring,框架,代理模式">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Spring框架">
-<meta property="og:url" content="http://yoursite.com/2019/01/15/Spring框架/index.html">
-<meta property="og:site_name" content="Byy">
-<meta property="og:description" content="Spring框架1.Spring简介: 为从大小与开销两方面而言Spring都是轻量的  通过控制反转（IoC）的技术达到松耦合的目的  提供了面向切面编程的丰富支持，允许通过分离应用的业务逻辑与系统级服务进行内聚性的开发  包含并管理应用对象的配置和生命周期，所以spring是一种容器  将简单的组件配置、组合成为复杂的应用，这个意义上是框架   2.spring的核心 控制反转（IoC）和面向">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/upload/1563417202460.png">
-<meta property="og:image" content="http://yoursite.com/upload/1563418682087.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/15/Spring框架/%5Cupload%5C1563696805729.png">
-<meta property="og:updated_time" content="2020-03-09T09:22:48.451Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring框架">
-<meta name="twitter:description" content="Spring框架1.Spring简介: 为从大小与开销两方面而言Spring都是轻量的  通过控制反转（IoC）的技术达到松耦合的目的  提供了面向切面编程的丰富支持，允许通过分离应用的业务逻辑与系统级服务进行内聚性的开发  包含并管理应用对象的配置和生命周期，所以spring是一种容器  将简单的组件配置、组合成为复杂的应用，这个意义上是框架   2.spring的核心 控制反转（IoC）和面向">
-<meta name="twitter:image" content="http://yoursite.com/upload/1563417202460.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2019/01/15/Spring框架/">
-
-
-
-
-
-  <title>Spring框架 | Byy</title>
-  
-
-
-
-
-
-
-
+    <meta charset="utf-8">
+    <meta name="keywords" content="Spring框架, Byy">
+    <meta name="description" content>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Spring框架 | Byy</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Byy</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
   
-  
+  <li class="hide-on-med-and-down nav-item">
     
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
     
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
 
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Byy</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Byy</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
+    
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
+    <ul class="menu-list mobile-menu-list">
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home //首页"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags //标签"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th //分类"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive //归档"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
           
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
         </li>
-      
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
     </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
 </div>
 
-
-
-    </div>
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/15/Spring框架/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yang295513">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Byy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Spring框架</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-15T08:30:20+08:00">
-                2019-01-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习/" itemprop="url" rel="index">
-                    <span itemprop="name">学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
-      </header>
-    
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
-      
-      
 
-      
-        <h1 id="Spring框架"><a href="#Spring框架" class="headerlink" title="Spring框架"></a>Spring框架</h1><h2 id="1-Spring简介"><a href="#1-Spring简介" class="headerlink" title="1.Spring简介:"></a>1.Spring简介:</h2><ul>
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Spring框架</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    .toc-fixed .toc-link::before{
+        position: fixed!important;/*当toc的位置改为fixed时，.toc-link::before也要改为fixed*/
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/编程/">
+                                <span class="chip bg-color">编程</span>
+                            </a>
+                        
+                            <a href="/tags/日常学习/">
+                                <span class="chip bg-color">日常学习</span>
+                            </a>
+                        
+                            <a href="/tags/JAVA/">
+                                <span class="chip bg-color">JAVA</span>
+                            </a>
+                        
+                            <a href="/tags/Spring/">
+                                <span class="chip bg-color">Spring</span>
+                            </a>
+                        
+                            <a href="/tags/框架/">
+                                <span class="chip bg-color">框架</span>
+                            </a>
+                        
+                            <a href="/tags/代理模式/">
+                                <span class="chip bg-color">代理模式</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/学习/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2019-01-15
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Spring框架"><a href="#Spring框架" class="headerlink" title="Spring框架"></a>Spring框架</h1><h2 id="1-Spring简介"><a href="#1-Spring简介" class="headerlink" title="1.Spring简介:"></a>1.Spring简介:</h2><ul>
 <li><p>为从大小与开销两方面而言Spring都是轻量的</p>
 </li>
 <li><p>通过控制反转（IoC）的技术达到松耦合的目的</p>
@@ -491,7 +585,11 @@
 <h5 id="Resource-可以单独使用"><a href="#Resource-可以单独使用" class="headerlink" title="@Resource: 可以单独使用"></a>@Resource: 可以单独使用</h5><p>​        属性为：name直接按照id进行注入</p>
 <hr>
 <p>上面的三个注入都只能对其他bean类型进行注入，不能对基本类型和String类型进行注入，而且集合类型只能使用xml进行注入。</p>
-<h5 id="value"><a href="#value" class="headerlink" title="@value"></a>@value</h5><h6 id="作用，用于注入基本类型和String类型的数据而且可以使用spEL表达式"><a href="#作用，用于注入基本类型和String类型的数据而且可以使用spEL表达式" class="headerlink" title="作用，用于注入基本类型和String类型的数据而且可以使用spEL表达式"></a>作用，用于注入基本类型和String类型的数据而且可以使用spEL表达式</h6><h5 id="Bean-作用吧当前方法的返回值作为bean对象存入spring的ioc容器中"><a href="#Bean-作用吧当前方法的返回值作为bean对象存入spring的ioc容器中" class="headerlink" title="@Bean:作用吧当前方法的返回值作为bean对象存入spring的ioc容器中"></a>@Bean:作用吧当前方法的返回值作为bean对象存入spring的ioc容器中</h5><p>​    属性：name用于指定bean的id,当不写时，默认值是当前方法的名称</p>
+<h3 id="Autowired和Resource区别"><a href="#Autowired和Resource区别" class="headerlink" title="Autowired和Resource区别"></a>Autowired和Resource区别</h3><ul>
+<li>Resource是jdk1.6提供的，Autowired是spring框架提供的</li>
+<li>Resource因为是jdk提供的标准，所以可移植性更强，但是Autowired的功能更强大</li>
+</ul>
+<h5 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h5><h6 id="作用，用于注入基本类型和String类型的数据而且可以使用spEL表达式"><a href="#作用，用于注入基本类型和String类型的数据而且可以使用spEL表达式" class="headerlink" title="作用，用于注入基本类型和String类型的数据而且可以使用spEL表达式"></a>作用，用于注入基本类型和String类型的数据而且可以使用spEL表达式</h6><h5 id="Bean-作用吧当前方法的返回值作为bean对象存入spring的ioc容器中"><a href="#Bean-作用吧当前方法的返回值作为bean对象存入spring的ioc容器中" class="headerlink" title="@Bean:作用吧当前方法的返回值作为bean对象存入spring的ioc容器中"></a>@Bean:作用吧当前方法的返回值作为bean对象存入spring的ioc容器中</h5><p>​    属性：name用于指定bean的id,当不写时，默认值是当前方法的名称</p>
 <h4 id="改变作用范围的注解"><a href="#改变作用范围的注解" class="headerlink" title="改变作用范围的注解"></a>改变作用范围的注解</h4><h5 id="Scope-用于指定bean的作用范围-不声明默认是单例的"><a href="#Scope-用于指定bean的作用范围-不声明默认是单例的" class="headerlink" title="@Scope :用于指定bean的作用范围 不声明默认是单例的"></a>@Scope :用于指定bean的作用范围 不声明默认是单例的</h5><p>​    属性:value:指定范围的取值，常用取值:singleton prototype</p>
 <p>​    </p>
 <h4 id="和生命周期相关的注解"><a href="#和生命周期相关的注解" class="headerlink" title="和生命周期相关的注解"></a>和生命周期相关的注解</h4><h6 id="PreDestroy"><a href="#PreDestroy" class="headerlink" title="@PreDestroy"></a>@PreDestroy</h6><p>​        作用:用于指定销毁方法</p>
@@ -501,7 +599,6 @@
 <h1 id="JAVA的动态代理"><a href="#JAVA的动态代理" class="headerlink" title="JAVA的动态代理"></a>JAVA的动态代理</h1><h2 id="代理模式-（可以进一步增强代码的复用性）"><a href="#代理模式-（可以进一步增强代码的复用性）" class="headerlink" title="代理模式 （可以进一步增强代码的复用性）"></a>代理模式 （可以进一步增强代码的复用性）</h2><p>​    代理模式是常用的java设计模式，他的特征是代理类与委托类有同样的接口，代理类主要负责为委托类预处理消息、过滤消息、把消息转发给委托类，以及事后处理消息等。代理类与委托类之间通常会存在关联关系，一个代理类的对象与一个委托类的对象关联，代理类的对象本身并不真正实现服务，而是通过调用委托类的对象的相关方法，来提供特定的服务。<br>​    按照代理的创建时期，代理类可以分为两种。 </p>
 <hr>
 <p>​    静态代理：由程序员创建或特定工具自动生成源代码，再对其编译。在程序运行前，代理类的.class文件就已经存在了。<br>​    动态代理：在程序运行时，运用反射机制动态创建而成。 </p>
-<p>(个人觉的类似于javaweb的监听器概念)</p>
 <p>接下来代码演示</p>
 <p>Main.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Factory fatory=<span class="keyword">new</span> Factory();</span><br><span class="line">        <span class="comment">//消费者通过动态代理购买商品</span></span><br><span class="line">        <span class="comment">//ClassLoader:类加载器，加载代理对象的字节码，和被代理对象相同的类加载器</span></span><br><span class="line">        <span class="comment">//Class[] 让代理对象和被代理对象有相同方法，固定写法</span></span><br><span class="line">        <span class="comment">//InvoactionHandler 用于代理的方法</span></span><br><span class="line">        IProxy proxy=(IProxy) Proxy.newProxyInstance(fatory.getClass().getClassLoader(), fatory.getClass().getInterfaces(), <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 执行被代理对象的热河接口和方法都会经过该方法</span></span><br><span class="line"><span class="comment">             * <span class="doctag">@param</span> proxy 代理对象的引用</span></span><br><span class="line"><span class="comment">             * <span class="doctag">@param</span> method 当前执行的方法</span></span><br><span class="line"><span class="comment">             * <span class="doctag">@param</span> args 当前执行方法所需要的参数</span></span><br><span class="line"><span class="comment">             * <span class="doctag">@return</span> 和配代理对象具有相同的返回值</span></span><br><span class="line"><span class="comment">             * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(method.getName().equals(<span class="string">"salfMoney"</span>)==<span class="keyword">true</span>)&#123;</span><br><span class="line">                    System.out.print(<span class="string">"代理商坑人了"</span>);                    </span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> method.invoke(fatory,args);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        proxy.salfMoney(<span class="number">5000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -512,7 +609,28 @@
 <p>Iproxy.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 代理接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IProxy</span> </span>&#123;</span><br><span class="line">    <span class="comment">//销售商品接口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">salfMoney</span><span class="params">(<span class="keyword">float</span> money)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="AOP编程实例"><a href="#AOP编程实例" class="headerlink" title="AOP编程实例"></a>AOP编程实例</h1><p>​        使用<a href="http://lib.csdn.net/base/17" target="_blank" rel="noopener">spring</a> Aop编程除了要加入Spring的spring-aop jar包，还要加入aspectjrt.jar，aspectjweaver.jar，以及aopalliance_1.0.jar</p>
+<h1 id="AOP编程实例"><a href="#AOP编程实例" class="headerlink" title="AOP编程实例"></a>AOP编程实例</h1><p>Spring中的AOP，就是通过配置的方式实现的</p>
+<h4 id="相关术语："><a href="#相关术语：" class="headerlink" title="相关术语："></a>相关术语：</h4><ul>
+<li><p>Joinpoin（连接点）：所谓连接点就是值那些被拦截到的点。在spring中，这些点指的是方法，因为spring只支持方法类型的连接点。所有的方法都是连接点</p>
+</li>
+<li><p>Pointcut（切入点）：所谓切入点是指我们要对哪些Joinpoint进行拦截的定义。只有被增强的方法才是切入点</p>
+</li>
+<li><p>Advice（通知/增强）：所谓通知是指拦截到Joinpoint之后要做的事情就是通知<br>  通知类型：前置通知、后置通知、异常通知、最终通知、环绕通知</p>
+</li>
+<li><p>Introduction（引介）：引介是一种特殊情况下的通知，在不修改类代码的前提下，Introduction可以在运行期为类动态地添加一些方法或Field</p>
+</li>
+<li><p>Target（目标对象）：代理的目标对象</p>
+</li>
+<li><p>Weaving（织入）：是指把增强应用到目标对象来创建新的代理对象的过程</p>
+</li>
+<li><p>spring采用动态代理织入，而AspectJ采用编译期织入和类装载期织入</p>
+</li>
+<li><p>Proxy（代理）：一个类被AOP织入增强后，就产生一个结果代理类</p>
+</li>
+<li><p>Aspect（切面）：是切入点和通知（引介）的结合</p>
+</li>
+</ul>
+<p>​        使用<a href="http://lib.csdn.net/base/17" target="_blank" rel="noopener">spring</a> Aop编程除了要加入Spring的spring-aop jar包，还要加入aspectjrt.jar，aspectjweaver.jar，以及aopalliance_1.0.jar</p>
 <ul>
 <li><p>以下两个是与aspectj相关的包,用来支持切面编程的</p>
 </li>
@@ -533,7 +651,9 @@
 
 <h5 id="1-返回值类型可以使用通配符-表示任意返回值"><a href="#1-返回值类型可以使用通配符-表示任意返回值" class="headerlink" title="1.返回值类型可以使用通配符* 表示任意返回值"></a>1.返回值类型可以使用通配符* 表示任意返回值</h5><h5 id="2-包名必须用·进行分割-比如-形式"><a href="#2-包名必须用·进行分割-比如-形式" class="headerlink" title="2.包名必须用·进行分割 比如 * . * . *形式"></a>2.包名必须用·进行分割 比如 * . * . *形式</h5><h5 id="3-或者使用-匹配多级目录"><a href="#3-或者使用-匹配多级目录" class="headerlink" title="3.或者使用* .. 匹配多级目录"></a>3.或者使用* .. 匹配多级目录</h5><h5 id="4-方法名称也可以使用通配符"><a href="#4-方法名称也可以使用通配符" class="headerlink" title="4.方法名称也可以使用通配符 *"></a>4.方法名称也可以使用通配符 *</h5><h5 id="5-参数列表可以使用float之类的基本数据类型，如果是复杂数据类型需要些包名加类名"><a href="#5-参数列表可以使用float之类的基本数据类型，如果是复杂数据类型需要些包名加类名" class="headerlink" title="5.参数列表可以使用float之类的基本数据类型，如果是复杂数据类型需要些包名加类名"></a>5.参数列表可以使用float之类的基本数据类型，如果是复杂数据类型需要些包名加类名</h5><h5 id="如果参数列表使用-进行通配符匹配只能匹配有参数的方法，要想匹配所有参数列表的需要使用-进行匹配"><a href="#如果参数列表使用-进行通配符匹配只能匹配有参数的方法，要想匹配所有参数列表的需要使用-进行匹配" class="headerlink" title="如果参数列表使用 * 进行通配符匹配只能匹配有参数的方法，要想匹配所有参数列表的需要使用 ..进行匹配"></a>如果参数列表使用 * 进行通配符匹配只能匹配有参数的方法，要想匹配所有参数列表的需要使用 ..进行匹配</h5><h3 id="2-4种通知类型"><a href="#2-4种通知类型" class="headerlink" title="2. 4种通知类型"></a>2. 4种通知类型</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"通知的方法名"</span> <span class="attr">pointcut</span>=<span class="string">"execution(包名.类名.方法名)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:before</span>&gt;</span><span class="comment">&lt;!--前置通知--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">method</span>=<span class="string">"通知的方法名"</span> <span class="attr">pointcut</span>=<span class="string">"execution(包名.类名.方法名)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:after-returning</span>&gt;</span><span class="comment">&lt;!--后置通知--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">method</span>=<span class="string">"通知的方法名"</span> <span class="attr">pointcut</span>=<span class="string">"execution(包名.类名.方法名)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:after-throwing</span>&gt;</span><span class="comment">&lt;!--异常通知--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">method</span>=<span class="string">"通知的方法名"</span> <span class="attr">pointcut</span>=<span class="string">"execution(包名.类名.方法名)"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:after</span>&gt;</span><span class="comment">&lt;!--最终通知--&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h6 id="环绕通知是spring框架为我们提供的一种可以做在代码中手动控制增强方法合适执行的一种方式"><a href="#环绕通知是spring框架为我们提供的一种可以做在代码中手动控制增强方法合适执行的一种方式" class="headerlink" title="环绕通知是spring框架为我们提供的一种可以做在代码中手动控制增强方法合适执行的一种方式"></a>环绕通知是spring框架为我们提供的一种可以做在代码中手动控制增强方法合适执行的一种方式</h6><h5 id="如果觉得配置execution比较麻烦可以使用切入点表达式解决"><a href="#如果觉得配置execution比较麻烦可以使用切入点表达式解决" class="headerlink" title="如果觉得配置execution比较麻烦可以使用切入点表达式解决"></a>如果觉得配置execution比较麻烦可以使用切入点表达式解决</h5><h3 id="项目目录"><a href="#项目目录" class="headerlink" title="项目目录"></a>项目目录</h3><h4 id="通过xml的方式实现AOP"><a href="#通过xml的方式实现AOP" class="headerlink" title="通过xml的方式实现AOP"></a>通过xml的方式实现AOP</h4><h3 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h3><p>​    1.把通知bean交给spring来管理（LogMessage类）</p>
+<h6 id="环绕通知是spring框架为我们提供的一种可以做在代码中手动控制增强方法合适执行的一种方式"><a href="#环绕通知是spring框架为我们提供的一种可以做在代码中手动控制增强方法合适执行的一种方式" class="headerlink" title="环绕通知是spring框架为我们提供的一种可以做在代码中手动控制增强方法合适执行的一种方式"></a>环绕通知是spring框架为我们提供的一种可以做在代码中手动控制增强方法合适执行的一种方式</h6><h5 id="如果觉得配置execution比较麻烦可以使用切入点表达式解决"><a href="#如果觉得配置execution比较麻烦可以使用切入点表达式解决" class="headerlink" title="如果觉得配置execution比较麻烦可以使用切入点表达式解决"></a>如果觉得配置execution比较麻烦可以使用切入点表达式解决</h5><h3 id="通知方法的执行顺序"><a href="#通知方法的执行顺序" class="headerlink" title="通知方法的执行顺序"></a>通知方法的执行顺序</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">前置通知</span><br><span class="line">切入方法</span><br><span class="line">后置通知</span><br><span class="line">最终通知</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目目录"><a href="#项目目录" class="headerlink" title="项目目录"></a>项目目录</h3><h4 id="通过xml的方式实现AOP"><a href="#通过xml的方式实现AOP" class="headerlink" title="通过xml的方式实现AOP"></a>通过xml的方式实现AOP</h4><h3 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h3><p>​    1.把通知bean交给spring来管理（LogMessage类）</p>
 <p>​    2.使用aop:config标签表明开始配置切面</p>
 <p>​    3.使用aop:aspet标签表明配置切面</p>
 <p>​                        id属性，是给切面提供一个唯一标识</p>
@@ -561,724 +681,700 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"><span class="keyword">import</span> service.Iservice;</span><br><span class="line"><span class="keyword">import</span> service.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ApplicationContext ac=<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"springconfig.xml"</span>);</span><br><span class="line">        <span class="comment">//注意--必须是service的接口类型，</span></span><br><span class="line">        Iservice ser= (Iservice) ac.getBean(<span class="string">"service"</span>);</span><br><span class="line">        ser.addAccout();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-      
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yoursite.com" rel="external nofollow noreferrer">yang295513</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yoursite.com/2019/01/15/Spring框架/">http://yoursite.com/2019/01/15/Spring框架/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="http://yoursite.com" target="_blank">yang295513</a>
+                    !
+                </span>
+            </div>
+        
     </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/编程/">
+                                    <span class="chip bg-color">编程</span>
+                                </a>
+                            
+                                <a href="/tags/日常学习/">
+                                    <span class="chip bg-color">日常学习</span>
+                                </a>
+                            
+                                <a href="/tags/JAVA/">
+                                    <span class="chip bg-color">JAVA</span>
+                                </a>
+                            
+                                <a href="/tags/Spring/">
+                                    <span class="chip bg-color">Spring</span>
+                                </a>
+                            
+                                <a href="/tags/框架/">
+                                    <span class="chip bg-color">框架</span>
+                                </a>
+                            
+                                <a href="/tags/代理模式/">
+                                    <span class="chip bg-color">代理模式</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
     
-    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
     
 
     
 
-    
+</div>
 
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    yang295513
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/01/15/Spring框架/" title="Spring框架">http://yoursite.com/2019/01/15/Spring框架/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
 
-      </div>
-    
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/编程/" rel="tag"># 编程</a>
-          
-            <a href="/tags/日常学习/" rel="tag"># 日常学习</a>
-          
-            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
-          
-            <a href="/tags/Spring/" rel="tag"># Spring</a>
-          
-            <a href="/tags/框架/" rel="tag"># 框架</a>
-          
-            <a href="/tags/代理模式/" rel="tag"># 代理模式</a>
-          
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
         </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/10/01/mysql基础入门/" rel="next" title="mysql基础">
-                <i class="fa fa-chevron-left"></i> mysql基础
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/20/代码注意细节/" rel="prev" title="代码注意细节">
-                代码注意细节 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
     </div>
-  </div>
+</div>
 
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
 
-          </div>
-          
+            
+        </div>
+    </div>
 
+    
 
-          
+    
 
-  
+    
 
+    
 
+    
 
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2019/01/18/SpEL表达式详解/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="SpEL表达式详解">
+                        
+                        <span class="card-title">SpEL表达式详解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            前言SpEL（Spring Expression Language），即Spring表达式语言，是比JSP的EL更强大的一种表达式语言。为什么要总结SpEL，因为它可以在运行时查询和操作数据，尤其是数组列表型数据，因此可以缩减代码量，优化代
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-01-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/学习/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/编程/">
+                        <span class="chip bg-color">编程</span>
+                    </a>
+                    
+                    <a href="/tags/日常学习/">
+                        <span class="chip bg-color">日常学习</span>
+                    </a>
+                    
+                    <a href="/tags/JAVA/">
+                        <span class="chip bg-color">JAVA</span>
+                    </a>
+                    
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
+                    </a>
+                    
+                    <a href="/tags/框架/">
+                        <span class="chip bg-color">框架</span>
+                    </a>
+                    
+                    <a href="/tags/代理模式/">
+                        <span class="chip bg-color">代理模式</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
         </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">yang295513</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">72</span>
-                  <span class="site-state-item-name">日志</span>
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/10/01/mysql基础入门/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="mysql基础">
+                        
+                        <span class="card-title">mysql基础</span>
+                    </div>
                 </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">109</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            一、语法select 查询列表from 表名;
+二、特点1、查询列表可以是字段、常量、表达式、函数，也可以是多个2、查询结果是一个虚拟表
+三、示例1、查询单个字段select 字段名 from 表名;
+2、查询多个字段select 字段名，
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-10-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            yang295513
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
+                    </a>
+                    
+                    <a href="/tags/数据库/">
+                        <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
         </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring框架"><span class="nav-number">1.</span> <span class="nav-text">Spring框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Spring简介"><span class="nav-number">1.1.</span> <span class="nav-text">1.Spring简介:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-spring的核心"><span class="nav-number">2.</span> <span class="nav-text">2.spring的核心</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么事控制反转呢？"><span class="nav-number">2.1.</span> <span class="nav-text">1.什么事控制反转呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#控制反转loC演示"><span class="nav-number">2.1.1.</span> <span class="nav-text">控制反转loC演示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ApplicationContext接口的继承关系"><span class="nav-number">2.1.2.</span> <span class="nav-text">ApplicationContext接口的继承关系</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ApplicationContext-读取配置文件的时候立即加载对象（单例对象适用，经常使用）"><span class="nav-number">2.1.2.0.0.1.</span> <span class="nav-text">ApplicationContext:读取配置文件的时候立即加载对象（单例对象适用，经常使用）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#BeanFatory-遇见getBean的时候才加载对象（多例对象适用）"><span class="nav-number">2.1.2.0.0.2.</span> <span class="nav-text">BeanFatory:遇见getBean的时候才加载对象（多例对象适用）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ApplicationConxt接口常用的实现类"><span class="nav-number">2.1.3.</span> <span class="nav-text">ApplicationConxt接口常用的实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ClassPathXmlAppliationContext-加载类路径下的配置文件，要求配置文件必须在类路径下"><span class="nav-number">2.1.3.0.0.1.</span> <span class="nav-text">ClassPathXmlAppliationContext:加载类路径下的配置文件，要求配置文件必须在类路径下</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#FileSystemXmlApplicationContext-加载磁盘任意路径下的配置文件"><span class="nav-number">2.1.3.0.0.2.</span> <span class="nav-text">FileSystemXmlApplicationContext:加载磁盘任意路径下的配置文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#AnnotationConfigAppliationContext-读取注解创建容器"><span class="nav-number">2.1.3.0.0.3.</span> <span class="nav-text">AnnotationConfigAppliationContext:读取注解创建容器</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#3-spring的核心容器"><span class="nav-number">2.2.</span> <span class="nav-text">3.spring的核心容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Beans-管理bean"><span class="nav-number">2.2.1.</span> <span class="nav-text">Beans(管理bean)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-核心"><span class="nav-number">2.2.2.</span> <span class="nav-text">Core(核心)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Context-上下文（配置文件）"><span class="nav-number">2.2.3.</span> <span class="nav-text">Context(上下文（配置文件）)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Expresslon-Language-SpEl表达式"><span class="nav-number">2.2.4.</span> <span class="nav-text">Expresslon Language(SpEl表达式)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-SpringBean"><span class="nav-number">3.</span> <span class="nav-text">3.SpringBean</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBean创建的三种方式"><span class="nav-number">3.1.</span> <span class="nav-text">SpringBean创建的三种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBean的作用范围和生存周期"><span class="nav-number">3.2.</span> <span class="nav-text">SpringBean的作用范围和生存周期</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Spring注入"><span class="nav-number">4.</span> <span class="nav-text">4.Spring注入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述（经常变化的数据不适合注入）"><span class="nav-number">4.1.</span> <span class="nav-text">概述（经常变化的数据不适合注入）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#详解"><span class="nav-number">4.2.</span> <span class="nav-text">详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注入的方式"><span class="nav-number">4.2.1.</span> <span class="nav-text">注入的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用构造函数"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">使用构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用set方法（更常用）"><span class="nav-number">4.2.1.2.</span> <span class="nav-text">使用set方法（更常用）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#针对复杂的集合数据类型进行set注入"><span class="nav-number">4.2.1.3.</span> <span class="nav-text">针对复杂的集合数据类型进行set注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用注解"><span class="nav-number">4.2.1.4.</span> <span class="nav-text">使用注解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代替xml配置的注解"><span class="nav-number">4.3.</span> <span class="nav-text">代替xml配置的注解</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Configuration：说明当前类是一个配置类"><span class="nav-number">4.3.0.0.0.1.</span> <span class="nav-text">@Configuration：说明当前类是一个配置类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#import导入其他配置类-（有这个注解的配置类也被称为父配置类，那么被包含的配置类被称为子配置类）如果使用AnnotationConfigApplicationContext-导入了主配置类，那么可以通过在主配置类上面填写-import导入其他配置类，而且此时不能被-ComponentScan注解替代"><span class="nav-number">4.3.0.0.0.2.</span> <span class="nav-text">@import导入其他配置类 （有这个注解的配置类也被称为父配置类，那么被包含的配置类被称为子配置类）如果使用AnnotationConfigApplicationContext();导入了主配置类，那么可以通过在主配置类上面填写@import导入其他配置类，而且此时不能被@ComponentScan注解替代</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建对象的注解"><span class="nav-number">4.3.0.1.</span> <span class="nav-text">创建对象的注解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Component-作用把当前类对象存入spring容器中"><span class="nav-number">4.3.0.1.1.</span> <span class="nav-text">@Component 作用把当前类对象存入spring容器中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#和上面作用一样"><span class="nav-number">4.3.0.1.2.</span> <span class="nav-text">和上面作用一样</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注入数据的注解"><span class="nav-number">4.3.0.2.</span> <span class="nav-text">注入数据的注解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Autowired"><span class="nav-number">4.3.0.2.1.</span> <span class="nav-text">@Autowired:</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#出现位置-可以是变量上，也可以是方法上"><span class="nav-number">4.3.0.2.1.1.</span> <span class="nav-text">出现位置:可以是变量上，也可以是方法上</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#细节：在使用注解注入时，set方法就不说必须的了。"><span class="nav-number">4.3.0.2.1.2.</span> <span class="nav-text">细节：在使用注解注入时，set方法就不说必须的了。</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Qualifier-在按照类型注入的基础之上再按照名称注入，给类成员注入时不能单独使用，给方法参数注入是可以单独使用"><span class="nav-number">4.3.0.2.2.</span> <span class="nav-text">@Qualifier:在按照类型注入的基础之上再按照名称注入，给类成员注入时不能单独使用，给方法参数注入是可以单独使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Resource-可以单独使用"><span class="nav-number">4.3.0.2.3.</span> <span class="nav-text">@Resource: 可以单独使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#value"><span class="nav-number">4.3.0.2.4.</span> <span class="nav-text">@value</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#作用，用于注入基本类型和String类型的数据而且可以使用spEL表达式"><span class="nav-number">4.3.0.2.4.1.</span> <span class="nav-text">作用，用于注入基本类型和String类型的数据而且可以使用spEL表达式</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Bean-作用吧当前方法的返回值作为bean对象存入spring的ioc容器中"><span class="nav-number">4.3.0.2.5.</span> <span class="nav-text">@Bean:作用吧当前方法的返回值作为bean对象存入spring的ioc容器中</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改变作用范围的注解"><span class="nav-number">4.3.0.3.</span> <span class="nav-text">改变作用范围的注解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Scope-用于指定bean的作用范围-不声明默认是单例的"><span class="nav-number">4.3.0.3.1.</span> <span class="nav-text">@Scope :用于指定bean的作用范围 不声明默认是单例的</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#和生命周期相关的注解"><span class="nav-number">4.3.0.4.</span> <span class="nav-text">和生命周期相关的注解</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#PreDestroy"><span class="nav-number">4.3.0.4.0.1.</span> <span class="nav-text">@PreDestroy</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#PostConstruct"><span class="nav-number">4.3.0.4.0.2.</span> <span class="nav-text">@PostConstruct</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PropertySource-作用-用来指定properties文件的位置（然后-Value标签就可以用spEL表达式去获取值）"><span class="nav-number">4.3.0.4.1.</span> <span class="nav-text">@PropertySource 作用:用来指定properties文件的位置（然后@Value标签就可以用spEL表达式去获取值）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA的动态代理"><span class="nav-number">5.</span> <span class="nav-text">JAVA的动态代理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式-（可以进一步增强代码的复用性）"><span class="nav-number">5.1.</span> <span class="nav-text">代理模式 （可以进一步增强代码的复用性）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AOP编程实例"><span class="nav-number">6.</span> <span class="nav-text">AOP编程实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-切入点表达式"><span class="nav-number">7.</span> <span class="nav-text">1.切入点表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-返回值类型可以使用通配符-表示任意返回值"><span class="nav-number">7.0.0.0.1.</span> <span class="nav-text">1.返回值类型可以使用通配符* 表示任意返回值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-包名必须用·进行分割-比如-形式"><span class="nav-number">7.0.0.0.2.</span> <span class="nav-text">2.包名必须用·进行分割 比如 * . * . *形式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-或者使用-匹配多级目录"><span class="nav-number">7.0.0.0.3.</span> <span class="nav-text">3.或者使用* .. 匹配多级目录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-方法名称也可以使用通配符"><span class="nav-number">7.0.0.0.4.</span> <span class="nav-text">4.方法名称也可以使用通配符 *</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-参数列表可以使用float之类的基本数据类型，如果是复杂数据类型需要些包名加类名"><span class="nav-number">7.0.0.0.5.</span> <span class="nav-text">5.参数列表可以使用float之类的基本数据类型，如果是复杂数据类型需要些包名加类名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如果参数列表使用-进行通配符匹配只能匹配有参数的方法，要想匹配所有参数列表的需要使用-进行匹配"><span class="nav-number">7.0.0.0.6.</span> <span class="nav-text">如果参数列表使用 * 进行通配符匹配只能匹配有参数的方法，要想匹配所有参数列表的需要使用 ..进行匹配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4种通知类型"><span class="nav-number">7.0.1.</span> <span class="nav-text">2. 4种通知类型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#环绕通知是spring框架为我们提供的一种可以做在代码中手动控制增强方法合适执行的一种方式"><span class="nav-number">7.0.1.0.0.1.</span> <span class="nav-text">环绕通知是spring框架为我们提供的一种可以做在代码中手动控制增强方法合适执行的一种方式</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如果觉得配置execution比较麻烦可以使用切入点表达式解决"><span class="nav-number">7.0.1.0.1.</span> <span class="nav-text">如果觉得配置execution比较麻烦可以使用切入点表达式解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目目录"><span class="nav-number">7.0.2.</span> <span class="nav-text">项目目录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通过xml的方式实现AOP"><span class="nav-number">7.0.2.1.</span> <span class="nav-text">通过xml的方式实现AOP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发步骤"><span class="nav-number">7.0.3.</span> <span class="nav-text">开发步骤</span></a></li></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+        
     </div>
-  </aside>
+</article>
 
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        
-<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">yang295513</span>
-
-  
 </div>
 
 
 
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
         
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
 
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
 
-
-
-
-
-
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
         
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+    });
 </script>
 
+    
 
+</main>
 
 
 
 
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
     }
 
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        font-size: 15px;
+        color: #42b983;
     }
 
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
 
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
 
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
 
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
-                // show search results
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="http://yoursite.com" target="_blank">yang295513</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
 
-                if (isMatch) {
-                  // sort index by position of keyword
 
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
 
-                  // merge hits into slices
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
 
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
 
-                      // move to next position of hit
 
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
 
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
 
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
 
-                  // sort slices in content by search text's count and hits' count
 
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
 
-                  // select top N slices in content
 
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
 
-                  // highlight title and content
 
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
 
-                  var resultItem = '';
 
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
 
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
 
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
+</div>
+    </div>
+</footer>
 
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
+<div class="progress-bar"></div>
 
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
 
-          proceedsearch();
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
         }
-      });
-    }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
 
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
 
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
+    
 
+    
 
+    
 
+    
 
+    
 
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
 
 </body>
+
 </html>
