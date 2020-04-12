@@ -304,1233 +304,602 @@
 
 </header>
 
-    <style type="text/css">
-    /* don't remove. */
-    .about-cover {
-        height: 75vh;
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">about</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    .toc-fixed .toc-link::before{
+        position: fixed!important;/*当toc的位置改为fixed时，.toc-link::before也要改为fixed*/
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-13
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yoursite.com" rel="external nofollow noreferrer">yang295513</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yoursite.com/about/index.html">http://yoursite.com/about/index.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="http://yoursite.com" target="_blank">yang295513</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
     }
 </style>
 
-<div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                    subtitle
-                
-            </div>
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: ['从来没有真正的绝境, 只有心灵的迷途','Never really desperate, only the lost of the soul'],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    $('.bg-cover').css('background-image', 'url(/medias/banner/1.jpg)');
-</script>
-
-
-    </div>
-</div>
-
-<main class="content">
-
-    <div id="aboutme" class="container about-container">
-        <div class="card">
-            <div class="card-content">
-                <div class="row">
-                    <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
-                        
-<div class="statis">
-    <span class="count"><a href="/">76</a></span>
-    <span class="name">文章</span>
-</div>
-
-
-
-<div class="statis">
-    <span class="count"><a href="/categories">9</a></span>
-    <span class="name">分类</span>
-</div>
-
-
-
-<div class="statis">
-    <span class="count"><a href="/tags">113</a></span>
-    <span class="name">标签</span>
-</div>
-
-
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
                     </div>
-                    <div class="col s12 m12 l4">
-                        <div class="profile center-align">
-                            <div class="avatar">
-                                <img src="/medias/avatar.jpg" alt="yang295513"
-                                     class="circle responsive-img avatar-img">
-                            </div>
-                            <div class="author">
-                                <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
-                                    
-<div class="statis">
-    <span class="count"><a href="/">76</a></span>
-    <span class="name">文章</span>
-</div>
-
-
-
-<div class="statis">
-    <span class="count"><a href="/categories">9</a></span>
-    <span class="name">分类</span>
-</div>
-
-
-
-<div class="statis">
-    <span class="count"><a href="/tags">113</a></span>
-    <span class="name">标签</span>
-</div>
-
-
-                                </div>
-                                <div class="title">yang295513</div>
-                                <div class="career">Software Engineer</div>
-                                <div class="social-link hide-on-large-only" data-aos="zoom-in-left">
-                                    <!-- 
-    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-        <i class="fab fa-github"></i>
-    </a>
-
-
-
-    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
-        <i class="fas fa-envelope-open"></i>
-    </a>
-
-
-
-
-
-
-
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
-        <i class="fab fa-qq"></i>
-    </a>
-
-
-
-
-
-
-
-    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-        <i class="fas fa-rss"></i>
-    </a>
- -->
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l4 hide-on-med-and-down" data-aos="zoom-in-left">
-                        <div class="social-link">
-                            <!-- 
-    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-        <i class="fab fa-github"></i>
-    </a>
-
-
-
-    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
-        <i class="fas fa-envelope-open"></i>
-    </a>
-
-
-
-
-
-
-
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
-        <i class="fab fa-qq"></i>
-    </a>
-
-
-
-
-
-
-
-    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-        <i class="fas fa-rss"></i>
-    </a>
- -->
-
-                        </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
                     </div>
                 </div>
-
-                <div class="introduction center-align" data-aos="fade-up">If you wish to succeed, you should use persistence as your good friend, experience as your reference, prudence as your brother and hope as your sentry.</div>
-
-                <style type="text/css">
-    #posts-chart,
-    #categories-chart,
-    #tags-chart {
-        width: 100%;
-        height: 300px;
-        margin: 0.5rem auto;
-        padding: 0.5rem;
-    }
-</style>
-
-<div id="postCharts" class="post-charts">
-    <div class="title center-align" data-aos="zoom-in-up">
-        <i class="far fa-bar-chart"></i>&nbsp;&nbsp;文章统计图
-    </div>
-    <div class="row">
-        <div class="chart col s12 m6 l4" data-aos="zoom-in-up">
-            <div id="posts-chart"></div>
-        </div>
-
-        <div class="chart col s12 m6 l4" data-aos="zoom-in-up">
-            <div id="categories-chart"></div>
-        </div>
-
-        <div class="chart col s12 m6 l4" data-aos="zoom-in-up">
-            <div id="tags-chart"></div>
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript" src="/libs/echarts/echarts.min.js"></script>
-<script>
-    let postsChart = echarts.init(document.getElementById('posts-chart'));
-    let categoriesChart = echarts.init(document.getElementById('categories-chart'));
-    let tagsChart = echarts.init(document.getElementById('tags-chart'));
-
-    
-
-    let postsOption = {
-        title: {
-            text: '文章发布统计图',
-            top: -5,
-            x: 'center'
-        },
-        tooltip: {
-            trigger: 'axis'
-        },
-        xAxis: {
-            type: 'category',
-            data: ["2019-04","2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01","2020-02","2020-03","2020-04"]
-        },
-        yAxis: {
-            type: 'value',
-        },
-        series: [
-            {
-                name: '文章篇数',
-                type: 'line',
-                color: ['#6772e5'],
-                data: [0,1,1,0,1,3,6,4,4,1,3,34,8],
-                markPoint: {
-                    symbolSize: 45,
-                    color: ['#fa755a','#3ecf8e','#82d3f4'],
-                    data: [{
-                        type: 'max',
-                        itemStyle: {color: ['#3ecf8e']},
-                        name: '最大值'
-                    }, {
-                        type: 'min',
-                        itemStyle: {color: ['#fa755a']},
-                        name: '最小值'
-                    }]
-                },
-                markLine: {
-                    itemStyle: {color: ['#ab47bc']},
-                    data: [
-                        {type: 'average', name: '平均值'}
-                    ]
-                }
-            }
-        ]
-    };
-
-    
-
-    let categoriesOption = {
-        title: {
-            text: '文章分类统计图',
-            top: -4,
-            x: 'center'
-        },
-        tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        series: [
-            {
-                name: '分类',
-                type: 'pie',
-                radius: '50%',
-                color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"学习","value":40},{"name":"技巧","value":1},{"name":"玩","value":1},{"name":"软件学院","value":1},{"name":"算法","value":6},{"name":"单片机","value":1},{"name":"单片机","value":1},{"name":"设计模式","value":4},{"name":"电路基础","value":1}],
-                itemStyle: {
-                    emphasis: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                }
-            }
-        ]
-    };
-
-    
-
-    let tagsOption = {
-        title: {
-            text: 'TOP10 标签统计图',
-            top: -5,
-            x: 'center'
-        },
-        tooltip: {},
-        xAxis: [
-            {
-                type: 'category',
-                data: ["日常学习","编程","JAVA","java","数据库","设计模式","Spring","语言","mysql","框架"]
-            }
-        ],
-        yAxis: [
-            {
-                type: 'value'
-            }
-        ],
-        series: [
-            {
-                type: 'bar',
-                color: ['#82d3f4'],
-                barWidth : 18,
-                data: [35,31,20,17,11,9,8,6,6,6],
-                markPoint: {
-                    symbolSize: 45,
-                    data: [{
-                        type: 'max',
-                        itemStyle: {color: ['#3ecf8e']},
-                        name: '最大值'
-                    }, {
-                        type: 'min',
-                        itemStyle: {color: ['#fa755a']},
-                        name: '最小值'
-                    }],
-                },
-                markLine: {
-                    itemStyle: {color: ['#ab47bc']},
-                    data: [
-                        {type: 'average', name: '平均值'}
-                    ]
-                }
-            }
-        ]
-    };
-
-    // render the charts
-    postsChart.setOption(postsOption);
-    categoriesChart.setOption(categoriesOption);
-    tagsChart.setOption(tagsOption);
-</script>
-
-
-                
-                
-<div class="my-projects">
-    <div class="title center-align" data-aos="zoom-in-up">
-        <i class="fas fa-gift"></i>&nbsp;&nbsp;我的项目
-    </div>
-    <div class="row">
-        
-        
-        <div class="col s12 m6 l4" data-aos="fade-up">
-            <div class="info center-align">
-                <a href="http://github.com/blinkfox/hexo-theme-matery" class="icon"
-                   style="background: linear-gradient(to bottom right, #66BB6A 0%, #81C784 100%)" target="_blank">
-                    <i class="fas fa-file-alt"></i>
-                </a>
-                <div class="info-title">
-                    <a href="http://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
-                </div>
-                <div class="info-desc">This is a Hexo blog theme with &#39;Material Design&#39; and responsive design.</div>
             </div>
         </div>
-        
-        <div class="col s12 m6 l4" data-aos="fade-up">
-            <div class="info center-align">
-                <a href="https://github.com/blinkfox/fenix" class="icon"
-                   style="background: linear-gradient(to bottom right, #F06292 0%, #EF5350 100%)" target="_blank">
-                    <i class="fas fa-database"></i>
-                </a>
-                <div class="info-title">
-                    <a href="https://github.com/blinkfox/fenix" target="_blank">Fenix</a>
-                </div>
-                <div class="info-desc">这是 Spring Data JPA 复杂或动态 SQL 查询的扩展库。</div>
-            </div>
-        </div>
-        
-        <div class="col s12 m6 l4" data-aos="fade-up">
-            <div class="info center-align">
-                <a href="https://github.com/blinkfox/typora-vue-theme" class="icon"
-                   style="background: linear-gradient(to bottom right, #29B6F6 0%, #1E88E5 100%)" target="_blank">
-                    <i class="fas fa-file-alt"></i>
-                </a>
-                <div class="info-title">
-                    <a href="https://github.com/blinkfox/typora-vue-theme" target="_blank">typora-vue-theme</a>
-                </div>
-                <div class="info-desc">This is a typora theme inspired by Vue document style.</div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-                
-
-                
-                
-<div class="my-skills">
-    <div class="title center-align" data-aos="zoom-in-up">
-        <i class="fas fa-wrench"></i>&nbsp;&nbsp;我的技能
-    </div>
-    <div class="row">
-        
-        
-        
-        <div class="col s12 m6 l6" data-aos="fade-up">
-            <div class="skillbar">
-                <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #FF0066 0%, #FF00CC 100%); width: 85%">
-                    <span>Java</span>
-                </div>
-                <div class="skill-bar-percent">85%</div>
-            </div>
-        </div>
-        
-        
-        <div class="col s12 m6 l6" data-aos="fade-up">
-            <div class="skillbar">
-                <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #9900FF 0%, #CC66FF 100%); width: 80%">
-                    <span>JavaScript</span>
-                </div>
-                <div class="skill-bar-percent">80%</div>
-            </div>
-        </div>
-        
-        
-        <div class="col s12 m6 l6" data-aos="fade-up">
-            <div class="skillbar">
-                <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #2196F3 0%, #42A5F5 100%); width: 80%">
-                    <span>HTML5</span>
-                </div>
-                <div class="skill-bar-percent">80%</div>
-            </div>
-        </div>
-        
-        
-        <div class="col s12 m6 l6" data-aos="fade-up">
-            <div class="skillbar">
-                <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #00BCD4 0%, #80DEEA 100%); width: 70%">
-                    <span>CSS</span>
-                </div>
-                <div class="skill-bar-percent">70%</div>
-            </div>
-        </div>
-        
-        
-        <div class="col s12 m6 l6" data-aos="fade-up">
-            <div class="skillbar">
-                <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #4CAF50 0%, #81C784 100%); width: 90%">
-                    <span>SQL</span>
-                </div>
-                <div class="skill-bar-percent">90%</div>
-            </div>
-        </div>
-        
-        
-        <div class="col s12 m6 l6" data-aos="fade-up">
-            <div class="skillbar">
-                <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #FFEB3B 0%, #FFF176 100%); width: 75%">
-                    <span>程序设计</span>
-                </div>
-                <div class="skill-bar-percent">75%</div>
-            </div>
-        </div>
-        
-        
-    </div>
-
-    
-
-    
-    <div class="other-skills chip-container" data-aos="zoom-in-up">
-        <div class="sub-title center-align"><i class="fa fa-book"></i>&nbsp;&nbsp;其他技能</div>
-        <div class="tag-chips center-align">
-            
-            
-            <a href="/tags/操作系统/">
-                <span class="chip center-align waves-effect waves-light chip-default">操作系统</span>
-            </a>
-            
-            
-            
-            <a href="/tags/TensorFlow/">
-                <span class="chip center-align waves-effect waves-light chip-default">TensorFlow</span>
-            </a>
-            
-            
-            
-            <a href="/tags/语言/">
-                <span class="chip center-align waves-effect waves-light chip-default">语言</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Python/">
-                <span class="chip center-align waves-effect waves-light chip-default">Python</span>
-            </a>
-            
-            
-            
-            <a href="/tags/编程/">
-                <span class="chip center-align waves-effect waves-light chip-default">编程</span>
-            </a>
-            
-            
-            
-            <a href="/tags/日常学习/">
-                <span class="chip center-align waves-effect waves-light chip-default">日常学习</span>
-            </a>
-            
-            
-            
-            <a href="/tags/分布式/">
-                <span class="chip center-align waves-effect waves-light chip-default">分布式</span>
-            </a>
-            
-            
-            
-            <a href="/tags/IDEA/">
-                <span class="chip center-align waves-effect waves-light chip-default">IDEA</span>
-            </a>
-            
-            
-            
-            <a href="/tags/IDE/">
-                <span class="chip center-align waves-effect waves-light chip-default">IDE</span>
-            </a>
-            
-            
-            
-            <a href="/tags/快捷键/">
-                <span class="chip center-align waves-effect waves-light chip-default">快捷键</span>
-            </a>
-            
-            
-            
-            <a href="/tags/C/">
-                <span class="chip center-align waves-effect waves-light chip-default">C++</span>
-            </a>
-            
-            
-            
-            <a href="/tags/C/">
-                <span class="chip center-align waves-effect waves-light chip-default">C</span>
-            </a>
-            
-            
-            
-            <a href="/tags/技巧/">
-                <span class="chip center-align waves-effect waves-light chip-default">技巧</span>
-            </a>
-            
-            
-            
-            <a href="/tags/容器/">
-                <span class="chip center-align waves-effect waves-light chip-default">容器</span>
-            </a>
-            
-            
-            
-            <a href="/tags/hash/">
-                <span class="chip center-align waves-effect waves-light chip-default">hash</span>
-            </a>
-            
-            
-            
-            <a href="/tags/源码/">
-                <span class="chip center-align waves-effect waves-light chip-default">源码</span>
-            </a>
-            
-            
-            
-            <a href="/tags/docker/">
-                <span class="chip center-align waves-effect waves-light chip-default">docker</span>
-            </a>
-            
-            
-            
-            <a href="/tags/JAVA/">
-                <span class="chip center-align waves-effect waves-light chip-default">JAVA</span>
-            </a>
-            
-            
-            
-            <a href="/tags/设计模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">设计模式</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Integer/">
-                <span class="chip center-align waves-effect waves-light chip-default">Integer</span>
-            </a>
-            
-            
-            
-            <a href="/tags/陷阱/">
-                <span class="chip center-align waves-effect waves-light chip-default">陷阱</span>
-            </a>
-            
-            
-            
-            <a href="/tags/字节码/">
-                <span class="chip center-align waves-effect waves-light chip-default">字节码</span>
-            </a>
-            
-            
-            
-            <a href="/tags/猜想/">
-                <span class="chip center-align waves-effect waves-light chip-default">猜想</span>
-            </a>
-            
-            
-            
-            <a href="/tags/jvm/">
-                <span class="chip center-align waves-effect waves-light chip-default">jvm</span>
-            </a>
-            
-            
-            
-            <a href="/tags/java/">
-                <span class="chip center-align waves-effect waves-light chip-default">java</span>
-            </a>
-            
-            
-            
-            <a href="/tags/虚拟机/">
-                <span class="chip center-align waves-effect waves-light chip-default">虚拟机</span>
-            </a>
-            
-            
-            
-            <a href="/tags/反射/">
-                <span class="chip center-align waves-effect waves-light chip-default">反射</span>
-            </a>
-            
-            
-            
-            <a href="/tags/泛型/">
-                <span class="chip center-align waves-effect waves-light chip-default">泛型</span>
-            </a>
-            
-            
-            
-            <a href="/tags/mysql/">
-                <span class="chip center-align waves-effect waves-light chip-default">mysql</span>
-            </a>
-            
-            
-            
-            <a href="/tags/数据库/">
-                <span class="chip center-align waves-effect waves-light chip-default">数据库</span>
-            </a>
-            
-            
-            
-            <a href="/tags/XML/">
-                <span class="chip center-align waves-effect waves-light chip-default">XML</span>
-            </a>
-            
-            
-            
-            <a href="/tags/ORM/">
-                <span class="chip center-align waves-effect waves-light chip-default">ORM</span>
-            </a>
-            
-            
-            
-            <a href="/tags/io/">
-                <span class="chip center-align waves-effect waves-light chip-default">io</span>
-            </a>
-            
-            
-            
-            <a href="/tags/nio/">
-                <span class="chip center-align waves-effect waves-light chip-default">nio</span>
-            </a>
-            
-            
-            
-            <a href="/tags/aio/">
-                <span class="chip center-align waves-effect waves-light chip-default">aio</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Redis/">
-                <span class="chip center-align waves-effect waves-light chip-default">Redis</span>
-            </a>
-            
-            
-            
-            <a href="/tags/非关系型数据库/">
-                <span class="chip center-align waves-effect waves-light chip-default">非关系型数据库</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Spring/">
-                <span class="chip center-align waves-effect waves-light chip-default">Spring</span>
-            </a>
-            
-            
-            
-            <a href="/tags/框架/">
-                <span class="chip center-align waves-effect waves-light chip-default">框架</span>
-            </a>
-            
-            
-            
-            <a href="/tags/SSM/">
-                <span class="chip center-align waves-effect waves-light chip-default">SSM</span>
-            </a>
-            
-            
-            
-            <a href="/tags/SpringMVC/">
-                <span class="chip center-align waves-effect waves-light chip-default">SpringMVC</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Mybatis/">
-                <span class="chip center-align waves-effect waves-light chip-default">Mybatis</span>
-            </a>
-            
-            
-            
-            <a href="/tags/代理模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">代理模式</span>
-            </a>
-            
-            
-            
-            <a href="/tags/SpringBoot/">
-                <span class="chip center-align waves-effect waves-light chip-default">SpringBoot</span>
-            </a>
-            
-            
-            
-            <a href="/tags/StringTable/">
-                <span class="chip center-align waves-effect waves-light chip-default">StringTable</span>
-            </a>
-            
-            
-            
-            <a href="/tags/thread/">
-                <span class="chip center-align waves-effect waves-light chip-default">thread</span>
-            </a>
-            
-            
-            
-            <a href="/tags/线程/">
-                <span class="chip center-align waves-effect waves-light chip-default">线程</span>
-            </a>
-            
-            
-            
-            <a href="/tags/jQuery/">
-                <span class="chip center-align waves-effect waves-light chip-default">jQuery</span>
-            </a>
-            
-            
-            
-            <a href="/tags/前端/">
-                <span class="chip center-align waves-effect waves-light chip-default">前端</span>
-            </a>
-            
-            
-            
-            <a href="/tags/js/">
-                <span class="chip center-align waves-effect waves-light chip-default">js</span>
-            </a>
-            
-            
-            
-            <a href="/tags/javaScript/">
-                <span class="chip center-align waves-effect waves-light chip-default">javaScript</span>
-            </a>
-            
-            
-            
-            <a href="/tags/自定义/">
-                <span class="chip center-align waves-effect waves-light chip-default">自定义</span>
-            </a>
-            
-            
-            
-            <a href="/tags/线程池/">
-                <span class="chip center-align waves-effect waves-light chip-default">线程池</span>
-            </a>
-            
-            
-            
-            <a href="/tags/多线程/">
-                <span class="chip center-align waves-effect waves-light chip-default">多线程</span>
-            </a>
-            
-            
-            
-            <a href="/tags/JNI/">
-                <span class="chip center-align waves-effect waves-light chip-default">JNI</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Java-Native-Interface/">
-                <span class="chip center-align waves-effect waves-light chip-default">Java Native Interface</span>
-            </a>
-            
-            
-            
-            <a href="/tags/集合/">
-                <span class="chip center-align waves-effect waves-light chip-default">集合</span>
-            </a>
-            
-            
-            
-            <a href="/tags/原理/">
-                <span class="chip center-align waves-effect waves-light chip-default">原理</span>
-            </a>
-            
-            
-            
-            <a href="/tags/list/">
-                <span class="chip center-align waves-effect waves-light chip-default">list</span>
-            </a>
-            
-            
-            
-            <a href="/tags/array/">
-                <span class="chip center-align waves-effect waves-light chip-default">array</span>
-            </a>
-            
-            
-            
-            <a href="/tags/虚拟器/">
-                <span class="chip center-align waves-effect waves-light chip-default">虚拟器</span>
-            </a>
-            
-            
-            
-            <a href="/tags/习惯/">
-                <span class="chip center-align waves-effect waves-light chip-default">习惯</span>
-            </a>
-            
-            
-            
-            <a href="/tags/maven/">
-                <span class="chip center-align waves-effect waves-light chip-default">maven</span>
-            </a>
-            
-            
-            
-            <a href="/tags/项目管理/">
-                <span class="chip center-align waves-effect waves-light chip-default">项目管理</span>
-            </a>
-            
-            
-            
-            <a href="/tags/synchronized/">
-                <span class="chip center-align waves-effect waves-light chip-default">synchronized</span>
-            </a>
-            
-            
-            
-            <a href="/tags/monitor/">
-                <span class="chip center-align waves-effect waves-light chip-default">monitor</span>
-            </a>
-            
-            
-            
-            <a href="/tags/优化/">
-                <span class="chip center-align waves-effect waves-light chip-default">优化</span>
-            </a>
-            
-            
-            
-            <a href="/tags/事务/">
-                <span class="chip center-align waves-effect waves-light chip-default">事务</span>
-            </a>
-            
-            
-            
-            <a href="/tags/数据结构/">
-                <span class="chip center-align waves-effect waves-light chip-default">数据结构</span>
-            </a>
-            
-            
-            
-            <a href="/tags/树/">
-                <span class="chip center-align waves-effect waves-light chip-default">树</span>
-            </a>
-            
-            
-            
-            <a href="/tags/索引/">
-                <span class="chip center-align waves-effect waves-light chip-default">索引</span>
-            </a>
-            
-            
-            
-            <a href="/tags/分页/">
-                <span class="chip center-align waves-effect waves-light chip-default">分页</span>
-            </a>
-            
-            
-            
-            <a href="/tags/WEB/">
-                <span class="chip center-align waves-effect waves-light chip-default">WEB</span>
-            </a>
-            
-            
-            
-            <a href="/tags/并发/">
-                <span class="chip center-align waves-effect waves-light chip-default">并发</span>
-            </a>
-            
-            
-            
-            <a href="/tags/指令重排/">
-                <span class="chip center-align waves-effect waves-light chip-default">指令重排</span>
-            </a>
-            
-            
-            
-            <a href="/tags/线程安全/">
-                <span class="chip center-align waves-effect waves-light chip-default">线程安全</span>
-            </a>
-            
-            
-            
-            <a href="/tags/app/">
-                <span class="chip center-align waves-effect waves-light chip-default">app</span>
-            </a>
-            
-            
-            
-            <a href="/tags/vue/">
-                <span class="chip center-align waves-effect waves-light chip-default">vue</span>
-            </a>
-            
-            
-            
-            <a href="/tags/CAS/">
-                <span class="chip center-align waves-effect waves-light chip-default">CAS</span>
-            </a>
-            
-            
-            
-            <a href="/tags/乐观锁/">
-                <span class="chip center-align waves-effect waves-light chip-default">乐观锁</span>
-            </a>
-            
-            
-            
-            <a href="/tags/悲观锁/">
-                <span class="chip center-align waves-effect waves-light chip-default">悲观锁</span>
-            </a>
-            
-            
-            
-            <a href="/tags/偏向锁/">
-                <span class="chip center-align waves-effect waves-light chip-default">偏向锁</span>
-            </a>
-            
-            
-            
-            <a href="/tags/轻量级锁/">
-                <span class="chip center-align waves-effect waves-light chip-default">轻量级锁</span>
-            </a>
-            
-            
-            
-            <a href="/tags/自旋锁/">
-                <span class="chip center-align waves-effect waves-light chip-default">自旋锁</span>
-            </a>
-            
-            
-            
-            <a href="/tags/锁消除/">
-                <span class="chip center-align waves-effect waves-light chip-default">锁消除</span>
-            </a>
-            
-            
-            
-            <a href="/tags/锁粗化/">
-                <span class="chip center-align waves-effect waves-light chip-default">锁粗化</span>
-            </a>
-            
-            
-            
-            <a href="/tags/锁/">
-                <span class="chip center-align waves-effect waves-light chip-default">锁</span>
-            </a>
-            
-            
-            
-            <a href="/tags/线程停止/">
-                <span class="chip center-align waves-effect waves-light chip-default">线程停止</span>
-            </a>
-            
-            
-            
-            <a href="/tags/上拉电阻/">
-                <span class="chip center-align waves-effect waves-light chip-default">上拉电阻</span>
-            </a>
-            
-            
-            
-            <a href="/tags/推挽/">
-                <span class="chip center-align waves-effect waves-light chip-default">推挽</span>
-            </a>
-            
-            
-            
-            <a href="/tags/开漏/">
-                <span class="chip center-align waves-effect waves-light chip-default">开漏</span>
-            </a>
-            
-            
-            
-            <a href="/tags/三极管/">
-                <span class="chip center-align waves-effect waves-light chip-default">三极管</span>
-            </a>
-            
-            
-            
-            <a href="/tags/准双向/">
-                <span class="chip center-align waves-effect waves-light chip-default">准双向</span>
-            </a>
-            
-            
-            
-            <a href="/tags/报名系统/">
-                <span class="chip center-align waves-effect waves-light chip-default">报名系统</span>
-            </a>
-            
-            
-            
-            <a href="/tags/算法/">
-                <span class="chip center-align waves-effect waves-light chip-default">算法</span>
-            </a>
-            
-            
-            
-            <a href="/tags/不准确/">
-                <span class="chip center-align waves-effect waves-light chip-default">不准确</span>
-            </a>
-            
-            
-            
-            <a href="/tags/电路/">
-                <span class="chip center-align waves-effect waves-light chip-default">电路</span>
-            </a>
-            
-            
-            
-            <a href="/tags/单片机/">
-                <span class="chip center-align waves-effect waves-light chip-default">单片机</span>
-            </a>
-            
-            
-            
-            <a href="/tags/原则/">
-                <span class="chip center-align waves-effect waves-light chip-default">原则</span>
-            </a>
-            
-            
-            
-            <a href="/tags/结构型/">
-                <span class="chip center-align waves-effect waves-light chip-default">结构型</span>
-            </a>
-            
-            
-            
-            <a href="/tags/原型模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">原型模式</span>
-            </a>
-            
-            
-            
-            <a href="/tags/单例设计模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">单例设计模式</span>
-            </a>
-            
-            
-            
-            <a href="/tags/工厂设计模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">工厂设计模式</span>
-            </a>
-            
-            
-            
-            <a href="/tags/工厂模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">工厂模式</span>
-            </a>
-            
-            
-            
-            <a href="/tags/组合模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">组合模式</span>
-            </a>
-            
-            
-            
-            <a href="/tags/final/">
-                <span class="chip center-align waves-effect waves-light chip-default">final</span>
-            </a>
-            
-            
-            
-            <a href="/tags/未完成/">
-                <span class="chip center-align waves-effect waves-light chip-default">未完成</span>
-            </a>
-            
-            
-            
-            <a href="/tags/接口/">
-                <span class="chip center-align waves-effect waves-light chip-default">接口</span>
-            </a>
-            
-            
-            
-            <a href="/tags/适配器/">
-                <span class="chip center-align waves-effect waves-light chip-default">适配器</span>
-            </a>
-            
-            
-            
-            <a href="/tags/内部类/">
-                <span class="chip center-align waves-effect waves-light chip-default">内部类</span>
-            </a>
-            
-            
-            
-            <a href="/tags/被动调用/">
-                <span class="chip center-align waves-effect waves-light chip-default">被动调用</span>
-            </a>
-            
-            
-            
-            <a href="/tags/装饰者模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">装饰者模式</span>
-            </a>
-            
-            
-            
-            <a href="/tags/适配器模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">适配器模式</span>
-            </a>
-            
-            
-        </div>
-    </div>
-    
-
-</div>
-
-                
-
-                
-                
-<div id="myGallery" class="my-gallery">
-    <div class="title center-align" data-aos="zoom-in-up">
-        <i class="far fa-image"></i>&nbsp;&nbsp;相册
-    </div>
-    <div class="row">
-        
-        
-        <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/featureimages/0.jpg">
-                <img src="/medias/featureimages/0.jpg" class="responsive-img">
-            </div>
-        </div>
-        
-        <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/featureimages/1.jpg">
-                <img src="/medias/featureimages/1.jpg" class="responsive-img">
-            </div>
-        </div>
-        
-        <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/featureimages/2.jpg">
-                <img src="/medias/featureimages/2.jpg" class="responsive-img">
-            </div>
-        </div>
-        
-        
     </div>
 </div>
 
 <script>
     $(function () {
-        let animateClass = 'animated pulse';
-        $('#myGallery .photo').hover(function () {
-            $(this).addClass(animateClass);
-        }, function () {
-            $(this).removeClass(animateClass);
-        });
+        $('.tabs').tabs();
     });
 </script>
 
-                
-
-            </div>
+            
         </div>
     </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/about/index.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="about">
+                        
+                        <span class="card-title">about</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            yang295513
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/about/index.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="about">
+                        
+                        <span class="card-title">about</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            yang295513
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
 </main>
+
+
 
 
     <footer class="page-footer bg-color">
