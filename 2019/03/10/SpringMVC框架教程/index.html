@@ -490,7 +490,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2019-09-28
+                    2020-04-13
                 </div>
                 
 
@@ -621,7 +621,7 @@
 <h2 id="ModelAndVIew"><a href="#ModelAndVIew" class="headerlink" title="ModelAndVIew"></a>ModelAndVIew</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>​    ModelAndView从这个名字我们不难看出，他的作用就是模型与视图之间进行交互。</p>
 <p>而model,只能向request域进行存对象，所有就出现了，使用ModelAndView类用来存储处理完后的结果数据，以及显示该数据的视图。</p>
 <p>用法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">testModelAndView</span></span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/testModelAndView"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testModelAndView</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ModelAndView mv=<span class="keyword">new</span> ModelAndView();</span><br><span class="line">        mv.addObject(<span class="string">"asd"</span>,<span class="string">"asd"</span>);<span class="comment">//忘request域存取数据</span></span><br><span class="line">        mv.setViewName(<span class="string">"123"</span>);<span class="comment">//使用前端控制器跳转到123页面</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">testModelAndView</span></span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/testModelAndView"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testModelAndView</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ModelAndView mv=<span class="keyword">new</span> ModelAndView();</span><br><span class="line">        mv.addObject(<span class="string">"asd"</span>,<span class="string">"asd"</span>);<span class="comment">//往request域存取数据</span></span><br><span class="line">        mv.setViewName(<span class="string">"123"</span>);<span class="comment">//使用前端控制器跳转到123页面</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="使用关键字进行转发或者重定向"><a href="#使用关键字进行转发或者重定向" class="headerlink" title="使用关键字进行转发或者重定向"></a>使用关键字进行转发或者重定向</h2><h5 id="在返回值前写forward-路径这样会进行转发功能，使用redirect进行重定向"><a href="#在返回值前写forward-路径这样会进行转发功能，使用redirect进行重定向" class="headerlink" title="在返回值前写forward:路径这样会进行转发功能，使用redirect进行重定向"></a>在返回值前写forward:路径这样会进行转发功能，使用redirect进行重定向</h5><h2 id="注意，这种方法使用较少，而且使用后不能使用前端控制器"><a href="#注意，这种方法使用较少，而且使用后不能使用前端控制器" class="headerlink" title="注意，这种方法使用较少，而且使用后不能使用前端控制器"></a>注意，这种方法使用较少，而且使用后不能使用前端控制器</h2>
             </div>
@@ -798,20 +798,20 @@ C数组使我们建立起来的树状数组
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
-                    </a>
-                    
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C</span>
-                    </a>
-                    
                     <a href="/tags/编程/">
                         <span class="chip bg-color">编程</span>
                     </a>
                     
                     <a href="/tags/日常学习/">
                         <span class="chip bg-color">日常学习</span>
+                    </a>
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C</span>
                     </a>
                     
                     <a href="/tags/算法/">
