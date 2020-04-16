@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -339,7 +339,7 @@
 
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    $('.bg-cover').css('background-image', 'url(/medias/banner/1.jpg)');
+    $('.bg-cover').css('background-image', 'url(/medias/banner/4.jpg)');
 </script>
 
 
@@ -359,7 +359,216 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/19/java零碎小细节/">
+                    <a href="/2020/03/21/string-table-xiang-jie/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="String table详解">
+                            
+                            <span class="card-title">String table详解</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                String table又称为String pool，字符串常量池，其存在于堆中(jdk1.8及其以后改的)。最重要的一点，String table中存储的并不是String类型的对象，存储的而是指向String对象的索引，真实对象还是存储
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-21
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                yang295513
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/字节码/">
+                            <span class="chip bg-color">字节码</span>
+                        </a>
+                        
+                        <a href="/tags/StringTable/">
+                            <span class="chip bg-color">StringTable</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/03/21/jing-tai-nei-bu-lei-he-shi-bei-jia-zai/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="静态内部类何时被加载">
+                            
+                            <span class="card-title">静态内部类何时被加载</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                首先先看一段代码
+/**
+ * @author yang
+ * @date 2020/3/20 下午 1:49
+ */
+public class EnuTest{
+    public static void main(String[] a
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-21
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                yang295513
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/内部类/">
+                            <span class="chip bg-color">内部类</span>
+                        </a>
+                        
+                        <a href="/tags/被动调用/">
+                            <span class="chip bg-color">被动调用</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/03/20/integer-xian-jing/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Integer陷阱">
+                            
+                            <span class="card-title">Integer陷阱</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                首先对象使用==比较的是是否为同一个对象
+public class EnuTest {
+    public static void main(String[] args) {
+        Integer integer1=110;
+ 
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-20
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                yang295513
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/源码/">
+                            <span class="chip bg-color">源码</span>
+                        </a>
+                        
+                        <a href="/tags/Integer/">
+                            <span class="chip bg-color">Integer</span>
+                        </a>
+                        
+                        <a href="/tags/陷阱/">
+                            <span class="chip bg-color">陷阱</span>
+                        </a>
+                        
+                        <a href="/tags/字节码/">
+                            <span class="chip bg-color">字节码</span>
+                        </a>
+                        
+                        <a href="/tags/猜想/">
+                            <span class="chip bg-color">猜想</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/03/20/2.4-cao-zuo-xi-tong-jin-cheng-tong-bu-he-2.5-jing-dian-jin-cheng-de-tong-bu-wen-ti/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="2.4操作系统进程同步和2.5经典进程的同步问题">
+                            
+                            <span class="card-title">2.4操作系统进程同步和2.5经典进程的同步问题</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                简介​    进程同步是一个操作系统级别的概念,是在多道程序的环境下，存在着不同的制约关系，为了协调这种互相制约的关系，实现资源共享和进程协作，从而避免进程之间的冲突，引入了进程同步。
+进程描述定义
+进程是程序的一次执行。
+进程是一个程序及
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-20
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                yang295513
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/操作系统/">
+                            <span class="chip bg-color">操作系统</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/03/19/java-ling-sui-xiao-xi-jie/">
                         <div class="card-image">
                             
                             
@@ -403,7 +612,7 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/19/jvm学习第三天-类加载器/">
+                    <a href="/2020/03/19/jvm-xue-xi-di-san-tian-lei-jia-zai-qi/">
                         <div class="card-image">
                             
                             
@@ -438,12 +647,12 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/jvm/">
-                            <span class="chip bg-color">jvm</span>
-                        </a>
-                        
                         <a href="/tags/java/">
                             <span class="chip bg-color">java</span>
+                        </a>
+                        
+                        <a href="/tags/jvm/">
+                            <span class="chip bg-color">jvm</span>
                         </a>
                         
                         <a href="/tags/虚拟器/">
@@ -457,7 +666,7 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/18/mysql的zip安装方法/">
+                    <a href="/2020/03/18/mysql-de-zip-an-zhuang-fang-fa/">
                         <div class="card-image">
                             
                             
@@ -504,7 +713,7 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/18/jvm学习第二天-虚拟机执行子系统/">
+                    <a href="/2020/03/18/jvm-xue-xi-di-er-tian-xu-ni-ji-zhi-xing-zi-xi-tong/">
                         <div class="card-image">
                             
                             
@@ -537,12 +746,12 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/jvm/">
-                            <span class="chip bg-color">jvm</span>
-                        </a>
-                        
                         <a href="/tags/java/">
                             <span class="chip bg-color">java</span>
+                        </a>
+                        
+                        <a href="/tags/jvm/">
+                            <span class="chip bg-color">jvm</span>
                         </a>
                         
                         <a href="/tags/虚拟机/">
@@ -556,7 +765,7 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/15/JAVA反射详解/">
+                    <a href="/2020/03/15/java-fan-she-xiang-jie/">
                         <div class="card-image">
                             
                             
@@ -589,12 +798,12 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/反射/">
-                            <span class="chip bg-color">反射</span>
-                        </a>
-                        
                         <a href="/tags/JAVA/">
                             <span class="chip bg-color">JAVA</span>
+                        </a>
+                        
+                        <a href="/tags/反射/">
+                            <span class="chip bg-color">反射</span>
                         </a>
                         
                     </div>
@@ -604,7 +813,7 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/14/jvm学习第一天-自动内存管理/">
+                    <a href="/2020/03/14/jvm-xue-xi-di-yi-tian-zi-dong-nei-cun-guan-li/">
                         <div class="card-image">
                             
                             
@@ -648,12 +857,12 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/jvm/">
-                            <span class="chip bg-color">jvm</span>
-                        </a>
-                        
                         <a href="/tags/java/">
                             <span class="chip bg-color">java</span>
+                        </a>
+                        
+                        <a href="/tags/jvm/">
+                            <span class="chip bg-color">jvm</span>
                         </a>
                         
                         <a href="/tags/虚拟机/">
@@ -667,7 +876,7 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/13/java中Native关键字/">
+                    <a href="/2020/03/13/java-zhong-native-guan-jian-zi/">
                         <div class="card-image">
                             
                             
@@ -725,7 +934,7 @@ native关键字说明被修饰的方法是一个原生态方法，并且方法�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/12/JVM虚拟机入门/">
+                    <a href="/2020/03/12/jvm-xu-ni-ji-ru-men/">
                         <div class="card-image">
                             
                             
@@ -762,291 +971,16 @@ JVM是JavaVirtualMachine（Java虚拟机）的缩写，JVM是一种用于计算�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/jvm/">
-                            <span class="chip bg-color">jvm</span>
-                        </a>
-                        
                         <a href="/tags/java/">
                             <span class="chip bg-color">java</span>
                         </a>
                         
+                        <a href="/tags/jvm/">
+                            <span class="chip bg-color">jvm</span>
+                        </a>
+                        
                         <a href="/tags/虚拟机/">
                             <span class="chip bg-color">虚拟机</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/11/nginx入门/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="nginx入门">
-                            
-                            <span class="card-title">nginx入门</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                nginx入门简介
-ginx (engine x) 是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambler.ru站点（俄文：Рамблер
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-11
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/学习/" class="post-category">
-                                    学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/编程/">
-                            <span class="chip bg-color">编程</span>
-                        </a>
-                        
-                        <a href="/tags/日常学习/">
-                            <span class="chip bg-color">日常学习</span>
-                        </a>
-                        
-                        <a href="/tags/JAVA/">
-                            <span class="chip bg-color">JAVA</span>
-                        </a>
-                        
-                        <a href="/tags/数据库/">
-                            <span class="chip bg-color">数据库</span>
-                        </a>
-                        
-                        <a href="/tags/分页/">
-                            <span class="chip bg-color">分页</span>
-                        </a>
-                        
-                        <a href="/tags/WEB/">
-                            <span class="chip bg-color">WEB</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/11/Redis入门/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Redis入门">
-                            
-                            <span class="card-title">Redis入门</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                Redis简介
-REmote DIctionary Server(Redis) 是一个由Salvatore Sanfilippo写的key-value存储系统。
-Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-11
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/学习/" class="post-category">
-                                    学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/编程/">
-                            <span class="chip bg-color">编程</span>
-                        </a>
-                        
-                        <a href="/tags/日常学习/">
-                            <span class="chip bg-color">日常学习</span>
-                        </a>
-                        
-                        <a href="/tags/JAVA/">
-                            <span class="chip bg-color">JAVA</span>
-                        </a>
-                        
-                        <a href="/tags/数据库/">
-                            <span class="chip bg-color">数据库</span>
-                        </a>
-                        
-                        <a href="/tags/Redis/">
-                            <span class="chip bg-color">Redis</span>
-                        </a>
-                        
-                        <a href="/tags/非关系型数据库/">
-                            <span class="chip bg-color">非关系型数据库</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/09/Redis常用命令/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Redis常用命令">
-                            
-                            <span class="card-title">Redis常用命令</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                Redis 常用命令登录 redis-cli -p 5566 -a password检查key是否存在 EXISTS key搜索某关键字 KSYS *4返回一个Key所影响的vsl的类型 TYPE key
-Stringset key val
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/学习/" class="post-category">
-                                    学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/编程/">
-                            <span class="chip bg-color">编程</span>
-                        </a>
-                        
-                        <a href="/tags/日常学习/">
-                            <span class="chip bg-color">日常学习</span>
-                        </a>
-                        
-                        <a href="/tags/JAVA/">
-                            <span class="chip bg-color">JAVA</span>
-                        </a>
-                        
-                        <a href="/tags/数据库/">
-                            <span class="chip bg-color">数据库</span>
-                        </a>
-                        
-                        <a href="/tags/Redis/">
-                            <span class="chip bg-color">Redis</span>
-                        </a>
-                        
-                        <a href="/tags/非关系型数据库/">
-                            <span class="chip bg-color">非关系型数据库</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/09/设计模式之组合模式/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="设计模式之组合模式">
-                            
-                            <span class="card-title">设计模式之组合模式</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                组合模式
-组合模式也叫合成模式，用来描述部分和整体的关系。组合模式，也是很多人没有听说过的，那就不妨了解一下。其实组合模式就是上级管理下级的关系模式，比如说经理可以管理几个员工，他是有增删改查功能，而经理也是被总经理管理。。。
-
-类型 结构
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/学习/" class="post-category">
-                                    学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/编程/">
-                            <span class="chip bg-color">编程</span>
-                        </a>
-                        
-                        <a href="/tags/日常学习/">
-                            <span class="chip bg-color">日常学习</span>
-                        </a>
-                        
-                        <a href="/tags/JAVA/">
-                            <span class="chip bg-color">JAVA</span>
-                        </a>
-                        
-                        <a href="/tags/设计模式/">
-                            <span class="chip bg-color">设计模式</span>
-                        </a>
-                        
-                        <a href="/tags/结构型/">
-                            <span class="chip bg-color">结构型</span>
-                        </a>
-                        
-                        <a href="/tags/组合模式/">
-                            <span class="chip bg-color">组合模式</span>
                         </a>
                         
                     </div>
@@ -1097,6 +1031,9 @@ Stringset key val
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">145.3k</span>&nbsp;字
             
             
             

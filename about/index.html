@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -345,7 +345,7 @@
 
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    $('.bg-cover').css('background-image', 'url(/medias/banner/1.jpg)');
+    $('.bg-cover').css('background-image', 'url(/medias/banner/4.jpg)');
 </script>
 
 
@@ -361,21 +361,21 @@
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/">77</a></span>
+    <span class="count"><a href="/">81</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories">10</a></span>
+    <span class="count"><a href="/categories">14</a></span>
     <span class="name">分类</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">113</a></span>
+    <span class="count"><a href="/tags">116</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -391,21 +391,21 @@
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/">77</a></span>
+    <span class="count"><a href="/">81</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories">10</a></span>
+    <span class="count"><a href="/categories">14</a></span>
     <span class="name">分类</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">113</a></span>
+    <span class="count"><a href="/tags">116</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -549,7 +549,7 @@
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,1,1,0,1,3,6,4,4,1,3,34,9],
+                data: [0,1,1,0,1,3,6,4,4,1,3,34,13],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -591,7 +591,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"学习","value":40},{"name":"技巧","value":1},{"name":"数据库","value":1},{"name":"玩","value":1},{"name":"单片机","value":1},{"name":"电路基础","value":1},{"name":"算法","value":6},{"name":"软件学院","value":1},{"name":"单片机","value":1},{"name":"设计模式","value":4}],
+                data: [{"name":"并发","value":2},{"name":"学习","value":40},{"name":"技巧","value":1},{"name":"数据库","value":1},{"name":"java","value":1},{"name":"分布式","value":1},{"name":"框架","value":1},{"name":"软件学院","value":1},{"name":"算法","value":6},{"name":"玩","value":1},{"name":"单片机","value":1},{"name":"单片机","value":1},{"name":"设计模式","value":4},{"name":"电路基础","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -615,7 +615,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["日常学习","编程","JAVA","java","数据库","设计模式","Spring","mysql","语言","框架"]
+                data: ["日常学习","编程","java","JAVA","数据库","设计模式","Spring","mysql","框架","语言"]
             }
         ],
         yAxis: [
@@ -628,7 +628,7 @@
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [35,31,20,18,11,9,8,7,6,6],
+                data: [35,31,20,20,11,9,8,7,7,6],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -746,8 +746,38 @@
         <div class="tag-chips center-align">
             
             
-            <a href="/tags/TensorFlow/">
-                <span class="chip center-align waves-effect waves-light chip-default">TensorFlow</span>
+            <a href="/tags/java/">
+                <span class="chip center-align waves-effect waves-light chip-default">java</span>
+            </a>
+            
+            
+            
+            <a href="/tags/锁/">
+                <span class="chip center-align waves-effect waves-light chip-default">锁</span>
+            </a>
+            
+            
+            
+            <a href="/tags/并发/">
+                <span class="chip center-align waves-effect waves-light chip-default">并发</span>
+            </a>
+            
+            
+            
+            <a href="/tags/AQS/">
+                <span class="chip center-align waves-effect waves-light chip-default">AQS</span>
+            </a>
+            
+            
+            
+            <a href="/tags/自定义/">
+                <span class="chip center-align waves-effect waves-light chip-default">自定义</span>
+            </a>
+            
+            
+            
+            <a href="/tags/C/">
+                <span class="chip center-align waves-effect waves-light chip-default">C++</span>
             </a>
             
             
@@ -758,8 +788,8 @@
             
             
             
-            <a href="/tags/Python/">
-                <span class="chip center-align waves-effect waves-light chip-default">Python</span>
+            <a href="/tags/C/">
+                <span class="chip center-align waves-effect waves-light chip-default">C</span>
             </a>
             
             
@@ -776,18 +806,6 @@
             
             
             
-            <a href="/tags/C/">
-                <span class="chip center-align waves-effect waves-light chip-default">C++</span>
-            </a>
-            
-            
-            
-            <a href="/tags/C/">
-                <span class="chip center-align waves-effect waves-light chip-default">C</span>
-            </a>
-            
-            
-            
             <a href="/tags/技巧/">
                 <span class="chip center-align waves-effect waves-light chip-default">技巧</span>
             </a>
@@ -800,6 +818,12 @@
             
             
             
+            <a href="/tags/分布式/">
+                <span class="chip center-align waves-effect waves-light chip-default">分布式</span>
+            </a>
+            
+            
+            
             <a href="/tags/docker/">
                 <span class="chip center-align waves-effect waves-light chip-default">docker</span>
             </a>
@@ -808,12 +832,6 @@
             
             <a href="/tags/容器/">
                 <span class="chip center-align waves-effect waves-light chip-default">容器</span>
-            </a>
-            
-            
-            
-            <a href="/tags/分布式/">
-                <span class="chip center-align waves-effect waves-light chip-default">分布式</span>
             </a>
             
             
@@ -848,6 +866,18 @@
             
             
             
+            <a href="/tags/JAVA/">
+                <span class="chip center-align waves-effect waves-light chip-default">JAVA</span>
+            </a>
+            
+            
+            
+            <a href="/tags/设计模式/">
+                <span class="chip center-align waves-effect waves-light chip-default">设计模式</span>
+            </a>
+            
+            
+            
             <a href="/tags/Integer/">
                 <span class="chip center-align waves-effect waves-light chip-default">Integer</span>
             </a>
@@ -872,20 +902,20 @@
             
             
             
+            <a href="/tags/TensorFlow/">
+                <span class="chip center-align waves-effect waves-light chip-default">TensorFlow</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Python/">
+                <span class="chip center-align waves-effect waves-light chip-default">Python</span>
+            </a>
+            
+            
+            
             <a href="/tags/反射/">
                 <span class="chip center-align waves-effect waves-light chip-default">反射</span>
-            </a>
-            
-            
-            
-            <a href="/tags/JAVA/">
-                <span class="chip center-align waves-effect waves-light chip-default">JAVA</span>
-            </a>
-            
-            
-            
-            <a href="/tags/设计模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">设计模式</span>
             </a>
             
             
@@ -896,14 +926,14 @@
             
             
             
-            <a href="/tags/jvm/">
-                <span class="chip center-align waves-effect waves-light chip-default">jvm</span>
+            <a href="/tags/数据库/">
+                <span class="chip center-align waves-effect waves-light chip-default">数据库</span>
             </a>
             
             
             
-            <a href="/tags/java/">
-                <span class="chip center-align waves-effect waves-light chip-default">java</span>
+            <a href="/tags/jvm/">
+                <span class="chip center-align waves-effect waves-light chip-default">jvm</span>
             </a>
             
             
@@ -920,18 +950,6 @@
             
             
             
-            <a href="/tags/数据库/">
-                <span class="chip center-align waves-effect waves-light chip-default">数据库</span>
-            </a>
-            
-            
-            
-            <a href="/tags/锁/">
-                <span class="chip center-align waves-effect waves-light chip-default">锁</span>
-            </a>
-            
-            
-            
             <a href="/tags/XML/">
                 <span class="chip center-align waves-effect waves-light chip-default">XML</span>
             </a>
@@ -940,36 +958,6 @@
             
             <a href="/tags/ORM/">
                 <span class="chip center-align waves-effect waves-light chip-default">ORM</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Redis/">
-                <span class="chip center-align waves-effect waves-light chip-default">Redis</span>
-            </a>
-            
-            
-            
-            <a href="/tags/非关系型数据库/">
-                <span class="chip center-align waves-effect waves-light chip-default">非关系型数据库</span>
-            </a>
-            
-            
-            
-            <a href="/tags/io/">
-                <span class="chip center-align waves-effect waves-light chip-default">io</span>
-            </a>
-            
-            
-            
-            <a href="/tags/nio/">
-                <span class="chip center-align waves-effect waves-light chip-default">nio</span>
-            </a>
-            
-            
-            
-            <a href="/tags/aio/">
-                <span class="chip center-align waves-effect waves-light chip-default">aio</span>
             </a>
             
             
@@ -1000,6 +988,36 @@
             
             <a href="/tags/Mybatis/">
                 <span class="chip center-align waves-effect waves-light chip-default">Mybatis</span>
+            </a>
+            
+            
+            
+            <a href="/tags/io/">
+                <span class="chip center-align waves-effect waves-light chip-default">io</span>
+            </a>
+            
+            
+            
+            <a href="/tags/nio/">
+                <span class="chip center-align waves-effect waves-light chip-default">nio</span>
+            </a>
+            
+            
+            
+            <a href="/tags/aio/">
+                <span class="chip center-align waves-effect waves-light chip-default">aio</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Redis/">
+                <span class="chip center-align waves-effect waves-light chip-default">Redis</span>
+            </a>
+            
+            
+            
+            <a href="/tags/非关系型数据库/">
+                <span class="chip center-align waves-effect waves-light chip-default">非关系型数据库</span>
             </a>
             
             
@@ -1070,12 +1088,6 @@
             
             
             
-            <a href="/tags/自定义/">
-                <span class="chip center-align waves-effect waves-light chip-default">自定义</span>
-            </a>
-            
-            
-            
             <a href="/tags/线程池/">
                 <span class="chip center-align waves-effect waves-light chip-default">线程池</span>
             </a>
@@ -1112,24 +1124,6 @@
             
             
             
-            <a href="/tags/虚拟器/">
-                <span class="chip center-align waves-effect waves-light chip-default">虚拟器</span>
-            </a>
-            
-            
-            
-            <a href="/tags/synchronized/">
-                <span class="chip center-align waves-effect waves-light chip-default">synchronized</span>
-            </a>
-            
-            
-            
-            <a href="/tags/monitor/">
-                <span class="chip center-align waves-effect waves-light chip-default">monitor</span>
-            </a>
-            
-            
-            
             <a href="/tags/习惯/">
                 <span class="chip center-align waves-effect waves-light chip-default">习惯</span>
             </a>
@@ -1148,6 +1142,12 @@
             
             
             
+            <a href="/tags/虚拟器/">
+                <span class="chip center-align waves-effect waves-light chip-default">虚拟器</span>
+            </a>
+            
+            
+            
             <a href="/tags/优化/">
                 <span class="chip center-align waves-effect waves-light chip-default">优化</span>
             </a>
@@ -1156,6 +1156,18 @@
             
             <a href="/tags/事务/">
                 <span class="chip center-align waves-effect waves-light chip-default">事务</span>
+            </a>
+            
+            
+            
+            <a href="/tags/synchronized/">
+                <span class="chip center-align waves-effect waves-light chip-default">synchronized</span>
+            </a>
+            
+            
+            
+            <a href="/tags/monitor/">
+                <span class="chip center-align waves-effect waves-light chip-default">monitor</span>
             </a>
             
             
@@ -1190,20 +1202,8 @@
             
             
             
-            <a href="/tags/并发/">
-                <span class="chip center-align waves-effect waves-light chip-default">并发</span>
-            </a>
-            
-            
-            
-            <a href="/tags/指令重排/">
-                <span class="chip center-align waves-effect waves-light chip-default">指令重排</span>
-            </a>
-            
-            
-            
-            <a href="/tags/线程安全/">
-                <span class="chip center-align waves-effect waves-light chip-default">线程安全</span>
+            <a href="/tags/CAP/">
+                <span class="chip center-align waves-effect waves-light chip-default">CAP</span>
             </a>
             
             
@@ -1220,32 +1220,20 @@
             
             
             
-            <a href="/tags/上拉电阻/">
-                <span class="chip center-align waves-effect waves-light chip-default">上拉电阻</span>
+            <a href="/tags/指令重排/">
+                <span class="chip center-align waves-effect waves-light chip-default">指令重排</span>
             </a>
             
             
             
-            <a href="/tags/推挽/">
-                <span class="chip center-align waves-effect waves-light chip-default">推挽</span>
+            <a href="/tags/线程安全/">
+                <span class="chip center-align waves-effect waves-light chip-default">线程安全</span>
             </a>
             
             
             
-            <a href="/tags/开漏/">
-                <span class="chip center-align waves-effect waves-light chip-default">开漏</span>
-            </a>
-            
-            
-            
-            <a href="/tags/三极管/">
-                <span class="chip center-align waves-effect waves-light chip-default">三极管</span>
-            </a>
-            
-            
-            
-            <a href="/tags/准双向/">
-                <span class="chip center-align waves-effect waves-light chip-default">准双向</span>
+            <a href="/tags/线程停止/">
+                <span class="chip center-align waves-effect waves-light chip-default">线程停止</span>
             </a>
             
             
@@ -1298,8 +1286,14 @@
             
             
             
-            <a href="/tags/线程停止/">
-                <span class="chip center-align waves-effect waves-light chip-default">线程停止</span>
+            <a href="/tags/总结/">
+                <span class="chip center-align waves-effect waves-light chip-default">总结</span>
+            </a>
+            
+            
+            
+            <a href="/tags/报名系统/">
+                <span class="chip center-align waves-effect waves-light chip-default">报名系统</span>
             </a>
             
             
@@ -1310,14 +1304,32 @@
             
             
             
-            <a href="/tags/不准确/">
-                <span class="chip center-align waves-effect waves-light chip-default">不准确</span>
+            <a href="/tags/上拉电阻/">
+                <span class="chip center-align waves-effect waves-light chip-default">上拉电阻</span>
             </a>
             
             
             
-            <a href="/tags/报名系统/">
-                <span class="chip center-align waves-effect waves-light chip-default">报名系统</span>
+            <a href="/tags/推挽/">
+                <span class="chip center-align waves-effect waves-light chip-default">推挽</span>
+            </a>
+            
+            
+            
+            <a href="/tags/开漏/">
+                <span class="chip center-align waves-effect waves-light chip-default">开漏</span>
+            </a>
+            
+            
+            
+            <a href="/tags/三极管/">
+                <span class="chip center-align waves-effect waves-light chip-default">三极管</span>
+            </a>
+            
+            
+            
+            <a href="/tags/准双向/">
+                <span class="chip center-align waves-effect waves-light chip-default">准双向</span>
             </a>
             
             
@@ -1334,8 +1346,8 @@
             
             
             
-            <a href="/tags/结构型/">
-                <span class="chip center-align waves-effect waves-light chip-default">结构型</span>
+            <a href="/tags/不准确/">
+                <span class="chip center-align waves-effect waves-light chip-default">不准确</span>
             </a>
             
             
@@ -1352,8 +1364,8 @@
             
             
             
-            <a href="/tags/原型模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">原型模式</span>
+            <a href="/tags/结构型/">
+                <span class="chip center-align waves-effect waves-light chip-default">结构型</span>
             </a>
             
             
@@ -1364,26 +1376,8 @@
             
             
             
-            <a href="/tags/工厂设计模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">工厂设计模式</span>
-            </a>
-            
-            
-            
-            <a href="/tags/工厂模式/">
-                <span class="chip center-align waves-effect waves-light chip-default">工厂模式</span>
-            </a>
-            
-            
-            
-            <a href="/tags/接口/">
-                <span class="chip center-align waves-effect waves-light chip-default">接口</span>
-            </a>
-            
-            
-            
-            <a href="/tags/适配器/">
-                <span class="chip center-align waves-effect waves-light chip-default">适配器</span>
+            <a href="/tags/原型模式/">
+                <span class="chip center-align waves-effect waves-light chip-default">原型模式</span>
             </a>
             
             
@@ -1400,6 +1394,18 @@
             
             
             
+            <a href="/tags/工厂设计模式/">
+                <span class="chip center-align waves-effect waves-light chip-default">工厂设计模式</span>
+            </a>
+            
+            
+            
+            <a href="/tags/工厂模式/">
+                <span class="chip center-align waves-effect waves-light chip-default">工厂模式</span>
+            </a>
+            
+            
+            
             <a href="/tags/final/">
                 <span class="chip center-align waves-effect waves-light chip-default">final</span>
             </a>
@@ -1408,6 +1414,18 @@
             
             <a href="/tags/未完成/">
                 <span class="chip center-align waves-effect waves-light chip-default">未完成</span>
+            </a>
+            
+            
+            
+            <a href="/tags/接口/">
+                <span class="chip center-align waves-effect waves-light chip-default">接口</span>
+            </a>
+            
+            
+            
+            <a href="/tags/适配器/">
+                <span class="chip center-align waves-effect waves-light chip-default">适配器</span>
             </a>
             
             
@@ -1449,6 +1467,9 @@
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">145.3k</span>&nbsp;字
             
             
             
