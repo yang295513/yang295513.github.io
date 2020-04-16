@@ -721,6 +721,33 @@ id <span class="token keyword">int</span> <span class="token keyword">primary</s
     </div>
 
     
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '7dad6e26db78e598a24f',
+        clientSecret: 'c057252cfb6ce37e40795bb582e0e75a069adeb4',
+        repo: 'https://yang295513.github.io/',
+        owner: 'yang295513',
+        admin: ["yang295513"],
+        id: '2020-04-05T17-24-11',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
 
     
 
@@ -825,12 +852,12 @@ JDK 1.8 的 HashMap 的数据结构采用红黑树+数组+链表实现，当链�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/数据库/">
-                        <span class="chip bg-color">数据库</span>
-                    </a>
-                    
                     <a href="/tags/mysql/">
                         <span class="chip bg-color">mysql</span>
+                    </a>
+                    
+                    <a href="/tags/数据库/">
+                        <span class="chip bg-color">数据库</span>
                     </a>
                     
                     <a href="/tags/优化/">

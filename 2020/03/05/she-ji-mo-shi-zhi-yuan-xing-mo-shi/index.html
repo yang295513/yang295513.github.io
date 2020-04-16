@@ -438,16 +438,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/java/">
-                                <span class="chip bg-color">java</span>
-                            </a>
-                        
                             <a href="/tags/编程/">
                                 <span class="chip bg-color">编程</span>
                             </a>
                         
                             <a href="/tags/日常学习/">
                                 <span class="chip bg-color">日常学习</span>
+                            </a>
+                        
+                            <a href="/tags/java/">
+                                <span class="chip bg-color">java</span>
                             </a>
                         
                             <a href="/tags/设计模式/">
@@ -805,16 +805,16 @@ Person{name=&#39;小红的克隆人&#39;, age=18, friend=Person{name=&#39;小明
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/java/">
-                                    <span class="chip bg-color">java</span>
-                                </a>
-                            
                                 <a href="/tags/编程/">
                                     <span class="chip bg-color">编程</span>
                                 </a>
                             
                                 <a href="/tags/日常学习/">
                                     <span class="chip bg-color">日常学习</span>
+                                </a>
+                            
+                                <a href="/tags/java/">
+                                    <span class="chip bg-color">java</span>
                                 </a>
                             
                                 <a href="/tags/设计模式/">
@@ -850,6 +850,33 @@ Person{name=&#39;小红的克隆人&#39;, age=18, friend=Person{name=&#39;小明
             
         </div>
     </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '7dad6e26db78e598a24f',
+        clientSecret: 'c057252cfb6ce37e40795bb582e0e75a069adeb4',
+        repo: 'https://yang295513.github.io/',
+        owner: 'yang295513',
+        admin: ["yang295513"],
+        id: '2020-03-05T11-20-51',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
 
     
 
@@ -992,16 +1019,16 @@ Person{name=&#39;小红的克隆人&#39;, age=18, friend=Person{name=&#39;小明
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
-                    </a>
-                    
                     <a href="/tags/编程/">
                         <span class="chip bg-color">编程</span>
                     </a>
                     
                     <a href="/tags/日常学习/">
                         <span class="chip bg-color">日常学习</span>
+                    </a>
+                    
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
                     <a href="/tags/设计模式/">
