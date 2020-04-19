@@ -457,21 +457,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-15
+                    2020-04-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    20 分
                 </div>
                 
 
@@ -720,9 +720,7 @@
    - 桃子
    - 香蕉Copy to clipboardErrorCopied</code></pre></li>
 <li><p>行内写法</p>
-<pre><code> fruits: [苹果,桃子,香蕉]Copy to clipboardErrorCopied</code></pre><h2 id="配置文件值注入"><a href="#配置文件值注入" class="headerlink" title="配置文件值注入"></a>配置文件值注入</h2><details style="-webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-size-adjust: none; box-sizing: border-box; font-size: 15px; color: rgb(52, 73, 94); font-family: &quot;Source Sans Pro&quot;, &quot;Helvetica Neue&quot;, Arial, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;"><summary style="-webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-size-adjust: none; box-sizing: border-box; font-weight: bold; color: green;">JavaBean：</summary></details>
-
-<pre class=" language-xml"><code class="language-xml">     <span class="token comment" spellcheck="true">&lt;!--导入配置文件处理器，配置文件进行绑定就会有提示--></span>
+<pre><code> fruits: [苹果,桃子,香蕉]Copy to clipboardErrorCopied</code></pre><h2 id="配置文件值注入"><a href="#配置文件值注入" class="headerlink" title="配置文件值注入"></a>配置文件值注入</h2><pre class=" language-xml"><code class="language-xml"> <span class="token comment" spellcheck="true">&lt;!--导入配置文件处理器，配置文件进行绑定就会有提示--></span>
      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-configuration-processor<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -731,7 +729,7 @@
 </li>
 </ol>
 <p>  <strong>配置文件：</strong></p>
-<pre class=" language-yaml"><code class="language-yaml">  <span class="token key atrule">person</span><span class="token punctuation">:</span>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">person</span><span class="token punctuation">:</span>
     <span class="token key atrule">name</span><span class="token punctuation">:</span> 张三
     <span class="token key atrule">gender</span><span class="token punctuation">:</span> 男
     <span class="token key atrule">age</span><span class="token punctuation">:</span> <span class="token number">36</span>
@@ -747,7 +745,7 @@
       <span class="token key atrule">age</span><span class="token punctuation">:</span> <span class="token number">12</span>
   Copy to clipboardErrorCopied</code></pre>
 <p>  <strong>测试</strong></p>
-<pre class=" language-java"><code class="language-java">  <span class="token keyword">package</span> cn<span class="token punctuation">.</span>clboy<span class="token punctuation">.</span>helloworldquickstart<span class="token punctuation">;</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> cn<span class="token punctuation">.</span>clboy<span class="token punctuation">.</span>helloworldquickstart<span class="token punctuation">;</span>
 
   <span class="token keyword">import</span> cn<span class="token punctuation">.</span>clboy<span class="token punctuation">.</span>helloworldquickstart<span class="token punctuation">.</span>model<span class="token punctuation">.</span>Person<span class="token punctuation">;</span>
   <span class="token keyword">import</span> org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api<span class="token punctuation">.</span>Test<span class="token punctuation">;</span>
@@ -768,7 +766,7 @@
   <span class="token punctuation">}</span>
   Copy to clipboardErrorCopied</code></pre>
 <h2 id="properties"><a href="#properties" class="headerlink" title="properties"></a>properties</h2><p>  上面yaml对应的properties配置文件写法</p>
-<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">  person.name</span><span class="token punctuation">=</span><span class="token attr-value">李四</span>
+<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">person.name</span><span class="token punctuation">=</span><span class="token attr-value">李四</span>
 <span class="token attr-name">  person.age</span><span class="token punctuation">=</span><span class="token attr-value">34</span>
 <span class="token attr-name">  person.birth</span><span class="token punctuation">=</span><span class="token attr-value">1986/09/12</span>
 <span class="token attr-name">  person.boss</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
@@ -828,16 +826,26 @@
 </tr>
 </tbody></table>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>@Value只能获取基本数据类型</li>
-<li>@ConfigurationProperties可以获取map,list等封装类型的值</li>
-<li>配置文件yaml和properties都可以获取到值</li>
-<li>如果只是需要在业务逻辑中获取一下配置文件中的某个值，使用@Value</li>
-<li>如果要是把javabean和配置文件进行11映射，使用@ConfigurationProperties</li>
-<li>@ConfigurationProperties默认是从全局配置文件中获取值的</li>
-</ul>
-<h2 id="PropertySource与-ImportResource的区别"><a href="#PropertySource与-ImportResource的区别" class="headerlink" title="@PropertySource与@ImportResource的区别"></a>@PropertySource与@ImportResource的区别</h2><blockquote>
-<p> 使用这个注解加载配置文件就需要配置类使用@component等注解而不是等待@EnableConfigurationProperties激活m，<strong>而且不支持yaml，只能是properties</strong></p>
+<li><p>@Value只能获取基本数据类型</p>
+</li>
+<li><p>@ConfigurationProperties可以获取map,list等封装类型的值</p>
+</li>
+<li><p>配置文件yaml和properties都可以获取到值</p>
+</li>
+<li><p>如果只是需要在业务逻辑中获取一下配置文件中的某个值，使用@Value</p>
+</li>
+<li><p>如果要是把javabean和配置文件进行11映射，使用@ConfigurationProperties</p>
+</li>
+<li><p>@ConfigurationProperties默认是从全局配置文件中获取值的</p>
+<h3 id="PropertySource"><a href="#PropertySource" class="headerlink" title="@PropertySource"></a>@PropertySource</h3><p>  <code>@PropertySource</code>注解的作用是加载指定的配置文件，值可以是数组，也就是可以加载多个配置文件</p>
+<p>  <strong>springboot默认加载的配置文件名是`application</strong>`，如果配置文件名不是这个是不会被容器加载的.</p>
+<h3 id="ImportResource"><a href="#ImportResource" class="headerlink" title="@ImportResource"></a>@ImportResource</h3><p>  如果要想加载xml等配置文件需要使用该注解</p>
+<blockquote>
+<p>注意！这个注解是放在主入口函数的类上.</p>
 </blockquote>
+</li>
+</ul>
+<h3 id="PropertySource与-ImportResource的区别"><a href="#PropertySource与-ImportResource的区别" class="headerlink" title="@PropertySource与@ImportResource的区别"></a>@PropertySource与@ImportResource的区别</h3><p>@PropertySource 用于引入*.Properties或者 .yml (yml不能直接支持)用于给javabean注入值<br>@ImportResource 用于引入.xml 类型的配置文件 在spring boot中已经被配置类替代<br>@PropertySource 一般用在javabean的类名上<br>@ImportResource一般用于启动类上</p>
 <h4 id="PropertySource自定义配置文件，多用于配置文件与实体属性映射"><a href="#PropertySource自定义配置文件，多用于配置文件与实体属性映射" class="headerlink" title="PropertySource自定义配置文件，多用于配置文件与实体属性映射"></a>PropertySource自定义配置文件，多用于配置文件与实体属性映射</h4><blockquote>
 <p>在从配置文件里面获取值，与javaBean做映射时存在一个问题，我们从主配置文件（application.yml）里面读取会导致主配置文件特别臃肿，为了按照不同模块自定义不同的配置文件引入了@PropertySource</p>
 </blockquote>
@@ -947,6 +955,188 @@ person.lastName=$<span class="token punctuation">{</span>person.properties<span 
 <p>这些目录下的文件可以直接访问不需要在url上面添加文件名</p>
 <p><strong>3、SpringBoot 默认的首页是放在任一个静态资源目录下的index.html</strong>   </p>
 <p><strong>4、SpringBoot 默认的web页面图标是放在任一静态资源目录下的favicon.ico</strong></p>
+<h3 id="配置文件加载顺序"><a href="#配置文件加载顺序" class="headerlink" title="配置文件加载顺序"></a>配置文件加载顺序</h3><p><img src="/upload/1573728449451.png" alt="1573728449451"></p>
+<h3 id="外部配置加载顺序"><a href="#外部配置加载顺序" class="headerlink" title="外部配置加载顺序"></a>外部配置加载顺序</h3><p><strong>SpringBoot也可以从以下位置加载配置； 优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置</strong></p>
+<ol>
+<li><p><strong>命令行参数</strong> </p>
+<p> 所有的配置都可以在命令行上进行指定</p>
+<pre class=" language-shell"><code class="language-shell"> java -jar xxx.jar --server.port=8087  --server.context-path=/abcCopy to clipboardErrorCopied</code></pre>
+<p> 多个配置用空格分开； –配置项=值</p>
+</li>
+<li><p>来自java:comp/env的JNDI属性 </p>
+</li>
+<li><p>Java系统属性（System.getProperties()）</p>
+</li>
+<li><p>操作系统环境变量 </p>
+</li>
+<li><p>RandomValuePropertySource配置的random.*属性值 </p>
+</li>
+</ol>
+<p><strong>由jar包外向jar包内进行寻找；</strong></p>
+<p><strong>再来加载不带profile</strong></p>
+<ol>
+<li><strong>jar包外部的application.properties或application.yml(不带spring.profile)配置文件</strong></li>
+<li>**jar包内部的<code>application.properties</code>或<code>application.yml</code>(不带spring.profile)配置文件 </li>
+</ol>
+<p><strong>优先加载带profile</strong></p>
+<ol>
+<li><p>**jar包外部的<code>application-{profile}.properties</code>或<code>application.yml</code>(带spring.profile)配置文件 ⤴️</p>
+</li>
+<li><p>**jar包内部的<code>application-{profile}.properties</code>或<code>application.yml</code>(带spring.profile)配置文件 </p>
+</li>
+<li><p>@Configuration注解类上的@PropertySource</p>
+</li>
+<li><p>通过SpringApplication.setDefaultProperties指定的默认属性</p>
+</li>
+</ol>
+<h2 id="自动配置原理"><a href="#自动配置原理" class="headerlink" title="自动配置原理"></a>自动配置原理</h2><p><strong>SpringBoot启动的时候加载主配置类，开启了自动配置功能</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+    <span class="token annotation punctuation">@EnableAutoConfiguration</span></code></pre>
+<h4 id="EnableAutoConfiguration"><a href="#EnableAutoConfiguration" class="headerlink" title="@EnableAutoConfiguration"></a>@EnableAutoConfiguration</h4><ul>
+<li><p>利用EnableAutoConfigurationImportSelector给容器中导入一些组件</p>
+</li>
+<li><p>getAutoConfigurationEntry方法中</p>
+<pre class=" language-java"><code class="language-java">  <span class="token comment" spellcheck="true">//获取候选的配置</span>
+  List<span class="token operator">&lt;</span>String<span class="token operator">></span> configurations <span class="token operator">=</span> <span class="token function">getCandidateConfigurations</span><span class="token punctuation">(</span>annotationMetadata<span class="token punctuation">,</span>attributes<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p>getCandidateConfigurations方法中，SpringFactoriesLoader.loadFactoryNames()，扫描所有jar包类路径下 <code>META-INF/spring.factories</code>，把扫描到的这些文件的内容包装成properties对象，从properties中获取到EnableAutoConfiguration.class（类名）对应的值，然后把它们添加在容器中</p>
+</li>
+</ul>
+<p><img src="/upload/1573805094643.png" alt="1573805094643"></p>
+<ul>
+<li>每一个这样的 <code>xxxAutoConfiguration</code>类都是容器中的一个组件，都加入到容器中；用他们来做自动配置；</li>
+<li>每一个自动配置类进行自动配置功能；</li>
+</ul>
+<h3 id="演示自动配置以HttpEncodingAutoConfiguration为例"><a href="#演示自动配置以HttpEncodingAutoConfiguration为例" class="headerlink" title="演示自动配置以HttpEncodingAutoConfiguration为例"></a>演示自动配置以HttpEncodingAutoConfiguration为例</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>web<span class="token punctuation">.</span>servlet<span class="token punctuation">;</span>
+
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token comment" spellcheck="true">//表示这是一个配置类，以前编写的配置文件一样，也可以给容器中添加组件</span>
+<span class="token annotation punctuation">@Configuration</span><span class="token punctuation">(</span>
+    proxyBeanMethods <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">/**
+ * 启动指定类的ConfigurationProperties功能；
+ * 将配置文件中对应的值和HttpProperties绑定起来；
+ * 并把HttpProperties加入到ioc容器中
+ */</span>
+<span class="token annotation punctuation">@EnableConfigurationProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span>HttpProperties<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">/**
+ * Spring底层@Conditional注解
+ * 根据不同的条件，如果满足指定的条件，整个配置类里面的配置就会生效；
+ * 判断当前应用是否是web应用，如果是，当前配置类生效
+ */</span>
+<span class="token annotation punctuation">@ConditionalOnWebApplication</span><span class="token punctuation">(</span>
+    type <span class="token operator">=</span> Type<span class="token punctuation">.</span>SERVLET
+<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">//判断当前项目有没有这个类</span>
+<span class="token annotation punctuation">@ConditionalOnClass</span><span class="token punctuation">(</span><span class="token punctuation">{</span>CharacterEncodingFilter<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">/**
+ * 判断配置文件中是否存在某个配置  spring.http.encoding.enabled；如果不存在，判断也是成立的
+ * 即使我们配置文件中不配置pring.http.encoding.enabled=true，也是默认生效的；
+ */</span>
+<span class="token annotation punctuation">@ConditionalOnProperty</span><span class="token punctuation">(</span>
+    prefix <span class="token operator">=</span> <span class="token string">"spring.http.encoding"</span><span class="token punctuation">,</span>
+    value <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"enabled"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    matchIfMissing <span class="token operator">=</span> <span class="token boolean">true</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HttpEncodingAutoConfiguration</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">//它已经和SpringBoot的配置文件映射了</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> Encoding properties<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//只有一个有参构造器的情况下，参数的值就会从容器中拿</span>
+    <span class="token keyword">public</span> <span class="token function">HttpEncodingAutoConfiguration</span><span class="token punctuation">(</span>HttpProperties properties<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>properties <span class="token operator">=</span> properties<span class="token punctuation">.</span><span class="token function">getEncoding</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Bean</span>     <span class="token comment" spellcheck="true">//给容器中添加一个组件，这个组件的某些值需要从properties中获取</span>
+    <span class="token annotation punctuation">@ConditionalOnMissingBean</span>    <span class="token comment" spellcheck="true">//判断容器有没有这个组件？（容器中没有才会添加这个组件）</span>
+    <span class="token keyword">public</span> CharacterEncodingFilter <span class="token function">characterEncodingFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        CharacterEncodingFilter filter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">OrderedCharacterEncodingFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        filter<span class="token punctuation">.</span><span class="token function">setEncoding</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">getCharset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        filter<span class="token punctuation">.</span><span class="token function">setForceRequestEncoding</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">shouldForce</span><span class="token punctuation">(</span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpProperties<span class="token punctuation">.</span>Encoding<span class="token punctuation">.</span>Type<span class="token punctuation">.</span>REQUEST<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        filter<span class="token punctuation">.</span><span class="token function">setForceResponseEncoding</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>properties<span class="token punctuation">.</span><span class="token function">shouldForce</span><span class="token punctuation">(</span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpProperties<span class="token punctuation">.</span>Encoding<span class="token punctuation">.</span>Type<span class="token punctuation">.</span>RESPONSE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> filter<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></code></pre>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>SpringBoot启动会加载大量的自动配置类</li>
+<li>我们看我们需要的功能有没有SpringBoot默认写好的自动配置类</li>
+<li>再来看这个自动配置类中到底配置了哪些组件；（只要我们要用的组件有，我们就不需要再来配置了）</li>
+<li>给容器中自动配置类添加组件的时候，会从properties类中获取某些属性。我们就可以在配置文件中指定这些属性的值</li>
+</ul>
+<p><code>xxxxAutoConfigurartion</code>：自动配置类；</p>
+<p><code>xxxxProperties</code>:封装配置文件中相关属性；</p>
+<h3 id="Conditional派生注解"><a href="#Conditional派生注解" class="headerlink" title="@Conditional派生注解"></a>@Conditional派生注解</h3><p>作用：必须是@Conditional指定的条件成立，才给容器中添加组件，配置配里面的所有内容才生效；</p>
+<table>
+<thead>
+<tr>
+<th align="center">@Conditional扩展注解</th>
+<th align="center">作用（判断是否满足当前指定条件）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">@ConditionalOnJava</td>
+<td align="center">系统的java版本是否符合要求</td>
+</tr>
+<tr>
+<td align="center">@ConditionalOnBean</td>
+<td align="center">容器中存在指定Bean；</td>
+</tr>
+<tr>
+<td align="center">@ConditionalOnMissingBean</td>
+<td align="center">容器中不存在指定Bean；</td>
+</tr>
+<tr>
+<td align="center">@ConditionalOnExpression</td>
+<td align="center">满足SpEL表达式指定</td>
+</tr>
+<tr>
+<td align="center">@ConditionalOnClass</td>
+<td align="center">系统中有指定的类</td>
+</tr>
+<tr>
+<td align="center">@ConditionalOnMissingClass</td>
+<td align="center">系统中没有指定的类</td>
+</tr>
+<tr>
+<td align="center">@ConditionalOnSingleCandidate</td>
+<td align="center">容器中只有一个指定的Bean，或者这个Bean是首选Bean</td>
+</tr>
+<tr>
+<td align="center">@ConditionalOnProperty</td>
+<td align="center">系统中指定的属性是否有指定的值</td>
+</tr>
+<tr>
+<td align="center">@ConditionalOnResource</td>
+<td align="center">类路径下是否存在指定资源文件</td>
+</tr>
+<tr>
+<td align="center">@ConditionalOnWebApplication</td>
+<td align="center">当前是web环境</td>
+</tr>
+<tr>
+<td align="center">@ConditionalOnNotWebApplication</td>
+<td align="center">当前不是web环境</td>
+</tr>
+<tr>
+<td align="center">@ConditionalOnJndi</td>
+<td align="center">JNDI存在指定项</td>
+</tr>
+</tbody></table>
+<h4 id="如何查看哪些配置类生效了"><a href="#如何查看哪些配置类生效了" class="headerlink" title="如何查看哪些配置类生效了"></a>如何查看哪些配置类生效了</h4><p>自动配置类必须在一定的条件下才能生效；</p>
+<p>我们怎么知道哪些自动配置类生效了；</p>
+<p>我们可以通过配置文件启用 <code>debug=true</code>属性；来让控制台打印自动配置报告，这样我们就可以很方便的知道哪些自动配置类生效；</p>
+<ul>
+<li><code>Positive matches</code> ：（自动配置类启用的）</li>
+<li><code>Negative matches</code>：（没有启动，没有匹配成功的自动配置类）</li>
+</ul>
 
             </div>
             <hr/>
@@ -1331,7 +1521,7 @@ person.lastName=$<span class="token punctuation">{</span>person.properties<span 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">153.6k</span>&nbsp;字
+                class="white-color">155k</span>&nbsp;字
             
             
             
