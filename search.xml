@@ -258,8 +258,8 @@
     <url>%2F2020%2F03%2F22%2Fjava-fan-xing-xiang-jie%2F</url>
     <content type="text"><![CDATA[JAVA泛型详解泛型只存在于编译期。 泛型的定义以及存在意义泛型，即“参数化类型”。这是JDK1.5引入的新特性,就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。**而且还可以像参数那样限定传入的类型。** 顾名思义，就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。 泛型的本质是为了参数化类型（在不创建新的类型的情况下，通过泛型指定的不同类型来控制形参具体限制的类型）。也就是说在泛型使用过程中，操作的数据类型被指定为一个参数，这种参数类型可以用在类、接口和方法中，分别被称为泛型类、泛型接口、泛型方法。 当我们不指定泛型的时候呢public class EnuTest{ private static int a=0; public static void main(String[] args) throws Exception{ Father stringFather = new Father(); System.out.println(stringFather.get(new Object()).getClass());//Object类型 System.out.println(stringFather.getClass());//stringFather的类型并不受T的影响 } } class Father &lt;T>{ public T get(T e){ return e; } } 为什么泛型里面数据类型不能是基本类型呢？ 因为虚拟机在编译时会把带泛型的转换成Object类型，而基本类型不属于Object类型，所以泛型里面数据类型不能是基本类型。 为什么要使用泛型呢？ Java语言引入泛型的好处是安全简单。泛型的好处是在编译的时候检查类型安全，并且所有的强制转换都是自动和隐式的，提高代码的重用率。 例如：GenericClass{} 一些常用的泛型类型变量： E：元素（Element），多用于java集合框架 K：关键字（Key） N：数字（Number） T：类型（Type） V：值（Value） 如果要实现不同类型的加法，每种类型都需要重载一个add方法 public class NeedGeneric { private static int add(int a, int b) { System.out.println(a + "+" + b + "=" + (a + b)); return a + b; } private static float add(float a, float b) { System.out.println(a + "+" + b + "=" + (a + b)); return a + b; } private static double add(double a, double b) { System.out.println(a + "+" + b + "=" + (a + b)); return a + b; } private static &lt;T extends Number> double add(T a, T b) { System.out.println(a + "+" + b + "=" + (a.doubleValue() + b.doubleValue())); return a.doubleValue() + b.doubleValue(); } public static void main(String[] args) { NeedGeneric1.add(1, 2); NeedGeneric1.add(1f, 2f); NeedGeneric1.add(1d, 2d); NeedGeneric1.add(Integer.valueOf(1), Integer.valueOf(2)); NeedGeneric1.add(Float.valueOf(1), Float.valueOf(2)); NeedGeneric1.add(Double.valueOf(1), Double.valueOf(2)); } } 取出集合元素时需要人为的强制类型转化到具体的目标类型，且很容易现“java.lang. ClassCast Exception”异常。 import java.util.ArrayList; import java.util.List; public class NeedGeneric2 { static class C{ } public static void main(String[] args) { List list=new ArrayList(); list.add("A"); list.add("B"); list.add(new C()); list.add(100); //1.当我们将一个对象放入集合中，集合不会记住此对象的类型，当再次从集合中取出此对象时，改对象的编译类型变成了Object类型，但其运行时类型任然为其本身类型。 //2.因此，//1处取出集合元素时需要人为的强制类型转化到具体的目标类型，且很容易出现“java.lang.ClassCastException”异常。 for (int i = 0; i &lt; list.size(); i++) { // System.out.println(list.get(i)); String value= (String) list.get(i); System.out.println(value); } } } 所以使用泛型的意义在于1,适用于多种数据类型执行相同的代码（代码复用） 2, 泛型中的类型在使用时指定，不需要强制类型转换（类型安全，编译器会检查类型） 泛型类class MyString &lt;T>{//泛型语法&lt;T,T,T> T str; public T getStr() { return str; } public void setStr(T str) { this.str = str; } } 这个就是泛型类的使用，但要注意的是，这个类是泛型类，方法却不是泛型方法，并且这些普通方便不能是静态的 一个类继承泛型类泛型类继承泛型类class Father &lt;T>{ } class Son&lt;E> extends Father&lt;E>{//要是E,子类和父类必须都是E,要是T,必须都是T } 子类泛型必须要有父类泛型的标识符 如果子类泛型想有新的泛型，只需要新增即可 class Father &lt;T>{ } class Son&lt;E,T> extends Father&lt;E>{//虽然新加入了一个T，但是子类和父类的泛型标识要一致 } 为什么必须这样呢其实原因也很容易想到 假如java允许子类使用泛型的时候不声名父类类型，那么如果子类继承了父类的一些具有父类泛型类型的属性,那么父类的那些泛型应该是什么泛型呢？这样是不是就导致了父类泛型没有了意义。 证明class Father &lt;T>{ } class Son&lt;E> extends Father&lt;String>{//这样子类就可以不用事先声明父类的泛型类型了,原因是已经知道了父类泛型类型 } 事实上这样都是为了保证父类泛型可知 普通类继承泛型类class Father &lt;T>{ } class Son extends Father&lt;String>{//必须指定父类泛型的类型 } 子类继承的时候要标识出来父类的类型 为什么会这样呢其实原因和上面一样，就怕子类不说明父类类型，那么父类类型也就没有意义了 泛型接口普通类实现泛型接口interface InterfaceFather &lt;T>{ } class Son implements InterfaceFather&lt;String>{ } 用法和泛型类一模一样 泛型类实现泛型接口interface InterfaceFather &lt;T>{ } class Son&lt;E> implements InterfaceFather&lt;E>{ } 方法泛型只有在方法的返回值和方法的访问权限修饰符中间声明的泛型的参数才算泛型方法. class Father &lt;T>{ public &lt;E,T> E getValue(T para){ E rel=null; return rel; } } 值得注意的是，泛型方法可以声明为静态的，前提是不能使用到类的非静态方法和非静态变量。 class Father &lt;T>{ public static &lt;V> void getValue(){ } } 还有一点如果方法声明的泛型的标识和类泛型的标识一致，那么方法的泛型标识在这个方法的标识作用域中会覆盖类泛型的标识。 换句话说，如果类泛型标识和方法标识相同那么类标识对这个方法来说是失效的 泛型的通配符问题描述java里面类和类之间是有继承关系 的，比如Cat extends Animals,那么Cat就是Animal的子类，但是集合是没有继承这个概念的，比如List&lt;Cat&gt; catList和List&lt;Animals&gt; animalList你不能说 animalList是catList的父类，所以很难看出来这两个类之间的联系，但是我们现在只想让list里面只加入Animals的子类怎么办呢？ 一种是Animals有多少个子类就定义多少个list，这种方法虽然也可以实现但是Animals如果有一百个，一千个，一万个子类呢你这种方法是不是就太耗时了呢。 第二种就是用通配符来实现。比如：List animals 这个时候animals就只能添加Animals的子类了，一个list搞定。 public class Test { public static void main(String []args){ List&lt;Integer> list = new ArrayList&lt;>(); list.add(1); list.add(2); list.add(3); list.add(4); List&lt;String> stringList = new ArrayList&lt;>(); stringList.add("h"); stringList.add("e"); stringList.add("l"); stringList.add("l"); stringList.add("o"); getList(stringList); getList(list); } //无论传入什么List都会被接收 public static List getList(List&lt;?> list){ return list; } 用List声明的List 不能使用add方法，因为你不知道的类型是什么，但是list.add(null)就可以，因为null是所有类型都有的。举个例子 public static List getList(List&lt;?> list){ // list.add(1);//会报参数不匹配的错误,编译期报错 // list.add("hello");//会报参数不匹配的错误,编译期报错 list.add(null);//添加成功 return list; } 用get方法也只能用Object来接收，因为你不知道你的类型是什么。 public static List getList(List&lt;?> list){ int i = list.get(0); //编译期报错 String j = list.get(1); //编译期报错 Object o = list.get(3); //运行正确 return list; } 但是这样又带来了新的问题，因为他可以传递任意类型List集合的泛型，所有有可能他瞎传，既然泛型就是参数化类型，那么能不能像参数那样限定类型呢。（当然这些限定不是非要使用集合才能使用这些限定的） 上边界通配符号(也叫泛型的上限)可以接收E以及E的子类型的泛型，这里面的E不止是类哦，也可以是接口，看个例子。 //这个是继承了类的用法 public class Test { public static void main(String[] args) { List&lt;Integer> list = new ArrayList&lt;>(); list.add(1); getList(list); List&lt;String> strings = new ArrayList&lt;>(); strings.add("hello"); getList(strings);//编译期报错 } public static List getList(List&lt;? extends Number> list) { return list; } } public class Test { public static void main(String[] args) { List&lt;Integer> list = new ArrayList&lt;>(); list.add(1); getList(list);// 编译期报错 List&lt;Test2> test2s = new ArrayList&lt;>(); getList(test2s); } //上边界为接口的实现，只要是实现了此接口的类都可以被当做泛型传进来 public static List getList(List&lt;? extends Test1> list) { return list; } } interface Test1{ } class Test2 implements Test1{} 以上可知上边界就是你传入的类型必须得是E的子类，或者是实现接口的类。 下边界通配符（泛型的下限） 就是传入的类型必须得是E以及E的父类，举个例子 public class Test { public static void main(String[] args) { List&lt;Animals> animals = new ArrayList&lt;>(); getList(animals); List&lt;Cat> cats = new ArrayList&lt;>(); getList(cats); List&lt;Dog> dogs = new ArrayList&lt;>(); getList(dogs);//编译出错，因为Dog不是Cat的父类 } public static List getList(List&lt;? super Cat> list) { return list; } } class Animals{} class Cat extends Animals{} class Dog extends Animals{} 上下边界通配符的副作用上边界通配符会导致修改失效，但是获取有效 下边界通配符会导致获取有效，但是修改失效 PECS原则频繁往外读取内容的,适合用上界extends。 经常往里插入的,适合用下界super。]]></content>
       <tags>
-        <tag>泛型</tag>
         <tag>JAVA</tag>
+        <tag>泛型</tag>
       </tags>
   </entry>
   <entry>
@@ -515,9 +515,9 @@
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>java</tag>
         <tag>设计模式</tag>
         <tag>原则</tag>
         <tag>原型模式</tag>
@@ -531,9 +531,9 @@
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>java</tag>
         <tag>设计模式</tag>
         <tag>原则</tag>
         <tag>工厂设计模式</tag>
@@ -548,9 +548,9 @@
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>java</tag>
         <tag>设计模式</tag>
         <tag>原则</tag>
         <tag>单例设计模式</tag>
@@ -566,9 +566,9 @@
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>java</tag>
         <tag>设计模式</tag>
         <tag>原则</tag>
       </tags>
@@ -764,9 +764,9 @@
         <category>框架</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>编程</tag>
         <tag>日常学习</tag>
+        <tag>java</tag>
         <tag>Spring</tag>
         <tag>SSM</tag>
         <tag>SpringMVC</tag>
