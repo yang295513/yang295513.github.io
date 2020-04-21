@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="jvm学习第一天-自动内存管理, Byy">
+    <meta name="keywords" content="Byy">
     <meta name="description" content>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>jvm学习第一天-自动内存管理 | Byy</title>
+    <title>Byy</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">jvm学习第一天-自动内存管理</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -436,21 +436,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/java/">
-                                <span class="chip bg-color">java</span>
-                            </a>
-                        
-                            <a href="/tags/jvm/">
-                                <span class="chip bg-color">jvm</span>
-                            </a>
-                        
-                            <a href="/tags/虚拟机/">
-                                <span class="chip bg-color">虚拟机</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -469,21 +457,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-29
+                    2020-04-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.4k
+                    7.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    18 分
+                    25 分
                 </div>
                 
 
@@ -498,7 +486,13 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p><img src="/upload/1584511913647.png" alt="1584511913647"></p>
+                <p>title: jvm学习第一天-自动内存管理<br>date: 2020-03-14 17:35:56<br>tags: </p>
+<ul>
+<li>jvm</li>
+<li>java</li>
+<li>虚拟机</li>
+</ul>
+<h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p><img src="/upload/1584511913647.png" alt="1584511913647"></p>
 <ul>
 <li>方法区</li>
 <li>堆</li>
@@ -510,13 +504,15 @@
 <h2 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h2><blockquote>
 <p>程序计数器是一个记录着当前线程所执行的字节码的行号指示器。</p>
 </blockquote>
-<p>如果线程执行的是一个java方法，那么这个计数器就表示正在执行的虚拟机字节码</p>
+<p>如果线程执行的是一个java方法，那么这个计数器就表示正在执行的虚拟机字节码地址</p>
 <p>如果这个线程执行的是本地（Native）方法，那么这个计数器的值为空</p>
 <h2 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h2><h4 id="栈与堆的区别"><a href="#栈与堆的区别" class="headerlink" title="栈与堆的区别"></a>栈与堆的区别</h4><p>栈是一种运行时结构，堆是一种存储结构</p>
 <h4 id="虚拟机栈特点"><a href="#虚拟机栈特点" class="headerlink" title="虚拟机栈特点"></a>虚拟机栈特点</h4><ul>
 <li>和程序计数器一样是<strong>线程私有</strong>的</li>
-<li>会产生oom错误</li>
+<li>会产生oom错误，前提是虚拟机栈可以动态扩展（hospot虚拟机不支持动态扩展，但是Classic虚拟机支持）</li>
+<li>StackOverFlowError错误</li>
 <li>不需要GC（垃圾回收）</li>
+<li>栈的生命周期和线程相同</li>
 </ul>
 <h4 id="虚拟机栈运行过程"><a href="#虚拟机栈运行过程" class="headerlink" title="虚拟机栈运行过程"></a>虚拟机栈运行过程</h4><p><strong>每个方法被执行的时候，java虚拟机都会在虚拟机栈创建一个栈帧</strong>，当然，每个方法结束后都会移除该栈帧，也就是说在栈顶的栈帧一定是当前执行的方法的栈帧.</p>
 <p><strong>在编译程序代码的时候，栈帧中需要多大的局部变量表内存，多深的操作数栈都已经完全确定了。</strong></p>
@@ -568,11 +564,155 @@
 <li>如果java虚拟机没有完成实例分配，并且堆也无法在扩展时，java虚拟机将会抛出<strong>OutOfMemoryError</strong>异常</li>
 </ul>
 <h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>和java堆一样是各个线程共享的内存区域，他用于存储已经被虚拟机加载的类型信息，常量，静态变量，即时编译器编译后的代码缓存等数据，这里也是<strong><em>需要垃圾回收</em></strong>的。</p>
+<p>在JDK8之前，Hospot虚拟机采用永久代来实现方法区，原因就是可以吧垃圾收集器的分代设计扩展到方法区，但是容易导致内存溢出的问题，在JDK8之后使用元空间实现。</p>
 <h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><p>运行时常量池是方法区的一部分。Class文件中除了有类的版本，字段，方法，接口等描述信息外，还有一项就是常量池。并且常量池相对于Class文件的另一个重要特征就是具备动态性</p>
 <blockquote>
 <p>用于存放编译期生成的各种字面量与符号引用，这些内容在类加载后存放到方法区的运行时常量池中。</p>
 </blockquote>
 <p>常量池无法申请到内存时会抛出<strong>OutOfMemoryError</strong>异常</p>
+<h4 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h4><p>在JDK1.4中加入了NIO类，引入了基于通道与缓冲区的I/O方式，可以使用Native函数直接分配堆外内存，避免了在java堆中和Native中来回复制数据，如果无法动态扩展时就会出现<strong>OutOfMemoryError</strong>溢异常</p>
+<h3 id="对象的内存布局"><a href="#对象的内存布局" class="headerlink" title="对象的内存布局"></a>对象的内存布局</h3><p>一个Java对象在内存中包括对象头、实例数据和补齐填充3个部分：</p>
+<p><img src="/upload/5401975-4c082ac80e1c042c.webp" alt="img"></p>
+<h3 id="对象头"><a href="#对象头" class="headerlink" title="对象头"></a>对象头</h3><ul>
+<li><strong>Mark Word</strong>：包含一系列的标记位，比如轻量级锁的标记位，偏向锁标记位等等。在32位系统占4字节，在64位系统中占8字节；</li>
+<li><strong>Class Pointer</strong>：用来指向对象对应的Class对象（其对应的元数据对象）的内存地址。在32位系统占4字节，在64位系统中占8字节；</li>
+<li><strong>Length</strong>：如果是数组对象，还有一个保存数组长度的空间，占4个字节；</li>
+</ul>
+<h3 id="对象实际数据"><a href="#对象实际数据" class="headerlink" title="对象实际数据"></a>对象实际数据</h3><p>对象实际数据包括了对象的所有成员变量，其大小由各个成员变量的大小决定，比如：byte和boolean是1个字节，short和char是2个字节，int和float是4个字节，long和double是8个字节，reference是4个字节（64位系统中是8个字节）。</p>
+<table>
+<thead>
+<tr>
+<th>Primitive Type</th>
+<th>Memory Required(bytes)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean</td>
+<td>1</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>1</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2</td>
+</tr>
+<tr>
+<td>char</td>
+<td>2</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long</td>
+<td>8</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<p>对于reference类型来说，在32位系统上占用4bytes, 在64位系统上占用8bytes。</p>
+<h3 id="对齐填充"><a href="#对齐填充" class="headerlink" title="对齐填充"></a>对齐填充</h3><p>Java对象占用空间是8字节对齐的，即所有Java对象占用bytes数必须是8的倍数。例如，一个包含两个属性的对象：int和byte，这个对象需要占用8+4+1=13个字节，这时就需要加上大小为3字节的padding进行8字节对齐，最终占用大小为16个字节。</p>
+<p>注意：以上对64位操作系统的描述是未开启指针压缩的情况，关于指针压缩会在下文中介绍。</p>
+<h3 id="对象头占用空间大小"><a href="#对象头占用空间大小" class="headerlink" title="对象头占用空间大小"></a>对象头占用空间大小</h3><p>这里说明一下32位系统和64位系统中对象所占用内存空间的大小：</p>
+<ul>
+<li>在32位系统下，存放Class Pointer的空间大小是4字节，MarkWord是4字节，对象头为8字节;</li>
+<li>在64位系统下，存放Class Pointer的空间大小是8字节，MarkWord是8字节，对象头为16字节;</li>
+<li>64位开启指针压缩的情况下，存放Class Pointer的空间大小是4字节，<code>MarkWord</code>是8字节，对象头为12字节;</li>
+<li>如果是数组对象，对象头的大小为：数组对象头8字节+数组长度4字节+对齐4字节=16字节。其中对象引用占4字节（未开启指针压缩的64位为8字节），数组<code>MarkWord</code>为4字节（64位未开启指针压缩的为8字节）;</li>
+<li>静态属性不算在对象大小内。</li>
+</ul>
+<h3 id="指针压缩"><a href="#指针压缩" class="headerlink" title="指针压缩"></a>指针压缩</h3><p>从上文的分析中可以看到，64位JVM消耗的内存会比32位的要多大约1.5倍，这是因为对象指针在64位JVM下有更宽的寻址。对于那些将要从32位平台移植到64位的应用来说，平白无辜多了1/2的内存占用，这是开发者不愿意看到的。</p>
+<p>从JDK 1.6 update14开始，64位的JVM正式支持了 -XX:+UseCompressedOops 这个可以压缩指针，起到节约内存占用的新参数。</p>
+<h3 id="什么是OOP？"><a href="#什么是OOP？" class="headerlink" title="什么是OOP？"></a>什么是OOP？</h3><p>OOP的全称为：Ordinary Object Pointer，就是普通对象指针。启用CompressOops后，会压缩的对象：</p>
+<ul>
+<li>每个Class的属性指针（静态成员变量）；</li>
+<li>每个对象的属性指针；</li>
+<li>普通对象数组的每个元素指针。</li>
+</ul>
+<p>当然，压缩也不是所有的指针都会压缩，对一些特殊类型的指针，JVM是不会优化的，例如指向PermGen的Class对象指针、本地变量、堆栈元素、入参、返回值和NULL指针不会被压缩。</p>
+<h3 id="启用指针压缩"><a href="#启用指针压缩" class="headerlink" title="启用指针压缩"></a>启用指针压缩</h3><p>在Java程序启动时增加JVM参数：<code>-XX:+UseCompressedOops</code>来启用。</p>
+<p><em>注意：32位HotSpot VM是不支持UseCompressedOops参数的，只有64位HotSpot VM才支持。</em></p>
+<p>本文中使用的是JDK 1.8，默认该参数就是开启的。</p>
+<h3 id="包装类型"><a href="#包装类型" class="headerlink" title="包装类型"></a>包装类型</h3><p>包装类（Boolean/Byte/Short/Character/Integer/Long/Double/Float）占用内存的大小等于对象头大小加上底层基础数据类型的大小。</p>
+<p>包装类型的Retained Size占用情况如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">开启指针压缩</th>
+<th align="center">关闭指针压缩</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Byte, Boolean</td>
+<td align="center">16 bytes</td>
+<td align="center">24 bytes</td>
+</tr>
+<tr>
+<td align="center">Short, Character</td>
+<td align="center">16 bytes</td>
+<td align="center">24 bytes</td>
+</tr>
+<tr>
+<td align="center">Integer, Float</td>
+<td align="center">16 bytes</td>
+<td align="center">24 bytes</td>
+</tr>
+<tr>
+<td align="center">Long, Double</td>
+<td align="center">24 bytes</td>
+<td align="center">24 bytes</td>
+</tr>
+</tbody></table>
+<h3 id="对象头解读"><a href="#对象头解读" class="headerlink" title="对象头解读"></a>对象头解读</h3><p>我使用的环境是64位JDK1.8，并且开启了指针压缩</p>
+<p><img src="/upload/1585388372077.png" alt="1585388372077"></p>
+<p>如果要查看对象头信息需要导入包</p>
+<pre class=" language-xml"><code class="language-xml">        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.openjdk.jol<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>jol-core<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<p>例如代码</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Oop</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Ob ob <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Ob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ob<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"hashCode="</span><span class="token operator">+</span>Integer<span class="token punctuation">.</span><span class="token function">toHexString</span><span class="token punctuation">(</span>ob<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//只有使用过了hashCodeMarkWord里面才会有hashCode</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>ClassLayout<span class="token punctuation">.</span><span class="token function">parseInstance</span><span class="token punctuation">(</span>ob<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toPrintable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Ob</span><span class="token punctuation">{</span>
+    Long a<span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token keyword">int</span> sa<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>打印结果</p>
+<pre><code>hashCode=6d6f6e28
+Ob object internals:
+ OFFSET  SIZE             TYPE DESCRIPTION                               VALUE
+      0     4                  (object header)                           01 28 6e 6f (00000001 00101000 01101110 01101111) (1869490177)
+      4     4                  (object header)                           6d 00 00 00 (01101101 00000000 00000000 00000000) (109)
+      8     4                  (object header)                           43 c1 00 f8 (01000011 11000001 00000000 11111000) (-134168253)
+     12     4   java.lang.Long Ob.a                                      null
+Instance size: 16 bytes
+Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</code></pre><p>由于存在大端和小端的读法，所以hashCode正好相反。</p>
+<p>其中最后一个字节01字节码对应的二进制是00000001，根据图可知0 是cms_free，0000是分代年龄，01表明是无锁状态</p>
+<h2 id="对象的创建过程"><a href="#对象的创建过程" class="headerlink" title="对象的创建过程"></a>对象的创建过程</h2><ul>
+<li>当java虚拟机遇到字节码new的时候首先检查这个指令的参数能否在常量池中定位到一个类的符号引用。</li>
+<li>并且检查这个符号的引用代表的类是否已经被加载、解析和初始化。</li>
+<li>如果没有就执行类的加载、解析和初始化。</li>
+<li>在类的加载检查通过后，虚拟机将会为新生对象分配内存。对象所需要内存的大小在类加载后便可完全确定。</li>
+<li>在完成内存分配后虚拟机还要对对象进行必要的设计，例如这个对象是哪个类的实例，如何才能找到类的元数据信息，对象的哈希码，对象GC的年龄等。</li>
+<li>之后在虚拟机的角度来看，一个新的对象已经产生了。但是还需要调用&lt; cinit &gt;和&lt; init &gt; </li>
+</ul>
 <h2 id="如何判断对象是否死亡"><a href="#如何判断对象是否死亡" class="headerlink" title="如何判断对象是否死亡"></a>如何判断对象是否死亡</h2><p>有项研究表明，新生代中的内存有百分之98熬不过第一轮回收</p>
 <h4 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h4><p>在对象的内部添加一个引用计数器，当一个地方引用它时计数器就加一；当引用失效时，计数器值就减一，（java虚拟机并不是使用这种方法来进行判定的）</p>
 <h5 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h5><h6 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h6><p>虽然占用了一些额外内存空间，但是它原理很简单，判定效率也很高。</p>
@@ -717,19 +857,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/java/">
-                                    <span class="chip bg-color">java</span>
-                                </a>
-                            
-                                <a href="/tags/jvm/">
-                                    <span class="chip bg-color">jvm</span>
-                                </a>
-                            
-                                <a href="/tags/虚拟机/">
-                                    <span class="chip bg-color">虚拟机</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -1045,7 +1173,7 @@ native关键字说明被修饰的方法是一个原生态方法，并且方法�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">155k</span>&nbsp;字
+                class="white-color">156.7k</span>&nbsp;字
             
             
             
