@@ -457,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-21
+                    2020-04-25
                 </div>
                 
 
@@ -560,10 +560,10 @@
 <h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
 <li>java堆被所有的线程所共享</li>
 <li>java堆在物理上可以是不连续的，但是在逻辑上应该被视为连续的</li>
-<li>堆大小是可以固定的，也是可以设置大小的（通过-Xmx和-Xms设置）</li>
+<li>堆大小是可以固定的，也是可以设置大小的（通过-Xmx和-Xms设置）,也是可以自动扩展的</li>
 <li>如果java虚拟机没有完成实例分配，并且堆也无法在扩展时，java虚拟机将会抛出<strong>OutOfMemoryError</strong>异常</li>
 </ul>
-<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>和java堆一样是各个线程共享的内存区域，他用于存储已经被虚拟机加载的类型信息，常量，静态变量，即时编译器编译后的代码缓存等数据，这里也是<strong><em>需要垃圾回收</em></strong>的。</p>
+<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>和java堆一样是各个线程共享的内存区域，他用于存储已经被<strong>虚拟机加载的类型信息，常量，静态变量</strong>，即时编译器编译后的代码缓存等数据，这里也是<strong><em>需要垃圾回收</em></strong>的。</p>
 <p>在JDK8之前，Hospot虚拟机采用永久代来实现方法区，原因就是可以吧垃圾收集器的分代设计扩展到方法区，但是容易导致内存溢出的问题，在JDK8之后使用元空间实现。</p>
 <h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><p>运行时常量池是方法区的一部分。Class文件中除了有类的版本，字段，方法，接口等描述信息外，还有一项就是常量池。并且常量池相对于Class文件的另一个重要特征就是具备动态性</p>
 <blockquote>
@@ -774,8 +774,8 @@ Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</code></pre><p
 <h4 id="ParNew收集器的特点："><a href="#ParNew收集器的特点：" class="headerlink" title="ParNew收集器的特点："></a>ParNew收集器的特点：</h4><h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h5><p>在多CPU时，比Serial效率高。</p>
 <h5 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h5><p>收集过程暂停所有应用程序线程，单CPU时比Serial效率差。</p>
 <h5 id="使用算法："><a href="#使用算法：" class="headerlink" title="使用算法："></a>使用算法：</h5><p>复制算法</p>
-<p>适用范围：</p>
-<h5 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h5><h5 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h5><p>运行在Server模式下的虚拟机中首选的新生代收集器<br><strong>使用ParNew收集器 -XX:+UseParNewGC</strong></p>
+<h5 id="适用范围："><a href="#适用范围：" class="headerlink" title="适用范围："></a>适用范围：</h5><p>新生代</p>
+<h5 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h5><p>运行在Server模式下的虚拟机中首选的新生代收集器<br><strong>使用ParNew收集器 -XX:+UseParNewGC</strong></p>
 <h2 id="Parallel-Scavenge收集器"><a href="#Parallel-Scavenge收集器" class="headerlink" title="Parallel Scavenge收集器"></a>Parallel Scavenge收集器</h2><p>Parallel Scavenge收集器也是一款新生代收集器，它同样是基于标记-复制算法实现的收集器，也是能够并行收集的多线程收集器……Parallel Scavenge的诸多特性从表面上看和ParNew非常相似，Parallel Scavenge收集器的特点是它的关注点与其他收集器不同，CMS等收集器的关注点是尽可能地缩短垃圾收集时用户线程的停顿时间，而Parallel Scavenge收集器的目标则是达到一个可控制的吞吐量（Throughput）。所谓吞吐量就是处理器用于运行用户代码的时间与处理器总消耗时间的比值。</p>
 <ul>
 <li>吞吐量 = 运行用户代码时间/运行用户代码时间 + 运行垃圾收集器时间。</li>
@@ -978,34 +978,33 @@ Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</code></pre><p
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/13/java-zhong-native-guan-jian-zi/">
+                <a href="/2020/03/14/jvmoom-yi-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="java中Native关键字">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="JVMOOM溢出">
                         
-                        <span class="card-title">java中Native关键字</span>
+                        <span class="card-title">JVMOOM溢出</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Native
-今天在看java.lang.Object类的时候发现有个静态代码块由Native修饰，并且很疑惑。
-
-native关键字说明被修饰的方法是一个原生态方法，并且方法的实现并不是由java来实现的，而是通过其他语言实现的，例如C+
+                            堆空间溢出/**
+ * java堆内存溢出,首先在hospot虚拟机中堆内存是可以自动扩展的,但是我们可以调整他的上限
+ * -Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapD
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/学习/" class="post-category">
-                                    学习
+                            <a href="/categories/JVM/" class="post-category">
+                                    JVM
                                 </a>
                             
                             
@@ -1015,16 +1014,12 @@ native关键字说明被修饰的方法是一个原生态方法，并且方法�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/jvm/">
+                        <span class="chip bg-color">jvm</span>
                     </a>
                     
-                    <a href="/tags/JNI/">
-                        <span class="chip bg-color">JNI</span>
-                    </a>
-                    
-                    <a href="/tags/Java-Native-Interface/">
-                        <span class="chip bg-color">Java Native Interface</span>
+                    <a href="/tags/OOM/">
+                        <span class="chip bg-color">OOM</span>
                     </a>
                     
                 </div>
@@ -1173,7 +1168,7 @@ native关键字说明被修饰的方法是一个原生态方法，并且方法�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">156.7k</span>&nbsp;字
+                class="white-color">159.3k</span>&nbsp;字
             
             
             
