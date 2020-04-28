@@ -450,28 +450,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-14
+                    2020-04-28
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-25
+                    2020-04-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.2k
+                    7.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    25 分
+                    27 分
                 </div>
                 
 
@@ -759,6 +759,30 @@ Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</code></pre><p
 <p><strong>虚引用主要用来跟踪对象被垃圾回收的活动</strong>。</p>
 <p><strong>虚引用与软引用和弱引用的一个区别在于：</strong> 虚引用必须和引用队列（ReferenceQueue）联合使用。当垃 圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是 否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。程序如果发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。</p>
 <p>特别注意，在程序设计中一般很少使用弱引用与虚引用，使用软引用的情况较多，这是因为<strong>软引用可以加速JVM对垃圾内存的回收速度，可以维护系统的运行安全，防止内存溢出（OutOfMemory）等问题的产生</strong>。</p>
+<h3 id="触发GC的条件"><a href="#触发GC的条件" class="headerlink" title="触发GC的条件"></a>触发GC的条件</h3><p>  首先，GC堆内存分为三部分：Young Generation，Old Generation，Permanent Generation。</p>
+<p>​    <strong>Young Generation 分为：Eden , Survivor1 , Survivor2</strong>， <strong>新创建的对象会分配在Eden区,在经历一次Minor GC后会被移到Survivor 1区，再经历一次Minor GC后会被移到Survivor 2区</strong>，如果Survivor空间不足，则会直接把存活对象复制到老年代，然后清空eden区,需要注意的是，一些<strong>大对象(长字符串或数组)可能会直接存放到老年代</strong>；升到老年代当空间不足的时候，会发生Full GC，或者小于时，查看是否设置了XX:+HandlePromotionFailure(允许担保失败)参数，若允许，则只会进行Minor GC，此时可以容忍内存分配失败；若不允许，强制Full GC。</p>
+<p> <img src="/upload/image-20200427225409868.png" alt="image-20200427225409868"></p>
+<h4 id="触发MinorGC-Young-GC"><a href="#触发MinorGC-Young-GC" class="headerlink" title="触发MinorGC(Young GC)"></a>触发MinorGC(Young GC)</h4><p>  虚拟机在进行minorGC之前会判断老年代最大的可用连续空间是否大于新生代的所有对象总空间</p>
+<p>  1、如果大于的话，直接执行minorGC</p>
+<p>  2、如果小于，判断是否开启HandlerPromotionFailure，没有开启直接FullGC</p>
+<p>  3、如果开启了HanlerPromotionFailure, JVM会判断老年代的最大连续内存空间是否大于历次晋升的大小，如果小于直接执行FullGC</p>
+<p>  4、如果大于的话，执行minorGC</p>
+<h4 id="触发FullGC"><a href="#触发FullGC" class="headerlink" title="触发FullGC"></a>触发FullGC</h4><ul>
+<li><p>老年代空间不足</p>
+<p> 如果创建一个大对象，Eden区域当中放不下这个大对象，会直接保存在老年代当中，如果老年代空间也不足，就会触发Full GC。为了避免这种情况，最好就是不要创建太大的对象。</p>
+</li>
+<li><p>持久代空间不足</p>
+<p> 如果有持久代空间的话，系统当中需要加载的类，调用的方法很多，同时持久代当中没有足够的空间，就出触发一次Full GC</p>
+</li>
+<li><p>YGC出现promotion failure</p>
+<p>promotion failure发生在Young GC, 如果Survivor区当中存活对象的年龄达到了设定值，会就将Survivor区当中的对象拷贝到老年代，如果老年代的空间不足，就会发生promotion failure， 接下去就会发生Full GC.</p>
+</li>
+<li><p>统计YGC发生时晋升到老年代的平均总大小大于老年代的空闲空间</p>
+<p> 在发生YGC是会判断，是否安全，这里的安全指的是，当前老年代空间可以容纳YGC晋升的对象的平均大小，如果不安全，就不会执行YGC,转而执行Full GC。</p>
+</li>
+<li><p>显示调用System.gc通知垃圾回收时</p>
+</li>
+</ul>
 <h2 id="经典垃圾收集器"><a href="#经典垃圾收集器" class="headerlink" title="经典垃圾收集器"></a>经典垃圾收集器</h2><h3 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a>Serial收集器</h3><p>Serial收集器是最基础、历史最悠久的收集器，曾经（在JDK1.3.1之前）是HotSpot虚拟机新生代收集器的唯一选择，时至今日，垃圾收集器的不断改进，不断出新，Serial依然在我们的垃圾收集器的选项里面。</p>
 <p><img src="/upload/1584515975770.png" alt="1584515975770"></p>
 <h4 id="特点-5"><a href="#特点-5" class="headerlink" title="特点"></a>特点</h4><ul>
@@ -820,7 +844,7 @@ Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</code></pre><p
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/03/14/jvm-xue-xi-di-yi-tian-zi-dong-nei-cun-guan-li/">http://yoursite.com/2020/03/14/jvm-xue-xi-di-yi-tian-zi-dong-nei-cun-guan-li/</a>
+                    <a href="http://yoursite.com/2020/04/28/jvm-xue-xi-di-yi-tian-zi-dong-nei-cun-guan-li/">http://yoursite.com/2020/04/28/jvm-xue-xi-di-yi-tian-zi-dong-nei-cun-guan-li/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -900,7 +924,7 @@ Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</code></pre><p
         repo: 'yang295513.github.io',
         owner: 'yang295513',
         admin: ["yang295513"],
-        id: '2020-03-14T17-35-56',
+        id: '2020-04-28T19-48-27',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -924,30 +948,44 @@ Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</code></pre><p
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/03/15/java-fan-she-xiang-jie/">
+                <a href="/2020/04/28/jvm-xue-xi-di-yi-tian-zi-dong-nei-cun-guan-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="JAVA反射详解">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">JAVA反射详解</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            概述定义JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。
-用途最重要的用途就是解耦，许多
+                            title: jvm学习第一天-自动内存管理date: 2020-03-14 17:35:56tags: 
+
+jvm
+java
+虚拟机
+
+运行时数据区域
+
+方法区
+堆
+虚拟机栈
+本地方法栈
+程序计数器
+
+其中前两个是线程共享的，后三个是线程
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -956,18 +994,7 @@ Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</code></pre><p
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/JAVA/">
-                        <span class="chip bg-color">JAVA</span>
-                    </a>
-                    
-                    <a href="/tags/反射/">
-                        <span class="chip bg-color">反射</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -978,50 +1005,32 @@ Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</code></pre><p
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/14/jvmoom-yi-chu/">
+                <a href="/2020/04/28/hello-world/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="JVMOOM溢出">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
                         
-                        <span class="card-title">JVMOOM溢出</span>
+                        <span class="card-title">Hello World</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            堆空间溢出/**
- * java堆内存溢出,首先在hospot虚拟机中堆内存是可以自动扩展的,但是我们可以调整他的上限
- * -Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapD
+                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-28
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/JVM/" class="post-category">
-                                    JVM
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            yang295513
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/jvm/">
-                        <span class="chip bg-color">jvm</span>
-                    </a>
-                    
-                    <a href="/tags/OOM/">
-                        <span class="chip bg-color">OOM</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -1168,7 +1177,7 @@ Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</code></pre><p
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">159.3k</span>&nbsp;字
+                class="white-color">161.3k</span>&nbsp;字
             
             
             

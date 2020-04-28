@@ -490,14 +490,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-11
+                    2020-04-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.5k
+                    2.6k
                 </div>
                 
 
@@ -559,6 +559,7 @@
 <li>关系模型包括数据结构（数据存储的问题，二维表）、操作指令集合（SQL语句）、完整性约束(表内数据约束、表与表之间的约束)。</li>
 </ul>
 </blockquote>
+<p><strong>NOSQL的意思是not-only sql</strong>,不仅仅是sql</p>
 <h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>官方的bench-mark数据：</p>
 <p>测试完成了50个并发执行100000个请求。</p>
 <p>设置和获取的值是一个256字节字符串。</p>
@@ -571,6 +572,7 @@
 <li>绝大部分请求是纯粹的内存操作（非常快速）</li>
 <li>采用单线程,避免了不必要的上下文切换和竞争条件</li>
 <li>非阻塞IO - IO多路复用</li>
+<li>redis的性能瓶颈不是CPU而是内存</li>
 </ul>
 <p>IO多路复用中有三种方式：<strong>select,poll,epoll</strong>。需要注意的是，select,poll是线程不安全的，epoll是线程安全的</p>
 <p>redis内部实现采用epoll，采用了epoll+自己实现的简单的事件框架。epoll中的读、写、关闭、连接都转化成了事件，然后利用epoll的多路复用特性，绝不在io上浪费一点时间 这3个条件不是相互独立的，特别是第一条，如果请求都是耗时的，采用单线程吞吐量及性能可想而知了。应该说redis为特殊的场景选择了合适的技术方案。</p>
@@ -1120,7 +1122,7 @@ Stringset key val
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">159.3k</span>&nbsp;字
+                class="white-color">161.3k</span>&nbsp;字
             
             
             
