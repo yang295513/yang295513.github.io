@@ -438,16 +438,16 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/java/">
+                                <span class="chip bg-color">java</span>
+                            </a>
+                        
                             <a href="/tags/编程/">
                                 <span class="chip bg-color">编程</span>
                             </a>
                         
                             <a href="/tags/日常学习/">
                                 <span class="chip bg-color">日常学习</span>
-                            </a>
-                        
-                            <a href="/tags/java/">
-                                <span class="chip bg-color">java</span>
                             </a>
                         
                             <a href="/tags/设计模式/">
@@ -490,14 +490,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-18
+                    2020-05-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    2.1k
                 </div>
                 
 
@@ -665,7 +665,7 @@
 
     <span class="token keyword">private</span> <span class="token keyword">static</span> Singleton singleton<span class="token punctuation">;</span>
 
-    <span class="token comment" spellcheck="true">//相比上面的添加了方发锁，来保证线程安全问题，但是多个线程创建对象的时候其他现在必须在外部等待</span>
+    <span class="token comment" spellcheck="true">//相比上面的添加了方法锁，来保证线程安全问题，但是多个线程创建对象的时候其他现在必须在外部等待</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">synchronized</span> Singleton <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span>singleton<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
             singleton<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Singleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -714,7 +714,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>关于volatile关键字的使用，在单线程的环境下是不存在指令重排的情况，涉及到多线程就会涉及到指令重排。比如创建对象大致为三个过程：<br>1.开辟内存空间<br>2.创建对象。<br>3.对象指定内存空间。<br>在创建对象的过程中，多线程环境中是不一定会按照指令的顺序来进行创建对象。<br>所以需要添加volitile关键字，保证对象是创建完毕再继续使用。</p>
+<p>关于volatile关键字的使用，在单线程的环境下是不存在指令重排的情况，涉及到多线程就会涉及到指令重排。比如创建对象大致为三个过程：<br>1.开辟内存空间<br>2.创建对象。<br>3.对象指定内存空间。<br>在创建对象的过程中，多线程环境中是不一定会按照指令的顺序来进行创建对象。比如说执行步骤是132，在执行完2的时候，导致其他线程认为对象已经创建完毕，然后内存指向了一片空白。<br>所以需要添加volitile关键字，保证对象是创建完毕再继续使用。</p>
 <h4 id="特点-4"><a href="#特点-4" class="headerlink" title="特点"></a>特点</h4><ul>
 <li>实现了该类的懒加载</li>
 <li>解决了线程问题，并且也解决了性能问题,推荐使用</li>
@@ -736,6 +736,31 @@
 <p>通过内部类来实现懒加载单例模式，该种实现方式也较为常用。<br>关于内部类实现懒加载的解释：类信息只有在使用其Class相关的时候才会加载字节码相关的类信息。静态内部类同样如此，只有在用到静态内部类的时候才会去用到我们内部类的静态相关信息。所以称其为懒加载。</p>
 <p>很多种单例的写法都有一个通病，就是无法防止反射机制的漏洞，从而无法保证对象的唯一性，如下举例：</p>
 <p>利用如下的反正代码对上文构造的单例进行对象的创建。</p>
+<h4 id="但是上面代码也有缺陷，比如说可以使用反射机制破坏"><a href="#但是上面代码也有缺陷，比如说可以使用反射机制破坏" class="headerlink" title="但是上面代码也有缺陷，比如说可以使用反射机制破坏"></a>但是上面代码也有缺陷，比如说可以使用反射机制破坏</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test002</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchMethodException<span class="token punctuation">,</span> IllegalAccessException<span class="token punctuation">,</span> InvocationTargetException<span class="token punctuation">,</span> InstantiationException <span class="token punctuation">{</span>
+        Class<span class="token operator">&lt;</span>Singleton1<span class="token operator">></span> singleton1Class <span class="token operator">=</span> Singleton1<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">;</span>
+        Constructor<span class="token operator">&lt;</span>Singleton1<span class="token operator">></span> declaredConstructor <span class="token operator">=</span> singleton1Class<span class="token punctuation">.</span><span class="token function">getDeclaredConstructor</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        declaredConstructor<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Singleton1 singleton1 <span class="token operator">=</span> declaredConstructor<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>singleton1<span class="token operator">==</span>Singleton1<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//单例模式居然拿到的是两个对象</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Singleton1</span><span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> Singleton1 singleton<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token function">Singleton1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">LazyHolder</span> <span class="token punctuation">{</span>
+        <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Singleton1 INSTANCE <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Singleton1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Singleton1 <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> LazyHolder<span class="token punctuation">.</span>INSTANCE<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>上述代码单例模式拿到的居然是两个对象，可想而知，如果你用java写了个软件，其中使用上面的单例模式的话，别人很容易就破解了。</p>
 <h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">enum</span> Singleton1 <span class="token punctuation">{</span>
     INSTANCE<span class="token punctuation">;</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">sayOk</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -745,8 +770,8 @@
 <p>嘿嘿嘿就是这么简单。</p>
 <p>其实这就是 enum 的一块语法糖，<strong>JVM 会阻止反射获取枚举类的私有构造方法</strong>。</p>
 <p>仍然使用上文的反射代码来进行测试，发现，报错。嘿嘿，完美解决反射的问题。</p>
-<p>4、缺点</p>
-<p>使用枚举的方法是起到了单例的作用，但是也有一个弊端，</p>
+<p>而且enum类型无法通过反射机制被创建。</p>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><p>使用枚举的方法是起到了单例的作用，但是也有一个弊端，</p>
 <p>那就是  <strong>无法进行懒加载</strong>。</p>
 <h3 id="单例模式举例"><a href="#单例模式举例" class="headerlink" title="单例模式举例"></a>单例模式举例</h3><p>java.lang.Runtime这个类就是个典型的懒汉模式单例设计模式</p>
 
@@ -812,16 +837,16 @@
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/java/">
+                                    <span class="chip bg-color">java</span>
+                                </a>
+                            
                                 <a href="/tags/编程/">
                                     <span class="chip bg-color">编程</span>
                                 </a>
                             
                                 <a href="/tags/日常学习/">
                                     <span class="chip bg-color">日常学习</span>
-                                </a>
-                            
-                                <a href="/tags/java/">
-                                    <span class="chip bg-color">java</span>
                                 </a>
                             
                                 <a href="/tags/设计模式/">
@@ -944,16 +969,16 @@
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
                     <a href="/tags/编程/">
                         <span class="chip bg-color">编程</span>
                     </a>
                     
                     <a href="/tags/日常学习/">
                         <span class="chip bg-color">日常学习</span>
-                    </a>
-                    
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
                     </a>
                     
                     <a href="/tags/设计模式/">
@@ -983,42 +1008,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/23/she-ji-mo-shi-zhi-qi-da-yuan-ze/">
+                <a href="/2020/03/01/she-ji-mo-shi-zhi-jian-zao-zhe-mo-shi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="设计模式之七大原则">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="设计模式之建造者模式">
                         
-                        <span class="card-title">设计模式之七大原则</span>
+                        <span class="card-title">设计模式之建造者模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            设计模式什么是设计模式
-设计模式最早是从建筑领域引入到软件工程领域的，软件开发者在平时开发软件的时候发现有些场景和需求在不同的软件开发中是很相似的，于是乎将这些解决方案抽象出来就形成了设计模式
-
-设计模式的目的和作用(5大作用目的)
-代码重
+                            建造者模式
+当一个类的内部数据过于复杂的时候（通常是负责持有数据的类，比如Config、VO、PO、Entity…），要创建的话可能就需要了解这个类的内部结构，还有这些东西是怎么组织装配等一大坨乱七八糟的东西，这个时候就会增加学习成本而且会
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/学习/" class="post-category">
-                                    学习
-                                </a>
-                            
-                            <a href="/categories/学习/算法/" class="post-category">
-                                    算法
-                                </a>
-                            
-                            <a href="/categories/学习/算法/设计模式/" class="post-category">
+                            <a href="/categories/设计模式/" class="post-category">
                                     设计模式
                                 </a>
                             
@@ -1029,6 +1043,10 @@
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
                     <a href="/tags/编程/">
                         <span class="chip bg-color">编程</span>
                     </a>
@@ -1037,16 +1055,20 @@
                         <span class="chip bg-color">日常学习</span>
                     </a>
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
-                    </a>
-                    
                     <a href="/tags/设计模式/">
                         <span class="chip bg-color">设计模式</span>
                     </a>
                     
                     <a href="/tags/原则/">
                         <span class="chip bg-color">原则</span>
+                    </a>
+                    
+                    <a href="/tags/工厂设计模式/">
+                        <span class="chip bg-color">工厂设计模式</span>
+                    </a>
+                    
+                    <a href="/tags/工厂模式/">
+                        <span class="chip bg-color">工厂模式</span>
                     </a>
                     
                 </div>
@@ -1195,7 +1217,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">161.6k</span>&nbsp;字
+                class="white-color">182.5k</span>&nbsp;字
             
             
             

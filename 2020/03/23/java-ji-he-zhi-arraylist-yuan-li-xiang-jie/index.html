@@ -473,14 +473,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-26
+                    2020-05-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.5k
+                    3.7k
                 </div>
                 
 
@@ -802,7 +802,8 @@
 <p><strong>关键点就在于：调用list.remove()方法导致modCount和expectedModCount的值不一致。</strong></p>
 <p>　　<strong>注意，像使用for-each进行迭代实际上也会出现这种问题。</strong></p>
 <h2 id="如何实现线程同步"><a href="#如何实现线程同步" class="headerlink" title="如何实现线程同步"></a>如何实现线程同步</h2><h3 id="方法一使用Vector"><a href="#方法一使用Vector" class="headerlink" title="方法一使用Vector"></a>方法一使用Vector</h3><p>Vector中的方法都是同步方法， 所以是线程安全的</p>
-<h3 id="方法二使用Collections-synchronizedList-方法"><a href="#方法二使用Collections-synchronizedList-方法" class="headerlink" title="方法二使用Collections.synchronizedList();方法"></a>方法二使用Collections.synchronizedList();方法</h3><p>这个类就是使用了装饰则模式，进行了同步处理</p>
+<h3 id="方法二使用Collections-synchronizedList-方法"><a href="#方法二使用Collections-synchronizedList-方法" class="headerlink" title="方法二使用Collections.synchronizedList();方法"></a>方法二使用Collections.synchronizedList();方法</h3><p>这个类就是使用了装饰者模式，几乎给所有的方法都加了synchronized关键字进行了同步处理。</p>
+<h3 id="方法三使用CopyOnWriteArrayList"><a href="#方法三使用CopyOnWriteArrayList" class="headerlink" title="方法三使用CopyOnWriteArrayList();"></a>方法三使用CopyOnWriteArrayList();</h3><p>这个类在写入的时候会先加一个可重入锁(ReentrantLock),然后复制一个新的数组，让后在新的数组中写入，这个时候如果有其他线程读，会在旧数组中读，并且读不加锁，这样就保证了并发安全，然后读操作完成后会让新数组的引用覆盖旧数组的引用，之后解锁，也就是说这个容器适合大量读的场景，但是不适合大量写。</p>
 
             </div>
             <hr/>
@@ -1042,12 +1043,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JAVA/">
-                        <span class="chip bg-color">JAVA</span>
-                    </a>
-                    
                     <a href="/tags/泛型/">
                         <span class="chip bg-color">泛型</span>
+                    </a>
+                    
+                    <a href="/tags/JAVA/">
+                        <span class="chip bg-color">JAVA</span>
                     </a>
                     
                 </div>
@@ -1196,7 +1197,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">161.6k</span>&nbsp;字
+                class="white-color">182.5k</span>&nbsp;字
             
             
             

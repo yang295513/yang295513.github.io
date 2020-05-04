@@ -457,21 +457,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-26
+                    2020-05-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    456
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -486,10 +486,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java内存模型——JMM"><a href="#Java内存模型——JMM" class="headerlink" title="Java内存模型——JMM"></a>Java内存模型——JMM</h1><ul>
+                <h1 id="Java内存模型——JMM"><a href="#Java内存模型——JMM" class="headerlink" title="Java内存模型——JMM"></a>Java内存模型——JMM</h1><h3 id="什么是JMM内存模型"><a href="#什么是JMM内存模型" class="headerlink" title="什么是JMM内存模型"></a>什么是JMM内存模型</h3><ul>
 <li>Java的并发采用的是共享内存模型</li>
 </ul>
-<p>JMM定义了Java 虚拟机(JVM)在计算机内存(RAM)中的工作方式。JVM是整个计算机虚拟模型，所以JMM是隶属于JVM的。从抽象的角度来看，JMM定义了线程和主内存之间的抽象关系：线程之间的共享变量存储在主内存（Main Memory）中，每个线程都有一个私有的本地内存（Local Memory），本地内存中存储了该线程以读/写共享变量的副本。本地内存是JMM的一个抽象概念，并不真实存在。它涵盖了缓存、写缓冲区、寄存器以及其他的硬件和编译器优化。</p>
+<p>J<strong>MM定义了Java 虚拟机(JVM)在计算机内存(RAM)中的工作方式</strong>。JVM是整个计算机虚拟模型，所以JMM是隶属于JVM的。<strong>从抽象的角度来看，JMM定义了线程和主内存之间的抽象关系</strong>：线程之间的共享变量存储在主内存（Main Memory）中，每个线程都有一个私有的本地内存（Local Memory），本地内存中存储了该线程以读/写共享变量的副本。本地内存是JMM的一个抽象概念，并不真实存在。它涵盖了缓存、写缓冲区、寄存器以及其他的硬件和编译器优化。</p>
 <h2 id="jMM模型运行过程"><a href="#jMM模型运行过程" class="headerlink" title="jMM模型运行过程"></a>jMM模型运行过程</h2><p><img src="/upload/1585215125509.png" alt="1585215125509"></p>
 <ul>
 <li><p>在JVM内部，Java内存模型把内存分成了两部分：线程栈区和堆区<br>  JVM中运行的每个线程都拥有自己的线程栈，线程栈包含了当前线程执行的方法调用相关信息，我们也把它称作调用栈。随着代码的不断执行，调用栈会不断变化。</p>
@@ -497,8 +497,77 @@
 <li><p>共享变量大多指的是静态变量</p>
 </li>
 </ul>
-<h4 id="运行过程带来的问题"><a href="#运行过程带来的问题" class="headerlink" title="运行过程带来的问题"></a>运行过程带来的问题</h4><p>假如我们我们有一个共享变量x，假设有两个线程，线程一执行的时候会复制一个变量副本到自己的工作内存，此时线程二也在使用共享变量x,假如说线程一修改了这个变量的值，并且向共享内存中写入了结果，但是由于线程二使用的是自己工作内存中的变量，那么无论如何线程二都看不到这个共享变量x的变化。</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>使用volatile可以保证有序性和共享性</p>
+<h3 id="JAVA内存模型中的重排序"><a href="#JAVA内存模型中的重排序" class="headerlink" title="JAVA内存模型中的重排序"></a>JAVA内存模型中的重排序</h3><p>在执行程序时，为了提高性能，编译期和处理器常常会对指令做重排序</p>
+<h4 id="java重排序的规则"><a href="#java重排序的规则" class="headerlink" title="java重排序的规则"></a>java重排序的规则</h4><ul>
+<li>as-if-serial 不管如何重排序，都必须保证代码在单线程下的运行正确</li>
+</ul>
+<h3 id="运行过程带来的问题"><a href="#运行过程带来的问题" class="headerlink" title="运行过程带来的问题"></a>运行过程带来的问题</h3><h4 id="可见性问题"><a href="#可见性问题" class="headerlink" title="可见性问题"></a>可见性问题</h4><p>假如我们我们有一个共享变量x，假设有两个线程，线程一执行的时候会复制一个变量副本到自己的工作内存，此时线程二也在使用共享变量x,假如说线程一修改了这个变量的值，并且向共享内存中写入了结果，但是由于线程二使用的是自己工作内存中的变量，那么无论如何线程二都看不到这个共享变量x的变化。</p>
+<h5 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h5><p>使用volatile可以保证有序性和共享性</p>
+<h4 id="有序性问题"><a href="#有序性问题" class="headerlink" title="有序性问题"></a>有序性问题</h4><p>在执行程序时，为了提高性能，编译器和处理器常常会对指令做重排序。</p>
+<ul>
+<li><p>编译器优化的重排序。编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序。</p>
+</li>
+<li><p>指令级并行的重排序。现代处理器采用了指令级并行技术（Instruction-LevelParallelism，ILP）来将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序。</p>
+</li>
+<li><p>内存系统的重排序。由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去可能是在乱序执行。</p>
+</li>
+</ul>
+<p>这样会导致程序在多线程情况下出现问题</p>
+<h5 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h5><p>使用volatile可以保证有序性和共享性</p>
+<h4 id="竞争现象"><a href="#竞争现象" class="headerlink" title="竞争现象"></a>竞争现象</h4><p>如果线程A和线程B都共享了一个对象，其中A让自己工作内存中的变量加1，B也在工作内存中加1，如果正常情况下，主内存的值应该被加2，但是由于这两个操作是并行的，所以结果被加了1</p>
+<h5 id="解决方案-2"><a href="#解决方案-2" class="headerlink" title="解决方案"></a>解决方案</h5><p>使用synchronized进行同步</p>
+<h4 id="并发下重排序带来的问题"><a href="#并发下重排序带来的问题" class="headerlink" title="并发下重排序带来的问题"></a>并发下重排序带来的问题</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">ReorderExample</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">boolean</span> flag<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//线程A执行</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">writer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        a<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+        flag<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//线程B执行</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">int</span> i<span class="token operator">=</span>a<span class="token operator">*</span>a<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>由于a=1和flag=true，没有数据依赖，那么这两条代码可能会被重排序。</p>
+<p>假设线程A先执行了flag=true;</p>
+<p>此时线程B进入判断发现为真计算i的结果就会为0，这个时候如果线程A由执行a=1,那么这就产生了并发下重排序问题。</p>
+<h4 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a>解决方法一</h4><h5 id="使用锁来同步"><a href="#使用锁来同步" class="headerlink" title="使用锁来同步"></a>使用锁来同步</h5><p><img src="/upload/image-20200504155145365.png" alt="image-20200504155145365"></p>
+<p>临界区内的代码可以重排序（但JMM不允许临界区内的代码“逸出”到临界区之外，那样会破坏监视器的语义）。JMM会在退出临界区和进入临界区这两个关键时间点做一些特别处理，虽然线程A在临界区内做了重排序，但由于监视器互斥执行的特性，这里的线程B根本无法“观察”到线程A在临界区内的重排序。这种重排序既提高了执行效率，又没有改变程序的执行结果。</p>
+<h4 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a>解决方法二</h4><h5 id="基于happens-Before编程"><a href="#基于happens-Before编程" class="headerlink" title="基于happens-Before编程"></a>基于happens-Before编程</h5><p>在JMM中，如果一个操作执行的结果需要对另一个操作可见，那么这两个操作之间必须要存在happens-before关系 。</p>
+<p>两个操作之间具有happens-before关系，并不意味着前一个操作必须要在后一个操作之前执行！happens-before仅仅要求前一个操作（执行的结果）对后一个操作可见，且前一个操作按顺序排在第二个操作之前。</p>
+<blockquote>
+<p>从JDK5开始，java使用happens-before概念来阐述操作间的内存可见性。</p>
+</blockquote>
+<ul>
+<li>程序顺序规则：一个线程中的每个操作，happens-before于该线程中的任意后续操作。</li>
+<li>监视器锁规则：对一个锁的解锁，happens-before于随后对这个锁的加锁。</li>
+<li>volatile变量规则：对一个volatile域的写，happens-before于任意后续对这个volatile域的读。</li>
+<li>传递性：如果A happens-before B，且B happens-before C，那么A happens-before C。</li>
+<li>start()规则：如果线程A执行操作ThreadB.start()（启动线程B），那么A线程的ThreadB.start()操作happens-before于线程B中的任意操作。</li>
+<li>join()规则：如果线程A执行操作ThreadB.join()并成功返回，那么线程B中的任意操作happens-before于线程A从ThreadB.join()操作成功返回。</li>
+<li>线程中断规则:对线程interrupt方法的调用happens-before于被中断线程的代码检测到中断事件的发生。</li>
+</ul>
+<p><strong>对于上述代码我们就可以使用volatile规则来保证</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">ReorderExample</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">volatile</span> <span class="token keyword">boolean</span> flag<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//线程A执行</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">writer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        a<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+        flag<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//线程B执行</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//保证读一定在写之后</span>
+            <span class="token keyword">int</span> i<span class="token operator">=</span>a<span class="token operator">*</span>a<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h5 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a>内存屏障</h5><p>上述的volatile在java编译器在生成指令序列的适当位置会插入内存屏障指令来禁止特定类型的处理器重排序，从而让程序按我们预想的流程去执行。<br> 1、保证特定操作的执行顺序。<br> 2、影响某些数据（或则是某条指令的执行结果）的内存可见性。</p>
+<p><strong>但是这种方法是java编译器插入的，我们无法控制。</strong></p>
 
             </div>
             <hr/>
@@ -875,7 +944,7 @@ public class LookThre
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">161.6k</span>&nbsp;字
+                class="white-color">182.5k</span>&nbsp;字
             
             
             

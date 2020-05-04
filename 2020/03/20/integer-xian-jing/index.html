@@ -438,16 +438,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/源码/">
-                                <span class="chip bg-color">源码</span>
-                            </a>
-                        
                             <a href="/tags/Integer/">
                                 <span class="chip bg-color">Integer</span>
                             </a>
                         
                             <a href="/tags/陷阱/">
                                 <span class="chip bg-color">陷阱</span>
+                            </a>
+                        
+                            <a href="/tags/源码/">
+                                <span class="chip bg-color">源码</span>
                             </a>
                         
                             <a href="/tags/字节码/">
@@ -477,7 +477,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-22
+                    2020-05-01
                 </div>
                 
 
@@ -610,7 +610,7 @@ system<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token punctuation">}</span></code></pre>
 <p>我们发现只有valueOf(int i)这个确实是这样的。</p>
 <p>仔细看一下8个包装类型发现并不是所有的类型都有这个缓冲区的,</p>
-<h3 id="有缓存区的"><a href="#有缓存区的" class="headerlink" title="有缓存区的"></a>有缓存区的</h3><p>有的有Character，Byte,Short，Long.</p>
+<h3 id="有缓存区的"><a href="#有缓存区的" class="headerlink" title="有缓存区的"></a>有缓存区的</h3><p>有的有Byte,Short，Character，Integer,Long.</p>
 <h3 id="猜想IntegerCache的设计思路"><a href="#猜想IntegerCache的设计思路" class="headerlink" title="猜想IntegerCache的设计思路"></a>猜想IntegerCache的设计思路</h3><ul>
 <li>首先这个类的作用是维护一个缓冲区，也就说说所有的Integer类型都要共用的一个类，并且Integer是非静态的类，也就说说这个<strong>类一定是静态</strong>的，因为如果不是静态的，那么所有的Integer将无法共享这个静态成员内部类。</li>
 <li>然后这个类肯定只能Integer访问和使用，不能让其他类使用，所有这个类一定是<strong>私有的成员内部类</strong>，。</li>
@@ -709,16 +709,16 @@ system<span class="token punctuation">.</span>out<span class="token punctuation"
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/源码/">
-                                    <span class="chip bg-color">源码</span>
-                                </a>
-                            
                                 <a href="/tags/Integer/">
                                     <span class="chip bg-color">Integer</span>
                                 </a>
                             
                                 <a href="/tags/陷阱/">
                                     <span class="chip bg-color">陷阱</span>
+                                </a>
+                            
+                                <a href="/tags/源码/">
+                                    <span class="chip bg-color">源码</span>
                                 </a>
                             
                                 <a href="/tags/字节码/">
@@ -1037,7 +1037,7 @@ public class EnuTest{
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">161.6k</span>&nbsp;字
+                class="white-color">182.5k</span>&nbsp;字
             
             
             

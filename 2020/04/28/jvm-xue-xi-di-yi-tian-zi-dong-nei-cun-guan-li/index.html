@@ -457,21 +457,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-27
+                    2020-05-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.8k
+                    7.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    27 分
+                    28 分
                 </div>
                 
 
@@ -563,6 +563,7 @@
 <li>堆大小是可以固定的，也是可以设置大小的（通过-Xmx和-Xms设置）,也是可以自动扩展的</li>
 <li>如果java虚拟机没有完成实例分配，并且堆也无法在扩展时，java虚拟机将会抛出<strong>OutOfMemoryError</strong>异常</li>
 </ul>
+<h4 id="在java中对象一定是在堆中分配吗？"><a href="#在java中对象一定是在堆中分配吗？" class="headerlink" title="在java中对象一定是在堆中分配吗？"></a>在java中对象一定是在堆中分配吗？</h4><p><strong>在Java虚拟机中，对象是在Java堆中分配内存的，这是一个普遍的常识。但是，有一种特殊情况，那就是如果经过逃逸分析后发现，一个对象并没有逃逸出方法的话，那么就可能被优化成栈上分配。这样就无需在堆上分配内存，也无须进行垃圾回收了。</strong></p>
 <h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>和java堆一样是各个线程共享的内存区域，他用于存储已经被<strong>虚拟机加载的类型信息，常量，静态变量</strong>，即时编译器编译后的代码缓存等数据，这里也是<strong><em>需要垃圾回收</em></strong>的。</p>
 <p>在JDK8之前，Hospot虚拟机采用永久代来实现方法区，原因就是可以吧垃圾收集器的分代设计扩展到方法区，但是容易导致内存溢出的问题，在JDK8之后使用元空间实现。</p>
 <h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><p>运行时常量池是方法区的一部分。Class文件中除了有类的版本，字段，方法，接口等描述信息外，还有一项就是常量池。并且常量池相对于Class文件的另一个重要特征就是具备动态性</p>
@@ -1175,7 +1176,7 @@ java语言的动态性java 语言的动态性体现在面向对象设计方法�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">161.6k</span>&nbsp;字
+                class="white-color">182.5k</span>&nbsp;字
             
             
             

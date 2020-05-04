@@ -438,12 +438,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JAVA/">
-                                <span class="chip bg-color">JAVA</span>
-                            </a>
-                        
                             <a href="/tags/泛型/">
                                 <span class="chip bg-color">泛型</span>
+                            </a>
+                        
+                            <a href="/tags/JAVA/">
+                                <span class="chip bg-color">JAVA</span>
                             </a>
                         
                     </div>
@@ -465,21 +465,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-23
+                    2020-05-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.6k
+                    2.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    10 分
+                    11 分
                 </div>
                 
 
@@ -555,7 +555,7 @@
         NeedGeneric1<span class="token punctuation">.</span><span class="token keyword">add</span><span class="token punctuation">(</span>Double<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Double<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<p>取出集合元素时需要人为的强制类型转化到具体的目标类型，且很容易现“java.lang. ClassCast Exception”异常。</p>
+<p>取出集合元素时需要人为的强制类型转化到具体的目标类型，且很容易现“java.lang. ClassCastException”异常。</p>
 <pre class=" language-cpp"><code class="language-cpp">
 import java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
 import java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span>
@@ -640,7 +640,8 @@ import java<span class="token punctuation">.</span>util<span class="token punctu
 <span class="token punctuation">}</span></code></pre>
 <p>还有一点如果方法声明的泛型的标识和类泛型的标识一致，那么方法的泛型标识在这个方法的标识作用域中会覆盖类泛型的标识。</p>
 <p>换句话说，<strong>如果类泛型标识和方法标识相同那么类标识对这个方法来说是失效的</strong></p>
-<h2 id="泛型的通配符"><a href="#泛型的通配符" class="headerlink" title="泛型的通配符"></a>泛型的通配符</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>java里面类和类之间是有继承关系 的，比如Cat extends Animals,那么Cat就是Animal的子类，但是集合是没有继承这个概念的，比如<code>List&lt;Cat&gt; catList</code>和<code>List&lt;Animals&gt; animalList</code>你不能说 animalList是catList的父类，所以很难看出来这两个类之间的联系，<strong>但是我们现在只想让list里面只加入Animals的子类怎么办呢？</strong></p>
+<h2 id="泛型的通配符"><a href="#泛型的通配符" class="headerlink" title="泛型的通配符"></a>泛型的通配符</h2><p><strong>在使用”？“只能接收，不能修改。</strong></p>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>java里面类和类之间是有继承关系 的，比如Cat extends Animals,那么Cat就是Animal的子类，但是集合是没有继承这个概念的，比如<code>List&lt;Cat&gt; catList</code>和<code>List&lt;Animals&gt; animalList</code>你不能说 animalList是catList的父类，所以很难看出来这两个类之间的联系，<strong>但是我们现在只想让list里面只加入Animals的子类怎么办呢？</strong></p>
 <ol>
 <li>一种是Animals有多少个子类就定义多少个list，这种方法虽然也可以实现但是Animals如果有一百个，一千个，一万个子类呢你这种方法是不是就太耗时了呢。</li>
 <li>第二种就是用通配符来实现。比如：<code>List animals</code> 这个时候animals就只能添加Animals的子类了，一个list搞定。</li>
@@ -740,8 +741,24 @@ import java<span class="token punctuation">.</span>util<span class="token punctu
 <span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token keyword">extends</span> <span class="token class-name">Animals</span><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre>
 <h3 id="上下边界通配符的副作用"><a href="#上下边界通配符的副作用" class="headerlink" title="上下边界通配符的副作用"></a>上下边界通配符的副作用</h3><p>上边界通配符会导致修改失效，但是获取有效</p>
 <p>下边界通配符会导致获取有效，但是修改失效</p>
-<h3 id="PECS原则"><a href="#PECS原则" class="headerlink" title="PECS原则"></a>PECS原则</h3><p>频繁往外读取内容的,适合用上界extends。 经常往里插入的,适合用下界super。</p>
-
+<h3 id="PECS原则"><a href="#PECS原则" class="headerlink" title="PECS原则"></a>PECS原则</h3><ul>
+<li>频繁往外读取内容的，适合用上界Extends。</li>
+<li>经常往里插入的，适合用下界Super。</li>
+</ul>
+<h2 id="泛型上下限的理解"><a href="#泛型上下限的理解" class="headerlink" title="泛型上下限的理解"></a>泛型上下限的理解</h2><p>假设A的子类有B和C两个</p>
+<p>B的子类有B1</p>
+<p>C的子类有C1</p>
+<h3 id="泛型的上限理解"><a href="#泛型的上限理解" class="headerlink" title="泛型的上限理解"></a>泛型的上限理解</h3><p>那么List&lt; ? extends A &gt; list1就表示泛型的上限。</p>
+<p>那么下面的赋值都是正确的</p>
+<p>List&lt; ? extends A &gt; list1=List&lt; B &gt;();</p>
+<p>List&lt; ? extends A &gt; list1=List&lt; B1 &gt;();</p>
+<p>List&lt; ? extends A &gt; list1=List&lt; C &gt;();</p>
+<p>List&lt; ? extends A &gt; list1=List&lt; C1 &gt;();</p>
+<p><strong>如果list1是可以被添加的话，那么这就会出现问题</strong>，</p>
+<p>假设此时List&lt; ? extends A &gt; list1=List&lt; B &gt;();此时如果add一个B1类那么是一点问题都没有的，如果此时add的是一个C1对象呢？这就会出现问题，因为C1对象不是B的子类呀！List&lt; ? extends A &gt;指的是所有对象是A的子类即可，但是具体是拿一个子类在编译期还是一个未知数。</p>
+<p>如果list1可以获取呢？</p>
+<p>显然没有任何问题，因为他们都是一个类的子类。</p>
+<h3 id="泛型的下限理解"><a href="#泛型的下限理解" class="headerlink" title="泛型的下限理解"></a>泛型的下限理解</h3>
             </div>
             <hr/>
 
@@ -804,12 +821,12 @@ import java<span class="token punctuation">.</span>util<span class="token punctu
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JAVA/">
-                                    <span class="chip bg-color">JAVA</span>
-                                </a>
-                            
                                 <a href="/tags/泛型/">
                                     <span class="chip bg-color">泛型</span>
+                                </a>
+                            
+                                <a href="/tags/JAVA/">
+                                    <span class="chip bg-color">JAVA</span>
                                 </a>
                             
                         </div>
@@ -1124,7 +1141,7 @@ import java<span class="token punctuation">.</span>util<span class="token punctu
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">161.6k</span>&nbsp;字
+                class="white-color">182.5k</span>&nbsp;字
             
             
             

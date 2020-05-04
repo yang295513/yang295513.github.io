@@ -461,21 +461,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-26
+                    2020-05-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    2.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    9 分
                 </div>
                 
 
@@ -645,6 +645,33 @@
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"B->公有静态方法"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
+<h3 id="java中switch的参数类型"><a href="#java中switch的参数类型" class="headerlink" title="java中switch的参数类型"></a>java中switch的参数类型</h3><p>支持的数据类型有char,byte,short,int,enum,String以及他们对应的包装类型(如果有包装类型的话)，在JDK1.7之前不支持char和String类型</p>
+<h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><p><strong>变量</strong></p>
+<ul>
+<li>对于基本类型，final 使数值不变；</li>
+<li>对于引用类型，final 使引用不变，也就不能引用其它对象，但是被引用的对象本身是可以修改的。</li>
+</ul>
+<p><strong>方法</strong></p>
+<p>声明方法不能被子类重写。</p>
+<p>private 方法隐式地被指定为 final，如果在子类中定义的方法和基类中的一个 private 方法签名相同，此时子类的方法不是重写基类方法，而是在子类中定义了一个新的方法。</p>
+<p><strong>类</strong></p>
+<p>声明类不允许被继承。</p>
+<h3 id="静态方法不能是抽象方法，因为静态方法在类加载的时候就存在了，它不依赖于任何实例。所以静态方法必须有实现，也就是说它不能是抽象方法。"><a href="#静态方法不能是抽象方法，因为静态方法在类加载的时候就存在了，它不依赖于任何实例。所以静态方法必须有实现，也就是说它不能是抽象方法。" class="headerlink" title="静态方法不能是抽象方法，因为静态方法在类加载的时候就存在了，它不依赖于任何实例。所以静态方法必须有实现，也就是说它不能是抽象方法。"></a>静态方法不能是抽象方法，因为静态方法在类加载的时候就存在了，它不依赖于任何实例。所以静态方法必须有实现，也就是说它不能是抽象方法。</h3><h3 id="静态导包"><a href="#静态导包" class="headerlink" title="静态导包"></a><strong>静态导包</strong></h3><p>在使用静态变量和方法时不用再指明 ClassName，从而简化代码，但可读性大大降低</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> <span class="token keyword">static</span> com<span class="token punctuation">.</span>xxx<span class="token punctuation">.</span>ClassName<span class="token punctuation">.</span>*</code></pre>
+<h3 id="类的初始化顺序"><a href="#类的初始化顺序" class="headerlink" title="类的初始化顺序"></a>类的初始化顺序</h3><ul>
+<li>父类（静态变量、静态语句块）</li>
+<li>子类（静态变量、静态语句块）</li>
+<li>父类（实例变量、普通语句块）</li>
+<li>父类（构造函数）</li>
+<li>子类（实例变量、普通语句块）</li>
+<li>子类（构造函数）</li>
+</ul>
+<h3 id="泛型擦除"><a href="#泛型擦除" class="headerlink" title="泛型擦除"></a>泛型擦除</h3><p><strong>泛型信息只存在于代码编译阶段，在进入 JVM 之前，与泛型相关的信息会被擦除掉，专业术语叫做类型擦除</strong>。</p>
+<pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">></span> l1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> l2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>l1<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> l2<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//结果为true</span></code></pre>
+<p><strong>因为 <code>List</code>和 <code>List</code>在 jvm 中的 Class 都是 List.class</strong>所以结果为true</p>
 
             </div>
             <hr/>
@@ -1021,7 +1048,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">161.6k</span>&nbsp;字
+                class="white-color">182.5k</span>&nbsp;字
             
             
             

@@ -490,21 +490,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-28
+                    2020-04-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.6k
+                    5.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    19 分
                 </div>
                 
 
@@ -616,7 +616,7 @@
 <td align="left">1、排行榜 2、带权重的消息队列</td>
 </tr>
 </tbody></table>
-<h4 id="String（字符串）"><a href="#String（字符串）" class="headerlink" title="String（字符串）"></a>String（字符串）</h4><p>string 是 redis 最基本的类型，你可以理解成与 Memcached 一模一样的类型，一个 key 对应一个 value。</p>
+<h4 id="String（字符串）key-String"><a href="#String（字符串）key-String" class="headerlink" title="String（字符串）key-String"></a>String（字符串）key-String</h4><p>string 是 redis 最基本的类型，你可以理解成与 Memcached 一模一样的类型，一个 key 对应一个 value。</p>
 <p>string 类型是二进制安全的。意思是 redis 的 string 可以包含任何数据。比如jpg图片或者序列化的对象。</p>
 <p>string 类型是 Redis 最基本的数据类型，string 类型的值最大能存储 512MB。</p>
 <h5 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h5><pre class=" language-sql"><code class="language-sql">redis <span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span>:<span class="token number">6379</span><span class="token operator">></span> <span class="token keyword">SET</span> runoob <span class="token string">"Hello World!"</span>
@@ -625,7 +625,7 @@ redis <span class="token number">127.0</span><span class="token punctuation">.</
 <span class="token string">"Hello World!"</span></code></pre>
 <p>在以上实例中我们使用了 Redis 的 <strong>SET</strong> 和 <strong>GET</strong> 命令。键为 runoob，对应的值为 <strong>菜鸟教程</strong>。</p>
 <p><strong>注意：</strong>一个键最大能存储 512MB。</p>
-<h3 id="Hash（哈希）"><a href="#Hash（哈希）" class="headerlink" title="Hash（哈希）"></a>Hash（哈希）</h3><p>Redis hash 是一个键值(key=&gt;value)对集合。</p>
+<h3 id="Hash（哈希）key-map"><a href="#Hash（哈希）key-map" class="headerlink" title="Hash（哈希）key-map"></a>Hash（哈希）key-map</h3><p>Redis hash 是一个键值(key=&gt;value)对集合。</p>
 <p>Redis hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象。</p>
 <h4 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h4><p><strong>DEL runoob</strong> 用于删除前面测试用过的 key，不然会报错：<strong>(error) WRONGTYPE Operation against a key holding the wrong kind of value</strong></p>
 <pre class=" language-sql"><code class="language-sql">redis <span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span>:<span class="token number">6379</span><span class="token operator">></span> DEL runoob
@@ -637,7 +637,7 @@ redis <span class="token number">127.0</span><span class="token punctuation">.</
 <span class="token string">"World"</span></code></pre>
 <p>实例中我们使用了 Redis <strong>HMSET, HGET</strong> 命令，<strong>HMSET</strong> 设置了两个 <strong>field=&gt;value</strong> 对, HGET 获取对应 <strong>field</strong> 对应的 <strong>value</strong>。</p>
 <p>每个 hash 可以存储 232</p>
-<h3 id="List（列表）"><a href="#List（列表）" class="headerlink" title="List（列表）"></a>List（列表）</h3><p>Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。</p>
+<h3 id="List（列表）key-list"><a href="#List（列表）key-list" class="headerlink" title="List（列表）key-list"></a>List（列表）key-list</h3><p>Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。</p>
 <h4 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h4><pre class=" language-sql"><code class="language-sql">redis <span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span>:<span class="token number">6379</span><span class="token operator">></span> DEL runoob
 redis <span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span>:<span class="token number">6379</span><span class="token operator">></span> lpush runoob redis
 <span class="token punctuation">(</span><span class="token keyword">integer</span><span class="token punctuation">)</span> <span class="token number">1</span>
@@ -652,7 +652,7 @@ redis <span class="token number">127.0</span><span class="token punctuation">.</
 redis <span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span>:<span class="token number">6379</span><span class="token operator">></span></code></pre>
 <p>列表最多可存储 232 - 1 元素 (4294967295, 每个列表可存储40多亿)。</p>
 <hr>
-<h3 id="Set（集合）"><a href="#Set（集合）" class="headerlink" title="Set（集合）"></a>Set（集合）</h3><p>Redis 的 Set 是 string 类型的无序集合。</p>
+<h3 id="Set（集合）key-set"><a href="#Set（集合）key-set" class="headerlink" title="Set（集合）key-set"></a>Set（集合）key-set</h3><p>Redis 的 Set 是 string 类型的无序集合。</p>
 <p>集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)。</p>
 <h4 id="sadd-命令"><a href="#sadd-命令" class="headerlink" title="sadd 命令"></a>sadd 命令</h4><p>添加一个 string 元素到 key 对应的 set 集合中，成功返回 1，如果元素已经在集合中返回 0。</p>
 <pre><code>sadd key member</code></pre><h4 id="实例-3"><a href="#实例-3" class="headerlink" title="实例"></a>实例</h4><pre class=" language-sql"><code class="language-sql">redis <span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span>:<span class="token number">6379</span><span class="token operator">></span> DEL runoob
@@ -690,6 +690,134 @@ redis <span class="token number">127.0</span><span class="token punctuation">.</
 <span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"mongodb"</span>
 <span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"rabitmq"</span>
 <span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"redis"</span></code></pre>
+<h3 id="GEO地理位置支持（geospatial）"><a href="#GEO地理位置支持（geospatial）" class="headerlink" title="GEO地理位置支持（geospatial）"></a>GEO地理位置支持（geospatial）</h3><p><strong>3.2版本里面新增的一个功能就是对GEO(地理位置)的支持</strong></p>
+<ul>
+<li>有效的经度从-180度到180度。</li>
+<li>有效的纬度从-85.05112878度到85.05112878度。</li>
+</ul>
+<h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><p><strong>命令：GEOADD key longitude latitude member [longitude latitude member …]</strong></p>
+<p>命令描述：将指定的地理空间位置（经度、纬度度、名称）添加到指定的<code>key</code>中。</p>
+<p>返回值：添加到sorted set元素的数目，但不包括已更新score的元素。</p>
+<p><img src="/upload/image-20200429133247657-1588138372429.png" alt="image-20200429133247657"></p>
+<p><strong>命令：GEODIST key member1 member2 [unit]</strong></p>
+<p>命令描述：</p>
+<p>返回两个给定位置之间的距离。如果两个位置之间的其中一个不存在， 那么命令返回空值。指定单位的参数 unit 必须是以下单位的其中一个：</p>
+<ul>
+<li><strong>m</strong> 表示单位为米。</li>
+<li><strong>km</strong> 表示单位为千米。</li>
+<li><strong>mi</strong> 表示单位为英里。</li>
+<li><strong>ft</strong> 表示单位为英尺。</li>
+</ul>
+<p><img src="/upload/image-20200429133412776.png" alt="image-20200429133412776"></p>
+<p><strong>命令：GEOPOS key member [member …]</strong></p>
+<p>命令描述：从<code>key</code>里返回所有给定位置元素的位置（经度和纬度）。</p>
+<p>返回值：GEOPOS 命令返回一个数组， 数组中的每个项都由两个元素组成： 第一个元素为给定位置元素的经度， 而第二个元素则为给定位置元素的纬度。当给定的位置元素不存在时， 对应的数组项为空值。</p>
+<p><img src="/upload/image-20200429133459177.png" alt="image-20200429133459177"></p>
+<p><strong>命令：GEOHASH key member [member …]</strong></p>
+<p>命令描述：返回一个或多个位置元素的 Geohash 表示。通常使用表示位置的元素使用不同的技术，使用Geohash位置52点整数编码。由于编码和解码过程中所使用的初始最小和最大坐标不同，编码的编码也不同于标准。此命令返回一个<strong>标准的Geohash</strong></p>
+<p>返回值：一个数组， 数组的每个项都是一个 geohash 。 命令返回的 geohash 的位置与用户给定的位置元素的位置一一对应。</p>
+<p><img src="/upload/image-20200429133521833.png" alt="image-20200429133521833"></p>
+<p><strong>命令：GEORADIUS key longitude latitude radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count]</strong></p>
+<p>命令描述：</p>
+<p>以给定的经纬度为中心， 返回键包含的位置元素当中， 与中心的距离不超过给定最大距离的所有位置元素。</p>
+<p>范围可以使用以下其中一个单位：</p>
+<ul>
+<li><strong>m</strong> 表示单位为米。</li>
+<li><strong>km</strong> 表示单位为千米。</li>
+<li><strong>mi</strong> 表示单位为英里。</li>
+<li><strong>ft</strong> 表示单位为英尺。</li>
+</ul>
+<p>在给定以下可选项时， 命令会返回额外的信息：</p>
+<ul>
+<li><code>WITHDIST</code>: 在返回位置元素的同时， 将位置元素与中心之间的距离也一并返回。 距离的单位和用户给定的范围单位保持一致。</li>
+<li><code>WITHCOORD</code>: 将位置元素的经度和维度也一并返回。</li>
+<li><code>WITHHASH</code>: 以 52 位有符号整数的形式， 返回位置元素经过原始 geohash 编码的有序集合分值。 这个选项主要用于底层应用或者调试， 实际中的作用并不大。</li>
+</ul>
+<p>命令默认返回未排序的位置元素。 通过以下两个参数， 用户可以指定被返回位置元素的排序方式：</p>
+<ul>
+<li><code>ASC</code>: 根据中心的位置， 按照从近到远的方式返回位置元素。</li>
+<li><code>DESC</code>: 根据中心的位置， 按照从远到近的方式返回位置元素。</li>
+</ul>
+<p>在默认情况下， GEORADIUS 命令会返回所有匹配的位置元素。 虽然用户可以使用 <strong>COUNT ``</strong> 选项去获取前 N 个匹配元素， 但是因为命令在内部可能会需要对所有被匹配的元素进行处理， 所以在对一个非常大的区域进行搜索时， 即使只使用 <code>COUNT</code> 选项去获取少量元素， 命令的执行速度也可能会非常慢。 但是从另一方面来说， 使用 <code>COUNT</code> 选项去减少需要返回的元素数量， 对于减少带宽来说仍然是非常有用的。</p>
+<p>返回值：</p>
+<ul>
+<li>在没有给定任何 <code>WITH</code> 选项的情况下， 命令只会返回一个像 [“New York”,”Milan”,”Paris”] 这样的线性（linear）列表。</li>
+<li>在指定了 <code>WITHCOORD</code> 、 <code>WITHDIST</code> 、 <code>WITHHASH</code> 等选项的情况下， 命令返回一个二层嵌套数组， 内层的每个子数组就表示一个元素。</li>
+</ul>
+<p>在返回嵌套数组时， 子数组的第一个元素总是位置元素的名字。 至于额外的信息， 则会作为子数组的后续元素， 按照以下顺序被返回：</p>
+<ol>
+<li>以浮点数格式返回的中心与位置元素之间的距离， 单位与用户指定范围时的单位一致。</li>
+<li>geohash 整数。</li>
+<li>由两个元素组成的坐标，分别为经度和纬度。</li>
+</ol>
+<p><img src="/upload/image-20200429133548548.png" alt="image-20200429133548548"></p>
+<p><strong>命令：GEORADIUSBYMEMBER key member radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count]</strong></p>
+<p>命令描述：这个命令和 GEORADIUS 命令一样， 都可以找出位于指定范围内的元素， 但是 <code>GEORADIUSBYMEMBER</code> 的中心点是由给定的位置元素决定的。</p>
+<h3 id="HyperLogLong"><a href="#HyperLogLong" class="headerlink" title="HyperLogLong"></a>HyperLogLong</h3><h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><p>统计网页访问量。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h4><p>如果使用set来统计访问量的话，假设通过set存储ip来确定访问量，一个ipv4占用4个字节，那么1000万访问量就占用了4*1000_0000字节=30.81mb左右，那么这还只是一篇文章的访问量统计，如果有100篇呢？，而且ipv4我们假设的是使用直接存储的方式，如果我们使用字符串来存储，那么一个Ipv4在ASCII下占用12个字节。</p>
+<p>所以内存开销太大，不推荐使用</p>
+<h4 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h4><p><strong>redis 2.8.6 版本之后，新的命令功能，HyperLogLog。</strong></p>
+<p>Redis 提供了 HyperLogLog 数据结构就是用来解决这种统计问题的。HyperLogLog 提供不精确的去重计数方案，虽然不精确但是也不是非常不精确，标准误差是 0.81%，这样的精确度已经可以满足上面的 UV 统计需求了。</p>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p><strong>Redis HyperLogLog</strong> 是用来做基数统计的算法，HyperLogLog 的优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定 的、并且是很小的。</p>
+<p>在 Redis 里面，每个 HyperLogLog 键只需要花费 <strong>12 KB</strong> 内存(因为 Redis 对 HyperLogLog 的存储进行了优化，在计数比较小时，它的存储空间采用稀疏矩阵存储，空间占用很小，仅仅在计数慢慢变大，稀疏矩阵占用空间渐渐超过了阈值时才会一次性转变成稠密矩阵，才会占用 12k 的空间。)，就可以计算接近 2^64 个不同元素的基 数。这和计算基数时，元素越多耗费内存就越多的集合形成鲜明对比。</p>
+<p>但是，因为 HyperLogLog 只会根据输入元素来计算基数，而不会储存输入元素本身，所以 HyperLogLog 不能像集合那样，返回输入的各个元素。</p>
+<h4 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h4><h5 id="PFADD-key-element-element-…-，添加到HyperLogLog结构中"><a href="#PFADD-key-element-element-…-，添加到HyperLogLog结构中" class="headerlink" title="PFADD key element [element …]，添加到HyperLogLog结构中"></a>PFADD key element [element …]，添加到HyperLogLog结构中</h5><p><strong>时间复杂度：</strong>O(1) to add every element.</p>
+<pre class=" language-bash"><code class="language-bash">redis<span class="token operator">></span> PFADD hll a b c d e f g
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+redis<span class="token operator">></span> PFCOUNT hll
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 7
+redis<span class="token operator">></span> </code></pre>
+<h4 id="PFCOUNT-key-key-…-统计hyperLogLog中不重复元素的个数"><a href="#PFCOUNT-key-key-…-统计hyperLogLog中不重复元素的个数" class="headerlink" title="PFCOUNT key [key …]统计hyperLogLog中不重复元素的个数"></a>PFCOUNT key [key …]统计hyperLogLog中不重复元素的个数</h4><h4 id="PFMERGE-destkey-sourcekey-sourcekey-…-和并多个hyperLogLog"><a href="#PFMERGE-destkey-sourcekey-sourcekey-…-和并多个hyperLogLog" class="headerlink" title="PFMERGE destkey sourcekey [sourcekey …]和并多个hyperLogLog"></a>PFMERGE destkey sourcekey [sourcekey …]和并多个hyperLogLog</h4><pre class=" language-bash"><code class="language-bash">redis<span class="token operator">></span> PFADD hll1 foo bar zap a
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+redis<span class="token operator">></span> PFADD hll2 a b c foo
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+redis<span class="token operator">></span> PFMERGE hll3 hll1 hll2
+OK
+redis<span class="token operator">></span> PFCOUNT hll3
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 6
+redis<span class="token operator">></span> </code></pre>
+<h3 id="bitmap"><a href="#bitmap" class="headerlink" title="bitmap"></a>bitmap</h3><p><strong>BitMap是什么</strong>就是通过一个bit位来表示某个元素对应的值或者状态,其中的key就是对应元素本身。我们知道8个bit可以组成一个Byte，所以bitmap本身会极大的节省储存空间。</p>
+<p><strong>Redis中的BitMap</strong>Redis从2.2.0版本开始新增了<code>setbit</code>,<code>getbit</code>,<code>bitcount</code>等几个bitmap相关命令。虽然是新命令，但是并没有新增新的数据类型，因为<code>setbit</code>等命令只不过是在<code>set</code>上的扩展。</p>
+<h4 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景"></a>使用场景</h4><h6 id="使用-bitmap-实现用户上线次数统计"><a href="#使用-bitmap-实现用户上线次数统计" class="headerlink" title="使用 bitmap 实现用户上线次数统计"></a>使用 bitmap 实现用户上线次数统计</h6><p>假设现在我们希望记录自己网站上的用户的上线频率，比如说，计算用户 A 上线了多少天，用户 B 上线了多少天，诸如此类，以此作为数据，从而决定让哪些用户参加 beta 测试等活动 —— 这个模式可以使用SETBIT和 <code>BITCOUNT</code> 来实现。</p>
+<p>比如说，每当用户在某一天上线的时候，我们就使用 SETBIT ，以用户名作为 key ，将那天所代表的网站的上线日作为 offset 参数，并将这个 offset 上的为设置为 1 。</p>
+<p>举个例子，如果今天是网站上线的第 100 天，而用户 peter 在今天阅览过网站，那么执行命令 <code>SETBIT peter 100 1</code> ；如果明天 peter 也继续阅览网站，那么执行命令 <code>SETBIT peter 101 1</code> ，以此类推。</p>
+<p>当要计算 peter 总共以来的上线次数时，就使用 <code>BITCOUNT</code> 命令：执行 <code>BITCOUNT peter</code> ，得出的结果就是 </p>
+<p>peter 上线的总天数。</p>
+<p>假设现在我们希望记录自己网站上的用户的上线频率，比如说，计算用户 A 上线了多少天，用户 B 上线了多少天，诸如此类，以此作为数据，从而决定让哪些用户参加 beta 测试等活动 —— 这个模式可以使用 SETBIT 和 <code>BITCOUNT</code> 来实现。</p>
+<p>比如说，每当用户在某一天上线的时候，我们就使用 SETBIT ，以用户名作为 key ，将那天所代表的网站的上线日作为 offset 参数，并将这个 offset 上的为设置为 1 。</p>
+<p>举个例子，如果今天是网站上线的第 100 天，而用户 peter 在今天阅览过网站，那么执行命令 <code>SETBIT peter 100 1</code> ；如果明天 peter 也继续阅览网站，那么执行命令 <code>SETBIT peter 101 1</code> ，以此类推。</p>
+<p>当要计算 peter 总共以来的上线次数时，就使用 <code>BITCOUNT</code> 命令：执行 <code>BITCOUNT peter</code> ，得出的结果就是 peter 上线的总天数。</p>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><h5 id="SETBIT-key-offset-value"><a href="#SETBIT-key-offset-value" class="headerlink" title="SETBIT key offset value"></a>SETBIT key offset value</h5><p><strong>时间复杂度：</strong>O(1)</p>
+<p>设置或者清空key的value(字符串)在offset处的bit值。</p>
+<pre class=" language-bash"><code class="language-bash">redis<span class="token operator">></span> SETBIT mykey 7 1
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+redis<span class="token operator">></span> SETBIT mykey 7 0
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+redis<span class="token operator">></span> GET mykey
+<span class="token string">"\x00"</span>
+redis<span class="token operator">></span> </code></pre>
+<h4 id="BITCOUNT-key-start-end"><a href="#BITCOUNT-key-start-end" class="headerlink" title="BITCOUNT key [start end]"></a>BITCOUNT key [start end]</h4><p><strong>时间复杂度：</strong>O(N)</p>
+<p>统计字符串被设置为1的bit数.</p>
+<pre class=" language-java"><code class="language-java">redis<span class="token operator">></span> SET mykey <span class="token string">"foobar"</span>
+OK
+redis<span class="token operator">></span> BITCOUNT <span class="token function">mykey</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">26</span>
+redis<span class="token operator">></span> BITCOUNT mykey <span class="token number">0</span> <span class="token function">0</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">4</span>
+redis<span class="token operator">></span> BITCOUNT mykey <span class="token number">1</span> <span class="token function">1</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">6</span>
+redis<span class="token operator">></span></code></pre>
+<h4 id="GETBIT-key-offset"><a href="#GETBIT-key-offset" class="headerlink" title="GETBIT key offset"></a>GETBIT key offset</h4><p><strong>时间复杂度：</strong>O(1)</p>
+<p>返回key对应的string在offset处的bit值 当offset超出了字符串长度的时候，这个字符串就被假定为由0比特填充的连续空间。当key不存在的时候，它就认为是一个空字符串，所以offset总是超出范围，然后value也被认为是由0比特填充的连续空间。到内存分配。</p>
+<pre class=" language-bash"><code class="language-bash">redis<span class="token operator">></span> SETBIT mykey 7 1
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+redis<span class="token operator">></span> GETBIT mykey 0
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+redis<span class="token operator">></span> GETBIT mykey 7
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 1
+redis<span class="token operator">></span> GETBIT mykey 100
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> 0
+redis<span class="token operator">></span> </code></pre>
 
             </div>
             <hr/>
@@ -1122,7 +1250,7 @@ Stringset key val
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">161.6k</span>&nbsp;字
+                class="white-color">182.5k</span>&nbsp;字
             
             
             
