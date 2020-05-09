@@ -469,7 +469,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-28
+                    2020-05-06
                 </div>
                 
 
@@ -552,7 +552,7 @@
 <li><p>lockInterruptibly:如果获取了锁定立即返回，如果没有获取锁定，当前线程处于休眠状态，直到或者锁定，或者当前线程被别的线程中断</p>
 </li>
 </ul>
-<h3 id="什么是不可中断"><a href="#什么是不可中断" class="headerlink" title="什么是不可中断"></a>什么是不可中断</h3><p>一个线程获得锁后，另一个线程想要获得锁，必须处于阻塞或等待状态，如歌一个线程不释放锁，第二个线程会一直阻塞或者等待，不可中断</p>
+<h3 id="什么是不可中断"><a href="#什么是不可中断" class="headerlink" title="什么是不可中断"></a>什么是不可中断</h3><p>一个线程获得锁后，另一个线程想要获得锁，必须处于阻塞或等待状态，如果一个线程不释放锁，第二个线程会一直阻塞或者等待，不可中断</p>
 <h3 id="Synchronized不可中断演示"><a href="#Synchronized不可中断演示" class="headerlink" title="Synchronized不可中断演示"></a>Synchronized不可中断演示</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Synchronized2</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
         Runnable runnable<span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">{</span>
@@ -1090,7 +1090,7 @@ JMM定义了Java 虚拟机(JVM)在计算机内存(RAM)中的工作方式。JVM�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">182.5k</span>&nbsp;字
+                class="white-color">186.1k</span>&nbsp;字
             
             
             

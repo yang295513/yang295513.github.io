@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, Byy">
+    <meta name="keywords" content="lambda入门, Byy">
     <meta name="description" content>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | Byy</title>
+    <title>lambda入门 | Byy</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">lambda入门</h1>
                 </div>
             </div>
         </div>
@@ -436,9 +436,17 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/lambad/">
+                                <span class="chip bg-color">lambad</span>
+                            </a>
+                        
+                            <a href="/tags/新特性/">
+                                <span class="chip bg-color">新特性</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -450,21 +458,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-28
+                    2020-01-04
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-28
+                    2020-05-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    405
                 </div>
                 
 
@@ -486,15 +494,71 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+                <blockquote>
+<p>lambad是JDK1.8新增的一个新特性，他可以极大的简化我们的开发。Lambda表达式在运行时会生成一个私有的静态函数。lambad本质上就是一个内部类。</p>
+</blockquote>
+<h3 id="使用前提"><a href="#使用前提" class="headerlink" title="使用前提"></a>使用前提</h3><ul>
+<li>方法的参数或者局部变量的类型必须是函数式接口才能使用lambad</li>
+<li>函数式接口就是有且只有一个抽象方法(default方法也不行)</li>
+<li>函数式接口可以使用<strong>@FunctionalInterface</strong>注解检测</li>
+</ul>
+<h4 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LambdaTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        FunctionInter functionInter<span class="token operator">=</span>name <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> name<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+        FunctionInter functionInter1<span class="token operator">=</span>name<span class="token operator">-</span><span class="token operator">></span>name<span class="token punctuation">;</span>
+        functionInter<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"gg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//检查这个接口是不是函数式接口</span>
+<span class="token annotation punctuation">@FunctionalInterface</span>
+<span class="token keyword">interface</span> <span class="token class-name">FunctionInter</span><span class="token punctuation">{</span>
+    String <span class="token function">get</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>lambad表达式可以替换部分内部类的写法，所以我们在介绍语法的同时可以对比内部类。</p>
+<pre class=" language-java"><code class="language-java">        <span class="token comment" spellcheck="true">//内部类写法</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//lambad写法</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">{</span>
+
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">(</span>参数列表<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">{</span>
+   被重写的方法体
+<span class="token punctuation">}</span></code></pre>
+<p>当然lambad还可以在语法上简化</p>
+<h4 id="简化"><a href="#简化" class="headerlink" title="简化"></a>简化</h4><h4 id="可以省略参数列表类型"><a href="#可以省略参数列表类型" class="headerlink" title="可以省略参数列表类型"></a>可以省略参数列表类型</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LambdaTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//标准格式</span>
+        FunctionInter functionInter<span class="token operator">=</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> name<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//省略参数列表类型</span>
+        FunctionInter functionInter<span class="token operator">=</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> name<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//检查这个接口是不是函数式接口</span>
+<span class="token annotation punctuation">@FunctionalInterface</span>
+<span class="token keyword">interface</span> <span class="token class-name">FunctionInter</span><span class="token punctuation">{</span>
+    String <span class="token function">get</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="只有一个参数可以不加括号"><a href="#只有一个参数可以不加括号" class="headerlink" title="只有一个参数可以不加括号"></a>只有一个参数可以不加括号</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LambdaTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        FunctionInter functionInter<span class="token operator">=</span>name<span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> name<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//检查这个接口是不是函数式接口</span>
+<span class="token annotation punctuation">@FunctionalInterface</span>
+<span class="token keyword">interface</span> <span class="token class-name">FunctionInter</span><span class="token punctuation">{</span>
+    String <span class="token function">get</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="方法体内只有一条代码可以省略return，大括号"><a href="#方法体内只有一条代码可以省略return，大括号" class="headerlink" title="方法体内只有一条代码可以省略return，大括号"></a>方法体内只有一条代码可以省略return，大括号</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LambdaTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        FunctionInter functionInter<span class="token operator">=</span>name<span class="token operator">-</span><span class="token operator">></span> name<span class="token operator">-</span><span class="token operator">></span>name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -520,7 +584,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/28/hello-world/">http://yoursite.com/2020/04/28/hello-world/</a>
+                    <a href="http://yoursite.com/2020/01/04/lambda-ru-men/">http://yoursite.com/2020/01/04/lambda-ru-men/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -557,7 +621,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/lambad/">
+                                    <span class="chip bg-color">lambad</span>
+                                </a>
+                            
+                                <a href="/tags/新特性/">
+                                    <span class="chip bg-color">新特性</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -600,7 +672,7 @@
         repo: 'yang295513.github.io',
         owner: 'yang295513',
         admin: ["yang295513"],
-        id: '2020-04-28T19-47-45',
+        id: '2020-01-04T23-03-03',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -628,46 +700,51 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/28/jvm-xue-xi-di-yi-tian-zi-dong-nei-cun-guan-li/">
+                <a href="/2020/01/30/docker-ru-men/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Docker入门">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">Docker入门</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            title: jvm学习第一天-自动内存管理date: 2020-03-14 17:35:56tags: 
+                            Docker入门前言
+ docker是一种容器,其产生的目的只要是解决了开发环境和运维环境不同的一个解决方案，解决了运行环境和配置环境的问题，但是它又和虚拟化技术不同，docker比虚拟化技术占用资源更少，启动更快，甚至启动是毫秒级的
 
-jvm
-java
-虚拟机
-
-运行时数据区域
-
-方法区
-堆
-虚拟机栈
-本地方法栈
-程序计数器
-
-其中前两个是线程共享的，后三个是线程
+D
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-28
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-30
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            yang295513
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/工具/" class="post-category">
+                                    工具
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/docker/">
+                        <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                    <a href="/tags/容器/">
+                        <span class="chip bg-color">容器</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -679,33 +756,33 @@ java
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/23/juc-xiang-jie/">
+                <a href="/2019/12/30/redis-pei-zhi-wen-jian-xiang-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="JUC详解">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="redis配置文件详解">
                         
-                        <span class="card-title">JUC详解</span>
+                        <span class="card-title">redis配置文件详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            什么是JUC
-juc就是java5.0提供的并发包
-线程和进程进程：一个程序，QQ.exe Music.exe 程序的集合；一个进程往往可以包含多个线程，至少包含一个！Java默认有几个线程？ 2 个 mian、GC线程：开了一个进程 Ty
+                            ###################################  NETWORK ###################################
+
+# 指定 redis 只接收来自于该IP地址的请求，如果不进行设置，那么将处
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-30
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/并发/" class="post-category">
-                                    并发
+                            <a href="/categories/redis/" class="post-category">
+                                    redis
                                 </a>
                             
                             
@@ -715,12 +792,12 @@ juc就是java5.0提供的并发包
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/并发/">
-                        <span class="chip bg-color">并发</span>
+                    <a href="/tags/配置/">
+                        <span class="chip bg-color">配置</span>
                     </a>
                     
-                    <a href="/tags/JUC/">
-                        <span class="chip bg-color">JUC</span>
+                    <a href="/tags/redis/">
+                        <span class="chip bg-color">redis</span>
                     </a>
                     
                 </div>
@@ -869,7 +946,7 @@ juc就是java5.0提供的并发包
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">182.5k</span>&nbsp;字
+                class="white-color">186.1k</span>&nbsp;字
             
             
             

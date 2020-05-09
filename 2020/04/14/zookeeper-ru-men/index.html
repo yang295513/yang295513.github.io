@@ -490,21 +490,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-26
+                    2020-05-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    682
+                    2.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    8 分
                 </div>
                 
 
@@ -526,6 +526,7 @@
 <blockquote>
 <p>顾名思义 zookeeper 就是动物园管理员，他是用来管 hadoop（大象）、Hive(蜜蜂)、pig(小 猪)的管理员， Apache Hbase 和 Apache Solr 的分布式集群都用到了 zookeeper；Zookeeper: 是一个分布式的、开源的程序协调服务，是 hadoop 项目下的一个子项目。他提供的主要功 能包括：配置管理、名字服务、分布式锁、集群管理。</p>
 </blockquote>
+<h2 id="zookeeper提供了什么"><a href="#zookeeper提供了什么" class="headerlink" title="zookeeper提供了什么"></a>zookeeper提供了什么</h2><p>简单的说，zookeeper=文件系统+通知机制。</p>
 <h3 id="什么是强一致性和最终一致性"><a href="#什么是强一致性和最终一致性" class="headerlink" title="什么是强一致性和最终一致性"></a>什么是强一致性和最终一致性</h3><ul>
 <li><p>强一致性：在任何时刻所有的用户或者进程查询到的都是最近一次成功更新的数据。强一致性是程度最高一致性要求，也是最难实现的。关系型数据库更新操作就是这个案例。</p>
 </li>
@@ -545,7 +546,102 @@
 </blockquote>
 <p><img src="/upload/1586849627323.png" alt="1586849627323"></p>
 <h2 id="一致性协议"><a href="#一致性协议" class="headerlink" title="一致性协议"></a>一致性协议</h2><p>事务需要跨多个分布式节点时，为了保证事务的ACID特性，需要选举出一个协调者来协调分布式各个节点的调度，基于这个思想衍生了很多一致性协议：</p>
-<h2 id="zookeeper的数据结构"><a href="#zookeeper的数据结构" class="headerlink" title="zookeeper的数据结构"></a>zookeeper的数据结构</h2>
+<h3 id="ZAB协议-原子广播协议"><a href="#ZAB协议-原子广播协议" class="headerlink" title="ZAB协议(原子广播协议)"></a>ZAB协议(原子广播协议)</h3><h2 id="zookeeper的数据结构"><a href="#zookeeper的数据结构" class="headerlink" title="zookeeper的数据结构"></a>zookeeper的数据结构</h2><p>zookeeper数据模型的结构和文件系统很类似，整体上可以看做是一棵树，每个节点称作一个Znode,每个ZNode都可以通过唯一路径标识</p>
+<p><img src="/upload/20170725093443730.jfif" alt="img"></p>
+<h3 id="Zonde"><a href="#Zonde" class="headerlink" title="Zonde"></a>Zonde</h3><ul>
+<li>每一个znode默认能够存储1MB的数据</li>
+</ul>
+<h3 id="Znode节点分类"><a href="#Znode节点分类" class="headerlink" title="Znode节点分类"></a>Znode节点分类</h3><h4 id="持久化节点"><a href="#持久化节点" class="headerlink" title="持久化节点"></a>持久化节点</h4><h5 id="持久化节点-1"><a href="#持久化节点-1" class="headerlink" title="持久化节点"></a>持久化节点</h5><p>创建这个节点的客户端在与zookeeper服务的连接断开后，这个节点也不会被删除（除非您使用API强制删除）。</p>
+<h5 id="持久化顺序编号节点"><a href="#持久化顺序编号节点" class="headerlink" title="持久化顺序编号节点"></a>持久化顺序编号节点</h5><p>当客户端请求创建这个节点A后，zookeeper会根据parent-znode的zxid状态，为这个A节点编写一个全目录唯一的编号（这个编号只会一直增长）。当客户端与zookeeper服务的连接断开后，这个节点也不会被删除。</p>
+<h4 id="临时节点"><a href="#临时节点" class="headerlink" title="临时节点"></a>临时节点</h4><h5 id="临时目录节点"><a href="#临时目录节点" class="headerlink" title="临时目录节点"></a>临时目录节点</h5><p>创建这个节点的客户端在与zookeeper服务的连接断开后，这个节点（还有涉及到的子节点）就会被删除。</p>
+<h5 id="临时顺序编号目录节点"><a href="#临时顺序编号目录节点" class="headerlink" title="临时顺序编号目录节点"></a>临时顺序编号目录节点</h5><p>当客户端请求创建这个节点A后，zookeeper会根据parent-znode的zxid状态，为这个A节点编写一个全目录唯一的编号（这个编号只会一直增长）。当创建这个节点的客户端与zookeeper服务的连接断开后，这个节点被删除。</p>
+<h2 id="zookeeper三种角色"><a href="#zookeeper三种角色" class="headerlink" title="zookeeper三种角色"></a>zookeeper三种角色</h2><h4 id="领导者-Leader"><a href="#领导者-Leader" class="headerlink" title="领导者(Leader)"></a>领导者(Leader)</h4><p>负责集群的写请求，并发起投票，只有超过半数的节点同意后才会提交该写请求。</p>
+<h4 id="跟随者-Follower"><a href="#跟随者-Follower" class="headerlink" title="跟随者(Follower)"></a>跟随者(Follower)</h4><p>处理读请求，响应结果。转发写请求到Leader,在选举过程中参加投票</p>
+<h4 id="观察者-Observer"><a href="#观察者-Observer" class="headerlink" title="观察者(Observer)"></a>观察者(Observer)</h4><p>可以理解为没有投票权的Follower，主要职责是协助follower处理读请求，那么当整个zk集群写请求负载很高时，为什么不增加follower节点呢？原因是增加follower节点会让leader在提出写请求提案时，需要半数以上的follower投票节点同意，这样会增加leader和follower的通信压力，降低写操作的效率</p>
+<h2 id="zookeeper两种模式"><a href="#zookeeper两种模式" class="headerlink" title="zookeeper两种模式"></a>zookeeper两种模式</h2><h4 id="恢复模式"><a href="#恢复模式" class="headerlink" title="恢复模式"></a>恢复模式</h4><p>当启动或领导(Leader)节点崩溃后，zk进入恢复状态，选举leader,当leader选出后，将完成leader和其他机器的数据同步，当大多数server完成和leader的同步后，恢复模式解结束.</p>
+<h4 id="广播模式"><a href="#广播模式" class="headerlink" title="广播模式"></a>广播模式</h4><p>一旦Leader已经和多数的Follower进入了状态同步后，进入广播模式。进入广播模式后，如果有新加入的服务器，会自动冲leader中同步数据.leader在接收客户端请求后，将会成事务提案广播给其他机器，如果有超过半数以上的Follower同意该提交后，在提交事务。</p>
+<h2 id="zxid"><a href="#zxid" class="headerlink" title="zxid"></a>zxid</h2><p>事务id，  为了保证事务的顺序一致性，zookeeper 采用了递增的事 务 id 号（zxid）来标识事务。所有的提议（proposal）都 在被提出的时候加上了 zxid。实现中 zxid 是一个 64 位的 数字，它高32位是epoch（ZAB协议通过epoch编号来 区分 Leader 周期变化的策略）用来标识 leader 关系是否 改变，每次一个 leader 被选出来，它都会有一个新的 epoch=（原来的epoch+1），标识当前属于那个leader的 统治时期。低32位用于递增计数<br> <strong>epoch ：可以理解为当前集群所处的年代或者周期，每个 leader 就像皇帝，都有自己的年号，所以每次改朝换代， leader 变更之后，都会在前一个年代的基础上加 1 。这样 就算旧的 leader 崩 溃 恢 复 之 后 ，也 没 有 人 听 他 的 了 ，因 为 follower 只听从当前年代的 leader 的命令</strong></p>
+<h2 id="zookeeper选举算法"><a href="#zookeeper选举算法" class="headerlink" title="zookeeper选举算法"></a>zookeeper选举算法</h2><h3 id="zk节点状态角色"><a href="#zk节点状态角色" class="headerlink" title="zk节点状态角色"></a>zk节点状态角色</h3><p>zk几区单节点状态（每个节点有且只有一个状态），zk的定位一定需要一个leader节点处于lading状态中</p>
+<ul>
+<li>looking：寻找leader状态，当前集群没有leader，进入leader选举流程。</li>
+<li>following：跟随者状态，接受leading节点同步和指挥。</li>
+<li>leading：领导者状态。</li>
+<li>observing：观察者状态，表名当前服务器是observer。</li>
+</ul>
+<h2 id="zookeeper消息广播算法"><a href="#zookeeper消息广播算法" class="headerlink" title="zookeeper消息广播算法"></a>zookeeper消息广播算法</h2><h2 id="zookeeper常用命令"><a href="#zookeeper常用命令" class="headerlink" title="zookeeper常用命令"></a>zookeeper常用命令</h2><p><strong>help 可以获取命令行帮助</strong></p>
+<p> <strong>ls path [watch] 查看指定路径下的所有节点</strong></p>
+<p><strong>ls2 path [watch] 查看指定路径节点的状态</strong></p>
+<p><strong>get path [watch] 获取指定节点保存的信息</strong></p>
+<p><strong>set path data [watch]修改指定路径下节点的信息</strong></p>
+<p><strong>create [-s] [-e] path data acl 创建指定路径下节点</strong></p>
+<p><strong>delete path [version] 删除指定节点，如果该路径下还有子节点那么不能删除，必须使用rmr递归删除</strong></p>
+<p><strong>stat [-w] path 查看节点状态</strong></p>
+<h3 id="节点信息"><a href="#节点信息" class="headerlink" title="节点信息"></a>节点信息</h3><ul>
+<li>cZxid：znode创建时的事务id（16进制）。</li>
+<li>ctime：znode创建的时间。</li>
+<li>mZxid：znode最后一次修改的事务id。</li>
+<li>mtime：最后一次修改的时间。</li>
+<li>pZxid：数据节点的子节点列表，最后一次被修改的事务id<br>即在一个znode下创建一个子znode，可以看到子znode的cZxid，mZxid，pZxid都等于这个值，其中cZxid不会改变，另外mZxid，pZxid进行相应的操作会发生变更。</li>
+<li>cversion：子节点的版本号。</li>
+<li>dataVersion：数据节点的版本号，变更一次加1。</li>
+<li>aclVersion：数据的ACL（权限控制列表）版本号，变更一次加1。</li>
+<li>ephemeralOwner：如果是临时节点，则表示该节点创建的会话id，否则为</li>
+<li>0x0（ephemeralOwner = 0x169843156830000）。</li>
+<li>dataLength：数据长度（中文1个字表示3个字节长度）。</li>
+<li>numChildren：子节点的数据长度。</li>
+</ul>
+<h3 id="watch简单使用"><a href="#watch简单使用" class="headerlink" title="watch简单使用"></a>watch简单使用</h3><p>在一些命令上有watch参数，比如说ls和get，这就是监听器，但是监听器只能监听一次。</p>
+<ul>
+<li><p>ls2 的监听只对ls的子节点变化有效，对该节点和其子节点的内容改变无效</p>
+</li>
+<li><p>get 的监听只针对被监听节点的内容改变有效，对子节点的变化无效</p>
+</li>
+</ul>
+<h3 id="zookeeperAPI使用"><a href="#zookeeperAPI使用" class="headerlink" title="zookeeperAPI使用"></a>zookeeperAPI使用</h3><p>首先导入maven坐标</p>
+<pre class=" language-java"><code class="language-java">        <span class="token operator">&lt;</span>dependency<span class="token operator">></span>
+            <span class="token operator">&lt;</span>groupId<span class="token operator">></span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>zookeeper<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+            <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>zookeeper<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+            <span class="token operator">&lt;</span>version<span class="token operator">></span><span class="token number">3.4</span><span class="token punctuation">.</span><span class="token number">13</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> zookeeper<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>zookeeper<span class="token punctuation">.</span>KeeperException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>zookeeper<span class="token punctuation">.</span>ZooDefs<span class="token punctuation">.</span>Ids<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>zookeeper<span class="token punctuation">.</span>ZooKeeper<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>zookeeper<span class="token punctuation">.</span>data<span class="token punctuation">.</span>Stat<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>IOException<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token keyword">static</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>zookeeper<span class="token punctuation">.</span>CreateMode<span class="token punctuation">.</span>PERSISTENT<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * @author yang
+ * @date 2020/5/9 18:07
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ZkAPIDemo</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> KeeperException<span class="token punctuation">,</span> InterruptedException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//连接zookeeper</span>
+        ZooKeeper zooKeeper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ZooKeeper</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1:2181"</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"触发了"</span> <span class="token operator">+</span> event<span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"的事件"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//创建节点</span>
+        String s <span class="token operator">=</span> zooKeeper<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token string">"/testZookeeper/hello"</span><span class="token punctuation">,</span> <span class="token string">"你好Zookeeper!"</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Ids<span class="token punctuation">.</span>OPEN_ACL_UNSAFE<span class="token punctuation">,</span> PERSISTENT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String s1 <span class="token operator">=</span> zooKeeper<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token string">"/testZookeeper"</span><span class="token punctuation">,</span> <span class="token string">"哈哈!!!"</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Ids<span class="token punctuation">.</span>OPEN_ACL_UNSAFE<span class="token punctuation">,</span> PERSISTENT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//获取所有节点的值</span>
+        zooKeeper<span class="token punctuation">.</span><span class="token function">getChildren</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//获取节点的值</span>
+        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> zooKeeper<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token string">"/testZookeeper"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//修改节点的值</span>
+        Stat stat <span class="token operator">=</span> zooKeeper<span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span><span class="token string">"/testZookeeper"</span><span class="token punctuation">,</span> <span class="token string">"被修改了"</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>zooKeeper<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token string">"/testZookeeper"</span><span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">,</span>null<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//删除节点</span>
+        zooKeeper<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token string">"/testZookeeper/hello"</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
             </div>
             <hr/>
 
@@ -926,7 +1022,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">182.5k</span>&nbsp;字
+                class="white-color">186.1k</span>&nbsp;字
             
             
             

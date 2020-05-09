@@ -478,7 +478,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-14
+                    2020-05-08
                 </div>
                 
 
@@ -656,7 +656,7 @@ select ... for update //排他锁 </code></pre>
 <span class="token keyword">update</span> myLock <span class="token keyword">set</span> id<span class="token operator">=</span><span class="token number">111</span> <span class="token keyword">where</span> name<span class="token operator">=</span><span class="token number">b</span><span class="token comment" spellcheck="true">//没有使用到索引，还是会行锁变表锁</span></code></pre>
 <p>因为涉及到了自动类型转换导致没有使用到索引</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li><strong>没有索引或者索引失效时，InnoDB 的行锁变表锁</strong></li>
+<li><strong>更新的时候没有索引或者索引失效时，InnoDB 的行锁变表锁</strong></li>
 <li>原因：Mysql 的行锁是通过索引实现的！</li>
 </ul>
 <h2 id="间隙锁"><a href="#间隙锁" class="headerlink" title="间隙锁"></a>间隙锁</h2><p>间隙锁（Gap Lock）是Innodb在<strong>可重复读</strong>提交下为了解决幻读问题时引入的锁机制，</p>
@@ -1113,7 +1113,7 @@ public class Thread04 {
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">182.5k</span>&nbsp;字
+                class="white-color">186.1k</span>&nbsp;字
             
             
             
