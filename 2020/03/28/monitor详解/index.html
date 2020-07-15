@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -472,14 +472,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3k
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    13 Min
+                    12 Min
                 </div>
                 
 
@@ -497,8 +497,25 @@
                 <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>JVM源码下载<br><a href="http://openjdk.java.net/" target="_blank" rel="noopener">http://openjdk.java.net/</a> –&gt; Mercurial –&gt; jdk8 –&gt; hotspot –&gt; zip</p>
 <h2 id="monitor监视器锁"><a href="#monitor监视器锁" class="headerlink" title="monitor监视器锁"></a>monitor监视器锁</h2><p>从上一篇synchronized详解文章可以看出,无论是synchronized代码块还是synchronized方法，其线程安全的语义实现最终依赖一个叫<br>monitor的东西，那么这个神秘的东西是什么呢？</p>
 <p>在HotSpot虚拟机中，monitor是由ObjectMonitor实现的。其源码是用c++来实现的，位于HotSpot虚<br>拟机源码ObjectMonitor.hpp文件中(src/share/vm/runtime/objectMonitor.hpp)。ObjectMonitor主<br>要数据结构如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">ObjectMonitor() &#123;</span><br><span class="line">  _header       = <span class="literal">NULL</span>;</span><br><span class="line">  _count        = <span class="number">0</span>;</span><br><span class="line">  _waiters      = <span class="number">0</span>,</span><br><span class="line">  _recursions   = <span class="number">0</span>;<span class="comment">//线程的重入次数，也就是前面几篇文章我们所说的那个计数器</span></span><br><span class="line">  _object       = <span class="literal">NULL</span>;<span class="comment">//存储该monitor对象</span></span><br><span class="line">  _owner        = <span class="literal">NULL</span>;<span class="comment">//标识那个线程拥有这个monitor</span></span><br><span class="line">  _WaitSet      = <span class="literal">NULL</span>;<span class="comment">//处于wait状态的线程，会被加入到这个_WaitSet</span></span><br><span class="line">  _WaitSetLock  = <span class="number">0</span> ;</span><br><span class="line">  _Responsible  = <span class="literal">NULL</span> ;</span><br><span class="line">  _succ         = <span class="literal">NULL</span> ;</span><br><span class="line">  _cxq          = <span class="literal">NULL</span> ;<span class="comment">//多线程竞争锁时的单项列表</span></span><br><span class="line">  FreeNext      = <span class="literal">NULL</span> ;</span><br><span class="line">  _EntryList    = <span class="literal">NULL</span> ;<span class="comment">//处于等待block状态的线程，会被加入到该列表</span></span><br><span class="line">  _SpinFreq     = <span class="number">0</span> ;</span><br><span class="line">  _SpinClock    = <span class="number">0</span> ;</span><br><span class="line">  OwnerIsThread = <span class="number">0</span> ;</span><br><span class="line">  _previous_owner_tid = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">  ObjectMonitor() {
+    _header       = NULL;
+    _count        = 0;
+    _waiters      = 0,
+    _recursions   = 0;//线程的重入次数，也就是前面几篇文章我们所说的那个计数器
+    _object       = NULL;//存储该monitor对象
+    _owner        = NULL;//标识那个线程拥有这个monitor
+    _WaitSet      = NULL;//处于wait状态的线程，会被加入到这个_WaitSet
+    _WaitSetLock  = 0 ;
+    _Responsible  = NULL ;
+    _succ         = NULL ;
+    _cxq          = NULL ;//多线程竞争锁时的单项列表
+    FreeNext      = NULL ;
+    _EntryList    = NULL ;//处于等待block状态的线程，会被加入到该列表
+    _SpinFreq     = 0 ;
+    _SpinClock    = 0 ;
+    OwnerIsThread = 0 ;
+    _previous_owner_tid = 0;
+  }</code></pre>
 <ul>
 <li>_owner：初始时为NULL。当有线程占有该monitor时，owner标记为该线程的唯一标识。当线程<br>  释放monitor时，owner又恢复为NULL。owner是一个临界资源，JVM是通过CAS操作来保证其线<br>  程安全的。</li>
 <li>cxq：竞争队列，所有请求锁的线程首先会被放在这个队列中（单向链接）。<em>cxq是一个临界资<br>  源，JVM通过CAS原子指令来修改_cxq队列。修改前_cxq的旧值填入了node的next字段，_cxq指<br>  向新值（新线程）。因此_cxq是一个后进先出的stack（栈）。</em></li>
@@ -507,14 +524,95 @@
 <li>我们的Java代码里不会显示地去创造这么一个monitor对象，我们也无需创建，事实上可以这么理解：<br>  monitor并不是随着对象创建而创建的。我们是通过synchronized修饰符告诉JVM需要为我们的某个对<br>  象创建关联的monitor对象。每个线程都存在两个ObjectMonitor对象列表，分别为free和used列表。<br>  同时JVM中也维护着global locklist。当线程需要ObjectMonitor对象时，首先从线程自身的free表中申<br>  请，若存在则使用，若不存在则从global list中申请</li>
 </ul>
 <h3 id="monitor竞争"><a href="#monitor竞争" class="headerlink" title="monitor竞争"></a>monitor竞争</h3><h4 id="执行monitorenter时，会调用InterpreterRuntime-cpp"><a href="#执行monitorenter时，会调用InterpreterRuntime-cpp" class="headerlink" title="执行monitorenter时，会调用InterpreterRuntime.cpp"></a>执行monitorenter时，会调用InterpreterRuntime.cpp</h4><p>(位于：src/share/vm/interpreter/interpreterRuntime.cpp) 的 InterpreterRuntime::monitorenter函<br>数。具体代码可参见HotSpot源码。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">IRT_ENTRY_NO_ASYNC(<span class="keyword">void</span>, InterpreterRuntime::monitorenter(JavaThread* thread, BasicObjectLock* elem))</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> ASSERT</span></span><br><span class="line">  thread-&gt;last_frame().interpreter_frame_verify_monitor(elem);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">  <span class="keyword">if</span> (PrintBiasedLockingStatistics) &#123;</span><br><span class="line">    Atomic::inc(BiasedLocking::slow_path_entry_count_addr());</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function">Handle <span class="title">h_obj</span><span class="params">(thread, elem-&gt;obj())</span></span>;</span><br><span class="line">  assert(Universe::heap()-&gt;is_in_reserved_or_null(h_obj()),</span><br><span class="line">         <span class="string">"must be NULL or an object"</span>);</span><br><span class="line">  <span class="keyword">if</span> (UseBiasedLocking) &#123;</span><br><span class="line">    <span class="comment">// Retry fast entry if bias is revoked to avoid unnecessary inflation</span></span><br><span class="line">    ObjectSynchronizer::fast_enter(h_obj, elem-&gt;lock(), <span class="literal">true</span>, CHECK);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    ObjectSynchronizer::slow_enter(h_obj, elem-&gt;lock(), CHECK);</span><br><span class="line">  &#125;</span><br><span class="line">  assert(Universe::heap()-&gt;is_in_reserved_or_null(elem-&gt;obj()),</span><br><span class="line">         <span class="string">"must be NULL or an object"</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> ASSERT</span></span><br><span class="line">  thread-&gt;last_frame().interpreter_frame_verify_monitor(elem);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">IRT_END</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">IRT_ENTRY_NO_ASYNC(void, InterpreterRuntime::monitorenter(JavaThread* thread, BasicObjectLock* elem))
+#ifdef ASSERT
+  thread->last_frame().interpreter_frame_verify_monitor(elem);
+#endif
+  if (PrintBiasedLockingStatistics) {
+    Atomic::inc(BiasedLocking::slow_path_entry_count_addr());
+  }
+  Handle h_obj(thread, elem->obj());
+  assert(Universe::heap()->is_in_reserved_or_null(h_obj()),
+         "must be NULL or an object");
+  if (UseBiasedLocking) {
+    // Retry fast entry if bias is revoked to avoid unnecessary inflation
+    ObjectSynchronizer::fast_enter(h_obj, elem->lock(), true, CHECK);
+  } else {
+    ObjectSynchronizer::slow_enter(h_obj, elem->lock(), CHECK);
+  }
+  assert(Universe::heap()->is_in_reserved_or_null(elem->obj()),
+         "must be NULL or an object");
+#ifdef ASSERT
+  thread->last_frame().interpreter_frame_verify_monitor(elem);
+#endif
+IRT_END</code></pre>
 <ul>
 <li>对于重量级锁，monitorenter函数中会调用 ObjectSynchronizer::slow_enter</li>
 <li>最终调用 ObjectMonitor::enter（位于：src/share/vm/runtime/objectMonitor.cpp），源码如下：</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> ATTR ObjectMonitor::enter(TRAPS) &#123;</span><br><span class="line"> <span class="comment">// The following code is ordered to check the most common cases first</span></span><br><span class="line"> <span class="comment">// and to reduce RTS-&gt;RTO cache line upgrades on SPARC and IA32 processors.</span></span><br><span class="line"> Thread * <span class="keyword">const</span> Self = THREAD ;</span><br><span class="line"> <span class="keyword">void</span> * cur ;</span><br><span class="line"> <span class="comment">// 通过CAS操作尝试把monitor的_owner字段设置为当前线程</span></span><br><span class="line"> cur = Atomic::cmpxchg_ptr (Self， &amp;_owner， <span class="literal">NULL</span>) ;</span><br><span class="line"> <span class="keyword">if</span> (cur == <span class="literal">NULL</span>) &#123;</span><br><span class="line">  <span class="comment">// Either ASSERT _recursions == 0 or explicitly set _recursions = 0.</span></span><br><span class="line">  assert (_recursions == <span class="number">0</span>  ， <span class="string">"invariant"</span>) ;</span><br><span class="line">  assert (_owner    == Self， <span class="string">"invariant"</span>) ;</span><br><span class="line">  <span class="comment">// CONSIDER: set or assert OwnerIsThread == 1</span></span><br><span class="line">  <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">// 线程重入，recursions++</span></span><br><span class="line"> <span class="keyword">if</span> (cur == Self) &#123;</span><br><span class="line">  <span class="comment">// TODO-<span class="doctag">FIXME:</span> check for integer overflow! BUGID 6557169.</span></span><br><span class="line">  _recursions ++ ;</span><br><span class="line">  <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">// 如果当前线程是第一次进入该monitor，设置_recursions为1，_owner为当前线程</span></span><br><span class="line">此处省略锁的自旋优化等操作，统一放在后面 synchronzied优化中说。</span><br><span class="line">以上代码的具体流程概括如下：</span><br><span class="line"><span class="number">1.</span> 通过CAS尝试把monitor的owner字段设置为当前线程。</span><br><span class="line"><span class="number">2.</span> 如果设置之前的owner指向当前线程，说明当前线程再次进入monitor，即重入锁，执行</span><br><span class="line">recursions ++ ，记录重入的次数。</span><br><span class="line"><span class="number">3.</span> 如果当前线程是第一次进入该monitor，设置recursions为<span class="number">1</span>，_owner为当前线程，该线程成功获</span><br><span class="line">得锁并返回。</span><br><span class="line"><span class="number">4.</span> 如果获取锁失败，则等待锁的释放。</span><br><span class="line">monitor等待</span><br><span class="line">竞争失败等待调用的是ObjectMonitor对象的EnterI方法（位于：</span><br><span class="line">src/share/vm/runtime/objectMonitor.cpp），源码如下所示：</span><br><span class="line"> <span class="keyword">if</span> (Self-&gt;is_lock_owned ((address)cur)) &#123;</span><br><span class="line">  assert (_recursions == <span class="number">0</span>， <span class="string">"internal state error"</span>);</span><br><span class="line">  _recursions = <span class="number">1</span> ;</span><br><span class="line">  <span class="comment">// Commute owner from a thread-specific on-stack BasicLockObject address to</span></span><br><span class="line">  <span class="comment">// a full-fledged "Thread *".</span></span><br><span class="line">  _owner = Self ;</span><br><span class="line">  OwnerIsThread = <span class="number">1</span> ;</span><br><span class="line">  <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">// 省略一些代码</span></span><br><span class="line"> <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">  jt-&gt;set_suspend_equivalent();</span><br><span class="line">  <span class="comment">// cleared by handle_special_suspend_equivalent_condition()</span></span><br><span class="line">  <span class="comment">// or java_suspend_self()</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// 如果获取锁失败，则等待锁的释放；</span></span><br><span class="line">  EnterI (THREAD) ;</span><br><span class="line">  <span class="keyword">if</span> (!ExitSuspendEquivalent(jt)) <span class="keyword">break</span> ;</span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">// We have acquired the contended monitor， but while we were</span></span><br><span class="line">  <span class="comment">// waiting another thread suspended us. We don't want to enter</span></span><br><span class="line">  <span class="comment">// the monitor while suspended because that would surprise the</span></span><br><span class="line">  <span class="comment">// thread that suspended us.</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">    _recursions = <span class="number">0</span> ;</span><br><span class="line">  _succ = <span class="literal">NULL</span> ;</span><br><span class="line">  <span class="built_in">exit</span> (<span class="literal">false</span>， Self) ;</span><br><span class="line">  jt-&gt;java_suspend_self();</span><br><span class="line">&#125;</span><br><span class="line"> Self-&gt;set_current_pending_monitor(<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-C++"><code class="language-C++">void ATTR ObjectMonitor::enter(TRAPS) {
+ // The following code is ordered to check the most common cases first
+ // and to reduce RTS->RTO cache line upgrades on SPARC and IA32 processors.
+ Thread * const Self = THREAD ;
+ void * cur ;
+ // 通过CAS操作尝试把monitor的_owner字段设置为当前线程
+ cur = Atomic::cmpxchg_ptr (Self， &_owner， NULL) ;
+ if (cur == NULL) {
+  // Either ASSERT _recursions == 0 or explicitly set _recursions = 0.
+  assert (_recursions == 0  ， "invariant") ;
+  assert (_owner    == Self， "invariant") ;
+  // CONSIDER: set or assert OwnerIsThread == 1
+  return ;
+}
+ // 线程重入，recursions++
+ if (cur == Self) {
+  // TODO-FIXME: check for integer overflow! BUGID 6557169.
+  _recursions ++ ;
+  return ;
+}
+ // 如果当前线程是第一次进入该monitor，设置_recursions为1，_owner为当前线程
+此处省略锁的自旋优化等操作，统一放在后面 synchronzied优化中说。
+以上代码的具体流程概括如下：
+1. 通过CAS尝试把monitor的owner字段设置为当前线程。
+2. 如果设置之前的owner指向当前线程，说明当前线程再次进入monitor，即重入锁，执行
+recursions ++ ，记录重入的次数。
+3. 如果当前线程是第一次进入该monitor，设置recursions为1，_owner为当前线程，该线程成功获
+得锁并返回。
+4. 如果获取锁失败，则等待锁的释放。
+monitor等待
+竞争失败等待调用的是ObjectMonitor对象的EnterI方法（位于：
+src/share/vm/runtime/objectMonitor.cpp），源码如下所示：
+ if (Self->is_lock_owned ((address)cur)) {
+  assert (_recursions == 0， "internal state error");
+  _recursions = 1 ;
+  // Commute owner from a thread-specific on-stack BasicLockObject address to
+  // a full-fledged "Thread *".
+  _owner = Self ;
+  OwnerIsThread = 1 ;
+  return ;
+}
+ // 省略一些代码
+ for (;;) {
+  jt->set_suspend_equivalent();
+  // cleared by handle_special_suspend_equivalent_condition()
+  // or java_suspend_self()
 
+// 如果获取锁失败，则等待锁的释放；
+  EnterI (THREAD) ;
+  if (!ExitSuspendEquivalent(jt)) break ;
+  //
+  // We have acquired the contended monitor， but while we were
+  // waiting another thread suspended us. We don't want to enter
+  // the monitor while suspended because that would surprise the
+  // thread that suspended us.
+  //
+    _recursions = 0 ;
+  _succ = NULL ;
+  exit (false， Self) ;
+  jt->java_suspend_self();
+}
+ Self->set_current_pending_monitor(NULL);
+}</code></pre>
 <p>此处省略锁的自旋优化等操作，统一放在后面 synchronzied优化中说。<br>以上代码的具体流程概括如下：</p>
 <ol>
 <li>通过CAS尝试把monitor的owner字段设置为当前线程。</li>
@@ -523,11 +621,88 @@
 <li>如果获取锁失败，则等待锁的释放。</li>
 </ol>
 <h3 id="monitor等待"><a href="#monitor等待" class="headerlink" title="monitor等待"></a>monitor等待</h3><p>竞争失败等待调用的是ObjectMonitor对象的EnterI方法（位于：<br>src/share/vm/runtime/objectMonitor.cpp），源码如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> ATTR ObjectMonitor::EnterI (TRAPS) &#123;</span><br><span class="line">  Thread * Self = THREAD ;</span><br><span class="line"> </span><br><span class="line">   <span class="comment">// Try the lock - TATAS</span></span><br><span class="line">  <span class="keyword">if</span> (TryLock (Self) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    assert (_succ != Self       , <span class="string">"invariant"</span>) ;</span><br><span class="line">    assert (_owner == Self       , <span class="string">"invariant"</span>) ;</span><br><span class="line">    assert (_Responsible != Self    , <span class="string">"invariant"</span>) ;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">if</span> (TrySpin (Self) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    assert (_owner == Self    , <span class="string">"invariant"</span>) ;</span><br><span class="line">    assert (_succ != Self     , <span class="string">"invariant"</span>) ;</span><br><span class="line">    assert (_Responsible != Self , <span class="string">"invariant"</span>) ;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 省略部分代码</span></span><br><span class="line">  <span class="comment">// 当前线程被封装成ObjectWaiter对象node，状态设置成ObjectWaiter::TS_CXQ；</span></span><br><span class="line">  <span class="function">ObjectWaiter <span class="title">node</span><span class="params">(Self)</span> </span>;</span><br><span class="line">  Self-&gt;_ParkEvent-&gt;reset() ;</span><br><span class="line">  node._prev  = (ObjectWaiter *) <span class="number">0xBAD</span> ;</span><br><span class="line">  node.TState  = ObjectWaiter::TS_CXQ ;</span><br><span class="line"><span class="comment">// 通过CAS把node节点push到_cxq列表中</span></span><br><span class="line">  ObjectWaiter * nxt ;</span><br><span class="line">  <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">    node._next = nxt = _cxq ;</span><br><span class="line">    <span class="keyword">if</span> (Atomic::cmpxchg_ptr (&amp;node， &amp;_cxq， nxt) == nxt) <span class="keyword">break</span> ;</span><br><span class="line">    <span class="comment">// Interference - the CAS failed because _cxq changed. Just retry.</span></span><br><span class="line">    <span class="comment">// As an optional optimization we retry the lock.</span></span><br><span class="line">    <span class="keyword">if</span> (TryLock (Self) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      assert (_succ != Self     ， <span class="string">"invariant"</span>) ;</span><br><span class="line">      assert (_owner == Self     ， <span class="string">"invariant"</span>) ;</span><br><span class="line">      assert (_Responsible != Self  ， <span class="string">"invariant"</span>) ;</span><br><span class="line">      <span class="keyword">return</span> ;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">  <span class="comment">// 省略部分代码</span></span><br><span class="line">  <span class="keyword">for</span> (;;) &#123;</span><br><span class="line"><span class="comment">// 线程在被挂起前做一下挣扎，看能不能获取到锁</span></span><br><span class="line">    <span class="keyword">if</span> (TryLock (Self) &gt; <span class="number">0</span>) <span class="keyword">break</span> ;</span><br><span class="line">    assert (_owner != Self， <span class="string">"invariant"</span>) ;</span><br><span class="line">    <span class="keyword">if</span> ((SyncFlags &amp; <span class="number">2</span>) &amp;&amp; _Responsible == <span class="literal">NULL</span>) &#123;</span><br><span class="line">     Atomic::cmpxchg_ptr (Self， &amp;_Responsible， <span class="literal">NULL</span>) ;</span><br><span class="line">   &#125;</span><br><span class="line">    <span class="comment">// park self</span></span><br><span class="line">    <span class="keyword">if</span> (_Responsible == Self || (SyncFlags &amp; <span class="number">1</span>)) &#123;</span><br><span class="line">      TEVENT (Inflated enter - park TIMED) ;</span><br><span class="line">      Self-&gt;_ParkEvent-&gt;park ((jlong) RecheckInterval) ;</span><br><span class="line">      <span class="comment">// Increase the RecheckInterval， but clamp the value.</span></span><br><span class="line">      RecheckInterval *= <span class="number">8</span> ;</span><br><span class="line">      <span class="keyword">if</span> (RecheckInterval &gt; <span class="number">1000</span>) RecheckInterval = <span class="number">1000</span> ;</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      TEVENT (Inflated enter - park UNTIMED) ;</span><br><span class="line">      <span class="comment">// 通过park将当前线程挂起，等待被唤醒</span></span><br><span class="line">      Self-&gt;_ParkEvent-&gt;park() ;</span><br><span class="line">   &#125;</span><br><span class="line">    <span class="keyword">if</span> (TryLock(Self) &gt; <span class="number">0</span>) <span class="keyword">break</span> ;</span><br><span class="line">    <span class="comment">// 省略部分代码</span></span><br><span class="line"> &#125;</span><br><span class="line">  <span class="comment">// 省略部分代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-C++"><code class="language-C++">void ATTR ObjectMonitor::EnterI (TRAPS) {
+  Thread * Self = THREAD ;
 
+   // Try the lock - TATAS
+  if (TryLock (Self) > 0) {
+    assert (_succ != Self       , "invariant") ;
+    assert (_owner == Self       , "invariant") ;
+    assert (_Responsible != Self    , "invariant") ;
+    return ;
+ }
+
+  if (TrySpin (Self) > 0) {
+    assert (_owner == Self    , "invariant") ;
+    assert (_succ != Self     , "invariant") ;
+    assert (_Responsible != Self , "invariant") ;
+    return ;
+ }
+
+// 省略部分代码
+  // 当前线程被封装成ObjectWaiter对象node，状态设置成ObjectWaiter::TS_CXQ；
+  ObjectWaiter node(Self) ;
+  Self->_ParkEvent->reset() ;
+  node._prev  = (ObjectWaiter *) 0xBAD ;
+  node.TState  = ObjectWaiter::TS_CXQ ;
+// 通过CAS把node节点push到_cxq列表中
+  ObjectWaiter * nxt ;
+  for (;;) {
+    node._next = nxt = _cxq ;
+    if (Atomic::cmpxchg_ptr (&node， &_cxq， nxt) == nxt) break ;
+    // Interference - the CAS failed because _cxq changed. Just retry.
+    // As an optional optimization we retry the lock.
+    if (TryLock (Self) > 0) {
+      assert (_succ != Self     ， "invariant") ;
+      assert (_owner == Self     ， "invariant") ;
+      assert (_Responsible != Self  ， "invariant") ;
+      return ;
+   }
+ }
+  // 省略部分代码
+  for (;;) {
+// 线程在被挂起前做一下挣扎，看能不能获取到锁
+    if (TryLock (Self) > 0) break ;
+    assert (_owner != Self， "invariant") ;
+    if ((SyncFlags & 2) && _Responsible == NULL) {
+     Atomic::cmpxchg_ptr (Self， &_Responsible， NULL) ;
+   }
+    // park self
+    if (_Responsible == Self || (SyncFlags & 1)) {
+      TEVENT (Inflated enter - park TIMED) ;
+      Self->_ParkEvent->park ((jlong) RecheckInterval) ;
+      // Increase the RecheckInterval， but clamp the value.
+      RecheckInterval *= 8 ;
+      if (RecheckInterval > 1000) RecheckInterval = 1000 ;
+   } else {
+      TEVENT (Inflated enter - park UNTIMED) ;
+      // 通过park将当前线程挂起，等待被唤醒
+      Self->_ParkEvent->park() ;
+   }
+    if (TryLock(Self) > 0) break ;
+    // 省略部分代码
+ }
+  // 省略部分代码
+}</code></pre>
 <p>当该线程被唤醒时，会从挂起的点继续执行，通过 ObjectMonitor::TryLock 尝试获取锁，TryLock方<br>法实现如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ObjectMonitor::TryLock (Thread * Self) &#123;</span><br><span class="line"> <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">   <span class="keyword">void</span> * own = _owner ;</span><br><span class="line">   <span class="keyword">if</span> (own != <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">   <span class="keyword">if</span> (Atomic::cmpxchg_ptr (Self， &amp;_owner， <span class="literal">NULL</span>) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">    <span class="comment">// Either guarantee _recursions == 0 or set _recursions = 0.</span></span><br><span class="line">    assert (_recursions == <span class="number">0</span>， <span class="string">"invariant"</span>) ;</span><br><span class="line">    assert (_owner == Self， <span class="string">"invariant"</span>) ;</span><br><span class="line">    <span class="comment">// CONSIDER: set or assert that OwnerIsThread == 1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">   <span class="comment">// The lock had been free momentarily， but we lost the race to the lock.</span></span><br><span class="line">   <span class="comment">// Interference -- the CAS failed.</span></span><br><span class="line">   <span class="comment">// We can either return -1 or retry.</span></span><br><span class="line">   <span class="comment">// Retry doesn't make as much sense because the lock was just acquired.</span></span><br><span class="line">   <span class="keyword">if</span> (<span class="literal">true</span>) <span class="keyword">return</span> <span class="number">-1</span> ;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">int ObjectMonitor::TryLock (Thread * Self) {
+ for (;;) {
+   void * own = _owner ;
+   if (own != NULL) return 0 ;
+   if (Atomic::cmpxchg_ptr (Self， &_owner， NULL) == NULL) {
+    // Either guarantee _recursions == 0 or set _recursions = 0.
+    assert (_recursions == 0， "invariant") ;
+    assert (_owner == Self， "invariant") ;
+    // CONSIDER: set or assert that OwnerIsThread == 1
+    return 1 ;
+  }
+   // The lock had been free momentarily， but we lost the race to the lock.
+   // Interference -- the CAS failed.
+   // We can either return -1 or retry.
+   // Retry doesn't make as much sense because the lock was just acquired.
+   if (true) return -1 ;
+ }
+}</code></pre>
 <p>以上代码的具体流程概括如下：</p>
 <ol>
 <li>当前线程被封装成ObjectWaiter对象node，状态设置成ObjectWaiter::TS_CXQ。</li>
@@ -536,17 +711,171 @@
 <li>当该线程被唤醒时，会从挂起的点继续执行，通过 ObjectMonitor::TryLock 尝试获取锁。</li>
 </ol>
 <h4 id="monitor释放"><a href="#monitor释放" class="headerlink" title="monitor释放"></a>monitor释放</h4><p>当某个持有锁的线程执行完同步代码块时，会进行锁的释放，给其它线程机会执行同步代码，在<br>HotSpot中，通过退出monitor的方式实现锁的释放，并通知被阻塞的线程，具体实现位于<br>ObjectMonitor的exit方法中。（位于：src/share/vm/runtime/objectMonitor.cpp），源码如下所<br>示：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> ATTR ObjectMonitor::<span class="built_in">exit</span>(<span class="keyword">bool</span> not_suspended， TRAPS) &#123;</span><br><span class="line"> Thread * Self = THREAD ;</span><br><span class="line"><span class="comment">// 省略部分代码</span></span><br><span class="line"> <span class="keyword">if</span> (_recursions != <span class="number">0</span>) &#123;</span><br><span class="line">  _recursions--;     <span class="comment">// this is simple recursive enter</span></span><br><span class="line">   TEVENT (Inflated <span class="built_in">exit</span> - recursive) ;</span><br><span class="line">  <span class="keyword">return</span> ;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">// 省略部分代码</span></span><br><span class="line">  ObjectWaiter * w = <span class="literal">NULL</span> ;</span><br><span class="line">  <span class="keyword">int</span> QMode = Knob_QMode ;</span><br><span class="line">  <span class="comment">// qmode = 2：直接绕过EntryList队列，从cxq队列中获取线程用于竞争锁</span></span><br><span class="line">  <span class="keyword">if</span> (QMode == <span class="number">2</span> &amp;&amp; _cxq != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    w = _cxq ;</span><br><span class="line">    assert (w != <span class="literal">NULL</span>， <span class="string">"invariant"</span>) ;</span><br><span class="line">    assert (w-&gt;TState == ObjectWaiter::TS_CXQ， <span class="string">"Invariant"</span>) ;</span><br><span class="line">    ExitEpilog (Self， w) ;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line"> &#125;</span><br><span class="line">  <span class="comment">// qmode =3：cxq队列插入EntryList尾部；</span></span><br><span class="line">  <span class="keyword">if</span> (QMode == <span class="number">3</span> &amp;&amp; _cxq != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    w = _cxq ;</span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">      assert (w != <span class="literal">NULL</span>， <span class="string">"Invariant"</span>) ;</span><br><span class="line">      ObjectWaiter * u = (ObjectWaiter *) Atomic::cmpxchg_ptr (<span class="literal">NULL</span>，</span><br><span class="line">&amp;_cxq， w) ;</span><br><span class="line">      <span class="keyword">if</span> (u == w) <span class="keyword">break</span> ;</span><br><span class="line">      w = u ;</span><br><span class="line">   &#125;</span><br><span class="line">    assert (w != <span class="literal">NULL</span>        ， <span class="string">"invariant"</span>) ;</span><br><span class="line">    ObjectWaiter * q = <span class="literal">NULL</span> ;</span><br><span class="line">    ObjectWaiter * p ;</span><br><span class="line">    <span class="keyword">for</span> (p = w ; p != <span class="literal">NULL</span> ; p = p-&gt;_next) &#123;</span><br><span class="line">      guarantee (p-&gt;TState == ObjectWaiter::TS_CXQ， <span class="string">"Invariant"</span>) ;</span><br><span class="line">      p-&gt;TState = ObjectWaiter::TS_ENTER ;</span><br><span class="line">      p-&gt;_prev = q ;</span><br><span class="line">      q = p ;</span><br><span class="line">   &#125;</span><br><span class="line">    ObjectWaiter * Tail ;</span><br><span class="line">    <span class="keyword">for</span> (Tail = _EntryList ; Tail != <span class="literal">NULL</span> &amp;&amp; Tail-&gt;_next != <span class="literal">NULL</span> ; Tail =</span><br><span class="line">Tail-&gt;_next) ;</span><br><span class="line">    <span class="keyword">if</span> (Tail == <span class="literal">NULL</span>) &#123;</span><br><span class="line">      _EntryList = w ;</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      Tail-&gt;_next = w ;</span><br><span class="line">      w-&gt;_prev = Tail ;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// qmode =4：cxq队列插入到_EntryList头部</span></span><br><span class="line">  <span class="keyword">if</span> (QMode == <span class="number">4</span> &amp;&amp; _cxq != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    w = _cxq ;</span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">      assert (w != <span class="literal">NULL</span>， <span class="string">"Invariant"</span>) ;</span><br><span class="line">      ObjectWaiter * u = (ObjectWaiter *) Atomic::cmpxchg_ptr (<span class="literal">NULL</span>，</span><br><span class="line">&amp;_cxq， w) ;</span><br><span class="line">      <span class="keyword">if</span> (u == w) <span class="keyword">break</span> ;</span><br><span class="line">      w = u ;</span><br><span class="line">     &#125;</span><br><span class="line">    assert (w != <span class="literal">NULL</span>        ， <span class="string">"invariant"</span>) ;</span><br><span class="line">    ObjectWaiter * q = <span class="literal">NULL</span> ;</span><br><span class="line">    ObjectWaiter * p ;</span><br><span class="line">    <span class="keyword">for</span> (p = w ; p != <span class="literal">NULL</span> ; p = p-&gt;_next) &#123;</span><br><span class="line">      guarantee (p-&gt;TState == ObjectWaiter::TS_CXQ， <span class="string">"Invariant"</span>) ;</span><br><span class="line">      p-&gt;TState = ObjectWaiter::TS_ENTER ;</span><br><span class="line">      p-&gt;_prev = q ;</span><br><span class="line">      q = p ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (_EntryList != <span class="literal">NULL</span>) &#123;</span><br><span class="line">      q-&gt;_next = _EntryList ;</span><br><span class="line">      _EntryList-&gt;_prev = q ;</span><br><span class="line">    &#125;</span><br><span class="line">    _EntryList = w ;</span><br><span class="line">  &#125;</span><br><span class="line">  w = _EntryList ;</span><br><span class="line">  <span class="keyword">if</span> (w != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    assert (w-&gt;TState == ObjectWaiter::TS_ENTER， <span class="string">"invariant"</span>) ;</span><br><span class="line">    ExitEpilog (Self， w) ;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line">  w = _cxq ;</span><br><span class="line">  <span class="keyword">if</span> (w == <span class="literal">NULL</span>) <span class="keyword">continue</span> ;</span><br><span class="line">  <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">    assert (w != <span class="literal">NULL</span>， <span class="string">"Invariant"</span>) ;</span><br><span class="line">    ObjectWaiter * u = (ObjectWaiter *) Atomic::cmpxchg_ptr (<span class="literal">NULL</span>， &amp;_cxq，</span><br><span class="line">w) ;</span><br><span class="line">    <span class="keyword">if</span> (u == w) <span class="keyword">break</span> ;</span><br><span class="line">    w = u ;</span><br><span class="line">  &#125;</span><br><span class="line">  TEVENT (Inflated <span class="built_in">exit</span> - drain cxq into EntryList) ;</span><br><span class="line">  assert (w != <span class="literal">NULL</span>        ， <span class="string">"invariant"</span>) ;</span><br><span class="line">  assert (_EntryList  == <span class="literal">NULL</span>   ， <span class="string">"invariant"</span>) ;</span><br><span class="line">  <span class="keyword">if</span> (QMode == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">// QMode == 1 : drain cxq to EntryList， reversing order</span></span><br><span class="line">    <span class="comment">// We also reverse the order of the list.</span></span><br><span class="line">    ObjectWaiter * s = <span class="literal">NULL</span> ;</span><br><span class="line">    ObjectWaiter * t = w ;</span><br><span class="line">    ObjectWaiter * u = <span class="literal">NULL</span> ;</span><br><span class="line">    <span class="keyword">while</span> (t != <span class="literal">NULL</span>) &#123;</span><br><span class="line">      guarantee (t-&gt;TState == ObjectWaiter::TS_CXQ， <span class="string">"invariant"</span>) ;</span><br><span class="line">      t-&gt;TState = ObjectWaiter::TS_ENTER ;</span><br><span class="line">      u = t-&gt;_next ;</span><br><span class="line">      t-&gt;_prev = u ;</span><br><span class="line">      t-&gt;_next = s ;</span><br><span class="line">      s = t;</span><br><span class="line">      t = u ;</span><br><span class="line">   &#125;</span><br><span class="line">    _EntryList  = s ;</span><br><span class="line">    assert (s != <span class="literal">NULL</span>， <span class="string">"invariant"</span>) ;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// QMode == 0 or QMode == 2</span></span><br><span class="line">    _EntryList = w ;</span><br><span class="line">    ObjectWaiter * q = <span class="literal">NULL</span> ;</span><br><span class="line">    ObjectWaiter * p ;</span><br><span class="line">    <span class="keyword">for</span> (p = w ; p != <span class="literal">NULL</span> ; p = p-&gt;_next) &#123;</span><br><span class="line">      guarantee (p-&gt;TState == ObjectWaiter::TS_CXQ， <span class="string">"Invariant"</span>) ;</span><br><span class="line">      p-&gt;TState = ObjectWaiter::TS_ENTER ;</span><br><span class="line">      p-&gt;_prev = q ;</span><br><span class="line">      q = p ;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (_succ != <span class="literal">NULL</span>) <span class="keyword">continue</span>;</span><br><span class="line">  w = _EntryList ;</span><br><span class="line">  <span class="keyword">if</span> (w != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    guarantee (w-&gt;TState == ObjectWaiter::TS_ENTER， <span class="string">"invariant"</span>) ;</span><br><span class="line">    ExitEpilog (Self， w) ;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">void ATTR ObjectMonitor::exit(bool not_suspended， TRAPS) {
+ Thread * Self = THREAD ;
+// 省略部分代码
+ if (_recursions != 0) {
+  _recursions--;     // this is simple recursive enter
+   TEVENT (Inflated exit - recursive) ;
+  return ;
+ }
+// 省略部分代码
+  ObjectWaiter * w = NULL ;
+  int QMode = Knob_QMode ;
+  // qmode = 2：直接绕过EntryList队列，从cxq队列中获取线程用于竞争锁
+  if (QMode == 2 && _cxq != NULL) {
+    w = _cxq ;
+    assert (w != NULL， "invariant") ;
+    assert (w->TState == ObjectWaiter::TS_CXQ， "Invariant") ;
+    ExitEpilog (Self， w) ;
+    return ;
+ }
+  // qmode =3：cxq队列插入EntryList尾部；
+  if (QMode == 3 && _cxq != NULL) {
+    w = _cxq ;
+    for (;;) {
+      assert (w != NULL， "Invariant") ;
+      ObjectWaiter * u = (ObjectWaiter *) Atomic::cmpxchg_ptr (NULL，
+&_cxq， w) ;
+      if (u == w) break ;
+      w = u ;
+   }
+    assert (w != NULL        ， "invariant") ;
+    ObjectWaiter * q = NULL ;
+    ObjectWaiter * p ;
+    for (p = w ; p != NULL ; p = p->_next) {
+      guarantee (p->TState == ObjectWaiter::TS_CXQ， "Invariant") ;
+      p->TState = ObjectWaiter::TS_ENTER ;
+      p->_prev = q ;
+      q = p ;
+   }
+    ObjectWaiter * Tail ;
+    for (Tail = _EntryList ; Tail != NULL && Tail->_next != NULL ; Tail =
+Tail->_next) ;
+    if (Tail == NULL) {
+      _EntryList = w ;
+   } else {
+      Tail->_next = w ;
+      w->_prev = Tail ;
+   }
+  }
+  // qmode =4：cxq队列插入到_EntryList头部
+  if (QMode == 4 && _cxq != NULL) {
+    w = _cxq ;
+    for (;;) {
+      assert (w != NULL， "Invariant") ;
+      ObjectWaiter * u = (ObjectWaiter *) Atomic::cmpxchg_ptr (NULL，
+&_cxq， w) ;
+      if (u == w) break ;
+      w = u ;
+     }
+    assert (w != NULL        ， "invariant") ;
+    ObjectWaiter * q = NULL ;
+    ObjectWaiter * p ;
+    for (p = w ; p != NULL ; p = p->_next) {
+      guarantee (p->TState == ObjectWaiter::TS_CXQ， "Invariant") ;
+      p->TState = ObjectWaiter::TS_ENTER ;
+      p->_prev = q ;
+      q = p ;
+    }
+    if (_EntryList != NULL) {
+      q->_next = _EntryList ;
+      _EntryList->_prev = q ;
+    }
+    _EntryList = w ;
+  }
+  w = _EntryList ;
+  if (w != NULL) {
+    assert (w->TState == ObjectWaiter::TS_ENTER， "invariant") ;
+    ExitEpilog (Self， w) ;
+    return ;
+  }
+  w = _cxq ;
+  if (w == NULL) continue ;
+  for (;;) {
+    assert (w != NULL， "Invariant") ;
+    ObjectWaiter * u = (ObjectWaiter *) Atomic::cmpxchg_ptr (NULL， &_cxq，
+w) ;
+    if (u == w) break ;
+    w = u ;
+  }
+  TEVENT (Inflated exit - drain cxq into EntryList) ;
+  assert (w != NULL        ， "invariant") ;
+  assert (_EntryList  == NULL   ， "invariant") ;
+  if (QMode == 1) {
+    // QMode == 1 : drain cxq to EntryList， reversing order
+    // We also reverse the order of the list.
+    ObjectWaiter * s = NULL ;
+    ObjectWaiter * t = w ;
+    ObjectWaiter * u = NULL ;
+    while (t != NULL) {
+      guarantee (t->TState == ObjectWaiter::TS_CXQ， "invariant") ;
+      t->TState = ObjectWaiter::TS_ENTER ;
+      u = t->_next ;
+      t->_prev = u ;
+      t->_next = s ;
+      s = t;
+      t = u ;
+   }
+    _EntryList  = s ;
+    assert (s != NULL， "invariant") ;
+  } else {
+    // QMode == 0 or QMode == 2
+    _EntryList = w ;
+    ObjectWaiter * q = NULL ;
+    ObjectWaiter * p ;
+    for (p = w ; p != NULL ; p = p->_next) {
+      guarantee (p->TState == ObjectWaiter::TS_CXQ， "Invariant") ;
+      p->TState = ObjectWaiter::TS_ENTER ;
+      p->_prev = q ;
+      q = p ;
+   }
+  }
+  if (_succ != NULL) continue;
+  w = _EntryList ;
+  if (w != NULL) {
+    guarantee (w->TState == ObjectWaiter::TS_ENTER， "invariant") ;
+    ExitEpilog (Self， w) ;
+    return ;
+  }
+ }
+}</code></pre>
 <ul>
 <li>退出同步代码块时会让_recursions减1，当_recursions的值减为0时，说明线程释放了锁。</li>
 <li>根据不同的策略（由QMode指定），从cxq或EntryList中获取头节点，通过<br>  ObjectMonitor::ExitEpilog 方法唤醒该节点封装的线程，唤醒操作最终由unpark完成，实现<br>  如下：</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> ObjectMonitor::ExitEpilog (Thread * Self， ObjectWaiter * Wakee) &#123;</span><br><span class="line"> assert (_owner == Self， <span class="string">"invariant"</span>) ;</span><br><span class="line"> _succ = Knob_SuccEnabled ? Wakee-&gt;_thread : <span class="literal">NULL</span> ;</span><br><span class="line"> ParkEvent * Trigger = Wakee-&gt;_event ;</span><br><span class="line"> Wakee  = <span class="literal">NULL</span> ;</span><br><span class="line"> <span class="comment">// Drop the lock</span></span><br><span class="line"> OrderAccess::release_store_ptr (&amp;_owner， <span class="literal">NULL</span>) ;</span><br><span class="line"> OrderAccess::fence() ;                <span class="comment">// ST _owner vs LD in</span></span><br><span class="line">unpark()</span><br><span class="line"> <span class="keyword">if</span> (SafepointSynchronize::do_call_back()) &#123;</span><br><span class="line">   TEVENT (unpark before SAFEPOINT) ;</span><br><span class="line"> &#125;</span><br><span class="line"> DTRACE_MONITOR_PROBE(contended__exit， <span class="keyword">this</span>， object()， Self);</span><br><span class="line"> Trigger-&gt;unpark() ; <span class="comment">// 唤醒之前被pack()挂起的线程.</span></span><br><span class="line"> <span class="comment">// Maintain stats and report events to JVMTI</span></span><br><span class="line"> <span class="keyword">if</span> (ObjectMonitor::_sync_Parks != <span class="literal">NULL</span>) &#123;</span><br><span class="line">   ObjectMonitor::_sync_Parks-&gt;inc() ;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-C++"><code class="language-C++">void ObjectMonitor::ExitEpilog (Thread * Self， ObjectWaiter * Wakee) {
+ assert (_owner == Self， "invariant") ;
+ _succ = Knob_SuccEnabled ? Wakee->_thread : NULL ;
+ ParkEvent * Trigger = Wakee->_event ;
+ Wakee  = NULL ;
+ // Drop the lock
+ OrderAccess::release_store_ptr (&_owner， NULL) ;
+ OrderAccess::fence() ;                // ST _owner vs LD in
+unpark()
+ if (SafepointSynchronize::do_call_back()) {
+   TEVENT (unpark before SAFEPOINT) ;
+ }
+ DTRACE_MONITOR_PROBE(contended__exit， this， object()， Self);
+ Trigger->unpark() ; // 唤醒之前被pack()挂起的线程.
+ // Maintain stats and report events to JVMTI
+ if (ObjectMonitor::_sync_Parks != NULL) {
+   ObjectMonitor::_sync_Parks->inc() ;
+ }
+}</code></pre>
 <p>被唤醒的线程，会回到 void ATTR ObjectMonitor::EnterI (TRAPS) 的第600行，继续执行monitor<br>的竞争</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// park self</span></span><br><span class="line"><span class="keyword">if</span> (_Responsible == Self || (SyncFlags &amp; <span class="number">1</span>)) &#123;</span><br><span class="line">  TEVENT (Inflated enter - park TIMED) ;</span><br><span class="line">  Self-&gt;_ParkEvent-&gt;park ((jlong) RecheckInterval) ;</span><br><span class="line">  <span class="comment">// Increase the RecheckInterval， but clamp the value.</span></span><br><span class="line">  RecheckInterval *= <span class="number">8</span> ;</span><br><span class="line">  <span class="keyword">if</span> (RecheckInterval &gt; <span class="number">1000</span>) RecheckInterval = <span class="number">1000</span> ;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  TEVENT (Inflated enter - park UNTIMED) ;</span><br><span class="line">  Self-&gt;_ParkEvent-&gt;park() ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (TryLock(Self) &gt; <span class="number">0</span>) <span class="keyword">break</span> ;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c++"><code class="language-c++">// park self
+if (_Responsible == Self || (SyncFlags & 1)) {
+  TEVENT (Inflated enter - park TIMED) ;
+  Self->_ParkEvent->park ((jlong) RecheckInterval) ;
+  // Increase the RecheckInterval， but clamp the value.
+  RecheckInterval *= 8 ;
+  if (RecheckInterval > 1000) RecheckInterval = 1000 ;
+} else {
+  TEVENT (Inflated enter - park UNTIMED) ;
+  Self->_ParkEvent->park() ;
+}
+if (TryLock(Self) > 0) break ;</code></pre>
 <h3 id="monitor是重量级锁"><a href="#monitor是重量级锁" class="headerlink" title="monitor是重量级锁"></a>monitor是重量级锁</h3><p>可以看到ObjectMonitor的函数调用中会涉及到Atomic::cmpxchg_ptr，Atomic::inc_ptr等内核函数，<br>执行同步代码块，没有竞争到锁的对象会park()被挂起，竞争到锁的线程会unpark()唤醒。这个时候就<br>会存在操作系统用户态和内核态的转换，这种切换会消耗大量的系统资源。所以synchronized是Java语<br>言中是一个重量级(Heavyweight)的操作。</p>
 
             </div>
@@ -964,7 +1293,7 @@ CAS的作用CAS可以将比较和交换转换为原子操作，这个原子操�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

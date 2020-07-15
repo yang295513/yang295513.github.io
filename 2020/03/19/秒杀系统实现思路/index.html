@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -472,7 +472,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    667
+                    653
                 </div>
                 
 
@@ -495,14 +495,33 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="并发系统实现思路"><a href="#并发系统实现思路" class="headerlink" title="并发系统实现思路"></a>并发系统实现思路</h2><h3 id="第一版"><a href="#第一版" class="headerlink" title="第一版"></a>第一版</h3><p>主要是使用mysql实现秒杀，利用CAS和自旋锁保证商品不超卖，也就是说第一版主要是为了后面的并发系统打下基础，而且在这个秒杀系统中我们使用SpringSecurity的方式实现JWT。</p>
-<h4 id="难点：使用mysql解决超卖问题"><a href="#难点：使用mysql解决超卖问题" class="headerlink" title="难点：使用mysql解决超卖问题"></a>难点：使用mysql解决超卖问题</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `commoditys` (</span><br><span class="line">  `uid` <span class="keyword">int</span>(<span class="number">11</span>) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `name` varchar(<span class="number">255</span>) CHARACTER SET utf8 DEFAULT NULL,</span><br><span class="line">  `number` <span class="keyword">int</span>(<span class="number">11</span>) DEFAULT NULL,</span><br><span class="line">  `version` <span class="keyword">int</span>(<span class="number">11</span>) DEFAULT NULL,</span><br><span class="line">  <span class="function">PRIMARY <span class="title">KEY</span> <span class="params">(`uid`)</span></span></span><br><span class="line"><span class="function">) ENGINE</span>=InnoDB AUTO_INCREMENT=<span class="number">2</span> DEFAULT CHARSET=utf8mb4;</span><br></pre></td></tr></table></figure>
-
+<h4 id="难点：使用mysql解决超卖问题"><a href="#难点：使用mysql解决超卖问题" class="headerlink" title="难点：使用mysql解决超卖问题"></a>难点：使用mysql解决超卖问题</h4><pre class=" language-java"><code class="language-java">CREATE TABLE `commoditys` <span class="token punctuation">(</span>
+  `uid` <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> NOT NULL AUTO_INCREMENT<span class="token punctuation">,</span>
+  `name` <span class="token function">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> CHARACTER SET utf8 DEFAULT NULL<span class="token punctuation">,</span>
+  `number` <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> DEFAULT NULL<span class="token punctuation">,</span>
+  `version` <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> DEFAULT NULL<span class="token punctuation">,</span>
+  PRIMARY <span class="token function">KEY</span> <span class="token punctuation">(</span>`uid`<span class="token punctuation">)</span>
+<span class="token punctuation">)</span> ENGINE<span class="token operator">=</span>InnoDB AUTO_INCREMENT<span class="token operator">=</span><span class="token number">2</span> DEFAULT CHARSET<span class="token operator">=</span>utf8mb4<span class="token punctuation">;</span></code></pre>
 <p>在数据库字段中我们新增了一个字段version，该字段表示操作的版本号，原理就是CAS(乐观锁)，注意mysql的<strong>存储引擎是InnoDB</strong>,在InnoDB引擎中使用update语句，如果where后面的字段是索引，那么多个会话操作同一条数据是一个<strong>行锁</strong>，我们可以利用这个特性实现自旋锁和乐观锁解决超卖问题。</p>
-<h5 id="实现CAS（乐观锁）和自旋锁的关键SQL语句"><a href="#实现CAS（乐观锁）和自旋锁的关键SQL语句" class="headerlink" title="实现CAS（乐观锁）和自旋锁的关键SQL语句"></a>实现CAS（乐观锁）和自旋锁的关键SQL语句</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 先获取商品信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> commoditys <span class="keyword">WHERE</span> uid=<span class="comment">#&#123;commodityId&#125;</span></span><br><span class="line"><span class="comment">-- 如果版本号没有变化就更新库存，并且版本号要加一</span></span><br><span class="line"><span class="keyword">UPDATE</span> commoditys <span class="keyword">SET</span> <span class="built_in">number</span>=<span class="built_in">number</span><span class="number">-1</span>,<span class="keyword">version</span>=<span class="keyword">version</span>+<span class="number">1</span> <span class="keyword">WHERE</span> uid=<span class="comment">#&#123;id&#125; AND version=#&#123;version&#125;</span></span><br></pre></td></tr></table></figure>
-
+<h5 id="实现CAS（乐观锁）和自旋锁的关键SQL语句"><a href="#实现CAS（乐观锁）和自旋锁的关键SQL语句" class="headerlink" title="实现CAS（乐观锁）和自旋锁的关键SQL语句"></a>实现CAS（乐观锁）和自旋锁的关键SQL语句</h5><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 先获取商品信息</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> commoditys <span class="token keyword">WHERE</span> uid<span class="token operator">=</span><span class="token comment" spellcheck="true">#{commodityId}</span>
+<span class="token comment" spellcheck="true">-- 如果版本号没有变化就更新库存，并且版本号要加一</span>
+<span class="token keyword">UPDATE</span> commoditys <span class="token keyword">SET</span> number<span class="token operator">=</span>number<span class="token number">-1</span><span class="token punctuation">,</span>version<span class="token operator">=</span>version<span class="token operator">+</span><span class="token number">1</span> <span class="token keyword">WHERE</span> uid<span class="token operator">=</span><span class="token comment" spellcheck="true">#{id} AND version=#{version}</span></code></pre>
 <p>自旋锁的原理就是，先获取版本号，然后下一次修改商品库存的时候比对版本号是不是上次获取的版本号，如果是说明现在修改库存是安全的，然后在让版本号Version加一.</p>
-<h4 id="实现乐观锁和自旋锁的java代码"><a href="#实现乐观锁和自旋锁的java代码" class="headerlink" title="实现乐观锁和自旋锁的java代码"></a>实现乐观锁和自旋锁的java代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//该锁一直自旋，当然设置自旋的次数更好。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">scekill</span><span class="params">(Integer commodityId)</span></span>&#123;</span><br><span class="line">        <span class="comment">//自旋减库存</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            Commodity commodit = scekillMapper.getCommoditById(commodityId);</span><br><span class="line">            <span class="keyword">if</span>(commodit.getNumber()&lt;=<span class="number">0</span>)&#123;<span class="comment">//如果没有库存，则秒杀失败</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Integer integer = scekillMapper.setCommoditById(commodityId, commodit.getVersion());</span><br><span class="line">            <span class="keyword">if</span>(integer==<span class="number">1</span>)&#123;<span class="comment">//秒杀成功</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
+<h4 id="实现乐观锁和自旋锁的java代码"><a href="#实现乐观锁和自旋锁的java代码" class="headerlink" title="实现乐观锁和自旋锁的java代码"></a>实现乐观锁和自旋锁的java代码</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//该锁一直自旋，当然设置自旋的次数更好。</span>
+<span class="token keyword">public</span> Integer <span class="token function">scekill</span><span class="token punctuation">(</span>Integer commodityId<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//自旋减库存</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            Commodity commodit <span class="token operator">=</span> scekillMapper<span class="token punctuation">.</span><span class="token function">getCommoditById</span><span class="token punctuation">(</span>commodityId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>commodit<span class="token punctuation">.</span><span class="token function">getNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//如果没有库存，则秒杀失败</span>
+                <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            Integer integer <span class="token operator">=</span> scekillMapper<span class="token punctuation">.</span><span class="token function">setCommoditById</span><span class="token punctuation">(</span>commodityId<span class="token punctuation">,</span> commodit<span class="token punctuation">.</span><span class="token function">getVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>integer<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//秒杀成功</span>
+                <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span></code></pre>
 <h4 id="难点：如何使用JWT防范中间人攻击"><a href="#难点：如何使用JWT防范中间人攻击" class="headerlink" title="难点：如何使用JWT防范中间人攻击"></a>难点：如何使用JWT防范中间人攻击</h4><p>简单点讲，所谓中间人攻击就是用户在提交请求的时候，被提交的请求并不是直接到达了服务器，而是通过了许多交换机和服务器，如果黑客在 提交的时候监听了你提交的数据，比如说传统基于cookie和session模式中，黑客拿到了你的cookie，然后通过手段向服务器发起请求，很容易就能伪造登陆。</p>
 <p>我的解决方案就是，一个token只能使用一次，每次在给浏览器颁发token的时候在token存放一下当前请求的ip，每次服务器拿到token就要校验上次的ip和这一次是不是同一个ip。</p>
 <h3 id="最后吞吐率只有40-sec"><a href="#最后吞吐率只有40-sec" class="headerlink" title="最后吞吐率只有40/sec"></a>最后吞吐率只有40/sec</h3>
@@ -883,7 +902,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

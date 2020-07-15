@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Byy">
+    <meta name="keywords" content="jvm学习第一天-自动内存管理, Byy">
     <meta name="description" content>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Byy</title>
+    <title>jvm学习第一天-自动内存管理 | Byy</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title"></h1>
+                    <h1 class="description center-align post-title">jvm学习第一天-自动内存管理</h1>
                 </div>
             </div>
         </div>
@@ -436,9 +436,21 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/java/">
+                                <span class="chip bg-color">java</span>
+                            </a>
+                        
+                            <a href="/tags/jvm/">
+                                <span class="chip bg-color">jvm</span>
+                            </a>
+                        
+                            <a href="/tags/虚拟机/">
+                                <span class="chip bg-color">虚拟机</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -450,14 +462,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-04-28
+                    2020-03-14
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-05-04
+                    2020-07-15
                 </div>
                 
 
@@ -471,7 +483,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    28 Min
+                    27 Min
                 </div>
                 
 
@@ -486,13 +498,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>title: jvm学习第一天-自动内存管理<br>date: 2020-03-14 17:35:56<br>tags: </p>
-<ul>
-<li>jvm</li>
-<li>java</li>
-<li>虚拟机</li>
-</ul>
-<h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p><img src="/upload/1584511913647.png" alt="1584511913647"></p>
+                <h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p><img src="/upload/1584511913647.png" alt="1584511913647"></p>
 <ul>
 <li>方法区</li>
 <li>堆</li>
@@ -528,11 +534,24 @@
 <p><strong>局部变量表在编译期间确定大小</strong></p>
 <h4 id="变量槽"><a href="#变量槽" class="headerlink" title="变量槽"></a>变量槽</h4><p>局部变量的存储使用变量槽表示，其中long和double使用两个变量槽</p>
 <p><strong>在方法运行期间不会改变局部变量表的大小，（大小指的是不会改变变量槽的数量）</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Slot复用 </span><br><span class="line"></span><br><span class="line">为了尽可能节省栈帧空间，局部变量表中的Slot是可以重用的，</span><br><span class="line">也就是说当PC计数器的指令指已经超出了某个变量的作用域（执行完毕），</span><br><span class="line">那这个变量对应的Slot就可以交给其他变量使用。</span><br><span class="line"></span><br><span class="line">优点 ： 节省栈帧空间。 </span><br><span class="line"></span><br><span class="line">缺点 ： 影响到系统的垃圾收集行为。</span><br><span class="line"></span><br><span class="line">（如大方法占用较多的Slot，执行完该方法的作用域后没有对Slot赋值或者清空设置null值，垃圾回收器便不能及时的回收该内存。）</span><br></pre></td></tr></table></figure>
+<pre><code>Slot复用 
 
-<h4 id="变量槽的复用"><a href="#变量槽的复用" class="headerlink" title="变量槽的复用"></a>变量槽的复用</h4><p>当一个变量超出了他的作用域范围，那么这个变量的位置可以被复用.</p>
-<h5 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">int</span> b=a;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">int</span> c=<span class="number">2</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+为了尽可能节省栈帧空间，局部变量表中的Slot是可以重用的，
+也就是说当PC计数器的指令指已经超出了某个变量的作用域（执行完毕），
+那这个变量对应的Slot就可以交给其他变量使用。
 
+优点 ： 节省栈帧空间。 
+
+缺点 ： 影响到系统的垃圾收集行为。
+
+（如大方法占用较多的Slot，执行完该方法的作用域后没有对Slot赋值或者清空设置null值，垃圾回收器便不能及时的回收该内存。）</code></pre><h4 id="变量槽的复用"><a href="#变量槽的复用" class="headerlink" title="变量槽的复用"></a>变量槽的复用</h4><p>当一个变量超出了他的作用域范围，那么这个变量的位置可以被复用.</p>
+<h5 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h5><pre class=" language-java"><code class="language-java"> <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> b<span class="token operator">=</span>a<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> c<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
 <p>加入上述代码不存在复用的情况下应该是4个局部变量，但是由于b的作用域范围超出了，所以b的变量槽就被c所复用。也就是数上述代码分配的局部变量长度为3</p>
 <p><img src="/upload/1584524922159.png" alt="1584524922159"></p>
 <h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><p>如果线程请求的栈深度大于虚拟机所允许的深度，则会抛出<strong>StackOverFlowError</strong>异常，如果虚拟机栈容量<strong>可以动态</strong>扩展，当栈扩展无法申请到新的内存的时候会抛出<strong>OutOfMemoryError</strong>异常</p>
@@ -664,15 +683,34 @@
 <h3 id="对象头解读"><a href="#对象头解读" class="headerlink" title="对象头解读"></a>对象头解读</h3><p>我使用的环境是64位JDK1.8，并且开启了指针压缩</p>
 <p><img src="/upload/1585388372077.png" alt="1585388372077"></p>
 <p>如果要查看对象头信息需要导入包</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjdk.jol<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jol-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-xml"><code class="language-xml">        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.openjdk.jol<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>jol-core<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 <p>例如代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Oop</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Ob ob = <span class="keyword">new</span> Ob();</span><br><span class="line">        ob.hashCode();</span><br><span class="line">        System.out.println(<span class="string">"hashCode="</span>+Integer.toHexString(ob.hashCode()));<span class="comment">//只有使用过了hashCodeMarkWord里面才会有hashCode</span></span><br><span class="line">        System.out.println(ClassLayout.parseInstance(ob).toPrintable());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ob</span></span>&#123;</span><br><span class="line">    Long a;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> sa;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Oop</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Ob ob <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Ob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ob<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"hashCode="</span><span class="token operator">+</span>Integer<span class="token punctuation">.</span><span class="token function">toHexString</span><span class="token punctuation">(</span>ob<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//只有使用过了hashCodeMarkWord里面才会有hashCode</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>ClassLayout<span class="token punctuation">.</span><span class="token function">parseInstance</span><span class="token punctuation">(</span>ob<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toPrintable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Ob</span><span class="token punctuation">{</span>
+    Long a<span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token keyword">int</span> sa<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <p>打印结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">hashCode=6d6f6e28</span><br><span class="line">Ob object internals:</span><br><span class="line"> OFFSET  SIZE             TYPE DESCRIPTION                               VALUE</span><br><span class="line">      0     4                  (object header)                           01 28 6e 6f (00000001 00101000 01101110 01101111) (1869490177)</span><br><span class="line">      4     4                  (object header)                           6d 00 00 00 (01101101 00000000 00000000 00000000) (109)</span><br><span class="line">      8     4                  (object header)                           43 c1 00 f8 (01000011 11000001 00000000 11111000) (-134168253)</span><br><span class="line">     12     4   java.lang.Long Ob.a                                      null</span><br><span class="line">Instance size: 16 bytes</span><br><span class="line">Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</span><br></pre></td></tr></table></figure>
-
-<p>由于存在大端和小端的读法，所以hashCode正好相反。</p>
+<pre><code>hashCode=6d6f6e28
+Ob object internals:
+ OFFSET  SIZE             TYPE DESCRIPTION                               VALUE
+      0     4                  (object header)                           01 28 6e 6f (00000001 00101000 01101110 01101111) (1869490177)
+      4     4                  (object header)                           6d 00 00 00 (01101101 00000000 00000000 00000000) (109)
+      8     4                  (object header)                           43 c1 00 f8 (01000011 11000001 00000000 11111000) (-134168253)
+     12     4   java.lang.Long Ob.a                                      null
+Instance size: 16 bytes
+Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</code></pre><p>由于存在大端和小端的读法，所以hashCode正好相反。</p>
 <p>其中最后一个字节01字节码对应的二进制是00000001，根据图可知0 是cms_free，0000是分代年龄，01表明是无锁状态</p>
 <h2 id="对象的创建过程"><a href="#对象的创建过程" class="headerlink" title="对象的创建过程"></a>对象的创建过程</h2><ul>
 <li>当java虚拟机遇到字节码new的时候首先检查这个指令的参数能否在常量池中定位到一个类的符号引用。</li>
@@ -761,9 +799,7 @@
 <li>适用范围：新生代</li>
 <li>应用：Client模式下的默认新生代收集器</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于Serial收集器缺点有一个比较有意思的故事：Serial收集器的运行过程需要暂停应用程序所有线程（Stop The World），它带给用户的恶劣体验。早期HotSpot虚拟机的设计者们表示完全理解，但也同时表示非常委屈：“你妈妈在给你打扫房间的时候，肯定也会让你老老实实地在椅子上或者房间外待着，如果她一边打扫，你一边乱扔纸屑，这房间还能打扫完？”这确实是一个合情合理的矛盾，虽然垃圾收集这项工作听起来和打扫房间属于一个工种，但实际上肯定还要比打扫房间复杂得多！（现在的垃圾收集器一样需要停顿，只是都做到了毫秒级）</span><br></pre></td></tr></table></figure>
-
-<h4 id="使用该垃圾收集器-XX-UseSerialGC"><a href="#使用该垃圾收集器-XX-UseSerialGC" class="headerlink" title="使用该垃圾收集器 -XX:+UseSerialGC"></a>使用该垃圾收集器 -XX:+UseSerialGC</h4><p>使用之前我们可以去查看一下，当前虚拟机是否使用的Serial，如果是我们不需要去更改，如果不是则添加参数：<code>-XX:+UseSerialGC</code>。</p>
+<pre><code>对于Serial收集器缺点有一个比较有意思的故事：Serial收集器的运行过程需要暂停应用程序所有线程（Stop The World），它带给用户的恶劣体验。早期HotSpot虚拟机的设计者们表示完全理解，但也同时表示非常委屈：“你妈妈在给你打扫房间的时候，肯定也会让你老老实实地在椅子上或者房间外待着，如果她一边打扫，你一边乱扔纸屑，这房间还能打扫完？”这确实是一个合情合理的矛盾，虽然垃圾收集这项工作听起来和打扫房间属于一个工种，但实际上肯定还要比打扫房间复杂得多！（现在的垃圾收集器一样需要停顿，只是都做到了毫秒级）</code></pre><h4 id="使用该垃圾收集器-XX-UseSerialGC"><a href="#使用该垃圾收集器-XX-UseSerialGC" class="headerlink" title="使用该垃圾收集器 -XX:+UseSerialGC"></a>使用该垃圾收集器 -XX:+UseSerialGC</h4><p>使用之前我们可以去查看一下，当前虚拟机是否使用的Serial，如果是我们不需要去更改，如果不是则添加参数：<code>-XX:+UseSerialGC</code>。</p>
 <h3 id="ParNew收集器"><a href="#ParNew收集器" class="headerlink" title="ParNew收集器"></a>ParNew收集器</h3><p>ParNew收集器实质上是Serial收集器的多线程并行版本</p>
 <p><img src="/upload/1584516098000.png" alt="1584516098000"></p>
 <h4 id="ParNew收集器的特点："><a href="#ParNew收集器的特点：" class="headerlink" title="ParNew收集器的特点："></a>ParNew收集器的特点：</h4><h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h5><p>在多CPU时，比Serial效率高。</p>
@@ -815,7 +851,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/28/jvm学习第一天-自动内存管理/">http://yoursite.com/2020/04/28/jvm学习第一天-自动内存管理/</a>
+                    <a href="http://yoursite.com/2020/03/14/jvm学习第一天-自动内存管理/">http://yoursite.com/2020/03/14/jvm学习第一天-自动内存管理/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -852,7 +888,19 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="/tags/java/">
+                                    <span class="chip bg-color">java</span>
+                                </a>
+                            
+                                <a href="/tags/jvm/">
+                                    <span class="chip bg-color">jvm</span>
+                                </a>
+                            
+                                <a href="/tags/虚拟机/">
+                                    <span class="chip bg-color">虚拟机</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -895,7 +943,7 @@
         repo: 'yang295513.github.io',
         owner: 'yang295513',
         admin: ["yang295513"],
-        id: '2020-04-28T19-48-27',
+        id: '2020-03-14T17-35-56',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -923,26 +971,25 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/04/28/java动态性的理解/">
+                <a href="/2020/03/15/JAVA反射详解/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="java动态性的理解">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="JAVA反射详解">
                         
-                        <span class="card-title">java动态性的理解</span>
+                        <span class="card-title">JAVA反射详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            什么是动态语言动态类型语言和静态类型语言两者的区别就在于对类型的检查是在编译期还是在运行期。
-而且动态语言可以在运行的时候改变其结构。
-java语言的动态性java 语言的动态性体现在面向对象设计方法中的扩展，允许程序动态的装入过程中需要的
+                            概述定义JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。
+用途最重要的用途就是解耦，许多
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-28
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-15
                         </span>
                         <span class="publish-author">
                             
@@ -955,12 +1002,12 @@ java语言的动态性java 语言的动态性体现在面向对象设计方法�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/反射/">
+                        <span class="chip bg-color">反射</span>
                     </a>
                     
-                    <a href="/tags/动态性/">
-                        <span class="chip bg-color">动态性</span>
+                    <a href="/tags/JAVA/">
+                        <span class="chip bg-color">JAVA</span>
                     </a>
                     
                 </div>
@@ -974,35 +1021,33 @@ java语言的动态性java 语言的动态性体现在面向对象设计方法�
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/18/ThreadLocal详解/">
+                <a href="/2020/03/14/JVMOOM溢出/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="ThreadLocal详解">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="JVMOOM溢出">
                         
-                        <span class="card-title">ThreadLocal详解</span>
+                        <span class="card-title">JVMOOM溢出</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ThreadLocal简介
-多线程访问同一个共享变量的时候容易产生并发问题，为了保证线程安全除了使用锁的方式，使用ThreadLocal达到线程隔离的效果，也是一种不错的方案
-
-功能
-传递数据，因为同一个线程在任何情况下获取到的都是同一个对
+                            堆空间溢出/**
+ * java堆内存溢出,首先在hospot虚拟机中堆内存是可以自动扩展的,但是我们可以调整他的上限
+ * -Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapD
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/并发/" class="post-category">
-                                    并发
+                            <a href="/categories/JVM/" class="post-category">
+                                    JVM
                                 </a>
                             
                             
@@ -1012,8 +1057,12 @@ java语言的动态性java 语言的动态性体现在面向对象设计方法�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ThreadLocal/">
-                        <span class="chip bg-color">ThreadLocal</span>
+                    <a href="/tags/jvm/">
+                        <span class="chip bg-color">jvm</span>
+                    </a>
+                    
+                    <a href="/tags/OOM/">
+                        <span class="chip bg-color">OOM</span>
                     </a>
                     
                 </div>
@@ -1162,7 +1211,7 @@ java语言的动态性java 语言的动态性体现在面向对象设计方法�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

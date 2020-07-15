@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -514,12 +514,22 @@
 <h3 id="方法调用和返回指令"><a href="#方法调用和返回指令" class="headerlink" title="方法调用和返回指令"></a>方法调用和返回指令</h3><p>invokevirtual:用于调用对象的实例方法，根据对象的实际类型进行分派（虚方法分派）。<br>invokeinterface:用于调用接口方法，它在运行时搜索一个实现了这个接口方法的对象，找出适合的方法进行调用。<br>invokespecial:用于调用一些需要特殊处理的实例方法，包括实例的初始化方法，私有方法和父类方法。<br>invokestatic:用于调用类方法（static方法）<br>invokedynamic:用于运行时动态解析出调用点限定符所应用的方法，并执行该方法。（前面的分派逻辑都固化在虚拟机内部，而该指令的分派逻辑是由用户自定义）。<br>方法返回指令：ireture(返回类型是int,short,byte,char,boolean时),lreturn,freturn,dreturn,areturn,另外还有一条return供void方法、实例/类/接口的初始化方法使用。</p>
 <h3 id="异常处理指令"><a href="#异常处理指令" class="headerlink" title="异常处理指令"></a>异常处理指令</h3><p>显式抛出异常指令：athrow</p>
 <h3 id="同步指令"><a href="#同步指令" class="headerlink" title="同步指令"></a>同步指令</h3><p>monitorenter,monitorexit</p>
-<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> b=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> c=a+b;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><pre class=" language-java"><code class="language-java">   <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+       <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span>
+       <span class="token keyword">int</span> b<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span>
+       <span class="token keyword">int</span> c<span class="token operator">=</span>a<span class="token operator">+</span>b<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
 <p><img src="/upload/1584595655988.png" alt="1584595655988"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 0 bipush 10//存入10到操作数栈</span><br><span class="line"> 2 istore_1//弹出栈顶元素存入位置1的局部变量中,而且位置1对应的是a</span><br><span class="line"> 3 bipush 10//存入10到操作数栈</span><br><span class="line"> 5 istore_2//弹出栈顶元素存入位置2的局部变量中,而且位置2对应的是b</span><br><span class="line"> 6 iload_1//取出局部变量表1位置的int型变量存放在栈顶</span><br><span class="line"> 7 iload_2//取出局部变量表2位置的int型变量存放在栈顶</span><br><span class="line"> 8 iadd//弹出操作数栈的两个元素求和并把结果存入操作数栈中</span><br><span class="line"> 9 istore_3//弹出操作数栈顶元素存放在局部变量表3的位置，对应变量为c</span><br><span class="line">10 return</span><br></pre></td></tr></table></figure>
-
-<h2 id="虚拟类的加载机制"><a href="#虚拟类的加载机制" class="headerlink" title="虚拟类的加载机制"></a>虚拟类的加载机制</h2><p><img src="/upload/1584597510376.png" alt="1584597510376"></p>
+<pre><code> 0 bipush 10//存入10到操作数栈
+ 2 istore_1//弹出栈顶元素存入位置1的局部变量中,而且位置1对应的是a
+ 3 bipush 10//存入10到操作数栈
+ 5 istore_2//弹出栈顶元素存入位置2的局部变量中,而且位置2对应的是b
+ 6 iload_1//取出局部变量表1位置的int型变量存放在栈顶
+ 7 iload_2//取出局部变量表2位置的int型变量存放在栈顶
+ 8 iadd//弹出操作数栈的两个元素求和并把结果存入操作数栈中
+ 9 istore_3//弹出操作数栈顶元素存放在局部变量表3的位置，对应变量为c
+10 return
+</code></pre><h2 id="虚拟类的加载机制"><a href="#虚拟类的加载机制" class="headerlink" title="虚拟类的加载机制"></a>虚拟类的加载机制</h2><p><img src="/upload/1584597510376.png" alt="1584597510376"></p>
 <h3 id="类加载时机"><a href="#类加载时机" class="headerlink" title="类加载时机"></a>类加载时机</h3><p>java语言中类型的加载连接以及初始化过程都是在程序运行期间完成的，这种策略虽然会使类加载时稍微增加一些性能开销，但是会为java应用程序提供高度的灵活性。java里天生就可以动态扩展语言特性就是依赖运行期间动态加载和动态连接这个特点实现的。比如，如果编写一个面向接口的程序，可以等到运行时再指定其具体实现类。（解析阶段则不一定:在某些情况下可以在初始化阶段之后开始，这是为了支持java语言的运行时绑定特性(也称为动态绑定或晚期绑定).</p>
 <p><strong>加载” 是 “类加载” 过程的一个阶段，切不可将二者混淆。</strong></p>
 <h4 id="加载阶段由三个基本动作组成："><a href="#加载阶段由三个基本动作组成：" class="headerlink" title="加载阶段由三个基本动作组成："></a>加载阶段由三个基本动作组成：</h4><ul>
@@ -1025,7 +1035,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

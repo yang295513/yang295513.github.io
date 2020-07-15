@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -472,14 +472,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    451
+                    405
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    2 Min
+                    1 Min
                 </div>
                 
 
@@ -502,20 +502,63 @@
 <li>函数式接口就是有且只有一个抽象方法(default方法也不行)</li>
 <li>函数式接口可以使用<strong>@FunctionalInterface</strong>注解检测</li>
 </ul>
-<h4 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        FunctionInter functionInter=name -&gt; &#123;System.out.println(name);<span class="keyword">return</span> name;&#125;;</span><br><span class="line">        FunctionInter functionInter1=name-&gt;name;</span><br><span class="line">        functionInter.get(<span class="string">"gg"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检查这个接口是不是函数式接口</span></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">FunctionInter</span></span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">get</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h4 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LambdaTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        FunctionInter functionInter<span class="token operator">=</span>name <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> name<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+        FunctionInter functionInter1<span class="token operator">=</span>name<span class="token operator">-</span><span class="token operator">></span>name<span class="token punctuation">;</span>
+        functionInter<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"gg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//检查这个接口是不是函数式接口</span>
+<span class="token annotation punctuation">@FunctionalInterface</span>
+<span class="token keyword">interface</span> <span class="token class-name">FunctionInter</span><span class="token punctuation">{</span>
+    String <span class="token function">get</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>lambad表达式可以替换部分内部类的写法，所以我们在介绍语法的同时可以对比内部类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">      <span class="comment">//内部类写法</span></span><br><span class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;);</span><br><span class="line"><span class="comment">//lambad写法</span></span><br><span class="line"><span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java">        <span class="token comment" spellcheck="true">//内部类写法</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(参数列表)-&gt;&#123;</span><br><span class="line">   被重写的方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//lambad写法</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">{</span>
 
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">(</span>参数列表<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">{</span>
+   被重写的方法体
+<span class="token punctuation">}</span></code></pre>
 <p>当然lambad还可以在语法上简化</p>
-<h4 id="简化"><a href="#简化" class="headerlink" title="简化"></a>简化</h4><h4 id="可以省略参数列表类型"><a href="#可以省略参数列表类型" class="headerlink" title="可以省略参数列表类型"></a>可以省略参数列表类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//标准格式</span></span><br><span class="line">        FunctionInter functionInter=(String name) -&gt; &#123;System.out.println(name);<span class="keyword">return</span> name;&#125;;</span><br><span class="line">        <span class="comment">//省略参数列表类型</span></span><br><span class="line">        FunctionInter functionInter=(name) -&gt; &#123;System.out.println(name);<span class="keyword">return</span> name;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检查这个接口是不是函数式接口</span></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">FunctionInter</span></span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">get</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="只有一个参数可以不加括号"><a href="#只有一个参数可以不加括号" class="headerlink" title="只有一个参数可以不加括号"></a>只有一个参数可以不加括号</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        FunctionInter functionInter=name-&gt; &#123;System.out.println(name);<span class="keyword">return</span> name;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//检查这个接口是不是函数式接口</span></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">FunctionInter</span></span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">get</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方法体内只有一条代码可以省略return，大括号"><a href="#方法体内只有一条代码可以省略return，大括号" class="headerlink" title="方法体内只有一条代码可以省略return，大括号"></a>方法体内只有一条代码可以省略return，大括号</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        FunctionInter functionInter=name-&gt; name-&gt;name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h4 id="简化"><a href="#简化" class="headerlink" title="简化"></a>简化</h4><h4 id="可以省略参数列表类型"><a href="#可以省略参数列表类型" class="headerlink" title="可以省略参数列表类型"></a>可以省略参数列表类型</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LambdaTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//标准格式</span>
+        FunctionInter functionInter<span class="token operator">=</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> name<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//省略参数列表类型</span>
+        FunctionInter functionInter<span class="token operator">=</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> name<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//检查这个接口是不是函数式接口</span>
+<span class="token annotation punctuation">@FunctionalInterface</span>
+<span class="token keyword">interface</span> <span class="token class-name">FunctionInter</span><span class="token punctuation">{</span>
+    String <span class="token function">get</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="只有一个参数可以不加括号"><a href="#只有一个参数可以不加括号" class="headerlink" title="只有一个参数可以不加括号"></a>只有一个参数可以不加括号</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LambdaTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        FunctionInter functionInter<span class="token operator">=</span>name<span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> name<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//检查这个接口是不是函数式接口</span>
+<span class="token annotation punctuation">@FunctionalInterface</span>
+<span class="token keyword">interface</span> <span class="token class-name">FunctionInter</span><span class="token punctuation">{</span>
+    String <span class="token function">get</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="方法体内只有一条代码可以省略return，大括号"><a href="#方法体内只有一条代码可以省略return，大括号" class="headerlink" title="方法体内只有一条代码可以省略return，大括号"></a>方法体内只有一条代码可以省略return，大括号</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LambdaTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        FunctionInter functionInter<span class="token operator">=</span>name<span class="token operator">-</span><span class="token operator">></span> name<span class="token operator">-</span><span class="token operator">></span>name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -766,12 +809,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/mysql/">
-                        <span class="chip bg-color">mysql</span>
-                    </a>
-                    
                     <a href="/tags/数据库/">
                         <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
                     </a>
                     
                 </div>
@@ -920,7 +963,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

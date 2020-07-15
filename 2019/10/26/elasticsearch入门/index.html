@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -518,78 +518,149 @@
 <p>比如_doc就表示文档</p>
 <h4 id="index"><a href="#index" class="headerlink" title="index"></a>index</h4><p>在Elasticsearch中index索引就是文档的集合，一个索引由一个或多个document组成</p>
 <h2 id="Elasticsearch的CRUD"><a href="#Elasticsearch的CRUD" class="headerlink" title="Elasticsearch的CRUD"></a>Elasticsearch的CRUD</h2><h3 id="Elasticsearch是遵循RESTful接口实现的"><a href="#Elasticsearch是遵循RESTful接口实现的" class="headerlink" title="Elasticsearch是遵循RESTful接口实现的"></a>Elasticsearch是遵循RESTful接口实现的</h3><p>也就是说正删改查都可以遵循REST接口规范</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET     获取一个资源 </span><br><span class="line">POST    添加一个资源 </span><br><span class="line">PUT     修改一个资源 </span><br><span class="line">DELETE  删除一个资源</span><br></pre></td></tr></table></figure>
-
-<h3 id="简单的获取指定文档"><a href="#简单的获取指定文档" class="headerlink" title="简单的获取指定文档"></a>简单的获取指定文档</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /</span><br></pre></td></tr></table></figure>
-
+<pre><code>GET     获取一个资源 
+POST    添加一个资源 
+PUT     修改一个资源 
+DELETE  删除一个资源 </code></pre><h3 id="简单的获取指定文档"><a href="#简单的获取指定文档" class="headerlink" title="简单的获取指定文档"></a>简单的获取指定文档</h3><pre class=" language-json"><code class="language-json">GET /</code></pre>
 <p>当然如果你添加了数据比如执行了如下代码</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT yang/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"user"</span>: <span class="string">"yang"</span>,</span><br><span class="line">  <span class="attr">"age"</span>: <span class="number">22</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-json"><code class="language-json">PUT yang/_doc/<span class="token number">1</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"user"</span><span class="token operator">:</span> <span class="token string">"yang"</span><span class="token punctuation">,</span>
+  <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">22</span>
+<span class="token punctuation">}</span></code></pre>
 <p>然后使用</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET yang/_doc/1</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-json"><code class="language-json">GET yang/_doc/<span class="token number">1</span></code></pre>
 <p>也可以获取</p>
-<h3 id="创建一个索引及文档"><a href="#创建一个索引及文档" class="headerlink" title="创建一个索引及文档"></a>创建一个索引及文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT yang/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  &quot;user&quot;: &quot;yang&quot;,</span><br><span class="line">  &quot;age&quot;: 22</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>执行结果</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"_index"</span> : <span class="string">"yang"</span>,</span><br><span class="line">  <span class="attr">"_type"</span> : <span class="string">"_doc"</span>,</span><br><span class="line">  <span class="attr">"_id"</span> : <span class="string">"1"</span>,</span><br><span class="line">  <span class="attr">"_version"</span> : <span class="number">1</span>,</span><br><span class="line">  <span class="attr">"result"</span> : <span class="string">"updated"</span>,</span><br><span class="line">  <span class="attr">"_shards"</span> : &#123;</span><br><span class="line">    <span class="attr">"total"</span> : <span class="number">2</span>,</span><br><span class="line">    <span class="attr">"successful"</span> : <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"failed"</span> : <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"_seq_no"</span> : <span class="number">38</span>,</span><br><span class="line">  <span class="attr">"_primary_term"</span> : <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="创建一个索引及文档"><a href="#创建一个索引及文档" class="headerlink" title="创建一个索引及文档"></a>创建一个索引及文档</h3><pre><code>PUT yang/_doc/1
+{
+  &quot;user&quot;: &quot;yang&quot;,
+  &quot;age&quot;: 22
+}</code></pre><p>执行结果</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"_index"</span> <span class="token operator">:</span> <span class="token string">"yang"</span><span class="token punctuation">,</span>
+  <span class="token property">"_type"</span> <span class="token operator">:</span> <span class="token string">"_doc"</span><span class="token punctuation">,</span>
+  <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token string">"1"</span><span class="token punctuation">,</span>
+  <span class="token property">"_version"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token property">"result"</span> <span class="token operator">:</span> <span class="token string">"updated"</span><span class="token punctuation">,</span>
+  <span class="token property">"_shards"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"total"</span> <span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    <span class="token property">"successful"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token property">"failed"</span> <span class="token operator">:</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"_seq_no"</span> <span class="token operator">:</span> <span class="token number">38</span><span class="token punctuation">,</span>
+  <span class="token property">"_primary_term"</span> <span class="token operator">:</span> <span class="token number">1</span>
+<span class="token punctuation">}</span></code></pre>
 <p>其中put表示修改，yang是索引名称，_doc是type类型,1是主键</p>
 <p>值得注意的是，执行上面的方法后，<strong>马上进行搜索可能结果是不可见的</strong>，因为在Elasticesearch中有一个叫做refresh的操作，通常有一个refresh timer来定时完成这个操作。这个周期为1秒。如果我们想让搜索结果立刻可见，可以使用如下参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT yang/_doc/1?refresh=true</span><br><span class="line">&#123;</span><br><span class="line">  &quot;user&quot;: &quot;yang&quot;,</span><br><span class="line">  &quot;age&quot;: 22</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但是这样做是有代价的，频繁的进行上述的refresh操作会导致Elasticsearch变的特别慢。</p>
+<pre><code>PUT yang/_doc/1?refresh=true
+{
+  &quot;user&quot;: &quot;yang&quot;,
+  &quot;age&quot;: 22
+}</code></pre><p>但是这样做是有代价的，频繁的进行上述的refresh操作会导致Elasticsearch变的特别慢。</p>
 <p>另一种方式使用refresh=wait_for，这样相当于一个同步操作，等待refresh周期完成后才返回。</p>
 <h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><p>每次我们修改了同一个document，他的版本号就会加1，如果不存在则版本号为1</p>
 <p>在次执行之前的代码，会发现返回值中的version字段变为了2</p>
 <p>我们每次执行那个POST或者PUT接口时，如果文档已经存在，那么相应的版本就会自动加1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT yang/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  &quot;user&quot;: &quot;yang&quot;,</span><br><span class="line">  &quot;age&quot;: 22</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"_index"</span> : <span class="string">"yang"</span>,</span><br><span class="line">  <span class="attr">"_type"</span> : <span class="string">"_doc"</span>,</span><br><span class="line">  <span class="attr">"_id"</span> : <span class="string">"1"</span>,</span><br><span class="line">  <span class="attr">"_version"</span> : <span class="number">2</span>,</span><br><span class="line">  <span class="attr">"result"</span> : <span class="string">"updated"</span>,</span><br><span class="line">  <span class="attr">"_shards"</span> : &#123;</span><br><span class="line">    <span class="attr">"total"</span> : <span class="number">2</span>,</span><br><span class="line">    <span class="attr">"successful"</span> : <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"failed"</span> : <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"_seq_no"</span> : <span class="number">38</span>,</span><br><span class="line">  <span class="attr">"_primary_term"</span> : <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code>PUT yang/_doc/1
+{
+  &quot;user&quot;: &quot;yang&quot;,
+  &quot;age&quot;: 22
+}</code></pre><pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"_index"</span> <span class="token operator">:</span> <span class="token string">"yang"</span><span class="token punctuation">,</span>
+  <span class="token property">"_type"</span> <span class="token operator">:</span> <span class="token string">"_doc"</span><span class="token punctuation">,</span>
+  <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token string">"1"</span><span class="token punctuation">,</span>
+  <span class="token property">"_version"</span> <span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  <span class="token property">"result"</span> <span class="token operator">:</span> <span class="token string">"updated"</span><span class="token punctuation">,</span>
+  <span class="token property">"_shards"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"total"</span> <span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    <span class="token property">"successful"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token property">"failed"</span> <span class="token operator">:</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"_seq_no"</span> <span class="token operator">:</span> <span class="token number">38</span><span class="token punctuation">,</span>
+  <span class="token property">"_primary_term"</span> <span class="token operator">:</span> <span class="token number">1</span>
+<span class="token punctuation">}</span></code></pre>
 <p>如果不想让每次put和post接口的时候都加一，我们可以使用_create来实现，</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT yang/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"user"</span>: <span class="string">"yang"</span>,</span><br><span class="line">  <span class="attr">"age"</span>: <span class="number">22</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-json"><code class="language-json">PUT yang/_doc/<span class="token number">1</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"user"</span><span class="token operator">:</span> <span class="token string">"yang"</span><span class="token punctuation">,</span>
+  <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">22</span>
+<span class="token punctuation">}</span></code></pre>
 <p>报错信息</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"error"</span> : &#123;</span><br><span class="line">    <span class="attr">"root_cause"</span> : [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"type"</span> : <span class="string">"version_conflict_engine_exception"</span>,</span><br><span class="line">        <span class="attr">"reason"</span> : <span class="string">"[1]: version conflict, document already exists (current version [7])"</span>,</span><br><span class="line">        <span class="attr">"index_uuid"</span> : <span class="string">"K8He8JkrTRyRYmzRDzDWuw"</span>,</span><br><span class="line">        <span class="attr">"shard"</span> : <span class="string">"0"</span>,</span><br><span class="line">        <span class="attr">"index"</span> : <span class="string">"yang"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"type"</span> : <span class="string">"version_conflict_engine_exception"</span>,</span><br><span class="line">    <span class="attr">"reason"</span> : <span class="string">"[1]: version conflict, document already exists (current version [7])"</span>,</span><br><span class="line">    <span class="attr">"index_uuid"</span> : <span class="string">"K8He8JkrTRyRYmzRDzDWuw"</span>,</span><br><span class="line">    <span class="attr">"shard"</span> : <span class="string">"0"</span>,</span><br><span class="line">    <span class="attr">"index"</span> : <span class="string">"yang"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"status"</span> : <span class="number">409</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"error"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"root_cause"</span> <span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">"type"</span> <span class="token operator">:</span> <span class="token string">"version_conflict_engine_exception"</span><span class="token punctuation">,</span>
+        <span class="token property">"reason"</span> <span class="token operator">:</span> <span class="token string">"[1]: version conflict, document already exists (current version [7])"</span><span class="token punctuation">,</span>
+        <span class="token property">"index_uuid"</span> <span class="token operator">:</span> <span class="token string">"K8He8JkrTRyRYmzRDzDWuw"</span><span class="token punctuation">,</span>
+        <span class="token property">"shard"</span> <span class="token operator">:</span> <span class="token string">"0"</span><span class="token punctuation">,</span>
+        <span class="token property">"index"</span> <span class="token operator">:</span> <span class="token string">"yang"</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"type"</span> <span class="token operator">:</span> <span class="token string">"version_conflict_engine_exception"</span><span class="token punctuation">,</span>
+    <span class="token property">"reason"</span> <span class="token operator">:</span> <span class="token string">"[1]: version conflict, document already exists (current version [7])"</span><span class="token punctuation">,</span>
+    <span class="token property">"index_uuid"</span> <span class="token operator">:</span> <span class="token string">"K8He8JkrTRyRYmzRDzDWuw"</span><span class="token punctuation">,</span>
+    <span class="token property">"shard"</span> <span class="token operator">:</span> <span class="token string">"0"</span><span class="token punctuation">,</span>
+    <span class="token property">"index"</span> <span class="token operator">:</span> <span class="token string">"yang"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"status"</span> <span class="token operator">:</span> <span class="token number">409</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>_create顾名思义，存在就报错</p>
 <p>我们使用如下命令也一样</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT yang/_doc/1?op_type=create</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"user"</span>: <span class="string">"yang"</span>,</span><br><span class="line">  <span class="attr">"age"</span>: <span class="number">22</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="在请求中op-type可以有两种值index和create"><a href="#在请求中op-type可以有两种值index和create" class="headerlink" title="在请求中op_type可以有两种值index和create"></a>在请求中op_type可以有两种值index和create</h3><h3 id="自动生成ID"><a href="#自动生成ID" class="headerlink" title="自动生成ID"></a>自动生成ID</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT yang/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"user"</span>: <span class="string">"yang"</span>,</span><br><span class="line">  <span class="attr">"age"</span>: <span class="number">22</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-json"><code class="language-json">PUT yang/_doc/<span class="token number">1</span>?op_type=create
+<span class="token punctuation">{</span>
+  <span class="token property">"user"</span><span class="token operator">:</span> <span class="token string">"yang"</span><span class="token punctuation">,</span>
+  <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">22</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="在请求中op-type可以有两种值index和create"><a href="#在请求中op-type可以有两种值index和create" class="headerlink" title="在请求中op_type可以有两种值index和create"></a>在请求中op_type可以有两种值index和create</h3><h3 id="自动生成ID"><a href="#自动生成ID" class="headerlink" title="自动生成ID"></a>自动生成ID</h3><pre class=" language-json"><code class="language-json">PUT yang/_doc/<span class="token number">1</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"user"</span><span class="token operator">:</span> <span class="token string">"yang"</span><span class="token punctuation">,</span>
+  <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">22</span>
+<span class="token punctuation">}</span></code></pre>
 <p>在上面的代码中我们添加必须指定id</p>
 <p>其实在实际的应用中，这个并不必要。相反，当我们分配一个ID时，在数据导入的时候会检查这个ID的文档是否存在，如果是已经存在，那么就更新器版本。如果不存在，就创建一个新的文档。如果我们不指定文档的ID，转而让Elasticsearch自动帮我们生成一个ID，这样的速度更快。在这种情况下，<strong>我们必须使用POST，而不是PUT</strong>。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST yang/_doc</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"user"</span>: <span class="string">"yang"</span>,</span><br><span class="line">  <span class="attr">"age"</span>: <span class="string">"22"</span>,</span><br><span class="line">  <span class="attr">"sex"</span>: <span class="string">"男"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-json"><code class="language-json">POST yang/_doc
+<span class="token punctuation">{</span>
+  <span class="token property">"user"</span><span class="token operator">:</span> <span class="token string">"yang"</span><span class="token punctuation">,</span>
+  <span class="token property">"age"</span><span class="token operator">:</span> <span class="token string">"22"</span><span class="token punctuation">,</span>
+  <span class="token property">"sex"</span><span class="token operator">:</span> <span class="token string">"男"</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="返回指定的数据"><a href="#返回指定的数据" class="headerlink" title="返回指定的数据"></a>返回指定的数据</h3><p>在之前GET返回值中我们获取了一大堆没有用的信息，如果我只想得到source的信息可以执行</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET yang/_doc/1/_source</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-json"><code class="language-json">GET yang/_doc/<span class="token number">1</span>/_source</code></pre>
 <p>当然也可以只获取指定字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET yang/_doc/1/?_source=user,age</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意_source前面有个?号</strong>，没有?号就报错</p>
+<pre><code>GET yang/_doc/1/?_source=user,age</code></pre><p><strong>注意_source前面有个?号</strong>，没有?号就报错</p>
 <h3 id="修改一个文档"><a href="#修改一个文档" class="headerlink" title="修改一个文档"></a>修改一个文档</h3><p>在上面我们看到了可以使用POST的命令来修改改一个文档。通常我们使用POST来创建一个新的文档。在使用POST的时候，我们甚至不用去指定特定的id，系统会帮我们自动生成。但是我们修改一个文档时，我们通常会使用PUT来进行操作，并且，我们需要指定一个特定的id来进行修改：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT yang/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"user"</span>: <span class="string">"yang"</span>,</span><br><span class="line">  <span class="attr">"age"</span>: <span class="number">22</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-json"><code class="language-json">PUT yang/_doc/<span class="token number">1</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"user"</span><span class="token operator">:</span> <span class="token string">"yang"</span><span class="token punctuation">,</span>
+  <span class="token property">"age"</span><span class="token operator">:</span> <span class="token number">22</span>
+<span class="token punctuation">}</span></code></pre>
 <p>在put完成后，我们再次put</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PUT yang/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"user"</span>: <span class="string">"yang"</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-json"><code class="language-json">PUT yang/_doc/<span class="token number">1</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"user"</span><span class="token operator">:</span> <span class="token string">"yang"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre>
 <p>然后在</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET yang/_doc/1</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-json"><code class="language-json">GET yang/_doc/<span class="token number">1</span></code></pre>
 <p>会发现只有一个字段了，也就是说put进行了覆盖</p>
 <p>如果我们不想每次想新增字段的时候都需要携带全部字段，我们可以使用</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST yang/_update/2</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"doc"</span>: &#123;</span><br><span class="line">   <span class="attr">"user"</span>: <span class="string">"yang"</span> </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="在painless语言中，不能直接输入中文"><a href="#在painless语言中，不能直接输入中文" class="headerlink" title="在painless语言中，不能直接输入中文"></a>在painless语言中，不能直接输入中文</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PUT yang/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"名字"</span>: <span class="string">"yang"</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PUT yang/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"user"</span>: <span class="string">"名字"</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-json"><code class="language-json">POST yang/_update/<span class="token number">2</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"doc"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+   <span class="token property">"user"</span><span class="token operator">:</span> <span class="token string">"yang"</span> 
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="在painless语言中，不能直接输入中文"><a href="#在painless语言中，不能直接输入中文" class="headerlink" title="在painless语言中，不能直接输入中文"></a>在painless语言中，不能直接输入中文</h3><pre class=" language-json"><code class="language-json">PUT yang/_doc/<span class="token number">1</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"名字"</span><span class="token operator">:</span> <span class="token string">"yang"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-json"><code class="language-json">PUT yang/_doc/<span class="token number">1</span>
+<span class="token punctuation">{</span>
+  <span class="token property">"user"</span><span class="token operator">:</span> <span class="token string">"名字"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre>
 <p>第一个是不合法的，但是第二个是合法的</p>
-<h3 id="删除一个index"><a href="#删除一个index" class="headerlink" title="删除一个index"></a>删除一个index</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE yang</span><br></pre></td></tr></table></figure>
-
+<h3 id="删除一个index"><a href="#删除一个index" class="headerlink" title="删除一个index"></a>删除一个index</h3><pre class=" language-shell"><code class="language-shell">DELETE yang</code></pre>
 <p><strong>这样在yang索引下的所有document(文档)都会被删除</strong></p>
 
             </div>
@@ -957,7 +1028,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

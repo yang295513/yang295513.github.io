@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -476,7 +476,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    597
+                    555
                 </div>
                 
 
@@ -499,29 +499,105 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="震惊！！！final修饰的变量可以被修改"><a href="#震惊！！！final修饰的变量可以被修改" class="headerlink" title="震惊！！！final修饰的变量可以被修改"></a>震惊！！！final修饰的变量可以被修改</h2><p>首先先看一段代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Final</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IllegalAccessException </span>&#123;</span><br><span class="line">        Hh hh=<span class="keyword">new</span> Hh();</span><br><span class="line">        Field[] declaredFields = hh.getClass().getDeclaredFields();</span><br><span class="line">        <span class="keyword">for</span> (Field declaredField : declaredFields) &#123;</span><br><span class="line">            System.out.println(declaredField.getInt(hh));</span><br><span class="line">            System.out.println(<span class="string">"反射修改前-----------"</span>);</span><br><span class="line">            declaredField.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">            declaredField.set(hh, <span class="number">456</span>);</span><br><span class="line">            System.out.println(<span class="string">"反射修改后-----------"</span>);</span><br><span class="line">            System.out.println(declaredField.getInt(hh));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hh</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> age=<span class="number">18</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Final</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> IllegalAccessException <span class="token punctuation">{</span>
+        Hh hh<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Hh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Field<span class="token punctuation">[</span><span class="token punctuation">]</span> declaredFields <span class="token operator">=</span> hh<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Field declaredField <span class="token operator">:</span> declaredFields<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>declaredField<span class="token punctuation">.</span><span class="token function">getInt</span><span class="token punctuation">(</span>hh<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"反射修改前-----------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            declaredField<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            declaredField<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>hh<span class="token punctuation">,</span> <span class="token number">456</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"反射修改后-----------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>declaredField<span class="token punctuation">.</span><span class="token function">getInt</span><span class="token punctuation">(</span>hh<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Hh</span><span class="token punctuation">{</span>
+    <span class="token keyword">final</span> <span class="token keyword">int</span> age<span class="token operator">=</span><span class="token number">18</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> age<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p>运行结构</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">18</span></span><br><span class="line">反射修改前-----------</span><br><span class="line">反射修改后-----------</span><br><span class="line"><span class="number">456</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-java"><code class="language-java"><span class="token number">18</span>
+反射修改前<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+反射修改后<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+<span class="token number">456</span></code></pre>
 <p>怎么样是不是震撼到你了</p>
 <p>先别慌，在看一段代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Final</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IllegalAccessException </span>&#123;</span><br><span class="line">        Hh hh=<span class="keyword">new</span> Hh();</span><br><span class="line">        Field[] declaredFields = hh.getClass().getDeclaredFields();</span><br><span class="line">        <span class="keyword">for</span> (Field declaredField : declaredFields) &#123;</span><br><span class="line">            System.out.println(hh.getAge());<span class="comment">//这里由反射获取改成了调用get方法获取</span></span><br><span class="line">            System.out.println(<span class="string">"反射修改前-----------"</span>);</span><br><span class="line">            declaredField.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">            declaredField.set(hh, <span class="number">456</span>);</span><br><span class="line">            System.out.println(<span class="string">"反射修改后-----------"</span>);</span><br><span class="line">            System.out.println(hh.getAge());<span class="comment">//同理</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hh</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> age=<span class="number">18</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">18</span></span><br><span class="line">反射修改前-----------</span><br><span class="line">反射修改后-----------</span><br><span class="line"><span class="number">18</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Final</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> IllegalAccessException <span class="token punctuation">{</span>
+        Hh hh<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Hh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Field<span class="token punctuation">[</span><span class="token punctuation">]</span> declaredFields <span class="token operator">=</span> hh<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Field declaredField <span class="token operator">:</span> declaredFields<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hh<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//这里由反射获取改成了调用get方法获取</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"反射修改前-----------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            declaredField<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            declaredField<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>hh<span class="token punctuation">,</span> <span class="token number">456</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"反射修改后-----------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hh<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//同理</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Hh</span><span class="token punctuation">{</span>
+    <span class="token keyword">final</span> <span class="token keyword">int</span> age<span class="token operator">=</span><span class="token number">18</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> age<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token number">18</span>
+反射修改前<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+反射修改后<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+<span class="token number">18</span></code></pre>
 <p>咦，不是说好了反射改final的值么，怎么又不能修改了，你这不是骗人么？</p>
 <p>其实上述的代码确实是通过反射该了final修饰的值，至于为啥结果还是18原因是java编译的时候做了优化，我们反编译一下第二段代码就明白了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hh</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> age = <span class="number">18</span>;</span><br><span class="line"></span><br><span class="line">    Hh() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">18</span>;<span class="comment">//这里编译的时候被编译期进行常量替换了</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Hh</span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> <span class="token keyword">int</span> age <span class="token operator">=</span> <span class="token number">18</span><span class="token punctuation">;</span>
 
+    <span class="token function">Hh</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">18</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//这里编译的时候被编译期进行常量替换了</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="如何才能保证不被替换呢？"><a href="#如何才能保证不被替换呢？" class="headerlink" title="如何才能保证不被替换呢？"></a>如何才能保证不被替换呢？</h3><p>当我们使用引用类型的时候就可以保证不被编译期进行常量替换</p>
-<h4 id="比如："><a href="#比如：" class="headerlink" title="比如："></a>比如：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Final</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IllegalAccessException </span>&#123;</span><br><span class="line">        Hh hh=<span class="keyword">new</span> Hh();</span><br><span class="line">        Field[] declaredFields = hh.getClass().getDeclaredFields();</span><br><span class="line">        <span class="keyword">for</span> (Field declaredField : declaredFields) &#123;</span><br><span class="line">            System.out.println(hh.getAge());</span><br><span class="line">            System.out.println(<span class="string">"反射修改前-----------"</span>);</span><br><span class="line">            declaredField.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">            declaredField.set(hh, <span class="number">456</span>);</span><br><span class="line">            System.out.println(<span class="string">"反射修改后-----------"</span>);</span><br><span class="line">            System.out.println(hh.getAge());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hh</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Integer age=<span class="number">18</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">18</span></span><br><span class="line">反射修改前-----------</span><br><span class="line">反射修改后-----------</span><br><span class="line"><span class="number">456</span></span><br></pre></td></tr></table></figure>
-
+<h4 id="比如："><a href="#比如：" class="headerlink" title="比如："></a>比如：</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Final</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> IllegalAccessException <span class="token punctuation">{</span>
+        Hh hh<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Hh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Field<span class="token punctuation">[</span><span class="token punctuation">]</span> declaredFields <span class="token operator">=</span> hh<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Field declaredField <span class="token operator">:</span> declaredFields<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hh<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"反射修改前-----------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            declaredField<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            declaredField<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>hh<span class="token punctuation">,</span> <span class="token number">456</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"反射修改后-----------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hh<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Hh</span><span class="token punctuation">{</span>
+    <span class="token keyword">final</span> Integer age<span class="token operator">=</span><span class="token number">18</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> age<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token number">18</span>
+反射修改前<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+反射修改后<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+<span class="token number">456</span></code></pre>
 <p>反编译一下刚才的代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hh</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Integer age = <span class="number">18</span>;</span><br><span class="line"></span><br><span class="line">    Hh() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Hh</span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> Integer age <span class="token operator">=</span> <span class="token number">18</span><span class="token punctuation">;</span>
 
+    <span class="token function">Hh</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>age<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li>final修饰的变量确实能够被反射修改</li>
 <li>被修饰的变量不能被static final修饰，否则就算反射他爸爸也无力回天（当然反射没有爸爸）</li>
@@ -684,7 +760,10 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            源代码对比123456public boolean isInterrupted() &#123;    return isInterrupted(false);&#125;public static boolean interrupted(
+                            源代码对比    public boolean isInterrupted() {
+        return isInterrupted(false);
+    }
+    public static boolean interrupt
                         
                     </div>
                     <div class="publish-info">
@@ -756,12 +835,12 @@ JDK 1.8 的 HashMap 的数据结构采用红黑树+数组+链表实现，当链�
                         <span class="chip bg-color">容器</span>
                     </a>
                     
-                    <a href="/tags/hash/">
-                        <span class="chip bg-color">hash</span>
-                    </a>
-                    
                     <a href="/tags/源码/">
                         <span class="chip bg-color">源码</span>
+                    </a>
+                    
+                    <a href="/tags/hash/">
+                        <span class="chip bg-color">hash</span>
                     </a>
                     
                 </div>
@@ -910,7 +989,7 @@ JDK 1.8 的 HashMap 的数据结构采用红黑树+数组+链表实现，当链�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -485,7 +485,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    634
+                    628
                 </div>
                 
 
@@ -520,8 +520,15 @@
 <p>效率高。为了实现实时系统，JNI 在效率与虚拟机无关性之间进行了优化，以保障高效运行。</p>
 <p>功能强。JNI 提供了大量的函数及接口让本地方法与Java 虚拟机内核相互操作，增强两者的功能。</p>
 <p>本地代码与 Java 虚拟机之间是通过 JNI 函数实现相互操作的。JNI <a href="https://baike.baidu.com/item/函数/301912" target="_blank" rel="noopener">函数</a>通过接口指针来获得，本地方法将 JNI 接口指针当作参数来接受。虚拟机保证在从相同的 Java 线程中对本地方法进行多次调用时，传递给本地方法的接口指针是相同的，本地方法被不同的 Java 线程调用时，它接受不同的 JNI接口<a href="https://baike.baidu.com/item/指针/2878304" target="_blank" rel="noopener">指针</a>。 </p>
-<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">displayHelloWorld</span><span class="params">()</span></span>;<span class="comment">//所有native关键词修饰的都是对本地的声明</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.loadLibrary(<span class="string">"hello"</span>);<span class="comment">//载入本地库</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> HelloWorld().displayHelloWorld();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorld</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">void</span> <span class="token function">displayHelloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//所有native关键词修饰的都是对本地的声明</span>
+    <span class="token keyword">static</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span><span class="token function">loadLibrary</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//载入本地库</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">new</span> <span class="token class-name">HelloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">displayHelloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -679,7 +686,9 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            堆空间溢出12345678910111213141516171819202122232425/** * java堆内存溢出,首先在hospot虚拟机中堆内存是可以自动扩展的,但是我们可以调整他的上限 * -Xms20m -Xmx20m -X
+                            堆空间溢出/**
+ * java堆内存溢出,首先在hospot虚拟机中堆内存是可以自动扩展的,但是我们可以调整他的上限
+ * -Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapD
                         
                     </div>
                     <div class="publish-info">
@@ -913,7 +922,7 @@ JVM是JavaVirtualMachine（Java虚拟机）的缩写，JVM是一种用于计算�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -497,7 +497,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    845
+                    829
                 </div>
                 
 
@@ -526,11 +526,18 @@
 <p>C数组使我们建立起来的树状数组</p>
 <p><img src="/upload/1564195-20190316205027088-1794315300-1568108850516.png" alt="1564195-20190316205027088-1794315300"></p>
 <p>然后就能显而易见的发现一个规律</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">C1 = A1</span><br><span class="line">C2 = A1+A2</span><br><span class="line">C3 = A3</span><br><span class="line">C4 = A1+A2+A3+A4</span><br><span class="line">C5 = A5</span><br><span class="line">C6 = A5+A6</span><br><span class="line">C7 = A7</span><br><span class="line">C8 = A1+A2+A3+A4+A5+A6+A7+A8</span><br></pre></td></tr></table></figure>
-
-<p><strong>接下来我们引入lowbit这个概念：(这个地方有一点需要注意：lowbit(0)会陷入死循环  )</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &amp; (-x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code>C1 = A1
+C2 = A1+A2
+C3 = A3
+C4 = A1+A2+A3+A4
+C5 = A5
+C6 = A5+A6
+C7 = A7
+C8 = A1+A2+A3+A4+A5+A6+A7+A8</code></pre><p><strong>接下来我们引入lowbit这个概念：(这个地方有一点需要注意：lowbit(0)会陷入死循环  )</strong></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">lowbit</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token operator">-</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <p>这返回的是这个数字最高位的1;</p>
 <p>在这之前，又要引入一个补码的概念：</p>
 <p>补码的表示方法是:</p>
@@ -553,15 +560,56 @@
 <p>我们建立的树状数组结构是一个完整的结构，因此修改一个点也会需要所有相应的其父亲节点的点来修改，这样我们就实现了树状数组的修改。</p>
 <p>代码如下：</p>
 <p><img src="/upload/copycode.gif" alt="copycode"></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> k)</span>  <span class="comment">//将 x 增加 k</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x &lt; <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">while</span>(x &lt;= n)</span><br><span class="line">    &#123;</span><br><span class="line">        c[i] += k;</span><br><span class="line">        x += lowbit(x);  <span class="comment">//去寻找它的父亲 </span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">modify</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> k<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//将 x 增加 k</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>x <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>x <span class="token operator">&lt;=</span> n<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        c<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> k<span class="token punctuation">;</span>
+        x <span class="token operator">+</span><span class="token operator">=</span> <span class="token function">lowbit</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//去寻找它的父亲 </span>
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span></code></pre>
 <p><strong>3.单点查询</strong></p>
 <p>单点查询由于我们向前统计，因此需要向前查找，这个就不需要讲了吧(没弄明白请看上面)</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">　　<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">　　<span class="keyword">for</span>(<span class="keyword">int</span> i=pos;i;i-=lowbit(i))</span><br><span class="line">    sum += c[pos];</span><br><span class="line">    <span class="comment">/*两种写法</span></span><br><span class="line"><span class="comment">    while(pos &gt; 0)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        sum += c[pos];</span></span><br><span class="line"><span class="comment">        pos -= lowbit(pos); </span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span> </span><br><span class="line">　　<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">query</span><span class="token punctuation">(</span><span class="token keyword">int</span> pos<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+　　<span class="token keyword">int</span> sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+　　<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>pos<span class="token punctuation">;</span>i<span class="token punctuation">;</span>i<span class="token operator">-</span><span class="token operator">=</span><span class="token function">lowbit</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    sum <span class="token operator">+</span><span class="token operator">=</span> c<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/*两种写法
+    while(pos > 0)
+    {
+        sum += c[pos];
+        pos -= lowbit(pos); 
+    }
+    */</span> 
+　　<span class="token keyword">return</span> sum<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//这是完整的操作</span>
+<span class="token keyword">void</span> <span class="token function">change</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">,</span> <span class="token keyword">int</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//给位置p增加x</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>p <span class="token operator">&lt;=</span> n<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        sum<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> x<span class="token punctuation">;</span>
+        p <span class="token operator">+</span><span class="token operator">=</span> p <span class="token operator">&amp;</span> <span class="token operator">-</span>p<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">int</span> <span class="token function">ask</span><span class="token punctuation">(</span><span class="token keyword">int</span> p<span class="token punctuation">)</span>
+<span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//求位置p的前缀和</span>
+    <span class="token keyword">int</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        res <span class="token operator">+</span><span class="token operator">=</span> sum<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        p <span class="token operator">-</span><span class="token operator">=</span> p <span class="token operator">&amp;</span> <span class="token operator">-</span>p<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">int</span> <span class="token function">query</span><span class="token punctuation">(</span><span class="token keyword">int</span> l<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">)</span>
+<span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//区间求和</span>
+    <span class="token keyword">return</span> <span class="token function">ask</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">ask</span><span class="token punctuation">(</span>l <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这是完整的操作</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">//给位置p增加x</span></span><br><span class="line">    <span class="keyword">while</span>(p &lt;= n)</span><br><span class="line">    &#123;</span><br><span class="line">        sum[p] += x;</span><br><span class="line">        p += p &amp; -p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ask</span><span class="params">(<span class="keyword">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">//求位置p的前缀和</span></span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        res += sum[p];</span><br><span class="line">        p -= p &amp; -p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">//区间求和</span></span><br><span class="line">    <span class="keyword">return</span> ask(r) - ask(l - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
             </div>
             <hr/>
 
@@ -977,7 +1025,7 @@ alt+数字键
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

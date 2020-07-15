@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -513,55 +513,118 @@
 <p>Docker的运行组件，启动一个镜像就是一个容器，容器与容器之间相互隔离，并且互不影响。</p>
 </blockquote>
 <h3 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h3><p>仓库就是镜像的仓库，分为私有仓库和公共仓库，其中私有仓库是自己的镜像仓库，公共仓库是docker提供的仓库</p>
-<h3 id="docker常用命令"><a href="#docker常用命令" class="headerlink" title="docker常用命令"></a>docker常用命令</h3><h1 id="1、Docker容器信息"><a href="#1、Docker容器信息" class="headerlink" title="1、Docker容器信息"></a>1、Docker容器信息</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##查看docker容器版本</span><br><span class="line">docker version</span><br><span class="line">##查看docker容器信息</span><br><span class="line">docker info</span><br><span class="line">##查看docker容器帮助</span><br><span class="line">docker --help</span><br></pre></td></tr></table></figure>
-
-<h1 id="2、镜像操作"><a href="#2、镜像操作" class="headerlink" title="2、镜像操作"></a>2、镜像操作</h1><p>提示：对于镜像的操作可使用镜像名、镜像长ID和短ID。</p>
-<h2 id="2-1、镜像查看"><a href="#2-1、镜像查看" class="headerlink" title="2.1、镜像查看"></a>2.1、镜像查看</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##列出本地images</span><br><span class="line">docker images</span><br><span class="line">##含中间映像层</span><br><span class="line">docker images -a</span><br></pre></td></tr></table></figure>
-
-<p><img src="upload/1659331-20190521104721523-485290950.png" alt="img"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##只显示镜像ID</span><br><span class="line">docker images -q</span><br><span class="line">##含中间映像层</span><br><span class="line">docker images -qa</span><br></pre></td></tr></table></figure>
-
-<p><img src="upload/1659331-20190521104927909-600452122.png" alt="img"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##显示镜像摘要信息(DIGEST列)</span><br><span class="line">docker images --digests</span><br><span class="line">##显示镜像完整信息</span><br><span class="line">docker images --no-trunc</span><br></pre></td></tr></table></figure>
-
-<p><img src="upload/1659331-20190521105114405-1780655005.png" alt="img"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##显示指定镜像的历史创建；参数：-H 镜像大小和日期，默认为true；--no-trunc  显示完整的提交记录；-q  仅列出提交记录ID</span><br><span class="line">docker history -H redis</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2、镜像搜索"><a href="#2-2、镜像搜索" class="headerlink" title="2.2、镜像搜索"></a>2.2、镜像搜索</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">##搜索仓库MySQL镜像</span><br><span class="line">docker search mysql</span><br><span class="line">## --filter=stars=600：只显示 starts&gt;=600 的镜像</span><br><span class="line">docker search --filter=stars=600 mysql</span><br><span class="line">## --no-trunc 显示镜像完整 DESCRIPTION 描述</span><br><span class="line">docker search --no-trunc mysql</span><br><span class="line">## --automated ：只列出 AUTOMATED=OK 的镜像</span><br><span class="line">docker search  --automated mysql</span><br></pre></td></tr></table></figure>
-
-<p><img src="upload/1659331-20190521110514156-691788920.png" alt="img"></p>
-<h2 id="2-3、镜像下载"><a href="#2-3、镜像下载" class="headerlink" title="2.3、镜像下载"></a>2.3、镜像下载</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##下载Redis官方最新镜像，相当于：docker pull redis:latest</span><br><span class="line">docker pull redis</span><br><span class="line">##下载仓库所有Redis镜像</span><br><span class="line">docker pull -a redis</span><br><span class="line">##下载私人仓库镜像</span><br><span class="line">docker pull bitnami/redis</span><br></pre></td></tr></table></figure>
-
-<p><img src="upload/1659331-20190521112716615-10141164.png" alt="img"></p>
-<h2 id="2-4、镜像删除"><a href="#2-4、镜像删除" class="headerlink" title="2.4、镜像删除"></a>2.4、镜像删除</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">##单个镜像删除，相当于：docker rmi redis:latest</span><br><span class="line">docker rmi redis</span><br><span class="line">##强制删除(针对基于镜像有运行的容器进程)</span><br><span class="line">docker rmi -f redis</span><br><span class="line">##多个镜像删除，不同镜像间以空格间隔</span><br><span class="line">docker rmi -f redis tomcat nginx</span><br><span class="line">##删除本地全部镜像</span><br><span class="line">docker rmi -f $(docker images -q)</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-5、镜像构建"><a href="#2-5、镜像构建" class="headerlink" title="2.5、镜像构建"></a>2.5、镜像构建</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">##（1）编写dockerfile</span><br><span class="line">cd /docker/dockerfile</span><br><span class="line">vim mycentos</span><br><span class="line">##（2）构建docker镜像</span><br><span class="line">docker build -f /docker/dockerfile/mycentos -t mycentos:1.1</span><br></pre></td></tr></table></figure>
-
-<h1 id="3、容器操作"><a href="#3、容器操作" class="headerlink" title="3、容器操作"></a>3、容器操作</h1><p>提示：对于容器的操作可使用CONTAINER ID 或 NAMES。</p>
-<h2 id="3-1、容器启动"><a href="#3-1、容器启动" class="headerlink" title="3.1、容器启动"></a>3.1、容器启动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##新建并启动容器，参数：-i  以交互模式运行容器；-t  为容器重新分配一个伪输入终端；--name  为容器指定一个名称</span><br><span class="line">docker run -i -t --name mycentos</span><br><span class="line">##后台启动容器，参数：-d  已守护方式启动容器</span><br><span class="line">docker run -d mycentos</span><br></pre></td></tr></table></figure>
-
-<p>注意：此时使用”docker ps -a”会发现容器已经退出。这是docker的机制：要使Docker容器后台运行，就必须有一个前台进程。解决方案：将你要运行的程序以前台进程的形式运行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##启动一个或多个已经被停止的容器</span><br><span class="line">docker start redis</span><br><span class="line">##重启容器</span><br><span class="line">docker restart redis</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-2、容器进程"><a href="#3-2、容器进程" class="headerlink" title="3.2、容器进程"></a>3.2、容器进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">##top支持 ps 命令参数，格式：docker top [OPTIONS] CONTAINER [ps OPTIONS]</span><br><span class="line">##列出redis容器中运行进程</span><br><span class="line">docker top redis</span><br><span class="line">##查看所有运行容器的进程信息</span><br><span class="line">for i in  `docker ps |grep Up|awk &apos;&#123;print $1&#125;&apos;`;do echo \ &amp;&amp;docker top $i; done</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-3、容器日志"><a href="#3-3、容器日志" class="headerlink" title="3.3、容器日志"></a>3.3、容器日志</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##查看redis容器日志，默认参数</span><br><span class="line">docker logs rabbitmq</span><br><span class="line">##查看redis容器日志，参数：-f  跟踪日志输出；-t   显示时间戳；--tail  仅列出最新N条容器日志；</span><br><span class="line">docker logs -f -t --tail=20 redis</span><br><span class="line">##查看容器redis从2019年05月21日后的最新10条日志。</span><br><span class="line">docker logs --since=&quot;2019-05-21&quot; --tail=10 redis</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-4、容器的进入与退出"><a href="#3-4、容器的进入与退出" class="headerlink" title="3.4、容器的进入与退出"></a>3.4、容器的进入与退出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">##使用run方式在创建时进入</span><br><span class="line">docker run -it centos /bin/bash</span><br><span class="line">##关闭容器并退出</span><br><span class="line">exit</span><br><span class="line">##仅退出容器，不关闭</span><br><span class="line">快捷键：Ctrl + P + Q</span><br><span class="line">##直接进入centos 容器启动命令的终端，不会启动新进程，多个attach连接共享容器屏幕，参数：--sig-proxy=false  确保CTRL-D或CTRL-C不会关闭容器</span><br><span class="line">docker attach --sig-proxy=false centos </span><br><span class="line">##在 centos 容器中打开新的交互模式终端，可以启动新进程，参数：-i  即使没有附加也保持STDIN 打开；-t  分配一个伪终端</span><br><span class="line">docker exec -i -t  centos /bin/bash</span><br><span class="line">##以交互模式在容器中执行命令，结果返回到当前终端屏幕</span><br><span class="line">docker exec -i -t centos ls -l /tmp</span><br><span class="line">##以分离模式在容器中执行命令，程序后台运行，结果不会反馈到当前终端</span><br><span class="line">docker exec -d centos  touch cache.txt</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-5、查看容器"><a href="#3-5、查看容器" class="headerlink" title="3.5、查看容器"></a>3.5、查看容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">##查看正在运行的容器</span><br><span class="line">docker ps</span><br><span class="line">##查看正在运行的容器的ID</span><br><span class="line">docker ps -q</span><br><span class="line">##查看正在运行+历史运行过的容器</span><br><span class="line">docker ps -a</span><br><span class="line">##显示运行容器总文件大小</span><br><span class="line">docker ps -s</span><br></pre></td></tr></table></figure>
-
-<p><img src="upload/1659331-20190521132255698-500560462.png" alt="img"><br><img src="upload/1659331-20190521133039811-1994116017.png" alt="img"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##显示最近创建容器</span><br><span class="line">docker ps -l</span><br><span class="line">##显示最近创建的3个容器</span><br><span class="line">docker ps -n 3</span><br><span class="line">##不截断输出</span><br><span class="line">docker ps --no-trunc</span><br></pre></td></tr></table></figure>
-
-<p><img src="upload/1659331-20190521132741451-294716433.png" alt="img"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##获取镜像redis的元信息</span><br><span class="line">docker inspect redis</span><br><span class="line">##获取正在运行的容器redis的 IP</span><br><span class="line">docker inspect --format=&apos;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&apos; redis</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-6、容器的停止与删除"><a href="#3-6、容器的停止与删除" class="headerlink" title="3.6、容器的停止与删除"></a>3.6、容器的停止与删除</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">##停止一个运行中的容器</span><br><span class="line">docker stop redis</span><br><span class="line">##杀掉一个运行中的容器</span><br><span class="line">docker kill redis</span><br><span class="line">##删除一个已停止的容器</span><br><span class="line">docker rm redis</span><br><span class="line">##删除一个运行中的容器</span><br><span class="line">docker rm -f redis</span><br><span class="line">##删除多个容器</span><br><span class="line">docker rm -f $(docker ps -a -q)</span><br><span class="line">docker ps -a -q | xargs docker rm</span><br><span class="line">## -l 移除容器间的网络连接，连接名为 db</span><br><span class="line">docker rm -l db </span><br><span class="line">## -v 删除容器，并删除容器挂载的数据卷</span><br><span class="line">docker rm -v redis</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-7、生成镜像"><a href="#3-7、生成镜像" class="headerlink" title="3.7、生成镜像"></a>3.7、生成镜像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##基于当前redis容器创建一个新的镜像；参数：-a 提交的镜像作者；-c 使用Dockerfile指令来创建镜像；-m :提交时的说明文字；-p :在commit时，将容器暂停</span><br><span class="line">docker commit -a=&quot;DeepInThought&quot; -m=&quot;my redis&quot; [redis容器ID]  myredis:v1.1</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-8、容器与主机间的数据拷贝"><a href="#3-8、容器与主机间的数据拷贝" class="headerlink" title="3.8、容器与主机间的数据拷贝"></a>3.8、容器与主机间的数据拷贝</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##将rabbitmq容器中的文件copy至本地路径</span><br><span class="line">docker cp rabbitmq:/[container_path] [local_path]</span><br><span class="line">##将主机文件copy至rabbitmq容器</span><br><span class="line">docker cp [local_path] rabbitmq:/[container_path]/</span><br><span class="line">##将主机文件copy至rabbitmq容器，目录重命名为[container_path]（注意与非重命名copy的区别）</span><br><span class="line">docker cp [local_path] rabbitmq:/[container_path]</span><br></pre></td></tr></table></figure>
+<h3 id="docker常用命令"><a href="#docker常用命令" class="headerlink" title="docker常用命令"></a>docker常用命令</h3><h1 id="1、Docker容器信息"><a href="#1、Docker容器信息" class="headerlink" title="1、Docker容器信息"></a>1、Docker容器信息</h1><pre><code>##查看docker容器版本
+docker version
+##查看docker容器信息
+docker info
+##查看docker容器帮助
+docker --help</code></pre><h1 id="2、镜像操作"><a href="#2、镜像操作" class="headerlink" title="2、镜像操作"></a>2、镜像操作</h1><p>提示：对于镜像的操作可使用镜像名、镜像长ID和短ID。</p>
+<h2 id="2-1、镜像查看"><a href="#2-1、镜像查看" class="headerlink" title="2.1、镜像查看"></a>2.1、镜像查看</h2><pre><code>##列出本地images
+docker images
+##含中间映像层
+docker images -a</code></pre><p><img src="upload/1659331-20190521104721523-485290950.png" alt="img"></p>
+<pre><code>##只显示镜像ID
+docker images -q
+##含中间映像层
+docker images -qa   </code></pre><p><img src="upload/1659331-20190521104927909-600452122.png" alt="img"></p>
+<pre><code>##显示镜像摘要信息(DIGEST列)
+docker images --digests
+##显示镜像完整信息
+docker images --no-trunc</code></pre><p><img src="upload/1659331-20190521105114405-1780655005.png" alt="img"></p>
+<pre><code>##显示指定镜像的历史创建；参数：-H 镜像大小和日期，默认为true；--no-trunc  显示完整的提交记录；-q  仅列出提交记录ID
+docker history -H redis</code></pre><h2 id="2-2、镜像搜索"><a href="#2-2、镜像搜索" class="headerlink" title="2.2、镜像搜索"></a>2.2、镜像搜索</h2><pre><code>##搜索仓库MySQL镜像
+docker search mysql
+## --filter=stars=600：只显示 starts&gt;=600 的镜像
+docker search --filter=stars=600 mysql
+## --no-trunc 显示镜像完整 DESCRIPTION 描述
+docker search --no-trunc mysql
+## --automated ：只列出 AUTOMATED=OK 的镜像
+docker search  --automated mysql</code></pre><p><img src="upload/1659331-20190521110514156-691788920.png" alt="img"></p>
+<h2 id="2-3、镜像下载"><a href="#2-3、镜像下载" class="headerlink" title="2.3、镜像下载"></a>2.3、镜像下载</h2><pre><code>##下载Redis官方最新镜像，相当于：docker pull redis:latest
+docker pull redis
+##下载仓库所有Redis镜像
+docker pull -a redis
+##下载私人仓库镜像
+docker pull bitnami/redis</code></pre><p><img src="upload/1659331-20190521112716615-10141164.png" alt="img"></p>
+<h2 id="2-4、镜像删除"><a href="#2-4、镜像删除" class="headerlink" title="2.4、镜像删除"></a>2.4、镜像删除</h2><pre><code>##单个镜像删除，相当于：docker rmi redis:latest
+docker rmi redis
+##强制删除(针对基于镜像有运行的容器进程)
+docker rmi -f redis
+##多个镜像删除，不同镜像间以空格间隔
+docker rmi -f redis tomcat nginx
+##删除本地全部镜像
+docker rmi -f $(docker images -q)</code></pre><h2 id="2-5、镜像构建"><a href="#2-5、镜像构建" class="headerlink" title="2.5、镜像构建"></a>2.5、镜像构建</h2><pre><code>##（1）编写dockerfile
+cd /docker/dockerfile
+vim mycentos
+##（2）构建docker镜像
+docker build -f /docker/dockerfile/mycentos -t mycentos:1.1</code></pre><h1 id="3、容器操作"><a href="#3、容器操作" class="headerlink" title="3、容器操作"></a>3、容器操作</h1><p>提示：对于容器的操作可使用CONTAINER ID 或 NAMES。</p>
+<h2 id="3-1、容器启动"><a href="#3-1、容器启动" class="headerlink" title="3.1、容器启动"></a>3.1、容器启动</h2><pre><code>##新建并启动容器，参数：-i  以交互模式运行容器；-t  为容器重新分配一个伪输入终端；--name  为容器指定一个名称
+docker run -i -t --name mycentos
+##后台启动容器，参数：-d  已守护方式启动容器
+docker run -d mycentos</code></pre><p>注意：此时使用”docker ps -a”会发现容器已经退出。这是docker的机制：要使Docker容器后台运行，就必须有一个前台进程。解决方案：将你要运行的程序以前台进程的形式运行。</p>
+<pre><code>##启动一个或多个已经被停止的容器
+docker start redis
+##重启容器
+docker restart redis</code></pre><h2 id="3-2、容器进程"><a href="#3-2、容器进程" class="headerlink" title="3.2、容器进程"></a>3.2、容器进程</h2><pre><code>##top支持 ps 命令参数，格式：docker top [OPTIONS] CONTAINER [ps OPTIONS]
+##列出redis容器中运行进程
+docker top redis
+##查看所有运行容器的进程信息
+for i in  `docker ps |grep Up|awk &#39;{print $1}&#39;`;do echo \ &amp;&amp;docker top $i; done</code></pre><h2 id="3-3、容器日志"><a href="#3-3、容器日志" class="headerlink" title="3.3、容器日志"></a>3.3、容器日志</h2><pre><code>##查看redis容器日志，默认参数
+docker logs rabbitmq
+##查看redis容器日志，参数：-f  跟踪日志输出；-t   显示时间戳；--tail  仅列出最新N条容器日志；
+docker logs -f -t --tail=20 redis
+##查看容器redis从2019年05月21日后的最新10条日志。
+docker logs --since=&quot;2019-05-21&quot; --tail=10 redis</code></pre><h2 id="3-4、容器的进入与退出"><a href="#3-4、容器的进入与退出" class="headerlink" title="3.4、容器的进入与退出"></a>3.4、容器的进入与退出</h2><pre><code>##使用run方式在创建时进入
+docker run -it centos /bin/bash
+##关闭容器并退出
+exit
+##仅退出容器，不关闭
+快捷键：Ctrl + P + Q
+##直接进入centos 容器启动命令的终端，不会启动新进程，多个attach连接共享容器屏幕，参数：--sig-proxy=false  确保CTRL-D或CTRL-C不会关闭容器
+docker attach --sig-proxy=false centos 
+##在 centos 容器中打开新的交互模式终端，可以启动新进程，参数：-i  即使没有附加也保持STDIN 打开；-t  分配一个伪终端
+docker exec -i -t  centos /bin/bash
+##以交互模式在容器中执行命令，结果返回到当前终端屏幕
+docker exec -i -t centos ls -l /tmp
+##以分离模式在容器中执行命令，程序后台运行，结果不会反馈到当前终端
+docker exec -d centos  touch cache.txt </code></pre><h2 id="3-5、查看容器"><a href="#3-5、查看容器" class="headerlink" title="3.5、查看容器"></a>3.5、查看容器</h2><pre><code>##查看正在运行的容器
+docker ps
+##查看正在运行的容器的ID
+docker ps -q
+##查看正在运行+历史运行过的容器
+docker ps -a
+##显示运行容器总文件大小
+docker ps -s</code></pre><p><img src="upload/1659331-20190521132255698-500560462.png" alt="img"><br><img src="upload/1659331-20190521133039811-1994116017.png" alt="img"></p>
+<pre><code>##显示最近创建容器
+docker ps -l
+##显示最近创建的3个容器
+docker ps -n 3
+##不截断输出
+docker ps --no-trunc </code></pre><p><img src="upload/1659331-20190521132741451-294716433.png" alt="img"></p>
+<pre><code>##获取镜像redis的元信息
+docker inspect redis
+##获取正在运行的容器redis的 IP
+docker inspect --format=&#39;{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}&#39; redis</code></pre><h2 id="3-6、容器的停止与删除"><a href="#3-6、容器的停止与删除" class="headerlink" title="3.6、容器的停止与删除"></a>3.6、容器的停止与删除</h2><pre><code>##停止一个运行中的容器
+docker stop redis
+##杀掉一个运行中的容器
+docker kill redis
+##删除一个已停止的容器
+docker rm redis
+##删除一个运行中的容器
+docker rm -f redis
+##删除多个容器
+docker rm -f $(docker ps -a -q)
+docker ps -a -q | xargs docker rm
+## -l 移除容器间的网络连接，连接名为 db
+docker rm -l db 
+## -v 删除容器，并删除容器挂载的数据卷
+docker rm -v redis</code></pre><h2 id="3-7、生成镜像"><a href="#3-7、生成镜像" class="headerlink" title="3.7、生成镜像"></a>3.7、生成镜像</h2><pre><code>##基于当前redis容器创建一个新的镜像；参数：-a 提交的镜像作者；-c 使用Dockerfile指令来创建镜像；-m :提交时的说明文字；-p :在commit时，将容器暂停
+docker commit -a=&quot;DeepInThought&quot; -m=&quot;my redis&quot; [redis容器ID]  myredis:v1.1</code></pre><h2 id="3-8、容器与主机间的数据拷贝"><a href="#3-8、容器与主机间的数据拷贝" class="headerlink" title="3.8、容器与主机间的数据拷贝"></a>3.8、容器与主机间的数据拷贝</h2><pre><code>##将rabbitmq容器中的文件copy至本地路径
+docker cp rabbitmq:/[container_path] [local_path]
+##将主机文件copy至rabbitmq容器
+docker cp [local_path] rabbitmq:/[container_path]/
+##将主机文件copy至rabbitmq容器，目录重命名为[container_path]（注意与非重命名copy的区别）
+docker cp [local_path] rabbitmq:/[container_path]</code></pre>
             </div>
             <hr/>
 
@@ -702,30 +765,34 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/02/11/ForkJoin入门/">
+                <a href="/2020/01/30/redis主从复制/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="ForkJoin入门">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="redis主从复制">
                         
-                        <span class="card-title">ForkJoin入门</span>
+                        <span class="card-title">redis主从复制</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ForkJoin 分而治之框架ForkJoin在jdk1.7中，他可以并行执行任务，也就是说，我们可以把一个任务分成很多个小任务，然后使用ForkJoin并行处理任务，之后在把所有的任务结果合并起来。
-特点:工作窃取每个线程都维护了一个双端
+                            首先在redis中的主从复制推荐至少3个节点。
+什么是主从复制主从复制，是指将一台Redis服务器的数据，复制到其他的Redis服务器。前者称为主节点(master/leader)，后者称为从节点(slave/follower)；数据的复制
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-11
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-30
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            yang295513
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/中间件/" class="post-category">
+                                    中间件
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -733,12 +800,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JUC/">
-                        <span class="chip bg-color">JUC</span>
+                    <a href="/tags/redis/">
+                        <span class="chip bg-color">redis</span>
                     </a>
                     
-                    <a href="/tags/ForkJoin/">
-                        <span class="chip bg-color">ForkJoin</span>
+                    <a href="/tags/主从复制/">
+                        <span class="chip bg-color">主从复制</span>
                     </a>
                     
                 </div>
@@ -940,7 +1007,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

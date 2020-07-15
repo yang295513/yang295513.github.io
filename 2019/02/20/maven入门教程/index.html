@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -493,7 +493,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    471
+                    457
                 </div>
                 
 
@@ -522,60 +522,28 @@
 <p>标准化：项目构建标准化，和项目结构标准化</p>
 <h2 id="maven目录结构"><a href="#maven目录结构" class="headerlink" title="maven目录结构"></a>maven目录结构</h2><p><img src="upload/12312333213123123.png" alt="20180621231024914.png"></p>
 <h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p><strong>4. 编译源代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn compile</span><br></pre></td></tr></table></figure>
-
-<p><strong>5. 编译测试代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn test-compile</span><br></pre></td></tr></table></figure>
-
-<p><strong>6. 运行测试:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn test</span><br></pre></td></tr></table></figure>
-
-<p><strong>7. 产生site：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn site</span><br></pre></td></tr></table></figure>
-
-<p><strong>8. 打包：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
-
-<p><strong>9. 在本地Repository中安装jar：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mvn install</span><br><span class="line">例：installing D:\xxx\xx.jar to D:\xx\xxxx</span><br></pre></td></tr></table></figure>
-
-<p><strong>10. 清除产生的项目：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean</span><br></pre></td></tr></table></figure>
-
-<p><strong>11. 生成eclipse项目：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn eclipse:eclipse</span><br></pre></td></tr></table></figure>
-
-<p><strong>12. 生成idea项目：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn idea:idea</span><br></pre></td></tr></table></figure>
-
-<p><strong>13. 组合使用goal命令，如只打包不测试：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn -Dtest package</span><br></pre></td></tr></table></figure>
-
-<p><strong>14. 编译测试的内容：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn test-compile</span><br></pre></td></tr></table></figure>
-
-<p><strong>15. 只打jar包:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn jar:jar</span><br></pre></td></tr></table></figure>
-
-<p><strong>16. 只测试而不编译，也不测试编译：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mvn test -skipping compile -skipping test-compile</span><br><span class="line"> ( -skipping 的灵活运用，当然也可以用于其他组合命令)</span><br></pre></td></tr></table></figure>
-
-<p><strong>17. 清除eclipse的一些系统设置:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn eclipse:clean</span><br></pre></td></tr></table></figure>
-
-<p><strong>18.查看当前项目已被解析的依赖：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn dependency:list</span><br></pre></td></tr></table></figure>
-
-<p><strong>19.上传到私服：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn deploy</span><br></pre></td></tr></table></figure>
-
-<p><strong>20. 强制检查更新，由于快照版本的更新策略(一天更新几次、隔段时间更新一次)存在，如果想强制更新就会用到此命令:</strong> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean install-U</span><br></pre></td></tr></table></figure>
-
-<p><strong>21. 源码打包：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mvn source:jar</span><br><span class="line">或</span><br><span class="line">mvn source:jar-no-fork</span><br></pre></td></tr></table></figure>
-
-
+<pre><code>mvn compile</code></pre><p><strong>5. 编译测试代码：</strong></p>
+<pre><code>mvn test-compile</code></pre><p><strong>6. 运行测试:</strong></p>
+<pre><code>mvn test</code></pre><p><strong>7. 产生site：</strong></p>
+<pre><code>mvn site</code></pre><p><strong>8. 打包：</strong></p>
+<pre><code>mvn package</code></pre><p><strong>9. 在本地Repository中安装jar：</strong></p>
+<pre><code>mvn install
+例：installing D:\xxx\xx.jar to D:\xx\xxxx</code></pre><p><strong>10. 清除产生的项目：</strong></p>
+<pre><code>mvn clean</code></pre><p><strong>11. 生成eclipse项目：</strong></p>
+<pre><code>mvn eclipse:eclipse</code></pre><p><strong>12. 生成idea项目：</strong></p>
+<pre><code>mvn idea:idea</code></pre><p><strong>13. 组合使用goal命令，如只打包不测试：</strong></p>
+<pre><code>mvn -Dtest package</code></pre><p><strong>14. 编译测试的内容：</strong></p>
+<pre><code>mvn test-compile</code></pre><p><strong>15. 只打jar包:</strong></p>
+<pre><code>mvn jar:jar</code></pre><p><strong>16. 只测试而不编译，也不测试编译：</strong></p>
+<pre><code>mvn test -skipping compile -skipping test-compile
+ ( -skipping 的灵活运用，当然也可以用于其他组合命令) </code></pre><p><strong>17. 清除eclipse的一些系统设置:</strong></p>
+<pre><code>mvn eclipse:clean </code></pre><p><strong>18.查看当前项目已被解析的依赖：</strong></p>
+<pre><code>mvn dependency:list</code></pre><p><strong>19.上传到私服：</strong></p>
+<pre><code>mvn deploy</code></pre><p><strong>20. 强制检查更新，由于快照版本的更新策略(一天更新几次、隔段时间更新一次)存在，如果想强制更新就会用到此命令:</strong> </p>
+<pre><code>mvn clean install-U</code></pre><p><strong>21. 源码打包：</strong></p>
+<pre><code>mvn source:jar
+或
+mvn source:jar-no-fork</code></pre>
             </div>
             <hr/>
 
@@ -740,7 +708,11 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            vue入门12345678910111213141516171819202122&lt;!DOCTYPE html&gt;&lt;html lang="zh"&gt;&lt;head&gt;	&lt;meta charset="UTF-8"
+                            vue入门&lt;!DOCTYPE html>
+&lt;html lang="zh">
+&lt;head>
+    &lt;meta charset="UTF-8">
+    &lt;meta name="viewport" content
                         
                     </div>
                     <div class="publish-info">
@@ -984,7 +956,7 @@ mysql中使用外键约束要注意进行级联操作，否则必须先修改依
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

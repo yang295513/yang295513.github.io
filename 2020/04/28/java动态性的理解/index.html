@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -636,91 +636,26 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/04/30/redis主从复制/">
+                <a href="/2020/04/28/java动态性的理解/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="redis主从复制">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="java动态性的理解">
                         
-                        <span class="card-title">redis主从复制</span>
+                        <span class="card-title">java动态性的理解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            首先在redis中的主从复制推荐至少3个节点。
-什么是主从复制主从复制，是指将一台Redis服务器的数据，复制到其他的Redis服务器。前者称为主节点(master/leader)，后者称为从节点(slave/follower)；数据的复制
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/中间件/" class="post-category">
-                                    中间件
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/redis/">
-                        <span class="chip bg-color">redis</span>
-                    </a>
-                    
-                    <a href="/tags/主从复制/">
-                        <span class="chip bg-color">主从复制</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/04/28/jvm学习第一天-自动内存管理/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
-                        
-                        <span class="card-title"></span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            title: jvm学习第一天-自动内存管理date: 2020-03-14 17:35:56tags: 
-
-jvm
-java
-虚拟机
-
-运行时数据区域
-
-方法区
-堆
-虚拟机栈
-本地方法栈
-程序计数器
-
-其中前两个是线程共享的，后三个是线程
+                            什么是动态语言动态类型语言和静态类型语言两者的区别就在于对类型的检查是在编译期还是在运行期。
+而且动态语言可以在运行的时候改变其结构。
+java语言的动态性java 语言的动态性体现在面向对象设计方法中的扩展，允许程序动态的装入过程中需要的
                         
                     </div>
                     <div class="publish-info">
@@ -734,6 +669,72 @@ java
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/tags/动态性/">
+                        <span class="chip bg-color">动态性</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/04/18/ThreadLocal详解/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="ThreadLocal详解">
+                        
+                        <span class="card-title">ThreadLocal详解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            ThreadLocal简介
+多线程访问同一个共享变量的时候容易产生并发问题，为了保证线程安全除了使用锁的方式，使用ThreadLocal达到线程隔离的效果，也是一种不错的方案
+
+功能
+传递数据，因为同一个线程在任何情况下获取到的都是同一个对
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/并发/" class="post-category">
+                                    并发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ThreadLocal/">
+                        <span class="chip bg-color">ThreadLocal</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -880,7 +881,7 @@ java
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

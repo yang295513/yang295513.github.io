@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -528,8 +528,9 @@
 <h3 id="若在事务队列中存在语法性错误（类似于java的1-0的运行时异常），则执行EXEC命令时，其他正确命令会被执行，错误命令抛出异常。"><a href="#若在事务队列中存在语法性错误（类似于java的1-0的运行时异常），则执行EXEC命令时，其他正确命令会被执行，错误命令抛出异常。" class="headerlink" title="若在事务队列中存在语法性错误（类似于java的1/0的运行时异常），则执行EXEC命令时，其他正确命令会被执行，错误命令抛出异常。"></a>若在事务队列中存在语法性错误（类似于java的1/0的运行时异常），则执行EXEC命令时，其他正确命令会被执行，错误命令抛出异常。</h3><p><img src="/upload/image-20200429144324673.png" alt="image-20200429144324673"></p>
 <h2 id="Redis乐观锁实现-CAS-重点"><a href="#Redis乐观锁实现-CAS-重点" class="headerlink" title="Redis乐观锁实现(CAS)重点"></a>Redis乐观锁实现(CAS)重点</h2><h3 id="什么是CAS"><a href="#什么是CAS" class="headerlink" title="什么是CAS"></a>什么是CAS</h3><p>CAS就是比较在交换，就是先获取一个值，然后在修改的时候比对这个值，如果这个值没有被改动，那么当前就是显存安全的，如果被改动了，那么就需要重新获取这个值，也就是进行一次自旋。</p>
 <h3 id="Redis的乐观锁"><a href="#Redis的乐观锁" class="headerlink" title="Redis的乐观锁"></a>Redis的乐观锁</h3><p>在Redis中，可以使用一个监视器watch来实现。</p>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WATCH key<span class="comment">//先获取key这个值</span></span><br><span class="line"><span class="comment">//执行事务</span></span><br><span class="line">EXEC<span class="comment">//提交事务的时候检查key的值是否被修改，被修改就失败。</span></span><br></pre></td></tr></table></figure>
-
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><pre class=" language-java"><code class="language-java">WATCH key<span class="token comment" spellcheck="true">//先获取key这个值</span>
+<span class="token comment" spellcheck="true">//执行事务</span>
+EXEC<span class="token comment" spellcheck="true">//提交事务的时候检查key的值是否被修改，被修改就失败。</span></code></pre>
 <h3 id="案例演示-1"><a href="#案例演示-1" class="headerlink" title="案例演示"></a>案例演示</h3><h4 id="案例一：使用watch检测balance，事务期间balance数据未变动，事务执行成功"><a href="#案例一：使用watch检测balance，事务期间balance数据未变动，事务执行成功" class="headerlink" title="案例一：使用watch检测balance，事务期间balance数据未变动，事务执行成功"></a>案例一：使用watch检测balance，事务期间balance数据未变动，事务执行成功</h4><p><img src="/upload/image-20200429150225819.png" alt="image-20200429150225819"></p>
 <h4 id="案例二：使用watch检测balance，在开启事务后（标注1处），在新窗口执行标注2中的操作，更改balance的值，模拟其他客户端在事务执行期间更改watch监控的数据，然后再执行标注1后命令，执行EXEC后，事务未成功执行。"><a href="#案例二：使用watch检测balance，在开启事务后（标注1处），在新窗口执行标注2中的操作，更改balance的值，模拟其他客户端在事务执行期间更改watch监控的数据，然后再执行标注1后命令，执行EXEC后，事务未成功执行。" class="headerlink" title="案例二：使用watch检测balance，在开启事务后（标注1处），在新窗口执行标注2中的操作，更改balance的值，模拟其他客户端在事务执行期间更改watch监控的数据，然后再执行标注1后命令，执行EXEC后，事务未成功执行。"></a>案例二：使用watch检测balance，在开启事务后（标注1处），在新窗口执行标注2中的操作，更改balance的值，模拟其他客户端在事务执行期间更改watch监控的数据，然后再执行标注1后命令，执行EXEC后，事务未成功执行。</h4><p><img src="/upload/image-20200429150241659.png" alt="image-20200429150241659"></p>
 <p>一但执行 EXEC 开启事务的执行后，无论事务使用执行成功， WARCH 对变量的监控都将被取消。</p>
@@ -958,7 +959,7 @@ CAS的作用CAS可以将比较和交换转换为原子操作，这个原子操�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

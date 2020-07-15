@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -438,12 +438,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JAVA/">
-                                <span class="chip bg-color">JAVA</span>
-                            </a>
-                        
                             <a href="/tags/反射/">
                                 <span class="chip bg-color">反射</span>
+                            </a>
+                        
+                            <a href="/tags/JAVA/">
+                                <span class="chip bg-color">JAVA</span>
                             </a>
                         
                     </div>
@@ -472,7 +472,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.7k
+                    1.6k
                 </div>
                 
 
@@ -789,23 +789,110 @@
 </tr>
 </tbody></table>
 <h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p>Person类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name=<span class="string">"默认值"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String name<span class="token operator">=</span><span class="token string">"默认值"</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> age<span class="token punctuation">;</span>
 
-<h3 id="获取Person的属性"><a href="#获取Person的属性" class="headerlink" title="获取Person的属性"></a>获取Person的属性</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">    Class personClass = Class.forName(<span class="string">"Person"</span>);<span class="comment">//这里要写全限定类名</span></span><br><span class="line">    <span class="comment">//获取Person类的所有public属性</span></span><br><span class="line">    Field[] fields = personClass.getFields();</span><br><span class="line">    System.out.println(<span class="string">"--------public属性--------"</span>);</span><br><span class="line">    <span class="keyword">for</span> (Field field : fields) &#123;</span><br><span class="line">        System.out.println(field.getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取Person类所有属性包括privice</span></span><br><span class="line">    System.out.println(<span class="string">"--------所有属性--------"</span>);</span><br><span class="line">    Field[] declaredFields = personClass.getDeclaredFields();</span><br><span class="line">    <span class="keyword">for</span> (Field declaredField : declaredFields) &#123;</span><br><span class="line">        System.out.println(declaredField.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="获取Person的属性"><a href="#获取Person的属性" class="headerlink" title="获取Person的属性"></a>获取Person的属性</h3><pre class=" language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> ClassNotFoundException <span class="token punctuation">{</span>
+        Class <span class="token class-name">personClass</span> <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"Person"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//这里要写全限定类名</span>
+        <span class="token comment" spellcheck="true">//获取Person类的所有public属性</span>
+        Field<span class="token punctuation">[</span><span class="token punctuation">]</span> fields <span class="token operator">=</span> personClass<span class="token punctuation">.</span><span class="token function">getFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"--------public属性--------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Field field <span class="token operator">:</span> fields<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
+        <span class="token comment" spellcheck="true">//获取Person类所有属性包括privice</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"--------所有属性--------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Field<span class="token punctuation">[</span><span class="token punctuation">]</span> declaredFields <span class="token operator">=</span> personClass<span class="token punctuation">.</span><span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Field declaredField <span class="token operator">:</span> declaredFields<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>declaredField<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span></code></pre>
 <p>结果为</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--------<span class="keyword">public</span>属性--------</span><br><span class="line">age</span><br><span class="line">--------所有属性--------</span><br><span class="line">name</span><br><span class="line">age</span><br></pre></td></tr></table></figure>
+<pre class=" language-java"><code class="language-java"><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token keyword">public</span>属性<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
+age
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>所有属性<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
+name
+age</code></pre>
+<h3 id="修改Person属性的值（甚至可以修改他的私有属性）"><a href="#修改Person属性的值（甚至可以修改他的私有属性）" class="headerlink" title="修改Person属性的值（甚至可以修改他的私有属性）"></a>修改Person属性的值（甚至可以修改他的私有属性）</h3><pre class=" language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> ClassNotFoundException<span class="token punctuation">,</span> NoSuchFieldException<span class="token punctuation">,</span> IllegalAccessException<span class="token punctuation">,</span> InstantiationException <span class="token punctuation">{</span>
+        Class <span class="token class-name">personClass</span> <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"Person"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//加载到内存</span>
+        Person person <span class="token operator">=</span> <span class="token punctuation">(</span>Person<span class="token punctuation">)</span> personClass<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//实例化对象</span>
+        Field age <span class="token operator">=</span> personClass<span class="token punctuation">.</span><span class="token function">getField</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//获取Public属性</span>
+        age<span class="token punctuation">.</span><span class="token function">setInt</span><span class="token punctuation">(</span>person<span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//修改其属性值</span>
 
-<h3 id="修改Person属性的值（甚至可以修改他的私有属性）"><a href="#修改Person属性的值（甚至可以修改他的私有属性）" class="headerlink" title="修改Person属性的值（甚至可以修改他的私有属性）"></a>修改Person属性的值（甚至可以修改他的私有属性）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, NoSuchFieldException, IllegalAccessException, InstantiationException </span>&#123;</span><br><span class="line">    Class personClass = Class.forName(<span class="string">"Person"</span>);<span class="comment">//加载到内存</span></span><br><span class="line">    Person person = (Person) personClass.newInstance();<span class="comment">//实例化对象</span></span><br><span class="line">    Field age = personClass.getField(<span class="string">"age"</span>);<span class="comment">//获取Public属性</span></span><br><span class="line">    age.setInt(person,<span class="number">12</span>);<span class="comment">//修改其属性值</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//强行设置私有属性的值</span></span><br><span class="line">    Field name = personClass.getDeclaredField(<span class="string">"name"</span>);</span><br><span class="line">    name.setAccessible(<span class="keyword">true</span>);<span class="comment">//取消 Java 语言访问检查，否则会报错</span></span><br><span class="line">    name.set(person,<span class="string">"当你在控制台看见我的时候,我已经修改了private的值啦!!!"</span>);</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"Public设置的值"</span>+person.age+<span class="string">"\nprivate设置的值"</span>+person.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <span class="token comment" spellcheck="true">//强行设置私有属性的值</span>
+        Field name <span class="token operator">=</span> personClass<span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        name<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//取消 Java 语言访问检查，否则会报错</span>
+        name<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>person<span class="token punctuation">,</span><span class="token string">"当你在控制台看见我的时候,我已经修改了private的值啦!!!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Public设置的值"</span><span class="token operator">+</span>person<span class="token punctuation">.</span>age<span class="token operator">+</span><span class="token string">"\nprivate设置的值"</span><span class="token operator">+</span>person<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
 <h3 id="读取配置文件创建指定的类并执行指定的方法"><a href="#读取配置文件创建指定的类并执行指定的方法" class="headerlink" title="读取配置文件创建指定的类并执行指定的方法"></a>读取配置文件创建指定的类并执行指定的方法</h3><p>bean.Properties配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">classpath=Person</span><br><span class="line">method=getName</span><br></pre></td></tr></table></figure>
+<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">classpath</span><span class="token punctuation">=</span><span class="token attr-value">Person</span>
+<span class="token attr-name">method</span><span class="token punctuation">=</span><span class="token attr-value">getName</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>IOException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>InputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>InvocationTargetException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Method<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Properties<span class="token punctuation">;</span>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JVMTest</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, NoSuchFieldException, IllegalAccessException, InstantiationException, IOException, NoSuchMethodException, InvocationTargetException </span>&#123;</span><br><span class="line">        <span class="comment">//读取配置文件类似spring框架里面的配置文件</span></span><br><span class="line">        Properties properties=readProperties();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//实例化配置文件里面指定的类</span></span><br><span class="line">        Object ob=beanFactory((String) properties.get(<span class="string">"classpath"</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//运行实例化类的配置文件指定的方法并且接收返回值</span></span><br><span class="line">        Object rel=runMethod((String) properties.get(<span class="string">"method"</span>),ob);</span><br><span class="line"></span><br><span class="line">        System.out.println(rel);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 运行指定的方法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> methodName 方法名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> cls 类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">runMethod</span><span class="params">(String methodName,Object cls)</span> <span class="keyword">throws</span> NoSuchMethodException, InvocationTargetException, IllegalAccessException </span>&#123;</span><br><span class="line">        Method method = cls.getClass().getMethod(methodName);</span><br><span class="line">        <span class="keyword">return</span> method.invoke(cls);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据传入的全类名创建对应的类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> classPath 全类名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> ClassNotFoundException</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IllegalAccessException</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> InstantiationException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">beanFactory</span><span class="params">(String classPath)</span> <span class="keyword">throws</span> ClassNotFoundException, IllegalAccessException, InstantiationException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Class.forName(classPath).newInstance();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 读取配置文件里面的信息并返回</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Properties <span class="title">readProperties</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">        InputStream resourceAsStream = Object.class.getResourceAsStream(<span class="string">"/bean.Properties"</span>);</span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        properties.load(resourceAsStream);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> properties;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JVMTest</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> ClassNotFoundException<span class="token punctuation">,</span> NoSuchFieldException<span class="token punctuation">,</span> IllegalAccessException<span class="token punctuation">,</span> InstantiationException<span class="token punctuation">,</span> IOException<span class="token punctuation">,</span> NoSuchMethodException<span class="token punctuation">,</span> InvocationTargetException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//读取配置文件类似spring框架里面的配置文件</span>
+        Properties properties<span class="token operator">=</span><span class="token function">readProperties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+        <span class="token comment" spellcheck="true">//实例化配置文件里面指定的类</span>
+        Object ob<span class="token operator">=</span><span class="token function">beanFactory</span><span class="token punctuation">(</span><span class="token punctuation">(</span>String<span class="token punctuation">)</span> properties<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"classpath"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//运行实例化类的配置文件指定的方法并且接收返回值</span>
+        Object rel<span class="token operator">=</span><span class="token function">runMethod</span><span class="token punctuation">(</span><span class="token punctuation">(</span>String<span class="token punctuation">)</span> properties<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"method"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>ob<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>rel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 运行指定的方法
+     * @param methodName 方法名
+     * @param cls 类
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Object <span class="token function">runMethod</span><span class="token punctuation">(</span>String methodName<span class="token punctuation">,</span>Object cls<span class="token punctuation">)</span> <span class="token keyword">throws</span> NoSuchMethodException<span class="token punctuation">,</span> InvocationTargetException<span class="token punctuation">,</span> IllegalAccessException <span class="token punctuation">{</span>
+        Method method <span class="token operator">=</span> cls<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span>methodName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> method<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>cls<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 根据传入的全类名创建对应的类
+     * @param classPath 全类名
+     * @return
+     * @throws ClassNotFoundException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Object <span class="token function">beanFactory</span><span class="token punctuation">(</span>String classPath<span class="token punctuation">)</span> <span class="token keyword">throws</span> ClassNotFoundException<span class="token punctuation">,</span> IllegalAccessException<span class="token punctuation">,</span> InstantiationException <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span>classPath<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 读取配置文件里面的信息并返回
+     * @return
+     * @throws IOException
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Properties <span class="token function">readProperties</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
+
+        InputStream resourceAsStream <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getResourceAsStream</span><span class="token punctuation">(</span><span class="token string">"/bean.Properties"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Properties properties <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Properties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        properties<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>resourceAsStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> properties<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p>运行结果</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">默认值</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-java"><code class="language-java">默认值</code></pre>
 
             </div>
             <hr/>
@@ -869,12 +956,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/JAVA/">
-                                    <span class="chip bg-color">JAVA</span>
-                                </a>
-                            
                                 <a href="/tags/反射/">
                                     <span class="chip bg-color">反射</span>
+                                </a>
+                            
+                                <a href="/tags/JAVA/">
+                                    <span class="chip bg-color">JAVA</span>
                                 </a>
                             
                         </div>
@@ -1012,19 +1099,31 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/14/JVMOOM溢出/">
+                <a href="/2020/03/14/jvm学习第一天-自动内存管理/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="JVMOOM溢出">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="jvm学习第一天-自动内存管理">
                         
-                        <span class="card-title">JVMOOM溢出</span>
+                        <span class="card-title">jvm学习第一天-自动内存管理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            堆空间溢出12345678910111213141516171819202122232425/** * java堆内存溢出,首先在hospot虚拟机中堆内存是可以自动扩展的,但是我们可以调整他的上限 * -Xms20m -Xmx20m -X
+                            运行时数据区域
+
+方法区
+堆
+虚拟机栈
+本地方法栈
+程序计数器
+
+其中前两个是线程共享的，后三个是线程独有的
+程序计数器
+程序计数器是一个记录着当前线程所执行的字节码的行号指示器。
+
+如果线程执行的是一个java方法，那么这个计数器就表示正
                         
                     </div>
                     <div class="publish-info">
@@ -1033,12 +1132,8 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/JVM/" class="post-category">
-                                    JVM
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            yang295513
                             
                         </span>
                     </div>
@@ -1046,12 +1141,16 @@
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
                     <a href="/tags/jvm/">
                         <span class="chip bg-color">jvm</span>
                     </a>
                     
-                    <a href="/tags/OOM/">
-                        <span class="chip bg-color">OOM</span>
+                    <a href="/tags/虚拟机/">
+                        <span class="chip bg-color">虚拟机</span>
                     </a>
                     
                 </div>
@@ -1200,7 +1299,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

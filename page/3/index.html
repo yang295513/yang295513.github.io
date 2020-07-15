@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -359,158 +359,6 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/26/JMM内存模型/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="JMM内存模型">
-                            
-                            <span class="card-title">JMM内存模型</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                Java内存模型——JMM什么是JMM内存模型
-Java的并发采用的是共享内存模型
-
-JMM定义了Java 虚拟机(JVM)在计算机内存(RAM)中的工作方式。JVM是整个计算机虚拟模型，所以JMM是隶属于JVM的。从抽象的角度来看，JMM
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                yang295513
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/26/并发编程中的三个问题/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="并发编程中的三个问题">
-                            
-                            <span class="card-title">并发编程中的三个问题</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                可见性对于一个共享变量，一个线程的修改，对于另一个线程来说他不能立刻知道这个值已经被修改.
-演示1234567891011121314151617181920/** * @author yang * @date 2020/3/26 下午 3
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                yang295513
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/不准确/">
-                            <span class="chip bg-color">不准确</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/26/java线程池第二天-java内置线程池/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="java线程池第二天-java内置线程池">
-                            
-                            <span class="card-title">java线程池第二天-java内置线程池</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                ExecutorServiceExecutorService接口是java内置线程池接口
-常用方法
-
-
-
-方法
-说明
-
-
-
-List&lt; Runnable &gt; shutdownNow()
-停止所有正在执行的任务，暂停处理正在等待的
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                yang295513
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/java/">
-                            <span class="chip bg-color">java</span>
-                        </a>
-                        
-                        <a href="/tags/自定义/">
-                            <span class="chip bg-color">自定义</span>
-                        </a>
-                        
-                        <a href="/tags/线程/">
-                            <span class="chip bg-color">线程</span>
-                        </a>
-                        
-                        <a href="/tags/线程池/">
-                            <span class="chip bg-color">线程池</span>
-                        </a>
-                        
-                        <a href="/tags/多线程/">
-                            <span class="chip bg-color">多线程</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
                     <a href="/2020/03/26/java线程池第一天，自定义线程池/">
                         <div class="card-image">
                             
@@ -744,7 +592,12 @@ List&lt; Runnable &gt; shutdownNow()
                         <div class="summary block-with-text">
                             
                                 首先先看一段代码
-1234567891011121314151617181920212223/** * @author yang * @date 2020/3/20 下午 1:49 */public class EnuTest&#123; 
+/**
+ * @author yang
+ * @date 2020/3/20 下午 1:49
+ */
+public class EnuTest{
+    public static void main(String[] a
                             
                         </div>
                         <div class="publish-info">
@@ -792,7 +645,10 @@ List&lt; Runnable &gt; shutdownNow()
                         <div class="summary block-with-text">
                             
                                 首先对象使用==比较的是是否为同一个对象
-12345678910111213141516public class EnuTest &#123;    public static void main(String[] args) &#123;
+public class EnuTest {
+    public static void main(String[] args) {
+        Integer integer1=110;
+ 
                             
                         </div>
                         <div class="publish-info">
@@ -811,16 +667,16 @@ List&lt; Runnable &gt; shutdownNow()
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/源码/">
-                            <span class="chip bg-color">源码</span>
-                        </a>
-                        
                         <a href="/tags/Integer/">
                             <span class="chip bg-color">Integer</span>
                         </a>
                         
                         <a href="/tags/陷阱/">
                             <span class="chip bg-color">陷阱</span>
+                        </a>
+                        
+                        <a href="/tags/源码/">
+                            <span class="chip bg-color">源码</span>
                         </a>
                         
                         <a href="/tags/字节码/">
@@ -882,6 +738,152 @@ List&lt; Runnable &gt; shutdownNow()
                 </div>
             </div>
             
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/03/19/java零碎小细节/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="java零碎小细节">
+                            
+                            <span class="card-title">java零碎小细节</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                boolean大小问题问题引入今天在看java编程思想的时候发现8个基本类型变量基本上都有明确的大小，但是boolean并没有大小。
+解决来源是《Java虚拟机规范》一书中的描述：“虽然定义了boolean这种数据类型，但是只对它提供了非常
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                yang295513
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/java/">
+                            <span class="chip bg-color">java</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/03/19/秒杀系统实现思路/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="秒杀系统实现思路">
+                            
+                            <span class="card-title">秒杀系统实现思路</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                并发系统实现思路第一版主要是使用mysql实现秒杀，利用CAS和自旋锁保证商品不超卖，也就是说第一版主要是为了后面的并发系统打下基础，而且在这个秒杀系统中我们使用SpringSecurity的方式实现JWT。
+难点：使用mysql解决超卖问
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                yang295513
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/秒杀系统/">
+                            <span class="chip bg-color">秒杀系统</span>
+                        </a>
+                        
+                        <a href="/tags/高并发/">
+                            <span class="chip bg-color">高并发</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/03/19/jvm学习第三天-类加载器/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="jvm学习第三天-类加载器">
+                            
+                            <span class="card-title">jvm学习第三天-类加载器</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                类加载器
+虚拟机设计团队把类加载阶段中的“通过一个类的全限定名来获取描述此类的二进制字节流”这个动作放到Java虚拟机外部去实现，以便让应用程序自己决定如何去获取所需要的类。实现这个动作的代码模块称为“类加载器”。
+
+类与类加载器对于任何一
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                yang295513
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/java/">
+                            <span class="chip bg-color">java</span>
+                        </a>
+                        
+                        <a href="/tags/jvm/">
+                            <span class="chip bg-color">jvm</span>
+                        </a>
+                        
+                        <a href="/tags/虚拟器/">
+                            <span class="chip bg-color">虚拟器</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
         </div>
     </article>
 
@@ -927,7 +929,7 @@ List&lt; Runnable &gt; shutdownNow()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

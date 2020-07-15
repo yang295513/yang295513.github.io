@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -583,12 +583,30 @@
 <td align="center">不允许</td>
 </tr>
 </tbody></table>
-<h2 id="mysql事务带来的问题演示"><a href="#mysql事务带来的问题演示" class="headerlink" title="mysql事务带来的问题演示"></a>mysql事务带来的问题演示</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//查看当前事物级别：</span><br><span class="line"><span class="keyword">SELECT</span> @@tx_isolation;</span><br><span class="line">//设置mysql的隔离级别：</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">session</span> <span class="keyword">transaction</span> <span class="keyword">isolation</span> <span class="keyword">level</span> 设置事务隔离级别</span><br><span class="line"></span><br><span class="line">//设置<span class="keyword">read</span> uncommitted级别：</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">session</span> <span class="keyword">transaction</span> <span class="keyword">isolation</span> <span class="keyword">level</span> <span class="keyword">read</span> uncommitted;</span><br><span class="line"></span><br><span class="line">//设置read committed级别：</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">session</span> <span class="keyword">transaction</span> <span class="keyword">isolation</span> <span class="keyword">level</span> <span class="keyword">read</span> committed;</span><br><span class="line"></span><br><span class="line">//设置repeatable read级别：</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">session</span> <span class="keyword">transaction</span> <span class="keyword">isolation</span> <span class="keyword">level</span> repeatable <span class="keyword">read</span>;</span><br><span class="line"></span><br><span class="line">//设置serializable级别：</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">session</span> <span class="keyword">transaction</span> <span class="keyword">isolation</span> <span class="keyword">level</span> <span class="keyword">serializable</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="mysql事务带来的问题演示"><a href="#mysql事务带来的问题演示" class="headerlink" title="mysql事务带来的问题演示"></a>mysql事务带来的问题演示</h2><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">//查看当前事物级别：</span>
+<span class="token keyword">SELECT</span> @<span class="token variable">@tx_isolation</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//设置mysql的隔离级别：</span>
+<span class="token keyword">set</span> <span class="token keyword">session</span> <span class="token keyword">transaction</span> <span class="token keyword">isolation level</span> 设置事务隔离级别
 
+<span class="token comment" spellcheck="true">//设置read uncommitted级别：</span>
+<span class="token keyword">set</span> <span class="token keyword">session</span> <span class="token keyword">transaction</span> <span class="token keyword">isolation level</span> <span class="token keyword">read</span> <span class="token keyword">uncommitted</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//设置read committed级别：</span>
+<span class="token keyword">set</span> <span class="token keyword">session</span> <span class="token keyword">transaction</span> <span class="token keyword">isolation level</span> <span class="token keyword">read</span> <span class="token keyword">committed</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//设置repeatable read级别：</span>
+<span class="token keyword">set</span> <span class="token keyword">session</span> <span class="token keyword">transaction</span> <span class="token keyword">isolation level</span> <span class="token keyword">repeatable</span> <span class="token keyword">read</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//设置serializable级别：</span>
+<span class="token keyword">set</span> <span class="token keyword">session</span> <span class="token keyword">transaction</span> <span class="token keyword">isolation level</span> <span class="token keyword">serializable</span><span class="token punctuation">;</span></code></pre>
 <p>每次更改事务的隔离级别只针对当前会话有效。</p>
 <p>假设有张表</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`money`</span> <span class="keyword">double</span>(<span class="number">255</span>,<span class="number">0</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">4</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8mb4;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span><span class="token keyword">user</span><span class="token punctuation">`</span> <span class="token punctuation">(</span>
+  <span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  <span class="token punctuation">`</span>name<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token punctuation">`</span>money<span class="token punctuation">`</span> <span class="token keyword">double</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token operator">=</span><span class="token number">4</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8mb4<span class="token punctuation">;</span></code></pre>
 <h3 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h3><p>首先要把两个窗口的事务隔离级别都更改为读为提交（read uncommitted）级别，这样才能发生脏读问题</p>
 <p>窗口A </p>
 <p><img src="/upload/1585979574131.png" alt="1585979574131"></p>
@@ -1024,7 +1042,7 @@ mysql中使用外键约束要注意进行级联操作，否则必须先修改依
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

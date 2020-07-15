@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -481,7 +481,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    514
+                    493
                 </div>
                 
 
@@ -503,8 +503,32 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="堆空间溢出"><a href="#堆空间溢出" class="headerlink" title="堆空间溢出"></a>堆空间溢出</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * java堆内存溢出,首先在hospot虚拟机中堆内存是可以自动扩展的,但是我们可以调整他的上限</span></span><br><span class="line"><span class="comment"> * -Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=D:/发生OOM的时候自动保存内存快照</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OOMError</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Object&gt; objects = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            objects.add(<span class="keyword">new</span> Integer(<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">java.lang.OutOfMemoryError: Java heap space</span><br><span class="line">Dumping heap to D:/\java_pid15796.hprof ...</span><br><span class="line">Heap dump file created [<span class="number">14831242</span> bytes in <span class="number">0.071</span> secs]</span><br><span class="line">Exception in thread <span class="string">"main"</span> java.lang.OutOfMemoryError: Java heap space</span><br><span class="line">	at java.util.Arrays.copyOf(Arrays.java:<span class="number">3210</span>)</span><br><span class="line">	at java.util.Arrays.copyOf(Arrays.java:<span class="number">3181</span>)</span><br><span class="line">	at java.util.ArrayList.grow(ArrayList.java:<span class="number">261</span>)</span><br><span class="line">	at java.util.ArrayList.ensureExplicitCapacity(ArrayList.java:<span class="number">235</span>)</span><br><span class="line">	at java.util.ArrayList.ensureCapacityInternal(ArrayList.java:<span class="number">227</span>)</span><br><span class="line">	at java.util.ArrayList.add(ArrayList.java:<span class="number">458</span>)</span><br><span class="line">	at oom.OOMError.main(OOMError.java:<span class="number">13</span>)</span><br><span class="line"></span><br><span class="line">Process finished with exit code <span class="number">1</span></span><br></pre></td></tr></table></figure>
+                <h3 id="堆空间溢出"><a href="#堆空间溢出" class="headerlink" title="堆空间溢出"></a>堆空间溢出</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * java堆内存溢出,首先在hospot虚拟机中堆内存是可以自动扩展的,但是我们可以调整他的上限
+ * -Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=D:/发生OOM的时候自动保存内存快照
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OOMError</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ArrayList<span class="token operator">&lt;</span>Object<span class="token operator">></span> objects <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            objects<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>OutOfMemoryError<span class="token operator">:</span> Java heap space
+Dumping heap to D<span class="token operator">:</span><span class="token operator">/</span>\java_pid15796<span class="token punctuation">.</span>hprof <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+Heap dump file created <span class="token punctuation">[</span><span class="token number">14831242</span> bytes in <span class="token number">0.071</span> secs<span class="token punctuation">]</span>
+Exception in thread <span class="token string">"main"</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>OutOfMemoryError<span class="token operator">:</span> Java heap space
+    at java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Arrays<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">3210</span><span class="token punctuation">)</span>
+    at java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Arrays<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">3181</span><span class="token punctuation">)</span>
+    at java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">.</span><span class="token function">grow</span><span class="token punctuation">(</span>ArrayList<span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">261</span><span class="token punctuation">)</span>
+    at java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">.</span><span class="token function">ensureExplicitCapacity</span><span class="token punctuation">(</span>ArrayList<span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">235</span><span class="token punctuation">)</span>
+    at java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">.</span><span class="token function">ensureCapacityInternal</span><span class="token punctuation">(</span>ArrayList<span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">227</span><span class="token punctuation">)</span>
+    at java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>ArrayList<span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">458</span><span class="token punctuation">)</span>
+    at oom<span class="token punctuation">.</span>OOMError<span class="token punctuation">.</span><span class="token function">main</span><span class="token punctuation">(</span>OOMError<span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">13</span><span class="token punctuation">)</span>
 
+Process finished with exit code <span class="token number">1</span>
+</code></pre>
 <h4 id="如何定位哪里产生了大量对象导致了堆空间溢出了呢？"><a href="#如何定位哪里产生了大量对象导致了堆空间溢出了呢？" class="headerlink" title="如何定位哪里产生了大量对象导致了堆空间溢出了呢？"></a>如何定位哪里产生了大量对象导致了堆空间溢出了呢？</h4><p>我们使用工具Java VisualVm打开刚才保存的堆快照，中找到类视图，按照数量排序</p>
 <p><img src="/upload/1587541617067.png" alt="1587541617067"></p>
 <p>我们可以看到确实是创建了大量的Integer对象可能导致了OOM</p>
@@ -514,11 +538,29 @@
 <p><img src="/upload/1587541897774.png" alt="1587541897774"></p>
 <p>我们使用Jprofiler工具可以一键查看发送错误的位置</p>
 <p><img src="/upload/1587809340924.png" alt="1587809340924"></p>
-<h3 id="栈内存溢出"><a href="#栈内存溢出" class="headerlink" title="栈内存溢出"></a>栈内存溢出</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	由于Hospot虚拟机栈不可用动态扩展，所以无法产生oom错误，只会参数StackOverflowError</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StackOverflowError</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        method(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        System.out.println(index);</span><br><span class="line">        method(index+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="栈内存溢出"><a href="#栈内存溢出" class="headerlink" title="栈内存溢出"></a>栈内存溢出</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+    由于Hospot虚拟机栈不可用动态扩展，所以无法产生oom错误，只会参数StackOverflowError
+*/</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StackOverflowError</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">method</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">method</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">method</span><span class="token punctuation">(</span>index<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="方法区和运行时常量池溢出"><a href="#方法区和运行时常量池溢出" class="headerlink" title="方法区和运行时常量池溢出"></a>方法区和运行时常量池溢出</h3><p>由于在JDK1.8中使用了元空间代替了永久代来实现，所以会动态扩展，要想产生溢出除了使用永久代实现了常量池，或者现在jvm的内存大小,当无法申请到新的内存的时候就会产生OOM</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//-Xms10m -Xmx10m</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OOMError2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str=<span class="string">"a"</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            str=str+str;</span><br><span class="line">            str.intern();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//-Xms10m -Xmx10m</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OOMError2</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        String str<span class="token operator">=</span><span class="token string">"a"</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            str<span class="token operator">=</span>str<span class="token operator">+</span>str<span class="token punctuation">;</span>
+            str<span class="token punctuation">.</span><span class="token function">intern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -660,25 +702,36 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/03/15/JAVA反射详解/">
+                <a href="/2020/03/14/jvm学习第一天-自动内存管理/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="JAVA反射详解">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="jvm学习第一天-自动内存管理">
                         
-                        <span class="card-title">JAVA反射详解</span>
+                        <span class="card-title">jvm学习第一天-自动内存管理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            概述定义JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。
-用途最重要的用途就是解耦，许多
+                            运行时数据区域
+
+方法区
+堆
+虚拟机栈
+本地方法栈
+程序计数器
+
+其中前两个是线程共享的，后三个是线程独有的
+程序计数器
+程序计数器是一个记录着当前线程所执行的字节码的行号指示器。
+
+如果线程执行的是一个java方法，那么这个计数器就表示正
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-14
                         </span>
                         <span class="publish-author">
                             
@@ -691,12 +744,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JAVA/">
-                        <span class="chip bg-color">JAVA</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/反射/">
-                        <span class="chip bg-color">反射</span>
+                    <a href="/tags/jvm/">
+                        <span class="chip bg-color">jvm</span>
+                    </a>
+                    
+                    <a href="/tags/虚拟机/">
+                        <span class="chip bg-color">虚拟机</span>
                     </a>
                     
                 </div>
@@ -905,7 +962,7 @@ native关键字说明被修饰的方法是一个原生态方法，并且方法�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

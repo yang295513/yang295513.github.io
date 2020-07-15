@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -518,8 +518,15 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 在几秒内改动了多少数据就触发持久化</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 想禁用的话不设置save   或者save <span class="string">""</span></span></span><br><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br><span class="line"><span class="meta">#</span><span class="bash"> 备份进程出错主进程停止写入操作</span></span><br><span class="line">stop-writes-on-bgsave-error yes</span><br><span class="line"><span class="meta">#</span><span class="bash"> 是否压缩rdb文件 推荐no 相对于硬盘成本cpu更值钱</span></span><br><span class="line">rdbcompression yes</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-shell"><code class="language-shell"># 在几秒内改动了多少数据就触发持久化
+# 想禁用的话不设置save   或者save ""
+save 900 1
+save 300 10
+save 60 10000
+# 备份进程出错主进程停止写入操作
+stop-writes-on-bgsave-error yes
+# 是否压缩rdb文件 推荐no 相对于硬盘成本cpu更值钱
+rdbcompression yes</code></pre>
 <h4 id="RDB模式原理"><a href="#RDB模式原理" class="headerlink" title="RDB模式原理"></a>RDB模式原理</h4><p><img src="/upload/image-20200430191853419.png" alt="image-20200430191853419"></p>
 <p>RDB模式在持久化的时候会fork()创建子线程，在后台进程存储。只有fork阶段会阻塞当前Redis服务器，不必到整个RDB过程结束，一般时间很短。因此Redis内部涉及到RDB都采用bgsave命令。这里注意一点，无论RDB还是AOF，<strong>由于使用了写时复制，fork出来的子进程不需要拷贝父进程的物理内存空间</strong>，但是会复制父进程的空间内存页表。</p>
 <h3 id="AOF模式（写命令才追加）"><a href="#AOF模式（写命令才追加）" class="headerlink" title="AOF模式（写命令才追加）"></a>AOF模式（写命令才追加）</h3><p><strong>RDB方式不能提供强一致性</strong>，如果Redis进程崩溃（主机断电），那么两次RDB之间的数据也随之消失。那么AOF的出现很好的解决了数据持久化的实时性，AOF以独立日志的方式记录每次写命令，重启时再重新执行AOF文件中的命令来恢复数据。<strong>AOF会先把命令追加在AOF缓冲区，然后根据对应策略写入硬盘（appendfsync）</strong></p>
@@ -542,8 +549,21 @@
 </ul>
 </li>
 </ul>
-<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 默认关闭若要开启将no改为yes</span></span><br><span class="line">appendonly no</span><br><span class="line"><span class="meta">#</span><span class="bash"> append文件的名字</span></span><br><span class="line">appendfilename "appendonly.aof"</span><br><span class="line"><span class="meta">#</span><span class="bash"> AOF文件的写入方式</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> always一旦缓存区内容发生变化就写入AOF文件中</span></span><br><span class="line">appendfsync always</span><br><span class="line"><span class="meta">#</span><span class="bash"> everysec 每个一秒将缓存区内容写入文件 默认开启的写入方式</span></span><br><span class="line">appendfsync everysec</span><br><span class="line"><span class="meta">#</span><span class="bash"> 将写入文件的操作交由操作系统决定</span></span><br><span class="line">appendfsync no</span><br><span class="line"><span class="meta">#</span><span class="bash"> 当AOF文件大小的增长率大于该配置项时自动开启重写（这里指超过原大小的100%）。</span></span><br><span class="line">auto-aof-rewrite-percentage 100</span><br><span class="line"><span class="meta">#</span><span class="bash"> 当AOF文件大小大于该配置项时自动开启重写</span></span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br></pre></td></tr></table></figure>
-
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><pre class=" language-shell"><code class="language-shell"># 默认关闭若要开启将no改为yes
+appendonly no
+# append文件的名字
+appendfilename "appendonly.aof"
+# AOF文件的写入方式
+# always一旦缓存区内容发生变化就写入AOF文件中
+appendfsync always
+# everysec 每个一秒将缓存区内容写入文件 默认开启的写入方式
+appendfsync everysec
+# 将写入文件的操作交由操作系统决定
+appendfsync no
+# 当AOF文件大小的增长率大于该配置项时自动开启重写（这里指超过原大小的100%）。
+auto-aof-rewrite-percentage 100
+# 当AOF文件大小大于该配置项时自动开启重写
+auto-aof-rewrite-min-size 64mb</code></pre>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h6 id="RDB和AOF的优缺点"><a href="#RDB和AOF的优缺点" class="headerlink" title="RDB和AOF的优缺点"></a>RDB和AOF的优缺点</h6><p>RDB优点：全量数据快照，文件小，恢复快</p>
 <p>RDB缺点：无法保存最近一次快照之后的数据，数据量大会由于I/O严重影响性能</p>
 <p>AOF优点：可读性高，适合保存增量数据，数据不一丢失</p>
@@ -955,7 +975,7 @@ session介绍session简介session是一次浏览器和服务器的交互会话�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

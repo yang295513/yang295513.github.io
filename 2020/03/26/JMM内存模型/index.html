@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -516,8 +516,21 @@
 <h5 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h5><p>使用volatile可以保证有序性和共享性</p>
 <h4 id="竞争现象"><a href="#竞争现象" class="headerlink" title="竞争现象"></a>竞争现象</h4><p>如果线程A和线程B都共享了一个对象，其中A让自己工作内存中的变量加1，B也在工作内存中加1，如果正常情况下，主内存的值应该被加2，但是由于这两个操作是并行的，所以结果被加了1</p>
 <h5 id="解决方案-2"><a href="#解决方案-2" class="headerlink" title="解决方案"></a>解决方案</h5><p>使用synchronized进行同步</p>
-<h4 id="并发下重排序带来的问题"><a href="#并发下重排序带来的问题" class="headerlink" title="并发下重排序带来的问题"></a>并发下重排序带来的问题</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReorderExample</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">boolean</span> flag=<span class="keyword">false</span>;</span><br><span class="line">    <span class="comment">//线程A执行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        a=<span class="number">1</span>;</span><br><span class="line">        flag=<span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//线程B执行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reader</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            <span class="keyword">int</span> i=a*a;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h4 id="并发下重排序带来的问题"><a href="#并发下重排序带来的问题" class="headerlink" title="并发下重排序带来的问题"></a>并发下重排序带来的问题</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">ReorderExample</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">boolean</span> flag<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//线程A执行</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">writer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        a<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+        flag<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//线程B执行</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">int</span> i<span class="token operator">=</span>a<span class="token operator">*</span>a<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p>由于a=1和flag=true，没有数据依赖，那么这两条代码可能会被重排序。</p>
 <p>假设线程A先执行了flag=true;</p>
 <p>此时线程B进入判断发现为真计算i的结果就会为0，这个时候如果线程A由执行a=1,那么这就产生了并发下重排序问题。</p>
@@ -538,8 +551,21 @@
 <li>线程中断规则:对线程interrupt方法的调用happens-before于被中断线程的代码检测到中断事件的发生。</li>
 </ul>
 <p><strong>对于上述代码我们就可以使用volatile规则来保证</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReorderExample</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">boolean</span> flag=<span class="keyword">false</span>;</span><br><span class="line">    <span class="comment">//线程A执行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        a=<span class="number">1</span>;</span><br><span class="line">        flag=<span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//线程B执行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reader</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;<span class="comment">//保证读一定在写之后</span></span><br><span class="line">            <span class="keyword">int</span> i=a*a;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">ReorderExample</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">volatile</span> <span class="token keyword">boolean</span> flag<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//线程A执行</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">writer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        a<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+        flag<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//线程B执行</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//保证读一定在写之后</span>
+            <span class="token keyword">int</span> i<span class="token operator">=</span>a<span class="token operator">*</span>a<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h5 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a>内存屏障</h5><p>上述的volatile在java编译器在生成指令序列的适当位置会插入内存屏障指令来禁止特定类型的处理器重排序，从而让程序按我们预想的流程去执行。<br> 1、保证特定操作的执行顺序。<br> 2、影响某些数据（或则是某条指令的执行结果）的内存可见性。</p>
 <p><strong>但是这种方法是java编译器插入的，我们无法控制。</strong></p>
 
@@ -746,7 +772,11 @@
                     <div class="summary block-with-text">
                         
                             可见性对于一个共享变量，一个线程的修改，对于另一个线程来说他不能立刻知道这个值已经被修改.
-演示1234567891011121314151617181920/** * @author yang * @date 2020/3/26 下午 3
+演示/**
+ * @author yang
+ * @date 2020/3/26 下午 3:30
+ */
+public class LookThre
                         
                     </div>
                     <div class="publish-info">
@@ -914,7 +944,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

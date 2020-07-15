@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -497,7 +497,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    498
+                    485
                 </div>
                 
 
@@ -520,8 +520,9 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="C-C-语言位运算基本用法和骚操作"><a href="#C-C-语言位运算基本用法和骚操作" class="headerlink" title="C/C++语言位运算基本用法和骚操作"></a>C/C++语言位运算基本用法和骚操作</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言:"></a>前言:</h2><p>​        前几天打了徐州ACM的网络模拟赛，其中有个题觉得很容易做出来，但是死活都是卡时间和卡内存，于是乎就百度了一下题解（╮(╯▽╰)╭手动狗头），结果学到了一个新的算法，叫做区间数组，然后就学了学，结果学的云里雾里的，其中区间数组核心的一个确定区间的函数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lowbit(<span class="keyword">int</span> x)&#123;</span><br><span class="line">	<span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-c"><code class="language-c"><span class="token function">lowbit</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x<span class="token operator">&amp;</span><span class="token punctuation">(</span><span class="token operator">-</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <p>更是云里雾里。然后就结束今天的新的吧。</p>
 <h2 id="位运算基本用法"><a href="#位运算基本用法" class="headerlink" title="位运算基本用法"></a>位运算基本用法</h2><table>
 <thead>
@@ -574,12 +575,42 @@
 <td>x 的每个位向右移动 y 个位</td>
 </tr>
 </tbody></table>
-<h2 id="骚操作"><a href="#骚操作" class="headerlink" title="骚操作"></a>骚操作</h2><h3 id="判断一个整形最后一位是否是1-用来判断奇偶数"><a href="#判断一个整形最后一位是否是1-用来判断奇偶数" class="headerlink" title="判断一个整形最后一位是否是1(用来判断奇偶数)"></a>判断一个整形最后一位是否是1(用来判断奇偶数)</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(n&amp;<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"是奇数"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="骚操作"><a href="#骚操作" class="headerlink" title="骚操作"></a>骚操作</h2><h3 id="判断一个整形最后一位是否是1-用来判断奇偶数"><a href="#判断一个整形最后一位是否是1-用来判断奇偶数" class="headerlink" title="判断一个整形最后一位是否是1(用来判断奇偶数)"></a>判断一个整形最后一位是否是1(用来判断奇偶数)</h3><pre class=" language-c"><code class="language-c"><span class="token keyword">if</span><span class="token punctuation">(</span>n<span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"是奇数"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <pre><code>### 演示</code></pre><p>​    将输入的一个n（int类型整数）转换成二进制小数（n&gt;=0）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int n;</span><br><span class="line">	while(true) </span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;n;</span><br><span class="line">		stack&lt;int&gt; sta;</span><br><span class="line">		while(n&gt;0)//输出二进制末尾小数打印出并且进行移位</span><br><span class="line">		&#123;</span><br><span class="line">			if(n&amp;1)</span><br><span class="line">				sta.push(1);</span><br><span class="line">			else</span><br><span class="line">				sta.push(0);</span><br><span class="line">			n&gt;&gt;=1;</span><br><span class="line">		&#125;</span><br><span class="line">		while(!sta.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			cout&lt;&lt;sta.top();</span><br><span class="line">			sta.pop();</span><br><span class="line">		&#125;</span><br><span class="line">		cout&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;stack&gt;
+using namespace std;
+int main(void)
+{
+    int n;
+    while(true) 
+    {
+        cin&gt;&gt;n;
+        stack&lt;int&gt; sta;
+        while(n&gt;0)//输出二进制末尾小数打印出并且进行移位
+        {
+            if(n&amp;1)
+                sta.push(1);
+            else
+                sta.push(0);
+            n&gt;&gt;=1;
+        }
+        while(!sta.empty())
+        {
+            cout&lt;&lt;sta.top();
+            sta.pop();
+        }
+        cout&lt;&lt;endl;
+    }
+    return 0;
+}</code></pre><h3 id="实现两个数互换"><a href="#实现两个数互换" class="headerlink" title="实现两个数互换"></a>实现两个数互换</h3><pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> num1<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> num2<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span>
+num1<span class="token operator">=</span>num1<span class="token operator">^</span>num2<span class="token punctuation">;</span>
+num2<span class="token operator">=</span>num1<span class="token operator">^</span>num2<span class="token punctuation">;</span>
+num1<span class="token operator">=</span>num1<span class="token operator">^</span>num2<span class="token punctuation">;</span></code></pre>
 
-<h3 id="实现两个数互换"><a href="#实现两个数互换" class="headerlink" title="实现两个数互换"></a>实现两个数互换</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num1=<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> num2=<span class="number">10</span>;</span><br><span class="line">num1=num1^num2;</span><br><span class="line">num2=num1^num2;</span><br><span class="line">num1=num1^num2;</span><br></pre></td></tr></table></figure>
             </div>
             <hr/>
 
@@ -769,12 +800,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/mysql/">
-                        <span class="chip bg-color">mysql</span>
-                    </a>
-                    
                     <a href="/tags/数据库/">
                         <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
                     </a>
                     
                 </div>
@@ -989,7 +1020,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -481,7 +481,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    122
+                    123
                 </div>
                 
 
@@ -503,17 +503,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="首先我们需要去Oracle官网下载linux安装包"><a href="#首先我们需要去Oracle官网下载linux安装包" class="headerlink" title="首先我们需要去Oracle官网下载linux安装包"></a>首先我们需要去Oracle官网下载linux安装包</h2><h3 id="然后解压安装包"><a href="#然后解压安装包" class="headerlink" title="然后解压安装包"></a>然后解压安装包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf jdk-8u181-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
-
+                <h2 id="首先我们需要去Oracle官网下载linux安装包"><a href="#首先我们需要去Oracle官网下载linux安装包" class="headerlink" title="首先我们需要去Oracle官网下载linux安装包"></a>首先我们需要去Oracle官网下载linux安装包</h2><h3 id="然后解压安装包"><a href="#然后解压安装包" class="headerlink" title="然后解压安装包"></a>然后解压安装包</h3><pre class=" language-shell"><code class="language-shell">tar zxvf jdk-8u181-linux-x64.tar.gz</code></pre>
 <p><img src="/upload/1587904921755.png" alt="1587904921755"></p>
-<h3 id="接下来配置环境变量"><a href="#接下来配置环境变量" class="headerlink" title="接下来配置环境变量"></a>接下来配置环境变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure>
-
+<h3 id="接下来配置环境变量"><a href="#接下来配置环境变量" class="headerlink" title="接下来配置环境变量"></a>接下来配置环境变量</h3><pre class=" language-shell"><code class="language-shell">vim /etc/profile</code></pre>
 <p>在尾部添加如下信息，当然根据你目录的不同调整你的JAVA_HOME路径</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/root/jdk/jdk1.8.0_241</span><br><span class="line">export CLASSPATH=$:CLASSPATH:$JAVA_HOME/lib/ </span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-shell"><code class="language-shell">export JAVA_HOME=/root/jdk/jdk1.8.0_241
+export CLASSPATH=$:CLASSPATH:$JAVA_HOME/lib/ 
+export PATH=$PATH:$JAVA_HOME/bin</code></pre>
 <p><img src="/upload/1587905112696.png" alt="1587905112696"></p>
-<h3 id="编辑完成保存退出后使用如下指令刷新环境配置"><a href="#编辑完成保存退出后使用如下指令刷新环境配置" class="headerlink" title="编辑完成保存退出后使用如下指令刷新环境配置"></a>编辑完成保存退出后使用如下指令刷新环境配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
-
+<h3 id="编辑完成保存退出后使用如下指令刷新环境配置"><a href="#编辑完成保存退出后使用如下指令刷新环境配置" class="headerlink" title="编辑完成保存退出后使用如下指令刷新环境配置"></a>编辑完成保存退出后使用如下指令刷新环境配置</h3><pre class=" language-shell"><code class="language-shell">source /etc/profile</code></pre>
 <p>之后使用java -version查看安装是否成功了</p>
 <p><img src="/upload/1587905161870.png" alt="1587905161870"></p>
 
@@ -670,7 +668,7 @@
                     <div class="summary block-with-text">
                         
                             函数式接口函数式接口是jdk8中提供的新特性，所谓的函数式接口就是只有一个抽象方法的接口，在jdk8中又提供了一些新的函数式接口，他们都在java.lang.function中，他们主要有4中类型接口
-消费型接口，有参数无返回值123456
+消费型接口，有参数无返回值@Funct
                         
                     </div>
                     <div class="publish-info">
@@ -908,7 +906,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

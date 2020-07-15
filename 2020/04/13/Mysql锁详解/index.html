@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -518,16 +518,32 @@
 <h3 id="按照锁的粒度分类"><a href="#按照锁的粒度分类" class="headerlink" title="按照锁的粒度分类"></a>按照锁的粒度分类</h3><h4 id="表锁（偏读）"><a href="#表锁（偏读）" class="headerlink" title="表锁（偏读）"></a>表锁（偏读）</h4><p><strong>MyISAM 和 MEMORY 存储引擎采用的是表级锁（table-level locking）</strong></p>
 <h4 id="行锁（偏写）"><a href="#行锁（偏写）" class="headerlink" title="行锁（偏写）"></a>行锁（偏写）</h4><p><strong>InnoDB 存储引擎既支持行级锁（row-level locking），也支持表级锁，但默认情况下是采用行级锁。</strong></p>
 <h4 id="页锁"><a href="#页锁" class="headerlink" title="页锁"></a>页锁</h4><p><strong>BDB 存储引擎采用的是页面锁（page-level locking），但也支持表级锁</strong></p>
-<h2 id="MyISAM-表锁读锁演示"><a href="#MyISAM-表锁读锁演示" class="headerlink" title="MyISAM 表锁读锁演示"></a><strong>MyISAM 表锁</strong>读锁演示</h2><h4 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 表，注意表的存储引擎</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> myLock(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">	<span class="string">`name`</span> <span class="built_in">VARCHAR</span>(<span class="number">30</span>)</span><br><span class="line">)<span class="keyword">engine</span> myisam; </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 向表中插入数据</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> myLock(<span class="keyword">name</span>) <span class="keyword">VALUES</span>(<span class="string">'a'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> myLock(<span class="keyword">name</span>) <span class="keyword">VALUES</span>(<span class="string">'b'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> myLock(<span class="keyword">name</span>) <span class="keyword">VALUES</span>(<span class="string">'c'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> myLock(<span class="keyword">name</span>) <span class="keyword">VALUES</span>(<span class="string">'d'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> myLock(<span class="keyword">name</span>) <span class="keyword">VALUES</span>(<span class="string">'e'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> myLock(<span class="keyword">name</span>) <span class="keyword">VALUES</span>(<span class="string">'f'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> myLock(<span class="keyword">name</span>) <span class="keyword">VALUES</span>(<span class="string">'g'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="MyISAM-表锁读锁演示"><a href="#MyISAM-表锁读锁演示" class="headerlink" title="MyISAM 表锁读锁演示"></a><strong>MyISAM 表锁</strong>读锁演示</h2><h4 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h4><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 表，注意表的存储引擎</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> myLock<span class="token punctuation">(</span>
+    id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token keyword">auto_increment</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>name<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token keyword">engine</span> myisam<span class="token punctuation">;</span> 
 
-<h4 id="常用sql语法"><a href="#常用sql语法" class="headerlink" title="常用sql语法"></a>常用sql语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查看所有表的锁状态</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">OPEN</span> <span class="keyword">TABLES</span>;</span><br><span class="line"><span class="comment">-- 加锁</span></span><br><span class="line"><span class="keyword">lock</span> <span class="keyword">table</span> &lt;表名&gt; <span class="keyword">read</span>(write),&lt;表名&gt; <span class="keyword">read</span>(write);</span><br><span class="line"><span class="comment">-- 解除所有的锁</span></span><br><span class="line"><span class="keyword">UNLOCK</span> <span class="keyword">tables</span>;</span><br></pre></td></tr></table></figure>
+<span class="token comment" spellcheck="true">-- 向表中插入数据</span>
 
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> myLock<span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> myLock<span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> myLock<span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'c'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> myLock<span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> myLock<span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'e'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> myLock<span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'f'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> myLock<span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'g'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="常用sql语法"><a href="#常用sql语法" class="headerlink" title="常用sql语法"></a>常用sql语法</h4><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 查看所有表的锁状态</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">OPEN</span> <span class="token keyword">TABLES</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">-- 加锁</span>
+<span class="token keyword">lock</span> <span class="token keyword">table</span> <span class="token operator">&lt;</span>表名<span class="token operator">></span> <span class="token keyword">read</span><span class="token punctuation">(</span><span class="token keyword">write</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">&lt;</span>表名<span class="token operator">></span> <span class="token keyword">read</span><span class="token punctuation">(</span><span class="token keyword">write</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">-- 解除所有的锁</span>
+UNLOCK <span class="token keyword">tables</span><span class="token punctuation">;</span></code></pre>
 <p>首先我们开启两个会话</p>
 <p><img src="/upload/1586768442633.png" alt="1586768442633"></p>
 <p>首先我们在黑窗口上给myLock加一把读锁（共享锁）</p>
 <h4 id="读"><a href="#读" class="headerlink" title="读"></a>读</h4><p>然后我们在黑窗口中查找myLock表中的数据</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> myLock;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> myLock<span class="token punctuation">;</span></code></pre>
 <p><img src="/upload/1586768538661.png" alt="1586768538661"></p>
 <p>我们可以看到能读取出数据</p>
 <p>接下来我们开一个新的窗口，直接读myLock这个表</p>
@@ -535,8 +551,7 @@
 <p>我们可以看到确实是可以读本表的，也就是确实是一个共享锁</p>
 <h4 id="读其他表"><a href="#读其他表" class="headerlink" title="读其他表"></a>读其他表</h4><p>我这个数据库中还有一个其他表，这个表其实是随意了，因为不影响结果</p>
 <p>黑窗口读取其他表</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token keyword">user</span><span class="token punctuation">;</span></code></pre>
 <p><img src="/upload/1586768716569.png" alt="1586768716569"></p>
 <p>我们可以看到，上锁的那个会话在没有释放锁之前是不能读取其他表的，那么其他会话可以么？</p>
 <p><img src="/upload/1586768763319.png" alt="1586768763319"></p>
@@ -549,8 +564,13 @@
 <p><img src="/upload/1586769227445.png" alt="1586769227445"></p>
 <p>很显然，如果想使用关联查询，那么所有被查询的表都要被加上锁</p>
 <p>这里有个坑，加锁的时候要一步到位。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 第一种情况</span></span><br><span class="line"><span class="keyword">lock</span> <span class="keyword">table</span> myLock <span class="keyword">read</span>;</span><br><span class="line"><span class="keyword">lock</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">read</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 第二种情况</span></span><br><span class="line"><span class="keyword">lock</span> <span class="keyword">table</span> myLock <span class="keyword">read</span>,<span class="keyword">user</span> <span class="keyword">read</span>;</span><br><span class="line"><span class="comment">-- 情况是不等价的，第一种情况在第二次给user添加锁的时候会释放myLock的锁</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 第一种情况</span>
+<span class="token keyword">lock</span> <span class="token keyword">table</span> myLock <span class="token keyword">read</span><span class="token punctuation">;</span>
+<span class="token keyword">lock</span> <span class="token keyword">table</span> <span class="token keyword">user</span> <span class="token keyword">read</span><span class="token punctuation">;</span>
 
+<span class="token comment" spellcheck="true">-- 第二种情况</span>
+<span class="token keyword">lock</span> <span class="token keyword">table</span> myLock <span class="token keyword">read</span><span class="token punctuation">,</span><span class="token keyword">user</span> <span class="token keyword">read</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">-- 情况是不等价的，第一种情况在第二次给user添加锁的时候会释放myLock的锁</span></code></pre>
 <p>那么其他会话可以使用关联查询么？</p>
 <p><img src="/upload/1586768985848.png" alt="1586768985848"></p>
 <p>从上面可以看出可以使用关联查询。</p>
@@ -593,8 +613,8 @@
 <ul>
 <li><strong>显式锁定 ：</strong></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select ... lock in share mode //共享锁 </span><br><span class="line">select ... for update //排他锁</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-text"><code class="language-text">select ... lock in share mode //共享锁 
+select ... for update //排他锁 </code></pre>
 <p><strong>select for update：</strong></p>
 <p>在执行这个 select 查询语句的时候，会将对应的索引访问条目进行上排他锁（X 锁），也就是说这个语句对应的锁就相当于update带来的效果。</p>
 <p>select *** for update 的使用场景：为了让自己查到的数据确保是最新数据，并且查到后的数据只允许自己来修改的时候，需要用到 for update 子句。</p>
@@ -632,8 +652,8 @@
 <p>此时另一个窗口也修改其中的任意一条非同行数据</p>
 <p>发现另一个窗口处于阻塞状态。</p>
 <h3 id="还有一个隐藏问题"><a href="#还有一个隐藏问题" class="headerlink" title="还有一个隐藏问题"></a>还有一个隐藏问题</h3><p>如果我们的name字段也有索引那么</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> myLock <span class="keyword">set</span> <span class="keyword">id</span>=<span class="number">111</span> <span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">"b"</span>//使用到了索引</span><br><span class="line"><span class="keyword">update</span> myLock <span class="keyword">set</span> <span class="keyword">id</span>=<span class="number">111</span> <span class="keyword">where</span> <span class="keyword">name</span>=b//没有使用到索引，还是会行锁变表锁</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">update</span> myLock <span class="token keyword">set</span> id<span class="token operator">=</span><span class="token number">111</span> <span class="token keyword">where</span> name<span class="token operator">=</span><span class="token string">"b"</span><span class="token comment" spellcheck="true">//使用到了索引</span>
+<span class="token keyword">update</span> myLock <span class="token keyword">set</span> id<span class="token operator">=</span><span class="token number">111</span> <span class="token keyword">where</span> name<span class="token operator">=</span><span class="token number">b</span><span class="token comment" spellcheck="true">//没有使用到索引，还是会行锁变表锁</span></code></pre>
 <p>因为涉及到了自动类型转换导致没有使用到索引</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
 <li><strong>更新的时候没有索引或者索引失效时，InnoDB 的行锁变表锁</strong></li>
@@ -830,32 +850,52 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/04/14/zookeeper环境搭建/">
+                <a href="/2020/04/15/并发编程总结/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="zookeeper环境搭建">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="并发编程总结">
                         
-                        <span class="card-title">zookeeper环境搭建</span>
+                        <span class="card-title">并发编程总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
+这篇文章只会梳理一下知识，并不会详细讲解每个知识点
+
+上下文切换什么是上下文切换
+CPU通过实践片分配算法来循环执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会保存上一个任务的状态，以便下次切换回这个任务时，可以再加
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-14
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-15
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            yang295513
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/并发/" class="post-category">
+                                    并发
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/并发/">
+                        <span class="chip bg-color">并发</span>
+                    </a>
+                    
+                    <a href="/tags/总结/">
+                        <span class="chip bg-color">总结</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -882,7 +922,9 @@
                             方式一使用stop暴力停止
 注意该方式以经被弃用，因为它有很大弊端
 
-1234567891011121314public class Thread04 &#123;    public static void main(String[] a
+public class Thread04 {
+    public static void main(String[] args) {
+        MyThread
                         
                     </div>
                     <div class="publish-info">
@@ -1058,7 +1100,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

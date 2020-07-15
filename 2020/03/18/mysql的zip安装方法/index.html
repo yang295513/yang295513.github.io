@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -468,7 +468,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    682
+                    684
                 </div>
                 
 
@@ -499,9 +499,23 @@
 <ol>
 <li><p>配置</p>
 <p> 解压完后在根目录创建一个名为my.ini的文件,添加以下内容</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">character-set-server=utf8</span><br><span class="line">port = 3306</span><br><span class="line"># 设置mysql的安装目录</span><br><span class="line">basedir=D:\\mysql-8.0.11</span><br><span class="line"># 设置mysql数据库的数据的存放目录</span><br><span class="line">datadir=D:\\mysql-8.0.11\\data</span><br><span class="line">default-storage-engine = INNODB</span><br><span class="line">collation-server = utf8_general_ci</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[mysql.server]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[mysql_safe]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[client]</span><br><span class="line">default-character-set=utf8</span><br></pre></td></tr></table></figure>
-
-</li>
+<pre><code> [mysqld]
+ character-set-server=utf8
+ port = 3306
+ # 设置mysql的安装目录
+ basedir=D:\\mysql-8.0.11
+ # 设置mysql数据库的数据的存放目录
+ datadir=D:\\mysql-8.0.11\\data
+ default-storage-engine = INNODB
+ collation-server = utf8_general_ci
+ [mysql]
+ default-character-set=utf8
+ [mysql.server]
+ default-character-set=utf8
+ [mysql_safe]
+ default-character-set=utf8
+ [client]
+ default-character-set=utf8</code></pre></li>
 </ol>
 <p>basedir是解压目录,datadir是mysql存放数据的目录</p>
 <ol>
@@ -511,27 +525,19 @@
 <p>在path中增加%MYSQL_HOME%\bin</p>
 <ol>
 <li><p>在mysql的bin目录下运行初始化系统命令</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize</span><br></pre></td></tr></table></figure>
-</li>
+<pre><code> mysqld --initialize</code></pre></li>
 <li><p>初始化成功后，会在data文件夹下生成一些文件，其中xxx.err文件中说明了root账户的临时密码<br> 如</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Server] A temporary password is generated for root@localhost: JafC,2cE&lt;C#</span><br></pre></td></tr></table></figure>
-
-</li>
+<pre><code> [Server] A temporary password is generated for root@localhost: JafC,2cE&lt;C#</code></pre></li>
 </ol>
 <p>那么JafC,2cE&lt;C#就是临时密码,一般在第二行就会看到</p>
 <ol>
 <li><p>注册mysql服务</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld -install MySQL</span><br></pre></td></tr></table></figure>
-</li>
+<pre><code> mysqld -install MySQL</code></pre></li>
 <li><p>启动mysql服务</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net start MySQL</span><br></pre></td></tr></table></figure>
-
-</li>
+<pre><code> net start MySQL</code></pre></li>
 </ol>
 <p>停止mysql服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop MySQL</span><br></pre></td></tr></table></figure>
-
-<ol>
+<pre><code>net stop MySQL</code></pre><ol>
 <li>先用root和临时密码登录数据库</li>
 </ol>
 <h2 id="ubuntu18安装mysql"><a href="#ubuntu18安装mysql" class="headerlink" title="ubuntu18安装mysql"></a>ubuntu18安装mysql</h2><p>说明：此种方式完全参考官方提供的教程<a href="https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/。" target="_blank" rel="noopener">https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/。</a></p>
@@ -552,26 +558,19 @@
 <p>如果依赖不足,输入sudo apt-get install -f</p>
 <ol>
 <li><p>打开etc\mysql\mysql.conf.d\mysql.cnf在下面加上</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">character-set-server=utf8default-storage-engine = INNODBcollation-server = utf8_general_ci[mysql]default-character-set=utf8[mysql.server]default-character-set=utf8[mysql_safe]default-character-set=utf8[client]default-character-set=utf8</span><br></pre></td></tr></table></figure>
-
-</li>
+<pre><code> character-set-server=utf8default-storage-engine = INNODBcollation-server = utf8_general_ci[mysql]default-character-set=utf8[mysql.server]default-character-set=utf8[mysql_safe]default-character-set=utf8[client]default-character-set=utf8</code></pre></li>
 </ol>
 <p>服务管理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#启动sudo service mysql start#停止sudo service mysql stop#服务状态sudo service mysql status</span><br></pre></td></tr></table></figure>
-
-<h2 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h2><ul>
+<pre><code>#启动sudo service mysql start#停止sudo service mysql stop#服务状态sudo service mysql status</code></pre><h2 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h2><ul>
 <li><p>执行更改新密码</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;new_password&apos;;</span><br></pre></td></tr></table></figure>
-</li>
+<pre><code>  ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;new_password&#39;;</code></pre></li>
 <li><p>刷新</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-</li>
+<pre><code>  flush privileges;</code></pre></li>
 </ul>
 <p>退出重启服务器用新密码登录即可</p>
 <ul>
 <li><p>改密码</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user set authentication_string = password(&quot;new_password&quot;) where user=&apos;root&apos;;</span><br></pre></td></tr></table></figure></li>
+<pre><code>  update user set authentication_string = password(&quot;new_password&quot;) where user=&#39;root&#39;;</code></pre></li>
 </ul>
 
             </div>
@@ -955,7 +954,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             

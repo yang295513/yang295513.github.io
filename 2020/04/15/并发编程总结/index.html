@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -542,8 +542,10 @@
 <h2 id="JAVA内存模型"><a href="#JAVA内存模型" class="headerlink" title="JAVA内存模型"></a>JAVA内存模型</h2><h3 id="为什么要进行指令重排序？"><a href="#为什么要进行指令重排序？" class="headerlink" title="为什么要进行指令重排序？"></a>为什么要进行指令重排序？</h3><blockquote>
 <p>在执行程序时，为了提高性能，编译期和处理器常常会对指令做重排序。</p>
 </blockquote>
-<h4 id="例如-只是大概演示重排序的作用，实际上可能并不是如此"><a href="#例如-只是大概演示重排序的作用，实际上可能并不是如此" class="headerlink" title="例如(只是大概演示重排序的作用，实际上可能并不是如此)"></a>例如(只是大概演示重排序的作用，实际上可能并不是如此)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="number">0</span>;</span><br><span class="line">y=<span class="number">0</span>;</span><br><span class="line">x1=y;</span><br><span class="line">y1=x;</span><br></pre></td></tr></table></figure>
-
+<h4 id="例如-只是大概演示重排序的作用，实际上可能并不是如此"><a href="#例如-只是大概演示重排序的作用，实际上可能并不是如此" class="headerlink" title="例如(只是大概演示重排序的作用，实际上可能并不是如此)"></a>例如(只是大概演示重排序的作用，实际上可能并不是如此)</h4><pre class=" language-java"><code class="language-java">x<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+y<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+x1<span class="token operator">=</span>y<span class="token punctuation">;</span>
+y1<span class="token operator">=</span>x<span class="token punctuation">;</span></code></pre>
 <p>有如上代码如果没有指令重排序的话需要花费4条指令的时间</p>
 <p>如果进行了重排序可以同时让两个处理器执行</p>
 <table>
@@ -775,32 +777,55 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/14/zookeeper环境搭建/">
+                <a href="/2020/04/13/Mysql锁详解/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="zookeeper环境搭建">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Mysql锁详解">
                         
-                        <span class="card-title">zookeeper环境搭建</span>
+                        <span class="card-title">Mysql锁详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            什么是锁
+锁是计算机协调多个进程或线程并发访问某一资源的机制。锁保证数据并发访问的一致性、有效性；锁冲突也是影响数据库并发访问性能的一个重要因素。锁是Mysql在服务器层和存储引擎层的的并发控制。
+
+加锁是消耗资源的，锁的各种操作，包括获得
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-13
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            yang295513
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/数据库/" class="post-category">
+                                    数据库
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/tags/锁/">
+                        <span class="chip bg-color">锁</span>
+                    </a>
+                    
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -947,7 +972,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">210.7k</span>&nbsp;字
+                class="white-color">204k</span>&nbsp;字
             
             
             
